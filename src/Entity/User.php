@@ -50,7 +50,7 @@ class User implements UserInterface, \Serializable
     private $plainPassword;
 
     /**
-     * @ORM\Column(name="roles", type="array")
+     * @ORM\Column(name="roles", type="text", nullable=true)
      */
     private $roles = [self::DEFAULT_ROLE];
 
@@ -75,7 +75,10 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-        return $this->roles;
+         if(is_array($this->roles))
+           return $this->roles;
+
+       return json_decode($this->roles,1);
     }
 
     public function getPassword()
@@ -121,13 +124,9 @@ class User implements UserInterface, \Serializable
 
     public function setRoles(array $roles)
     {
-        $this->roles = [];
-
-        foreach ($roles as $role) {
-            $this->addRole($role);
-        }
-
-        return $this;
+        if(is_array($roles))
+         $this->roles = json_encode($roles);
+       return $this;
     }
 
     public function addRole($role)
@@ -137,9 +136,11 @@ class User implements UserInterface, \Serializable
         }
 
         $role = strtoupper($role);
-
-        if (!in_array($role, $this->roles, true)) {
-            $this->roles[] = $role;
+        $roles=$this->getRoles();
+        
+        if (is_array($roles) && !in_array($role,$roles , true)) {
+            $roles[] = $role;
+            $this->setRoles($roles);
         }
 
         return $this;
@@ -147,9 +148,10 @@ class User implements UserInterface, \Serializable
 
     public function removeRole($role)
     {
-        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
-            unset($this->roles[$key]);
-            $this->roles = array_values($this->roles);
+        $roles=$this->getRoles();
+        if (is_array($roles) && false !== $key = array_search(strtoupper($role), $roles, true)) {
+            unset($roles[$key]);
+           $this->setRoles(array_values($roles));
         }
 
         return $this;
@@ -157,7 +159,8 @@ class User implements UserInterface, \Serializable
 
     public function hasRole($role)
     {
-        return in_array(strtoupper($role), $this->roles, true);
+        $roles=$this->getRoles();
+        return in_array(strtoupper($role), $roles, true);
     }
 
     public function getEmail()
