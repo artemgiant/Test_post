@@ -1,0 +1,62 @@
+{% extends 'base_operation.html.twig' %}
+
+{% block title %}{{'Register'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="card-body">
+               <p class="text-center py-2">{{'SIGNUP TO GET INSTANT ACCESS'|trans}}.</p>
+
+   {{ form_start(registrationForm, {'attr': {'id': 'registerForm','class':'mb-3','novalidate':true}}) }}
+        <div class="form-group">
+               {{ form_label(registrationForm.email,'Email address'|trans, {
+                            'label_attr': {'class': 'text-muted'}
+                                }) }}
+                  <div class="input-group with-focus">
+                         {{ form_widget(registrationForm.email)}}
+                         <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-envelope"></em>
+                             </span>
+                         </div>
+                     </div>
+        </div>
+        
+        <div class="form-group">
+            {{form_label(registrationForm.plainPassword,'Password'|trans, {
+                                            'label_attr': {'class': 'text-muted'}
+                                            }) }}
+                     <div class="input-group with-focus">
+                         {{ form_widget(registrationForm.plainPassword)}}
+                         <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-envelope"></em>
+                             </span>
+                         </div>
+                     </div>
+        </div>
+       <div class="form-group">
+            {{form_label(registrationForm.rePlainPassword,'Retype Password'|trans, {
+                                            'label_attr': {'class': 'text-muted'}
+                                            }) }}
+                     <div class="input-group with-focus">
+                         {{ form_widget(registrationForm.rePlainPassword)}}
+                         <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-envelope"></em>
+                             </span>
+                         </div>
+                     </div>
+        </div>
+<div class="checkbox c-checkbox mt-0">
+    <label>
+        {{ form_widget(registrationForm.agreed)}}
+        <span class="fa fa-check">
+        </span> {{'I agree with the'|trans}}<a class="ml-1" href="#">{{'terms'|trans}}</a></label></div>
+
+    {{ form_row(registrationForm.save, {'label': 'Create account'|trans})}}
+    
+    {{ form_end(registrationForm) }}
+     <p class="pt-3 text-center">{{'Have an account?'|trans}}</p>
+     <a class="btn btn-block btn-secondary" href="{{url('user_login')}}">{{'Signup'|trans}}</a>
+    </div>
+{% endblock %}

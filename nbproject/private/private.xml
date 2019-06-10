@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/xampp73/htdocs/post/post/src/Security/LoginAuthenticator.php</file>
+            <file>file:/C:/xampp73/htdocs/post/post/src/Controller/DefaultController.php</file>
+            <file>file:/C:/xampp73/htdocs/post/post/templates/registration/register.html.twig</file>
+            <file>file:/C:/xampp73/htdocs/post/post/templates/dashboard/dashboard.html.twig</file>
+            <file>file:/C:/xampp73/htdocs/post/post/templates/security/login.html.twig</file>
+            <file>file:/C:/xampp73/htdocs/post/post/src/Controller/RegistrationController.php</file>
+            <file>file:/C:/xampp73/htdocs/post/post/templates/security/user_login.html.twig</file>
+            <file>file:/C:/xampp73/htdocs/post/post/config/packages/security.yaml</file>
+            <file>file:/C:/xampp73/htdocs/post/post/src/EventSubscriber/LastLoginSubscriber.php</file>
+        </group>
+    </open-files>
+</project-private>
