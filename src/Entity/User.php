@@ -3,14 +3,17 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\PostPersist;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="user")
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User implements UserInterface, \Serializable
 {
@@ -68,6 +71,8 @@ class User implements UserInterface, \Serializable
      */
     private $isSuspended = false;
 
+    public $agreed = false;
+
     public function getId()
     {
         return $this->id;
@@ -122,10 +127,10 @@ class User implements UserInterface, \Serializable
         return $this->plainPassword;
     }
 
-    public function setRoles(array $roles)
+    public function setRoles($roles)
     {
-        if(is_array($roles))
-         $this->roles = json_encode($roles);
+         $this->roles = $roles;
+
        return $this;
     }
 
@@ -137,7 +142,7 @@ class User implements UserInterface, \Serializable
 
         $role = strtoupper($role);
         $roles=$this->getRoles();
-        
+
         if (is_array($roles) && !in_array($role,$roles , true)) {
             $roles[] = $role;
             $this->setRoles($roles);
@@ -205,6 +210,7 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->email,
             $this->password,
+            $this->roles,
             $this->isSuspended
         ));
     }
@@ -215,8 +221,18 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->email,
             $this->password,
+            $this->roles,
             $this->isSuspended
             ) = unserialize($serialized);
     }
-    public $agreed=false;
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function convertRoles()
+    {
+        $this->setRoles(serialize($this->roles));
+
+        return $this;
+    }
 }
