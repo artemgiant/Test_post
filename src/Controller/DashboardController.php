@@ -19,15 +19,7 @@ class DashboardController extends AbstractController
      */
     public function dashboardAction(): Response
     {
-        $user   = $this->getUser();
-        $user->firstName = 'John';
-        $user->lastName = 'Deer';
-        $user->phone = '+38(068) 111-22-33';
-        $user->zip = '67000';
-        $user->country = 'Ukraine';
-        $user->city = 'Kyiv';
-        $user->address = 'Centralnaya str., 15';
-        $user->avatar = 'img/user/02.jpg';
+        $user   = $this->getUser();;
 
         return $this->render('dashboard/dashboard.html.twig', ['user' => $user]);
     }
@@ -38,14 +30,6 @@ class DashboardController extends AbstractController
     public function profileAction(): Response
     {
         $user   = $this->getUser();
-        $user->firstName = 'John';
-        $user->lastName = 'Deer';
-        $user->phone = '+38(068) 111-22-33';
-        $user->zip = '67000';
-        $user->country = 'Ukraine';
-        $user->city = 'Kyiv';
-        $user->address = 'Centralnaya str., 15';
-        $user->avatar = 'img/user/02.jpg';
 
         return $this->render('profile/profile.html.twig', ['user' => $user]);
     }

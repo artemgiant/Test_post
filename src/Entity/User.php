@@ -29,9 +29,56 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      *
+     * @ORM\Column(name="first_name", type="string", nullable=true)
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="last_name", type="string", nullable=true)
+     */
+    private $lastName;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="email", type="string", unique=true)
      */
     private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone", type="string", unique=true, nullable=true)
+     */
+    private $phone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="zip", type="string", nullable=true)
+     */
+    private $zip;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="country", type="string", nullable=true)
+     */
+    private $country;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", nullable=true)
+     */
+    private $city;
+
+    /**
+     * @ORM\Column(name="address", type="text", nullable=true)
+     */
+    private $address;
 
     /**
      * @var string
@@ -68,6 +115,13 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(name="is_suspended", type="boolean")
      */
     private $isSuspended = false;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="avatar", type="string", nullable=true)
+     */
+    private $avatar;
 
     public $agreed = false;
 
@@ -222,6 +276,198 @@ class User implements UserInterface, \Serializable
             $this->roles,
             $this->isSuspended
             ) = unserialize($serialized);
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstName(): string
+    {
+        if($this->firstName)
+        {
+            return $this->firstName;
+        }
+
+        $this->firstName = '';
+        return $this->firstName;
+    }
+
+    /**
+     * @param string $firstName
+     * @return User
+     */
+    public function setFirstName(string $firstName): User
+    {
+        $this->firstName = $firstName;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastName(): string
+    {
+        if($this->lastName)
+        {
+            return $this->lastName;
+        }
+
+        $this->lastName = '';
+        return $this->lastName;
+    }
+
+    /**
+     * @param string $lastName
+     * @return User
+     */
+    public function setLastName(string $lastName): User
+    {
+        $this->lastName = $lastName;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhone(): string
+    {
+        if($this->phone)
+        {
+            return $this->phone;
+        }
+
+        $this->phone = '';
+        return $this->phone;
+    }
+
+    /**
+     * @param string $phone
+     * @return User
+     */
+    public function setPhone(string $phone): User
+    {
+        $this->phone = $phone;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getZip(): string
+    {
+        if($this->zip)
+        {
+            return $this->zip;
+        }
+
+        $this->zip = '';
+        return $this->zip;
+    }
+
+    /**
+     * @param string $zip
+     * @return User
+     */
+    public function setZip(string $zip): User
+    {
+        $this->zip = $zip;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountry(): string
+    {
+        if($this->country)
+        {
+            return $this->country;
+        }
+
+        $this->country = '';
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     * @return User
+     */
+    public function setCountry(string $country): User
+    {
+        $this->country = $country;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity(): string
+    {
+        if($this->city)
+        {
+            return $this->city;
+        }
+
+        $this->city = '';
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     * @return User
+     */
+    public function setCity(string $city): User
+    {
+        $this->city = $city;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        if($this->address)
+        {
+            return $this->address;
+        }
+
+        $this->address = '';
+        return $this->address;
+    }
+
+    /**
+     * @param mixed $address
+     * @return User
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAvatar(): string
+    {
+        if($this->avatar)
+        {
+            return $this->avatar;
+        }
+
+        $this->avatar = '';
+        return $this->avatar;
+    }
+
+    /**
+     * @param string $avatar
+     * @return User
+     */
+    public function setAvatar(string $avatar): User
+    {
+        $this->avatar = $avatar;
+        return $this;
     }
 
     /**

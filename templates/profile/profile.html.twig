@@ -11,7 +11,7 @@
             <!-- Page content-->
             <div class="content-wrapper">
                 <div class="content-heading">
-                    <div>Profile<small data-localize="dashboard.WELCOME"></small></div>
+                    <div>Profile</div>
                     </div>
                 <div class="row">
                     <div class="col-lg-12">
@@ -19,18 +19,17 @@
                             <div class="card-body text-center">
                                 <div class="py-4"><img class="img-fluid rounded-circle img-thumbnail thumb96"
                                                        src="
-                                                            {% if user.avatar|default %}
-                                                                {{ asset(user.avatar) }}
-                                                                {% else %}
-
-                                                                {% endif %}
-                                                        " alt="{{'Contact'|trans }}"></div>
+                                                        {% if user.avatar %}
+                                                            {{ asset(user.avatar) }}
+                                                        {% else %}
+                                                            {{ asset('img/user/02.jpg') }}
+                                                        {% endif %}
+                                                       " alt="{{'Contact'|trans }}"></div>
                                 <h3 class="m-0 text-bold">
-                                    {% if user.firstName|default %}
-                                        {{ user.firstName }}
-                                    {% endif %}
-                                    {% if user.lastName|default %}
-                                        {{ user.lastName }}
+                                    {% if not (user.firstName and user.lastName) %}
+                                        Somebody
+                                    {% else %}
+                                        {{ user.firstName }} {{ user.lastName }}
                                     {% endif %}
                                 </h3>
                             </div>
@@ -70,9 +69,6 @@
                                             </div>
                                             <div class="form-group row"><label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right" for="inputContact7">{{'Address'|trans }}</label>
                                                 <div class="col-xl-10 col-md-9 col-8"><textarea class="form-control" id="inputContact7" rows="4">{{ user.address }}</textarea></div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-10"><button class="btn btn-info" type="submit">{{'Update'|trans }}</button></div>
                                             </div>
                                         </form>
                                     </div>
