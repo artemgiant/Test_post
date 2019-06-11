@@ -17,8 +17,22 @@
                     <div class="col-lg-12">
                         <div class="card card-default">
                             <div class="card-body text-center">
-                                <div class="py-4"><img class="img-fluid rounded-circle img-thumbnail thumb96" src="{{ asset(user.avatar) }}" alt="{{'Contact'|trans }}"></div>
-                                <h3 class="m-0 text-bold">{{ user.firstName }} {{ user.lastName }}</h3>
+                                <div class="py-4"><img class="img-fluid rounded-circle img-thumbnail thumb96"
+                                                       src="
+                                                            {% if user.avatar|default %}
+                                                                {{ asset(user.avatar) }}
+                                                                {% else %}
+
+                                                                {% endif %}
+                                                        " alt="{{'Contact'|trans }}"></div>
+                                <h3 class="m-0 text-bold">
+                                    {% if user.firstName|default %}
+                                        {{ user.firstName }}
+                                    {% endif %}
+                                    {% if user.lastName|default %}
+                                        {{ user.lastName }}
+                                    {% endif %}
+                                </h3>
                             </div>
                         </div>
                     </div>
@@ -45,14 +59,17 @@
                                             <div class="form-group row"><label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right" for="inputContact3">{{'Phone'|trans }}</label>
                                                 <div class="col-xl-10 col-md-9 col-8"><input class="form-control" id="inputContact3" type="text" value="{{ user.phone }}"></div>
                                             </div>
-                                            <div class="form-group row"><label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right" for="inputContact4">{{'Country'|trans }}</label>
-                                                <div class="col-xl-10 col-md-9 col-8"><input class="form-control" id="inputContact4" type="text" value="{{ user.country }}"></div>
+                                            <div class="form-group row"><label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right" for="inputContact4">{{'ZIP'|trans }}</label>
+                                                <div class="col-xl-10 col-md-9 col-8"><input class="form-control" id="inputContact4" type="text" value="{{ user.zip }}"></div>
                                             </div>
-                                            <div class="form-group row"><label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right" for="inputContact5">{{'City'|trans }}</label>
-                                                <div class="col-xl-10 col-md-9 col-8"><input class="form-control" id="inputContact5" type="text" value="{{ user.city }}"></div>
+                                            <div class="form-group row"><label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right" for="inputContact5">{{'Country'|trans }}</label>
+                                                <div class="col-xl-10 col-md-9 col-8"><input class="form-control" id="inputContact5" type="text" value="{{ user.country }}"></div>
                                             </div>
-                                            <div class="form-group row"><label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right" for="inputContact6">{{'Address'|trans }}</label>
-                                                <div class="col-xl-10 col-md-9 col-8"><textarea class="form-control" id="inputContact6" rows="4">{{ user.address }}</textarea></div>
+                                            <div class="form-group row"><label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right" for="inputContact6">{{'City'|trans }}</label>
+                                                <div class="col-xl-10 col-md-9 col-8"><input class="form-control" id="inputContact6" type="text" value="{{ user.city }}"></div>
+                                            </div>
+                                            <div class="form-group row"><label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right" for="inputContact7">{{'Address'|trans }}</label>
+                                                <div class="col-xl-10 col-md-9 col-8"><textarea class="form-control" id="inputContact7" rows="4">{{ user.address }}</textarea></div>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-md-10"><button class="btn btn-info" type="submit">{{'Update'|trans }}</button></div>
