@@ -86,7 +86,7 @@ class LoginPostAuthenticator extends AbstractFormLoginAuthenticator implements A
             throw new CustomUserMessageAuthenticationException('Suspended');
         }
 
-        if (!$user->hasRole(User::ADMIN_ROLE)) {
+        if (!$user->hasRole(User::POST_ROLE) && !$user->hasRole(User::ADMIN_ROLE)) {
             throw new CustomUserMessageAuthenticationException("You don't have permission to access that page.");
         }
 
@@ -97,12 +97,12 @@ class LoginPostAuthenticator extends AbstractFormLoginAuthenticator implements A
     {
         $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
 
-        return new RedirectResponse($this->router->generate('post_login'));
+        return new RedirectResponse($this->router->generate('user_login'));
     }
 
     protected function getLoginUrl(): RedirectResponse
     {
-        return new RedirectResponse($this->router->generate('post_login'));
+        return new RedirectResponse($this->router->generate('user_login'));
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): RedirectResponse

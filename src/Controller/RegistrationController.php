@@ -29,14 +29,15 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
+            $user->setRoles([$user::DEFAULT_ROLE]);
             $entityManager = $this->getDoctrine()->getManager();
+
             $entityManager->persist($user);
             $entityManager->flush();
 
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('admin_login');
+            return $this->redirectToRoute('user_login');
         }
 
         return $this->render('registration/register.html.twig', [

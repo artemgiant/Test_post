@@ -4,9 +4,13 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Form\LoginForm;
+use App\Entity\User;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+//use Swift_Message;
 
 class SecurityController extends Controller
 {
@@ -48,6 +52,10 @@ class SecurityController extends Controller
      */
     public function loginAction(): Response
     {
+
+        if (empty($this->getUser()) 
+                || 
+                !($this->getUser() instanceof User)) {
         $form = $this->createForm(LoginForm::class, [
             'email' => $this->authenticationUtils->getLastUsername()
         ]);
@@ -57,6 +65,9 @@ class SecurityController extends Controller
             'form' => $form->createView(),
             'error' => $this->authenticationUtils->getLastAuthenticationError(),
         ]);
+        }else{
+            return $this->redirectToRoute('post_dashboard');
+        }
     }
 
     /**
@@ -64,5 +75,64 @@ class SecurityController extends Controller
      */
     public function logoutAction(): void
     {
+    }
+    
+    /**
+     * @Route("/post/fogot-pasword", name="user_logout_fogot_pasword")
+     */
+    
+    public function fogotPasswordAction(Request $request): Response
+    {
+         if ($request->isMethod('post')) {
+            $email = $request->request->get('_username');
+            $entityManager = $this->getDoctrine()->getManager();
+            /* @var $em EntityMenedger */
+            $user = $entityManager->getRepository('App:User')->findOneBy(['email' => $email]);
+            /* @var $user User */
+
+            if (isset($user)) {
+                $newPassword = $this->generatePassword();
+                $user->setPlainPassword($newPassword);
+                
+                $entityManager->persist($user);
+                $entityManager->flush();
+
+               // $this->get('email_service')->sendRecoverPassword($user, $newPassword);
+        $template = $this->render('Email/password.html.twig');
+        $template = str_replace("{{name}}", $user->getUsername(), $template);
+        $template = str_replace("{{password}}", $newPassword, $template);
+        $message = (new \Swift_Message('Hello Email'));
+                $message      ->setSubject('Password recovery in  site.')
+                               ->setFrom('tets@test.te')
+                               ->setTo($user->getEmail())
+                               ->setBody(html_entity_decode($template),'text/html');
+                $this->get('mailer')->send($message);
+
+                $success = true;
+                $message = "New password was sent to you on your email";
+
+            } else {
+                $success = false;
+                $message = "Email not found";
+            }
+        } else {
+            $success = false;
+            $message = "";
+        }
+
+        return $this->render('security/forgot.html.twig', ['success' => $success, 'message' => $message]);
+    }
+    
+    protected function generatePassword($length = 8)
+    {
+        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $count = mb_strlen($chars);
+
+        for ($i = 0, $result = ''; $i < $length; $i++) {
+            $index = rand(0, $count - 1);
+            $result .= mb_substr($chars, $index, 1);
+        }
+
+        return $result;
     }
 }

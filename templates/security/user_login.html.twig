@@ -4,6 +4,18 @@
 
 {% block content %}
     <p class="text-center py-2">{{'SIGN IN TO CONTINUE.'|trans}}</p>
+          {% if error %}
+                        <div class="alert alert-danger">
+                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                        </div>
+                    {% endif %}
+                {% for label, flashes in app.session.flashbag.all %}
+                    {% for flash in flashes %}
+                        <div class="alert alert-{{ label }}">
+                            {{ flash }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
                <form class="mb-3"  action="{{ path("user_login") }}" method="post" role="form" id="loginForm" novalidate>
                    {{ form_row(form._token) }}
                   <div class="form-group">
@@ -36,7 +48,7 @@
                   </div>
                   <div class="clearfix">
                      <div class="checkbox c-checkbox float-left mt-0"><label><input type="checkbox" value="" name="remember"><span class="fa fa-check"></span> Remember Me</label></div>
-                     <div class="float-right"><a class="text-muted" href="recover.html">{{'Forgot your password?'|trans}}</a></div>
+                     <div class="float-right"><a class="text-muted" href="{{ path('user_logout_fogot_pasword')}}">{{'Forgot your password?'|trans}}</a></div>
                   </div><button class="btn btn-block btn-primary mt-3" type="submit">{{'Login'|trans}}</button>
                </form>
                <p class="pt-3 text-center">{{'Need to Signup?'|trans}}</p><a class="btn btn-block btn-secondary" href="{{ path('app_register')}}">{{'Register Now'|trans}}</a>
