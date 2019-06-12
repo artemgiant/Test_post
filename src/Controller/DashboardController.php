@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Order;
 use App\Entity\User;
-use App\Form\RegistrationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,9 +19,23 @@ class DashboardController extends AbstractController
      */
     public function dashboardAction(): Response
     {
-        $user   = $this->getUser();;
+        $user   = $this->getUser();
 
-        return $this->render('dashboard/dashboard.html.twig', ['user' => $user]);
+//        $orders = $this->getDoctrine()
+//            ->getRepository(User::class)
+//            ->getOrdersWithProducts($user->getId());
+
+        $orders = $this->getDoctrine()
+            ->getRepository(Order::class)
+            ->getOrders($user->getId());
+
+//        var_dump($orders);
+//        die();
+
+        return $this->render('dashboard/dashboard.html.twig', [
+            'user' => $user,
+            'orders' => $orders
+        ]);
     }
 
     /**
