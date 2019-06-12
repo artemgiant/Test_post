@@ -47,7 +47,7 @@ class CabinetController extends AbstractController
         return $this->render('cabinet/profile/profile.html.twig', [
             'user' => $this->user,
             'my_address' => $my_address,
-            'page_id'=>'post_parcels'
+            'page_id'=>'post_profile'
             ]);
     }
 
