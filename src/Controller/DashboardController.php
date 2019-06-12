@@ -45,4 +45,14 @@ class DashboardController extends AbstractController
 
         return new JsonResponse(['Success' => 'Success']);
     }
+
+    /**
+     * @Route("/", name="homepage")
+     */
+
+    public function homepage()
+    {
+
+        return $this->redirectToRoute('post_dashboard');
+    }
 }
