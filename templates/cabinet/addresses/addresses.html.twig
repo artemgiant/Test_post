@@ -4,8 +4,8 @@
 
 {% block body %}
         <!-- top navbar-->
-        {{ include('sidebar.html.twig') }}      <!-- sidebar-->
-        {{ include('offsidebar.html.twig') }}   <!-- offsidebar-->
+        {{ include('cabinet/sidebar.html.twig') }}      <!-- sidebar-->
+        {{ include('cabinet/offsidebar.html.twig') }}   <!-- offsidebar-->
 
         <aside class="offsidebar d-none">
         </aside><!-- Main section-->
@@ -21,10 +21,10 @@
                                 <div class="col-lg-12">
                                     <h4>{{ user.firstName }} {{ user.lastName }}</h4>
                                     <address>
-                                        {{ user.address }} <br>
-                                        {{ user.city }} <br>
-                                        {{ user.country }} <br>
-                                        {{ user.zip }}
+                                        {{ my_address[0].address }} <br>
+                                        {{ my_address[0].city }} <br>
+                                        {{ my_address[0].country }} <br>
+                                        {{ my_address[0].zip }}
                                     </address>
                                 </div>
                             </div>
@@ -82,32 +82,25 @@
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered table-hover">
                                             <thead>
-                                            <tr>
-                                                <th></th>
-                                                {#                                                <th>First Name</th>#}
-                                                {#                                                <th>Last Name</th>#}
-                                                {#                                                <th>Username</th>#}
-                                            </tr>
+                                                <tr>
+                                                    <th>TN</th>
+                                                    <th>Comment</th>
+                                                    <th>Status</th>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>Нет отправлений</td>
-                                                {#                                                <td>Mark</td>#}
-                                                {#                                                <td>Otto</td>#}
-                                                {#                                                <td>@mdo</td>#}
-                                            </tr>
-                                            {#                                            <tr>#}
-                                            {#                                                <td>2</td>#}
-                                            {#                                                <td>Jacob</td>#}
-                                            {#                                                <td>Thornton</td>#}
-                                            {#                                                <td>@fat</td>#}
-                                            {#                                            </tr>#}
-                                            {#                                            <tr>#}
-                                            {#                                                <td>3</td>#}
-                                            {#                                                <td>Larry</td>#}
-                                            {#                                                <td>the Bird</td>#}
-                                            {#                                                <td>@twitter</td>#}
-                                            {#                                            </tr>#}
+
+                                                {% if orders %}
+                                                    {% for order in orders %}
+                                                        <tr>
+                                                            <td>{{ order.trackingNumber }}</td>
+                                                            <td>{{ order.comment }}</td>
+                                                            <td>{{ order.status }}</td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <tr><td>Нет отправок</td></tr>
+                                                {% endif %}
                                             </tbody>
                                         </table>
                                     </div><!-- END table-responsive-->
@@ -153,6 +146,6 @@
                 </div>
             </div>
         </section><!-- Page footer-->
-        {{ include('footer.html.twig') }}
+        {{ include('cabinet/footer.html.twig') }}
 {% endblock %}
  {% block javascripts %}{% endblock %}
