@@ -193,6 +193,7 @@ class User implements UserInterface, \Serializable
     public function hasRole($role)
     {
         $roles=$this->getRoles();
+
         return in_array(strtoupper($role), $roles, true);
     }
 

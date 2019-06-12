@@ -47,6 +47,7 @@ class CabinetController extends AbstractController
         return $this->render('cabinet/profile/profile.html.twig', [
             'user' => $this->user,
             'my_address' => $my_address,
+            'page_id'=>'post_parcels'
             ]);
     }
 
@@ -77,6 +78,7 @@ class CabinetController extends AbstractController
             'user' => $this->user,
             'my_address' => $my_address,
             'orders' => $orders,
+            'page_id'=>'post_parcels'
         ]);
     }
 
@@ -91,6 +93,7 @@ class CabinetController extends AbstractController
         return $this->render('cabinet/addresses/addresses.html.twig', [
             'user' => $this->user,
             'my_address' => $my_address,
+            'page_id'=>'post_addresses'
         ]);
     }
 

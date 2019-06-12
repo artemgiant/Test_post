@@ -1,19 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'cabinet/cabinet_layout.html.twig' %}
 
 {% block title %}{{'Profile'|trans }}{% endblock %}
 
-{% block body %}
-        <!-- top navbar-->
-        {{ include('cabinet/sidebar.html.twig') }}      <!-- sidebar-->
-        {{ include('cabinet/offsidebar.html.twig') }}   <!-- offsidebar-->
-
-        <section class="section-container">
-            <!-- Page content-->
-            <div class="content-wrapper">
-                <div class="content-heading">
-                    <div>Profile</div>
-                    </div>
-                <div class="row">
+{% block content %}
                     <div class="col-lg-12">
                         <div class="card card-default">
                             <div class="card-body text-center">
@@ -59,16 +48,16 @@
                                                 <div class="col-xl-10 col-md-9 col-8"><input class="form-control" id="inputContact3" type="text" value="{{ user.phone }}"></div>
                                             </div>
                                             <div class="form-group row"><label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right" for="inputContact4">{{'ZIP'|trans }}</label>
-                                                <div class="col-xl-10 col-md-9 col-8"><input class="form-control" id="inputContact4" type="text" value="{{ my_address[0].zip }}"></div>
+                                                <div class="col-xl-10 col-md-9 col-8"><input class="form-control" id="inputContact4" type="text" value="{% if my_address[0] is defined %}{{ my_address[0].zip }}{% endif %}"></div>
                                             </div>
                                             <div class="form-group row"><label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right" for="inputContact5">{{'Country'|trans }}</label>
-                                                <div class="col-xl-10 col-md-9 col-8"><input class="form-control" id="inputContact5" type="text" value="{{ my_address[0].country }}"></div>
+                                                <div class="col-xl-10 col-md-9 col-8"><input class="form-control" id="inputContact5" type="text" value="{% if my_address[0] is defined %}{{ my_address[0].country }}{% endif %}"></div>
                                             </div>
                                             <div class="form-group row"><label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right" for="inputContact6">{{'City'|trans }}</label>
-                                                <div class="col-xl-10 col-md-9 col-8"><input class="form-control" id="inputContact6" type="text" value="{{ my_address[0].city }}"></div>
+                                                <div class="col-xl-10 col-md-9 col-8"><input class="form-control" id="inputContact6" type="text" value="{% if my_address[0] is defined %}{{ my_address[0].city }}{% endif %}"></div>
                                             </div>
                                             <div class="form-group row"><label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right" for="inputContact7">{{'Address'|trans }}</label>
-                                                <div class="col-xl-10 col-md-9 col-8"><textarea class="form-control" id="inputContact7" rows="4">{{ my_address[0].address }}</textarea></div>
+                                                <div class="col-xl-10 col-md-9 col-8"><textarea class="form-control" id="inputContact7" rows="4">{% if my_address[0] is defined %}{{ my_address[0].address }}{% endif %}</textarea></div>
                                             </div>
                                         </form>
                                     </div>
@@ -76,9 +65,5 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section><!-- Page footer-->
-        {{ include('cabinet/footer.html.twig') }}
 {% endblock %}
  {% block javascripts %}{% endblock %}
