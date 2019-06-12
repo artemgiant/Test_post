@@ -86,7 +86,7 @@ class LoginPostAuthenticator extends AbstractFormLoginAuthenticator implements A
             throw new CustomUserMessageAuthenticationException('Suspended');
         }
 
-        if (!$user->hasRole(User::DEFAULT_ROLE)) {
+        if (!$user->hasRole(User::POST_ROLE) && !$user->hasRole(User::ADMIN_ROLE)) {
             throw new CustomUserMessageAuthenticationException("You don't have permission to access that page.");
         }
 
