@@ -111,7 +111,7 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-       return json_decode(stripslashes($this->roles),1);
+       return json_decode(stripslashes(trim($this->roles,'"')),1);
     }
 
     public function getPassword()
