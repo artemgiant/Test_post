@@ -34,4 +34,14 @@ class UserRepository extends ServiceEntityRepository
 
         return $orders;
     }
+
+    public function getMyAddress($user_id)
+    {
+        $qr = $this->createQueryBuilder('u')
+            ->select('u.firstName', 'u.lastName', 'a.zip', 'a.country', 'a.city', 'a.address')
+            ->join('u.addresses', 'a')
+            ->where('u.id = :user_id AND a.my_address = 1')
+            ->setParameter('user_id', $user_id);
+        return $qr->getQuery()->getResult();
+    }
 }

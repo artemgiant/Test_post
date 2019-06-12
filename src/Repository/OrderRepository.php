@@ -21,11 +21,11 @@ class OrderRepository extends ServiceEntityRepository
 
     public function getOrders($user_id)
     {
-        $qr = $this->createQueryBuilder('o');
-        $qr->select('o.trackingNumber', 'o.comment', 's.status');
-        $qr->join('o.orderStatus', 's');
-        $qr->where('o.user = :user_id');
-        $qr->setParameter('user_id', $user_id);
+        $qr = $this->createQueryBuilder('o')
+            ->select('o.trackingNumber', 'o.comment', 's.status')
+            ->join('o.orderStatus', 's')
+            ->where('o.user = :user_id')
+            ->setParameter('user_id', $user_id);
         return $qr->getQuery()->getResult();
     }
 }

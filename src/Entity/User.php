@@ -55,30 +55,9 @@ class User implements UserInterface, \Serializable
     private $phone;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="zip", type="string", nullable=true)
+     * @ORM\OneToMany(targetEntity="Address", mappedBy="user")
      */
-    private $zip;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="country", type="string", nullable=true)
-     */
-    private $country;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="city", type="string", nullable=true)
-     */
-    private $city;
-
-    /**
-     * @ORM\Column(name="address", type="text", nullable=true)
-     */
-    private $address;
+    private $addresses;
 
     /**
      * @var string
@@ -351,98 +330,20 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * @return string
-     */
-    public function getZip(): string
-    {
-        if($this->zip)
-        {
-            return $this->zip;
-        }
-
-        $this->zip = '';
-        return $this->zip;
-    }
-
-    /**
-     * @param string $zip
-     * @return User
-     */
-    public function setZip(string $zip): User
-    {
-        $this->zip = $zip;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCountry(): string
-    {
-        if($this->country)
-        {
-            return $this->country;
-        }
-
-        $this->country = '';
-        return $this->country;
-    }
-
-    /**
-     * @param string $country
-     * @return User
-     */
-    public function setCountry(string $country): User
-    {
-        $this->country = $country;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCity(): string
-    {
-        if($this->city)
-        {
-            return $this->city;
-        }
-
-        $this->city = '';
-        return $this->city;
-    }
-
-    /**
-     * @param string $city
-     * @return User
-     */
-    public function setCity(string $city): User
-    {
-        $this->city = $city;
-        return $this;
-    }
-
-    /**
      * @return mixed
      */
-    public function getAddress()
+    public function getAddresses()
     {
-        if($this->address)
-        {
-            return $this->address;
-        }
-
-        $this->address = '';
-        return $this->address;
+        return $this->addresses;
     }
 
     /**
-     * @param mixed $address
+     * @param mixed $addresses
      * @return User
      */
-    public function setAddress($address)
+    public function setAddresses($addresses)
     {
-        $this->address = $address;
+        $this->addresses = $addresses;
         return $this;
     }
 
