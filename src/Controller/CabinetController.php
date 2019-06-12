@@ -100,5 +100,15 @@ class CabinetController extends AbstractController
             ->getRepository(User::class)
             ->getMyAddress($user_id);
     }
+
+    /**
+     * @Route("/", name="homepage")
+     */
+
+    public function homepage()
+    {
+
+        return $this->redirectToRoute('post_dashboard');
+    }
 }
 
