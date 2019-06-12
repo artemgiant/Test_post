@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+ {% block body %}
+     <!-- top navbar-->
+     {{ include('cabinet/sidebar.html.twig') }}      <!-- sidebar-->
+     {{ include('cabinet/offsidebar.html.twig') }}   <!-- offsidebar-->
+
+     <aside class="offsidebar d-none">
+     </aside><!-- Main section-->
+     <section class="section-container">
+         <!-- Page content-->
+         <div class="content-wrapper">
+             <div class="content-heading">
+                 <div>{% block title %}{{'Dashboard'|trans }}{% endblock %}</div>
+             </div>
+             <div class="row">
+                 <div class="col-xl-6 col-6 br py-2">
+                     <div class="row">
+                         <div class="col-lg-12">
+                             <h4>{{ user.firstName }} {{ user.lastName }}</h4>
+                             {% if my_address is not empty and my_address[0] is defined and my_address[0] is not empty %}
+                                 <address>
+                                     {{ my_address[0].address }} <br>
+                                     {{ my_address[0].city }} <br>
+                                     {{ my_address[0].country }} <br>
+                                     {{ my_address[0].zip }}
+                                 </address>
+                             {% endif %}
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="row">
+                 {% block content %}{% endblock %}
+             </div>
+         </div>
+     </div>
+     </section><!-- Page footer-->
+     {{ include('cabinet/footer.html.twig') }}
+ {% endblock %}
+ {% block javascripts %}{% endblock %}
