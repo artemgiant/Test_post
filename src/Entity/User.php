@@ -132,9 +132,6 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-         if(is_array($this->roles))
-           return $this->roles;
-
        return json_decode($this->roles,1);
     }
 
