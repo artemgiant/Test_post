@@ -28,12 +28,7 @@ class Address
      */
     private $user;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="zip", type="string")
-     */
-    private $zip;
+
 
     /**
      * @var string
@@ -42,12 +37,6 @@ class Address
      */
     private $country;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="city", type="string")
-     */
-    private $city;
 
     /**
      * @var string
@@ -57,11 +46,90 @@ class Address
     private $address;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="region_oblast", type="string")
+     */
+    private $regionOblast;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="region_rayon", type="string", nullable=true)
+     */
+    private $regionRayon;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string")
+     */
+    private $city;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="my_address", type="boolean", nullable=true)
      */
     private $my_address;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="zip", type="string")
+     */
+    private $zip;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="street", type="string")
+     */
+    private $street;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="house", type="string")
+     */
+    private $house;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="appartment", type="string", nullable=true)
+     */
+    private $appartment;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_first_name", type="string")
+     */
+    private $userFirstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_last_name", type="string")
+     */
+    private $userLastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_second_name", type="string", nullable=true)
+     */
+    private $userSecondName;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone", type="string")
+     */
+    private $phone;
 
     /**
      * @return int
@@ -74,7 +142,7 @@ class Address
     /**
      * @return string
      */
-    public function getZip(): string
+    public function getZip(): ?string
     {
         return $this->zip;
     }
@@ -92,7 +160,7 @@ class Address
     /**
      * @return string
      */
-    public function getCountry(): string
+    public function getCountry(): ?string
     {
         return $this->country;
     }
@@ -110,7 +178,7 @@ class Address
     /**
      * @return string
      */
-    public function getCity(): string
+    public function getCity(): ?string
     {
         return $this->city;
     }
@@ -128,7 +196,7 @@ class Address
     /**
      * @return string
      */
-    public function getAddress(): string
+    public function getAddress(): ?string
     {
         return $this->address;
     }
@@ -164,7 +232,7 @@ class Address
     /**
      * @return bool
      */
-    public function isMyAddress(): bool
+    public function isMyAddress(): ?bool
     {
         return $this->my_address;
     }
@@ -178,5 +246,168 @@ class Address
         $this->my_address = $my_address;
         return $this;
     }
+    /**
+     * @return string
+     */
+    public function getRegionOblast(): ?string
+    {
+        return $this->regionOblast;
+    }
+
+    /**
+     * @param string $regionOblast
+     * @return Address
+     */
+    public function setRegionOblast(string $regionOblast): Address
+    {
+        $this->regionOblast = $regionOblast;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRegionRayon(): ?string
+    {
+        return $this->regionRayon;
+    }
+
+    /**
+     * @param string $regionRayon
+     * @return Address
+     */
+    public function setRegionRayon(string $regionRayon): Address
+    {
+        $this->regionRayon = $regionRayon;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStreet(): ?string
+    {
+        return $this->street;
+    }
+
+    /**
+     * @param string $street
+     * @return Address
+     */
+    public function setStreet(string $street): Address
+    {
+        $this->street = $street;
+        return $this;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getHouse(): ?string
+    {
+        return $this->house;
+    }
+
+    /**
+     * @param string $house
+     * @return Address
+     */
+    public function setHouse(string $house): Address
+    {
+        $this->house = $house;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAppartment(): ?string
+    {
+        return $this->appartment;
+    }
+
+    /**
+     * @param string $appartment
+     * @return Address
+     */
+    public function setAppartment(string $appartment): Address
+    {
+        $this->appartment = $appartment;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserFirstName(): ?string
+    {
+        return $this->userFirstName;
+    }
+
+    /**
+     * @param string $userFirstName
+     * @return Address
+     */
+    public function setUserFirstName(string $userFirstName): Address
+    {
+        $this->userFirstName = $userFirstName;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserLastName(): ?string
+    {
+        return $this->userLastName;
+    }
+
+    /**
+     * @param string $userLastName
+     * @return Address
+     */
+    public function setUserLastName(string $userLastName): Address
+    {
+        $this->userLastName = $userLastName;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserSecondName(): ?string
+    {
+        return $this->userSecondName;
+    }
+
+    /**
+     * @param string $userSecondName
+     * @return Address
+     */
+    public function setUserSecondName(string $userSecondName): Address
+    {
+        $this->userSecondName = $userSecondName;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param string $phone
+     * @return Address
+     */
+    public function setPhone(string $phone): Address
+    {
+        $this->phone = $phone;
+        return $this;
+    }
+
 
 }
