@@ -87,7 +87,7 @@ class CabinetController extends AbstractController
     {
         $this->user = $this->getUser();
         $my_address = $this->getMyAddress($this->user->getId());
-        
+
         return $this->render('cabinet/addresses/addresses.html.twig', [
             'user' => $this->user,
             'my_address' => $my_address,
