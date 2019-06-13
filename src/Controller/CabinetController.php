@@ -80,24 +80,6 @@ class CabinetController extends AbstractController
         return new JsonResponse(['Success' => 'Success']);
     }
 
-    /**
-     * @Route("/post/parcels", name="post_parcels")
-     */
-    public function parcelsAction(): Response
-    {
-        $this->user = $this->getUser();
-        $my_address = $this->getMyAddress($this->user->getId());
-        $orders = $this->getDoctrine()
-            ->getRepository(Order::class)
-            ->getOrders($this->user->getId());
-
-        return $this->render('cabinet/parcels/parcels.html.twig', [
-            'user' => $this->user,
-            'my_address' => $my_address,
-            'orders' => $orders,
-            'page_id'=>'post_parcels'
-        ]);
-    }
 
     public function getMyAddress($user_id)
     {
