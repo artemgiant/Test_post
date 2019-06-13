@@ -380,7 +380,7 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="Address", mappedBy="user1")
+     * @ORM\OneToMany(targetEntity="Address", mappedBy="user")
      */
     protected $address;
 
