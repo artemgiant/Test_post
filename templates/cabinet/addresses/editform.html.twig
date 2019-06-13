@@ -1,0 +1,19 @@
+{% extends 'cabinet/cabinet_layout.html.twig' %}
+
+{% block title %}{{'Addresses Edit'|trans }}{% endblock %}
+
+{% block content %}
+        <div class="col-xl-1">
+        </div>
+        <div class="col-xl-11">
+            <div class="card card-default">
+                <div class="card-header">
+                    <div class="card-title">{{ 'Addresses Edit'|trans}}</div>
+                </div>
+                <div class="card-body">
+            {{ form(form) }}
+                </div>
+            </div>
+        </div>
+{% endblock %}
+ {% block javascripts %}{% endblock %}
