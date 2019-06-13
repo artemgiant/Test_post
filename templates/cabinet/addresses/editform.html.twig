@@ -1,6 +1,11 @@
 {% extends 'cabinet/cabinet_layout.html.twig' %}
 
-{% block title %}{{'Addresses Edit'|trans }}{% endblock %}
+    {% set title= 'Addresses Edit' %}
+    {% if page_title is defined and page_title is not empty %}
+        {% set title=page_title %}
+    {% endif %}
+
+{% block title %}{{title|trans }}{% endblock %}
 
 {% block content %}
         <div class="col-xl-1">
@@ -8,9 +13,11 @@
         <div class="col-xl-11">
             <div class="card card-default">
                 <div class="card-header">
-                    <div class="card-title">{{ 'Addresses Edit'|trans}}</div>
+                    <div class="card-title">{{title|trans }}</div>
                 </div>
                 <div class="card-body">
+                    {{  form_errors(form) }}
+
             {{ form(form) }}
                 </div>
             </div>

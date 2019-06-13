@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Address
@@ -23,15 +25,18 @@ class Address
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="addresses")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="address")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
+
     private $user;
 
 
 
     /**
      * @var string
+     *
+     * @Assert\NotBlank
      *
      * @ORM\Column(name="country", type="string")
      */
@@ -41,12 +46,14 @@ class Address
     /**
      * @var string
      *
-     * @ORM\Column(name="address", type="string")
+     * @ORM\Column(name="address", type="string", nullable=true)
      */
     private $address;
 
     /**
      * @var string
+     *
+     * @Assert\NotBlank
      *
      * @ORM\Column(name="region_oblast", type="string")
      */
@@ -62,6 +69,8 @@ class Address
     /**
      * @var string
      *
+     * @Assert\NotBlank
+     *
      * @ORM\Column(name="city", type="string")
      */
     private $city;
@@ -76,6 +85,8 @@ class Address
     /**
      * @var string
      *
+     * @Assert\NotBlank
+     *
      * @ORM\Column(name="zip", type="string")
      */
     private $zip;
@@ -84,12 +95,16 @@ class Address
     /**
      * @var string
      *
+     * @Assert\NotBlank
+     *
      * @ORM\Column(name="street", type="string")
      */
     private $street;
 
     /**
      * @var string
+     *
+     * @Assert\NotBlank
      *
      * @ORM\Column(name="house", type="string")
      */
@@ -98,12 +113,15 @@ class Address
     /**
      * @var string
      *
+     *
      * @ORM\Column(name="appartment", type="string", nullable=true)
      */
     private $appartment;
 
     /**
      * @var string
+     *
+     * @Assert\NotBlank
      *
      * @ORM\Column(name="user_first_name", type="string")
      */
@@ -112,12 +130,15 @@ class Address
     /**
      * @var string
      *
+     * @Assert\NotBlank
+     *
      * @ORM\Column(name="user_last_name", type="string")
      */
     private $userLastName;
 
     /**
      * @var string
+     *
      *
      * @ORM\Column(name="user_second_name", type="string", nullable=true)
      */
@@ -126,6 +147,8 @@ class Address
 
     /**
      * @var string
+     *
+     * @Assert\NotBlank
      *
      * @ORM\Column(name="phone", type="string")
      */
@@ -409,5 +432,22 @@ class Address
         return $this;
     }
 
+    /**
+     *
+     * @return string
+     */
+    public function getFullName(): string
+    {
+        return trim($this->userFirstName.' '.$this->userLastName.' '.$this->userSecondName);
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getFullAddress(): string
+    {
+        return trim($this->street.' '.$this->house.' '.$this->appartment.' '.$this->city.' '.$this->zip.' '.$this->regionOblast.' '.$this->regionRayon);
+    }
 
 }
