@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+
 //use Swift_Message;
 
 class SecurityController extends AbstractController
@@ -81,7 +82,7 @@ class SecurityController extends AbstractController
      * @Route("/post/fogot-pasword", name="user_logout_fogot_pasword")
      */
     
-    public function fogotPasswordAction(Request $request): Response
+    public function fogotPasswordAction(Request $request, \Swift_Mailer $mailer): Response
     {
          if ($request->isMethod('post')) {
             $email = $request->request->get('_username');
@@ -98,15 +99,15 @@ class SecurityController extends AbstractController
                 $entityManager->flush();
 
                // $this->get('email_service')->sendRecoverPassword($user, $newPassword);
-        $template = $this->render('Email/password.html.twig');
-        $template = str_replace("{{name}}", $user->getUsername(), $template);
-        $template = str_replace("{{password}}", $newPassword, $template);
-        $message = (new \Swift_Message('Hello Email'));
+                $template = $this->render('Email/password.html.twig');
+                $template = str_replace("{{name}}", $user->getUsername(), $template);
+                $template = str_replace("{{password}}", $newPassword, $template);
+                $message = (new \Swift_Message('Hello Email'));
                 $message      ->setSubject('Password recovery in  site.')
                                ->setFrom('tets@test.te')
                                ->setTo($user->getEmail())
                                ->setBody(html_entity_decode($template),'text/html');
-                $this->get('mailer')->send($message);
+                $mailer->send($message);
 
                 $success = true;
                 $message = "New password was sent to you on your email";

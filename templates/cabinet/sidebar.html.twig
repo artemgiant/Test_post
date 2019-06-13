@@ -6,21 +6,9 @@
                 <div class="brand-logo"><img class="img-fluid" src="{{ asset('img/logo.png') }}" alt="App Logo"></div>
 {#                <div class="brand-logo-collapsed"><img class="img-fluid" src="img/logo-single.png" alt="App Logo"></div>#}
             </a></div><!-- END navbar header-->
-        <!-- START Left navbar-->
-        <ul class="navbar-nav mr-auto flex-row">
-        </ul><!-- END Left navbar-->
-        <!-- START Right Navbar-->
-        <ul class="navbar-nav flex-row">
-            <!-- Search icon-->
-            <li class="nav-item"><a class="nav-link" href="#" data-search-open=""><em class="icon-magnifier"></em></a></li><!-- Fullscreen (only desktops)-->
-{#            <li class="nav-item d-none d-md-block">#}
-{#                <a class="nav-link" id="user-block-toggle" href="#user-block" data-toggle="collapse"><em class="icon-user"></em></a></li>#}
-        </ul><!-- END Right Navbar-->
+        {{ include('cabinet//sidebar/navbarleft.html.twig') }}      <!-- Left navba-->
+        {{ include('cabinet//sidebar/navbarright.html.twig') }}      <!-- Right Navbar-->
         <!-- START Search form-->
-        <form class="navbar-form" role="search" action="search.html">
-            <div class="form-group"><input class="form-control" type="text" placeholder="Type and hit enter ...">
-                <div class="fas fa-times navbar-form-close" data-search-dismiss=""></div>
-            </div><button class="d-none" type="submit">Submit</button>
-        </form><!-- END Search form-->
+        {{ include('cabinet//sidebar/topsearch.html.twig') }}      <!-- Right Navbar-->
     </nav><!-- END Top Navbar-->
 </header>
