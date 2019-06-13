@@ -16,8 +16,22 @@ use App\Form\AddressFormType;
 
 class CabinetController extends AbstractController
 {
-    private $user;
 
+    public $user;
+    public $my_address;
+
+    public $optionToTemplate;
+
+    public function getTemplateData()
+    {
+        $this->user = $this->getUser();
+        $this->my_address = $this->getMyAddress($this->user->getId());
+        $this->optionToTemplate=[
+            'user'=>$this->user,
+            'my_address' => $this->my_address
+        ];
+
+    }
     /**
      * @Route("/post/dashboard", name="post_dashboard")
      */

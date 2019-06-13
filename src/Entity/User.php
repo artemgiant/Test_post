@@ -378,4 +378,10 @@ class User implements UserInterface, \Serializable
 
         return $this;
     }
+
+    /**
+     * @ORM\OneToMany(targetEntity="Address", mappedBy="user1")
+     */
+    protected $address;
+
 }

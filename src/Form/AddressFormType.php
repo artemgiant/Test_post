@@ -44,7 +44,7 @@ class AddressFormType extends AbstractType
                     'placeholder'=>'regionRayon',
                     'autocomplete'=>'off'],
                 'label'=>'regionRayon',
-                'required'=>true
+                'required'=>false
             ])
             ->add('city',null,[
                 'attr'=>[
@@ -89,7 +89,7 @@ class AddressFormType extends AbstractType
                     'placeholder'=>'appartment',
                     'autocomplete'=>'off'],
                 'label'=>'appartment',
-                'required'=>true
+                'required'=>false
             ])
             ->add('userFirstName',null,[
                 'attr'=>[
@@ -116,7 +116,7 @@ class AddressFormType extends AbstractType
                     'placeholder'=>'userSecondName',
                     'autocomplete'=>'off'],
                 'label'=>'userSecondName',
-                'required'=>true
+                'required'=>false
             ])
             ->add('phone',null,[
                 'attr'=>[
