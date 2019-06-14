@@ -30,13 +30,23 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="first_name", type="string", nullable=true)
+     * @Assert\NotBlank
      */
     private $firstName;
 
     /**
      * @var string
      *
+     * @ORM\Column(name="second_name", type="string", nullable=true)
+     * @Assert\NotBlank
+     */
+    private $secondName;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="last_name", type="string", nullable=true)
+     * @Assert\NotBlank
      */
     private $lastName;
 
@@ -44,6 +54,7 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="email", type="string", unique=true)
+     * @Assert\NotBlank
      */
     private $email;
 
@@ -51,6 +62,7 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="phone", type="string", unique=true, nullable=true)
+     * @Assert\NotBlank
      */
     private $phone;
 
@@ -99,6 +111,8 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="avatar", type="string", nullable=true)
+     * @Assert\NotBlank
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg", "image/jpg" })
      */
     private $avatar;
 
@@ -258,7 +272,7 @@ class User implements UserInterface, \Serializable
     /**
      * @return string
      */
-    public function getFirstName(): string
+    public function getFirstName(): ?string
     {
         if($this->firstName)
         {
@@ -282,7 +296,7 @@ class User implements UserInterface, \Serializable
     /**
      * @return string
      */
-    public function getLastName(): string
+    public function getLastName(): ?string
     {
         if($this->lastName)
         {
@@ -306,7 +320,25 @@ class User implements UserInterface, \Serializable
     /**
      * @return string
      */
-    public function getPhone(): string
+    public function getSecondName(): ?string
+    {
+        return $this->secondName;
+    }
+
+    /**
+     * @param string $secondName
+     * @return User
+     */
+    public function setSecondName(string $secondName): User
+    {
+        $this->secondName = $secondName;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhone(): ?string
     {
         if($this->phone)
         {
@@ -348,7 +380,7 @@ class User implements UserInterface, \Serializable
     /**
      * @return string
      */
-    public function getAvatar(): string
+    public function getAvatar(): ?string
     {
         if($this->avatar)
         {
