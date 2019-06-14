@@ -31,8 +31,6 @@ class Address
 
     private $user;
 
-
-
     /**
      * @var string
      *
@@ -41,7 +39,6 @@ class Address
      * @ORM\Column(name="country", type="string")
      */
     private $country;
-
 
     /**
      * @var string
@@ -91,7 +88,6 @@ class Address
      */
     private $zip;
 
-
     /**
      * @var string
      *
@@ -114,9 +110,9 @@ class Address
      * @var string
      *
      *
-     * @ORM\Column(name="appartment", type="string", nullable=true)
+     * @ORM\Column(name="apartment", type="string", nullable=true)
      */
-    private $appartment;
+    private $apartment;
 
     /**
      * @var string
@@ -144,6 +140,13 @@ class Address
      */
     private $userSecondName;
 
+    /**
+     * @var string
+     *
+     *
+     * @ORM\Column(name="alias_of_address", type="string", nullable=true)
+     */
+    private $aliasOfAddress;
 
     /**
      * @var string
@@ -345,24 +348,6 @@ class Address
     /**
      * @return string
      */
-    public function getAppartment(): ?string
-    {
-        return $this->appartment;
-    }
-
-    /**
-     * @param string $appartment
-     * @return Address
-     */
-    public function setAppartment(string $appartment): Address
-    {
-        $this->appartment = $appartment;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
     public function getUserFirstName(): ?string
     {
         return $this->userFirstName;
@@ -433,6 +418,42 @@ class Address
     }
 
     /**
+     * @return string
+     */
+    public function getApartment(): ?string
+    {
+        return $this->apartment;
+    }
+
+    /**
+     * @param string $apartment
+     * @return Address
+     */
+    public function setApartment(string $apartment): Address
+    {
+        $this->apartment = $apartment;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAliasOfAddress(): ?string
+    {
+        return $this->aliasOfAddress;
+    }
+
+    /**
+     * @param string $aliasOfAddress
+     * @return Address
+     */
+    public function setAliasOfAddress(string $aliasOfAddress): Address
+    {
+        $this->aliasOfAddress = $aliasOfAddress;
+        return $this;
+    }
+
+    /**
      *
      * @return string
      */
@@ -447,7 +468,7 @@ class Address
      */
     public function getFullAddress(): string
     {
-        return trim($this->street.' '.$this->house.' '.$this->appartment.' '.$this->city.' '.$this->zip.' '.$this->regionOblast.' '.$this->regionRayon);
+        return trim($this->street.' '.$this->house.' '.$this->apartment.' '.$this->city.' '.$this->zip.' '.$this->regionOblast.' '.$this->regionRayon);
     }
 
 }
