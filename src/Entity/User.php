@@ -29,8 +29,10 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="first_name", type="string", nullable=true)
      * @Assert\NotBlank
+     *
+     * @ORM\Column(name="first_name", type="string", nullable=true)
+     *
      */
     private $firstName;
 
@@ -111,8 +113,7 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="avatar", type="string", nullable=true)
-     * @Assert\NotBlank
-     * @Assert\File(mimeTypes={ "image/png", "image/jpeg", "image/jpg" })
+     *
      */
     private $avatar;
 
@@ -272,22 +273,16 @@ class User implements UserInterface, \Serializable
     /**
      * @return string
      */
-    public function getFirstName(): string
+    public function getFirstName(): ?string
     {
-        if($this->firstName)
-        {
             return $this->firstName;
-        }
-
-        $this->firstName = '';
-        return $this->firstName;
     }
 
     /**
      * @param string $firstName
      * @return User
      */
-    public function setFirstName(string $firstName): User
+    public function setFirstName(?string $firstName): User
     {
         $this->firstName = $firstName;
         return $this;
@@ -296,22 +291,16 @@ class User implements UserInterface, \Serializable
     /**
      * @return string
      */
-    public function getLastName(): string
+    public function getLastName(): ?string
     {
-        if($this->lastName)
-        {
             return $this->lastName;
-        }
-
-        $this->lastName = '';
-        return $this->lastName;
     }
 
     /**
      * @param string $lastName
      * @return User
      */
-    public function setLastName(string $lastName): User
+    public function setLastName(?string $lastName): User
     {
         $this->lastName = $lastName;
         return $this;
@@ -320,7 +309,7 @@ class User implements UserInterface, \Serializable
     /**
      * @return string
      */
-    public function getSecondName(): string
+    public function getSecondName(): ?string
     {
         return $this->secondName;
     }
@@ -329,7 +318,7 @@ class User implements UserInterface, \Serializable
      * @param string $secondName
      * @return User
      */
-    public function setSecondName(string $secondName): User
+    public function setSecondName(?string $secondName): User
     {
         $this->secondName = $secondName;
         return $this;
@@ -338,7 +327,7 @@ class User implements UserInterface, \Serializable
     /**
      * @return string
      */
-    public function getPhone(): string
+    public function getPhone(): ?string
     {
         if($this->phone)
         {
@@ -353,7 +342,7 @@ class User implements UserInterface, \Serializable
      * @param string $phone
      * @return User
      */
-    public function setPhone(string $phone): User
+    public function setPhone(?string $phone): User
     {
         $this->phone = $phone;
         return $this;
@@ -380,7 +369,7 @@ class User implements UserInterface, \Serializable
     /**
      * @return string
      */
-    public function getAvatar(): string
+    public function getAvatar(): ?string
     {
         if($this->avatar)
         {
@@ -395,7 +384,7 @@ class User implements UserInterface, \Serializable
      * @param string $avatar
      * @return User
      */
-    public function setAvatar(string $avatar): User
+    public function setAvatar(?string $avatar): User
     {
         $this->avatar = $avatar;
         return $this;
@@ -411,9 +400,13 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    /**
-     * @ORM\OneToMany(targetEntity="Address", mappedBy="user")
-     */
-    protected $address;
 
+    /*
+     *
+     * @Assert\NotBlank
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg", "image/jpg" })
+     *
+     */
+
+    public  $avatarFile;
 }

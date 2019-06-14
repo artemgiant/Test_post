@@ -16,8 +16,8 @@ class ProfileFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('avatar', FileType::class,[
-                'data_class' => null,
+            ->add('avatarFile', FileType::class,[
+//                'data_class' => null,
 //                'empty_data' => ' ',
                 'required'=>true,
                 'constraints' => [
@@ -26,7 +26,7 @@ class ProfileFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('first_name',null,[
+            ->add('firstName',null,[
                 'attr'=>[
                         'class'=>'form-control border-right-0',
                         'id'=>'firs_name',
@@ -40,7 +40,7 @@ class ProfileFormType extends AbstractType
                     ]),
                 ],
                 ])
-            ->add('second_name',null,[
+            ->add('secondName',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'userSecondName',
@@ -54,7 +54,7 @@ class ProfileFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('last_name',null,[
+            ->add('lastName',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'last_name',
