@@ -400,10 +400,8 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-
     /*
      *
-     * 
      * @Assert\File(mimeTypes={ "image/png", "image/jpeg", "image/jpg" })
      *
      */
