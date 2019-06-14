@@ -403,7 +403,7 @@ class User implements UserInterface, \Serializable
 
     /*
      *
-     * @Assert\NotBlank
+     * 
      * @Assert\File(mimeTypes={ "image/png", "image/jpeg", "image/jpg" })
      *
      */

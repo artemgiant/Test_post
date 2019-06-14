@@ -19,12 +19,13 @@ class ProfileFormType extends AbstractType
             ->add('avatarFile', FileType::class,[
 //                'data_class' => null,
 //                'empty_data' => ' ',
-                'required'=>true,
-                'constraints' => [
+                'required'=>false,
+               /* 'constraints' => [
                     new NotBlank([
                         'message' => 'Please upload avatar',
                     ]),
-                ],
+
+                ],*/
             ])
             ->add('firstName',null,[
                 'attr'=>[
