@@ -5,8 +5,17 @@
 {% block content %}
     <div class="col-lg-12">
 {#  START FORM  #}
-        {{ form_start(profileForm, {'action': path('post_profile_edit'), 'method': 'POST', 'attr': {'id': 'profileForm','class':'mb-3','novalidate':true}}) }}
-        {{ form_row(profileForm._token) }}
+        {% if  errors is defined and errors is not empty %}
+        <div class="alert alert-danger" role="alert">
+        {{ form_errors(profileForm) }}
+        </div>
+        {% endif %}
+        {% if  mess is defined and mess is not empty %}
+            <div class="alert alert-success" role="alert">
+                {{ mess }}
+            </div>
+        {% endif %}
+        {{ form_start(profileForm, {'action': path('post_profile'), 'method': 'POST', 'attr': {'id': 'profileForm','class':'mb-3'}}) }}
         <div class="card card-default">
             <div class="card-body text-center">
                 <div class="py-4"><img class="img-fluid rounded-circle img-thumbnail thumb96"
@@ -18,7 +27,14 @@
                                                         {% endif %}
                                                        " alt="{{ 'Contact'|trans }}"></div>
 {#                <label class="btn btn-primary"><input type="file" name="avatar"></label>#}
-                {{ form_widget(profileForm.avatar) }}
+
+                {% if profileForm.avatarFile.vars.errors|length %}
+                    {{ form_widget(profileForm.avatarFile, {'attr': {'class': 'is-invalid form-control border-right-0'}}) }}
+                {% else %}
+                    {{ form_widget(profileForm.avatarFile) }}
+                {% endif %}
+                <div class="invalid-feedback">{{ form_errors(profileForm.avatarFile) }}</div>
+
                 <div class="form-group">
                     <div class="offset-5 col-2">
                         {{ form_row(profileForm.save_avatar, {'label': 'Edit profile'|trans}) }}
@@ -36,11 +52,11 @@
                 <div class="row py-4 justify-content-center">
                     <div class="col-12 col-sm-10">
                         <div class="form-group">
-                            {{ form_label(profileForm.first_name,'First name'|trans, {
+                            {{ form_label(profileForm.firstName,'First name'|trans, {
                                 'label_attr': {'class': 'text-muted'}
                             }) }}
                             <div class="input-group with-focus">
-                                {{ form_widget(profileForm.first_name) }}
+                                {{ form_widget(profileForm.firstName) }}
                                 <div class="input-group-append">
                              <span class="input-group-text text-muted bg-transparent border-left-0">
                                  <em class="fa fa-user"></em>
@@ -49,11 +65,29 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ form_label(profileForm.second_name,'Second name'|trans, {
+                            {{ form_label(profileForm.secondName,'Second name'|trans, {
+                                'label_attr': {'class': 'text-muted'}
+                            }) }}
+                            <div class="input-group with-focus ">
+                                {% if profileForm.secondName.vars.errors|length %}
+                                    {{ form_widget(profileForm.secondName, {'attr': {'class': 'is-invalid form-control border-right-0'}}) }}
+                                {% else %}
+                                    {{ form_widget(profileForm.secondName) }}
+                                {% endif %}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(profileForm.secondName) }}</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(profileForm.lastName,'Last name'|trans, {
                                 'label_attr': {'class': 'text-muted'}
                             }) }}
                             <div class="input-group with-focus">
-                                {{ form_widget(profileForm.second_name) }}
+                                {{ form_widget(profileForm.lastName) }}
                                 <div class="input-group-append">
                              <span class="input-group-text text-muted bg-transparent border-left-0">
                                  <em class="fa fa-user"></em>
@@ -62,20 +96,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ form_label(profileForm.last_name,'Last name'|trans, {
-                                'label_attr': {'class': 'text-muted'}
-                            }) }}
-                            <div class="input-group with-focus">
-                                {{ form_widget(profileForm.last_name) }}
-                                <div class="input-group-append">
-                             <span class="input-group-text text-muted bg-transparent border-left-0">
-                                 <em class="fa fa-user"></em>
-                             </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{ form_label(profileForm.first_name,'Phone'|trans, {
+                            {{ form_label(profileForm.phone,'Phone'|trans, {
                                 'label_attr': {'class': 'text-muted'}
                             }) }}
                             <div class="input-group with-focus">

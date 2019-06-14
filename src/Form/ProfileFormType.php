@@ -6,7 +6,6 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
@@ -17,17 +16,18 @@ class ProfileFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('avatar', FileType::class,[
-                'data_class' => null,
-                'empty_data' => ' ',
-                'required'=>true,
-                'constraints' => [
+            ->add('avatarFile', FileType::class,[
+//                'data_class' => null,
+//                'empty_data' => ' ',
+                'required'=>false,
+               /* 'constraints' => [
                     new NotBlank([
                         'message' => 'Please upload avatar',
                     ]),
-                ],
+
+                ],*/
             ])
-            ->add('first_name',TextType::class,[
+            ->add('firstName',null,[
                 'attr'=>[
                         'class'=>'form-control border-right-0',
                         'id'=>'firs_name',
@@ -41,7 +41,7 @@ class ProfileFormType extends AbstractType
                     ]),
                 ],
                 ])
-            ->add('second_name',TextType::class,[
+            ->add('secondName',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'userSecondName',
@@ -55,7 +55,7 @@ class ProfileFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('last_name',TextType::class,[
+            ->add('lastName',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'last_name',
@@ -69,7 +69,7 @@ class ProfileFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('email',TextType::class,[
+            ->add('email',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'email',
@@ -83,7 +83,7 @@ class ProfileFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('phone',TextType::class,[
+            ->add('phone',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'phone',
