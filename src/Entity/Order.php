@@ -36,6 +36,22 @@ class Order
      */
     private $user;
 
+
+    /**
+     * @vat Address
+     *
+     * @ORM\ManyToOne(targetEntity="Address", mappedBy="order")
+     * @ORM\JoinColumn(name="address_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $addresses;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tracking_number", type="string", length=255, nullable=true)
+     */
+    private $trackingNumber;
+
     /**
      * @var string
      *
@@ -151,12 +167,7 @@ class Order
      */
     private $orderStatus;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="tracking_number", type="string", length=255, nullable=true)
-     */
-    private $trackingNumber;
+
 
     /**
      * @var float
@@ -276,6 +287,23 @@ class Order
         }
     }
 
+    /**
+     * @return mixed
+     */
+    public function getAddresses()
+    {
+        return $this->addresses;
+    }
+
+    /**
+     * @param mixed $addresses
+     * @return Order
+     */
+    public function setAddresses($addresses)
+    {
+        $this->addresses = $addresses;
+        return $this;
+    }
     /**
      * Set trackingNumber
      *

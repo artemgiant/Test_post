@@ -31,7 +31,12 @@ class Address
 
     private $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Order", inversedBy="addresses")
+     * @ORM\JoinColumn(name="order_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
 
+    private $order;
 
     /**
      * @var string

@@ -34,62 +34,7 @@
                     </div>
                 </li><!-- END user info-->
                 <!-- Iterates over all sidebar items-->
-                <li class="nav-heading "><span data-localize="sidebar.heading.HEADER">{{"Main Navigation"|trans }}</span></li>
-                <li class="{% if page_id is defined
-                            and
-                            page_id is not empty
-                            and
-                    page_id =="post_profile"
-                %} active {% endif %}">
-                    <a href="{{ path("post_profile") }}" title="Profile">
-                        <em class="icon-grid"></em><span data-localize="sidebar.nav.PROFILE">{{"Profile"|trans }}</span>
-                    </a>
-                </li>
-                <li class=" ">
-                    <a href="{{ path("post_dashboard") }}" title="Dashboard">
-                        <em class="icon-grid"></em><span data-localize="sidebar.nav.DASHBOARD">{{"Dashboard"|trans }}</span>
-                    </a>
-                </li>
-                <li class="{% if page_id is defined
-                    and
-                    page_id is not empty
-                    and
-                    page_id =="post_parcels"
-                %} active {% endif %} ">
-                    <a href="{{ path("post_parcels") }}" title="Parcels">
-                        <em class="icon-grid"></em><span data-localize="sidebar.nav.PARCELS">{{"Parcels"|trans }}</span>
-                    </a>
-                </li>
-                <li class="{% if page_id is defined
-                    and
-                    page_id is not empty
-                    and
-                    page_id in ["post_addresses","post_address_create"]
-                %} active {% endif %} ">
-                    <a  href="#address" title="{{"Addresses"|trans }}" data-toggle="collapse">
-                        <em class="icon-note"></em><span data-localize="sidebar.nav.ADDRESSES">{{"Addresses"|trans }}</span>
-                    </a>
-                    <ul class="sidebar-nav sidebar-subnav collapse" id="address">
-                        <li class="sidebar-subnav-header">{{"Addresses"|trans }}</li>
-                        <li class="{% if page_id is defined
-                            and
-                            page_id is not empty
-                            and
-                            page_id =="post_addresses"
-                        %} active {% endif %} ">
-                            <a href="{{ path("post_addresses") }}" title="{{"Addresses List"|trans }}"><span data-localize="sidebar.nav.form.LIST_ADDRESS">{{"Addresses List"|trans }}</span></a>
-                        </li>
-                        <li class="{% if page_id is defined
-                            and
-                            page_id is not empty
-                            and
-                            page_id =="post_address_create"
-                        %} active {% endif %} ">
-                            <a href="{{ path("post_address_create") }}" title="{{"Addresses Create"|trans }}"><span data-localize="sidebar.nav.form.CREATE_ADDRESS">{{"Addresses Create"|trans }}</span></a>
-                        </li>
-                    </ul>
-                </li>
-                </li>
+                {{ include('cabinet/menu.html.twig') }}   <!-- menu-->
             </ul><!-- END sidebar nav-->
         </nav>
     </div><!-- END Sidebar (left)-->
