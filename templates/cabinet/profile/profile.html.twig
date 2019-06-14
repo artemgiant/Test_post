@@ -27,7 +27,6 @@
                                                         {% endif %}
                                                        " alt="{{ 'Contact'|trans }}"></div>
 {#                <label class="btn btn-primary"><input type="file" name="avatar"></label>#}
-
                 {% if profileForm.avatarFile.vars.errors|length %}
                     {{ form_widget(profileForm.avatarFile, {'attr': {'class': 'is-invalid form-control border-right-0'}}) }}
                 {% else %}
@@ -37,7 +36,7 @@
 
                 <div class="form-group">
                     <div class="offset-5 col-2">
-                        {{ form_row(profileForm.save_avatar, {'label': 'Edit profile'|trans}) }}
+                        {{ form_row(profileForm.save_avatar, {'label': 'Save avatar'|trans}) }}
                     </div>
                 </div>
             </div>
@@ -56,7 +55,11 @@
                                 'label_attr': {'class': 'text-muted'}
                             }) }}
                             <div class="input-group with-focus">
-                                {{ form_widget(profileForm.firstName) }}
+                                {% if profileForm.firstName.vars.errors|length %}
+                                    {{ form_widget(profileForm.firstName, {'attr': {'class': 'is-invalid form-control border-right-0'}}) }}
+                                {% else %}
+                                    {{ form_widget(profileForm.firstName) }}
+                                {% endif %}
                                 <div class="input-group-append">
                              <span class="input-group-text text-muted bg-transparent border-left-0">
                                  <em class="fa fa-user"></em>
@@ -87,7 +90,11 @@
                                 'label_attr': {'class': 'text-muted'}
                             }) }}
                             <div class="input-group with-focus">
-                                {{ form_widget(profileForm.lastName) }}
+                                {% if profileForm.lastName.vars.errors|length %}
+                                    {{ form_widget(profileForm.lastName, {'attr': {'class': 'is-invalid form-control border-right-0'}}) }}
+                                {% else %}
+                                    {{ form_widget(profileForm.lastName) }}
+                                {% endif %}
                                 <div class="input-group-append">
                              <span class="input-group-text text-muted bg-transparent border-left-0">
                                  <em class="fa fa-user"></em>
@@ -100,7 +107,11 @@
                                 'label_attr': {'class': 'text-muted'}
                             }) }}
                             <div class="input-group with-focus">
-                                {{ form_widget(profileForm.phone) }}
+                                {% if profileForm.phone.vars.errors|length %}
+                                    {{ form_widget(profileForm.phone, {'attr': {'class': 'is-invalid form-control border-right-0'}}) }}
+                                {% else %}
+                                    {{ form_widget(profileForm.phone) }}
+                                {% endif %}
                                 <div class="input-group-append">
                              <span class="input-group-text text-muted bg-transparent border-left-0">
                                  <em class="fa fa-phone"></em>
@@ -113,7 +124,11 @@
                                 'label_attr': {'class': 'text-muted'}
                             }) }}
                             <div class="input-group with-focus">
-                                {{ form_widget(profileForm.email) }}
+                                {% if profileForm.email.vars.errors|length %}
+                                    {{ form_widget(profileForm.email, {'attr': {'class': 'is-invalid form-control border-right-0'}}) }}
+                                {% else %}
+                                    {{ form_widget(profileForm.email) }}
+                                {% endif %}
                                 <div class="input-group-append">
                              <span class="input-group-text text-muted bg-transparent border-left-0">
                                  <em class="fa fa-envelope"></em>
