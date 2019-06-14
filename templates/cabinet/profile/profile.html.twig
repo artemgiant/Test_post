@@ -1,69 +1,137 @@
 {% extends 'cabinet/cabinet_layout.html.twig' %}
 
-{% block title %}{{'Profile'|trans }}{% endblock %}
+{% block title %}{{ 'Profile'|trans }}{% endblock %}
 
 {% block content %}
-                    <div class="col-lg-12">
-                        <div class="card card-default">
-                            <div class="card-body text-center">
-                                <div class="py-4"><img class="img-fluid rounded-circle img-thumbnail thumb96"
-                                                       src="
+    <div class="col-lg-12">
+{#  START FORM  #}
+        {% if  errors is defined and errors is not empty %}
+        <div class="alert alert-danger" role="alert">
+        {{ form_errors(profileForm) }}
+        </div>
+        {% endif %}
+        {% if  mess is defined and mess is not empty %}
+            <div class="alert alert-success" role="alert">
+                {{ mess }}
+            </div>
+        {% endif %}
+        {{ form_start(profileForm, {'action': path('post_profile'), 'method': 'POST', 'attr': {'id': 'profileForm','class':'mb-3'}}) }}
+        <div class="card card-default">
+            <div class="card-body text-center">
+                <div class="py-4"><img class="img-fluid rounded-circle img-thumbnail thumb96"
+                                       src="
                                                         {% if user.avatar %}
                                                             {{ asset(user.avatar) }}
                                                         {% else %}
                                                             {{ asset('img/user/02.jpg') }}
                                                         {% endif %}
-                                                       " alt="{{'Contact'|trans }}"></div>
-                                <h3 class="m-0 text-bold">
-                                    {% if not (user.firstName and user.lastName) %}
-                                        Somebody
-                                    {% else %}
-                                        {{ user.firstName }} {{ user.lastName }}
-                                    {% endif %}
-                                </h3>
-                            </div>
-                        </div>
+                                                       " alt="{{ 'Contact'|trans }}"></div>
+{#                <label class="btn btn-primary"><input type="file" name="avatar"></label>#}
+
+                {% if profileForm.avatarFile.vars.errors|length %}
+                    {{ form_widget(profileForm.avatarFile, {'attr': {'class': 'is-invalid form-control border-right-0'}}) }}
+                {% else %}
+                    {{ form_widget(profileForm.avatarFile) }}
+                {% endif %}
+                <div class="invalid-feedback">{{ form_errors(profileForm.avatarFile) }}</div>
+
+                <div class="form-group">
+                    <div class="offset-5 col-2">
+                        {{ form_row(profileForm.save_avatar, {'label': 'Edit profile'|trans}) }}
                     </div>
-                    <div class="col-lg-12">
-                        <div class="card card-default">
-                            <div class="card-header d-flex align-items-center">
-                                <div class="d-flex justify-content-center col">
-                                    <div class="h4 m-0 text-center">{{'Contact Information'|trans }}</div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="row py-4 justify-content-center">
-                                    <div class="col-12 col-sm-10">
-                                        <form class="form-horizontal" action="{{ path("post_update_profile") }}" method="post" role="form">
-                                            <div class="form-group row">
-                                                <div class="col-xl-10 col-md-9 col-8"><input class="form-control" type="hidden" value="{{ user.id }}"></div>
-                                            </div>
-                                            <div class="form-group row"><label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right" for="inputContact1">{{'Name'|trans }}</label>
-                                                <div class="col-xl-10 col-md-9 col-8"><input class="form-control" id="inputContact1" type="text" placeholder="" value="{{ user.firstName }} {{ user.lastName }}"></div>
-                                            </div>
-                                            <div class="form-group row"><label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right" for="inputContact2">{{'Email'|trans }}</label>
-                                                <div class="col-xl-10 col-md-9 col-8"><input class="form-control" id="inputContact2" type="email" value="{{ user.email }}"></div>
-                                            </div>
-                                            <div class="form-group row"><label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right" for="inputContact3">{{'Phone'|trans }}</label>
-                                                <div class="col-xl-10 col-md-9 col-8"><input class="form-control" id="inputContact3" type="text" value="{{ user.phone }}"></div>
-                                            </div>
-                                            <div class="form-group row"><label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right" for="inputContact4">{{'ZIP'|trans }}</label>
-                                                <div class="col-xl-10 col-md-9 col-8"><input class="form-control" id="inputContact4" type="text" value="{% if my_address[0] is defined %}{{ my_address[0].zip }}{% endif %}"></div>
-                                            </div>
-                                            <div class="form-group row"><label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right" for="inputContact5">{{'Country'|trans }}</label>
-                                                <div class="col-xl-10 col-md-9 col-8"><input class="form-control" id="inputContact5" type="text" value="{% if my_address[0] is defined %}{{ my_address[0].country }}{% endif %}"></div>
-                                            </div>
-                                            <div class="form-group row"><label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right" for="inputContact6">{{'City'|trans }}</label>
-                                                <div class="col-xl-10 col-md-9 col-8"><input class="form-control" id="inputContact6" type="text" value="{% if my_address[0] is defined %}{{ my_address[0].city }}{% endif %}"></div>
-                                            </div>
-                                            <div class="form-group row"><label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right" for="inputContact7">{{'Address'|trans }}</label>
-                                                <div class="col-xl-10 col-md-9 col-8"><textarea class="form-control" id="inputContact7" rows="4">{% if my_address[0] is defined %}{{ my_address[0].address }}{% endif %}</textarea></div>
-                                            </div>
-                                        </form>
-                                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-default">
+            <div class="card-header d-flex align-items-center">
+                <div class="d-flex justify-content-center col">
+                    <div class="h4 m-0 text-center">{{ 'Contact Information'|trans }}</div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row py-4 justify-content-center">
+                    <div class="col-12 col-sm-10">
+                        <div class="form-group">
+                            {{ form_label(profileForm.firstName,'First name'|trans, {
+                                'label_attr': {'class': 'text-muted'}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {{ form_widget(profileForm.firstName) }}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            {{ form_label(profileForm.secondName,'Second name'|trans, {
+                                'label_attr': {'class': 'text-muted'}
+                            }) }}
+                            <div class="input-group with-focus ">
+                                {% if profileForm.secondName.vars.errors|length %}
+                                    {{ form_widget(profileForm.secondName, {'attr': {'class': 'is-invalid form-control border-right-0'}}) }}
+                                {% else %}
+                                    {{ form_widget(profileForm.secondName) }}
+                                {% endif %}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(profileForm.secondName) }}</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(profileForm.lastName,'Last name'|trans, {
+                                'label_attr': {'class': 'text-muted'}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {{ form_widget(profileForm.lastName) }}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(profileForm.phone,'Phone'|trans, {
+                                'label_attr': {'class': 'text-muted'}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {{ form_widget(profileForm.phone) }}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-phone"></em>
+                             </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(profileForm.email,'Email address'|trans, {
+                                'label_attr': {'class': 'text-muted'}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {{ form_widget(profileForm.email) }}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-envelope"></em>
+                             </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="offset-5 col-2">
+                                {{ form_row(profileForm.save, {'label': 'Edit profile'|trans}) }}
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        {{ form_end(profileForm) }}
+{#  FINISH FORM #}
+    </div>
 {% endblock %}
  {% block javascripts %}{% endblock %}
