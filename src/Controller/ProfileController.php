@@ -49,7 +49,7 @@ class ProfileController extends CabinetController
         }
         elseif($form->isSubmitted() && !$form->isValid())
         {
-            $errors=(string)$form->getErrors(true, false);
+            $errors=(string)$form->getErrors(true);
         }
 
         return $this->render('cabinet/profile/profile.html.twig', [
