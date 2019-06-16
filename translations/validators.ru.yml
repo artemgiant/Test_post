@@ -1,3 +1,8 @@
+'Please enter first name': 'Пожалуйста. Введите имя.'
+'Please enter second name': 'Пожалуйста. Введите отчество.'
+'Please enter last name': 'Пожалуйста. Введите фамилию.'
+'Please enter email': 'Пожалуйста. Введите Email.'
+'Please enter phone': 'Пожалуйста. Введите телефон.'
 'This value should be false.': 'Значение должно быть ложным.'
 'This value should be true.': 'Значение должно быть истинным.'
 'This value should be of type {{ type }}.': 'Тип значения должен быть {{ type }}.'

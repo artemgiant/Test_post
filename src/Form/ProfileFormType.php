@@ -8,8 +8,8 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ProfileFormType extends AbstractType
 {
@@ -40,7 +40,7 @@ class ProfileFormType extends AbstractType
                         'message' => 'Please enter first name',
                     ]),
                 ],
-                ])
+            ])
             ->add('secondName',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',

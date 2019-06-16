@@ -26,13 +26,13 @@ class AddressFormType extends AbstractType
                         'placeholder'=>'Country',
                         'autocomplete'=>'off'],
                 'label'=>'Country',
-                'required'=>true
+                'required'=>true,
                 ])
             ->add('regionOblast',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'country',
-                    'placeholder'=>'regionOblast',
+                    'placeholder'=>'Enter region',
                     'autocomplete'=>'off'],
                 'label'=>'regionOblast',
                 'required'=>true
@@ -41,7 +41,7 @@ class AddressFormType extends AbstractType
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'country',
-                    'placeholder'=>'regionRayon',
+                    'placeholder'=>'Enter district',
                     'autocomplete'=>'off'],
                 'label'=>'regionRayon',
                 'required'=>false
@@ -50,7 +50,7 @@ class AddressFormType extends AbstractType
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'country',
-                    'placeholder'=>'city',
+                    'placeholder'=>'Enter city',
                     'autocomplete'=>'off'],
                 'label'=>'city',
                 'required'=>true
@@ -59,7 +59,7 @@ class AddressFormType extends AbstractType
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'country',
-                    'placeholder'=>'zip',
+                    'placeholder'=>'Enter ZIP',
                     'autocomplete'=>'off'],
                 'label'=>'zip',
                 'required'=>true
@@ -68,7 +68,7 @@ class AddressFormType extends AbstractType
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'street',
-                    'placeholder'=>'zip',
+                    'placeholder'=>'Enter street',
                     'autocomplete'=>'off'],
                 'label'=>'street',
                 'required'=>true
@@ -77,25 +77,25 @@ class AddressFormType extends AbstractType
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'zip',
-                    'placeholder'=>'zip',
+                    'placeholder'=>'Enter number house',
                     'autocomplete'=>'off'],
                 'label'=>'house',
                 'required'=>true
             ])
-            ->add('appartment',null,[
+            ->add('apartment',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
-                    'id'=>'appartment',
-                    'placeholder'=>'appartment',
+                    'id'=>'apartment',
+                    'placeholder'=>'Enter number apartment',
                     'autocomplete'=>'off'],
-                'label'=>'appartment',
+                'label'=>'apartment',
                 'required'=>false
             ])
             ->add('userFirstName',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'userFirstName',
-                    'placeholder'=>'userFirstName',
+                    'placeholder'=>'Enter first name',
                     'autocomplete'=>'off'],
                 'label'=>'userFirstName',
                 'required'=>true
@@ -104,7 +104,7 @@ class AddressFormType extends AbstractType
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'userLastName',
-                    'placeholder'=>'userLastName',
+                    'placeholder'=>'Enter last name',
                     'autocomplete'=>'off'],
                 'label'=>'userLastName',
                 'required'=>true
@@ -113,7 +113,7 @@ class AddressFormType extends AbstractType
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'userSecondName',
-                    'placeholder'=>'userSecondName',
+                    'placeholder'=>'Enter second name',
                     'autocomplete'=>'off'],
                 'label'=>'userSecondName',
                 'required'=>false
@@ -122,12 +122,21 @@ class AddressFormType extends AbstractType
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'phone',
-                    'placeholder'=>'phone',
+                    'placeholder'=>'Enter receiver\'s phone',
                     'autocomplete'=>'off'],
                 'label'=>'phone',
                 'required'=>true
             ])
-        ->add('save', SubmitType::class, [
+            ->add('aliasOfAddress',null,[
+            'attr'=>[
+                'class'=>'form-control border-right-0',
+                'id'=>'aliasOfAddress',
+                'placeholder'=>'Enter alias of address',
+                'autocomplete'=>'off'],
+            'label'=>'aliasOfAddress',
+            'required'=>true
+            ])
+            ->add('save', SubmitType::class, [
                                 'attr' => ['class' => 'btn btn-block btn-primary mt-3'],
                                 ]);
     }

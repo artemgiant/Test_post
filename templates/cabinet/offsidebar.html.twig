@@ -23,9 +23,9 @@
                             <div class="user-block-info">
                                 <span class="user-block-name">
                                     {% if user.firstName %}
-                                        Hello, {{ user.firstName }}
+                                        {{"Hello"|trans }}, {{ user.firstName }}
                                     {% else %}
-                                        Hello, Somebody
+                                        {{"Hello"|trans }}, Somebody
                                     {% endif %}
                                 </span>
 {#                                <span class="user-block-role">Designer</span>#}
