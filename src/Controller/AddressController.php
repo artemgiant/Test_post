@@ -45,8 +45,10 @@ class AddressController extends CabinetController
 
     /**
      * @Route("/create", name="post_address_create")
+     * @param Request $request
+     * @return Response
      */
-    public function adressCreateAction(Request $request): Response
+    public function addressCreateAction(Request $request): Response
     {
         $this->getTemplateData();
         $errors =[];
@@ -71,7 +73,8 @@ class AddressController extends CabinetController
         }elseif ($form->isSubmitted() && !$form->isValid()){
             $errors = $form->getErrors(true);
         }
-        $twigoption=array_merge($this->optionToTemplate,['form' => $form->createView(),
+        $twigoption=array_merge($this->optionToTemplate,[
+            'addressForm' => $form->createView(),
             'error' => $errors,]);
 
         return $this->render('cabinet/addresses/editform.html.twig', $twigoption);
@@ -81,7 +84,7 @@ class AddressController extends CabinetController
     /**
      * @Route("/{id}/edit", name="post_address_edit")
      */
-    public function adressEditAction(Request $request): Response
+    public function addressEditAction(Request $request): Response
     {
         $this->getTemplateData();
         $entityManager = $this->getDoctrine()->getManager();
@@ -114,8 +117,10 @@ class AddressController extends CabinetController
         }elseif ($form->isSubmitted() && !$form->isValid()){
             $errors = $form->getErrors(true);
         }
-        $twigoption=array_merge($this->optionToTemplate,['form' => $form->createView(),
-            'error' => $errors,]);
+        $twigoption=array_merge($this->optionToTemplate,[
+            'addressForm' => $form->createView(),
+            'error' => $errors,
+            ]);
 
         return $this->render('cabinet/addresses/editform.html.twig', $twigoption);
 

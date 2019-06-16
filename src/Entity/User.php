@@ -29,8 +29,6 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @Assert\NotBlank
-     *
      * @ORM\Column(name="first_name", type="string", nullable=true)
      *
      */
@@ -40,7 +38,6 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="second_name", type="string", nullable=true)
-     * @Assert\NotBlank
      */
     private $secondName;
 
@@ -48,7 +45,6 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="last_name", type="string", nullable=true)
-     * @Assert\NotBlank
      */
     private $lastName;
 
@@ -64,7 +60,6 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="phone", type="string", unique=true, nullable=true)
-     * @Assert\NotBlank
      */
     private $phone;
 
