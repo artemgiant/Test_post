@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-use App\Form\AddressFormType;
+use App\Form\OrderFormType;
 
 /**
  * @Route("/post/parcels")
@@ -48,16 +48,16 @@ class ParcelsController extends CabinetController
         $this->optionToTemplate['page_id']='post_parcels_create';
         $this->optionToTemplate['page_title']='Parcels Create';
 
-        $address = new Address();
-        $form = $this->createForm(AddressFormType::class, $address);
+        $order = new Order();
+        $form = $this->createForm(OrderFormType::class, $order);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
 
             $entityManager = $this->getDoctrine()->getManager();
-            $address->setUser($this->user);
-            $entityManager->persist($address);
+            $order->setUser($this->user);
+            $entityManager->persist($order);
             $entityManager->flush();
 
             // do anything else you need here, like send an email
@@ -69,7 +69,7 @@ class ParcelsController extends CabinetController
         $twigoption=array_merge($this->optionToTemplate,['form' => $form->createView(),
             'error' => $errors,]);
 
-        return $this->render('cabinet/addresses/editform.html.twig', $twigoption);
+        return $this->render('cabinet/parcels/editform.html.twig', $twigoption);
 
     }
 
@@ -92,7 +92,7 @@ class ParcelsController extends CabinetController
 
         }
         //$address = new Address();
-        $form = $this->createForm(AddressFormType::class, $address);
+        $form = $this->createForm(OrderFormType::class, $address);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -112,7 +112,7 @@ class ParcelsController extends CabinetController
         $twigoption=array_merge($this->optionToTemplate,['form' => $form->createView(),
             'error' => $errors,]);
 
-        return $this->render('cabinet/addresses/editform.html.twig', $twigoption);
+        return $this->render('cabinet/parcels/editform.html.twig', $twigoption);
 
     }
 }

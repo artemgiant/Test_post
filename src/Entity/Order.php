@@ -38,9 +38,9 @@ class Order
 
 
     /**
-     * @vat Address
+     * @var Address
      *
-     * @ORM\ManyToOne(targetEntity="Address", mappedBy="order")
+     * @ORM\ManyToOne(targetEntity="Address")
      * @ORM\JoinColumn(name="address_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $addresses;

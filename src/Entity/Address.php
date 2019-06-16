@@ -4,7 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Address
@@ -32,8 +33,7 @@ class Address
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Order", inversedBy="addresses")
-     * @ORM\JoinColumn(name="order_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     * @ORM\OneToMany(targetEntity="Order", mappedBy="addresses")
      */
 
     private $order;
@@ -158,6 +158,13 @@ class Address
      * @ORM\Column(name="phone", type="string")
      */
     private $phone;
+
+    public function __construct()
+    {
+        $this->order = new ArrayCollection();
+    }
+
+
 
     /**
      * @return int
@@ -454,5 +461,11 @@ class Address
     {
         return trim($this->street.' '.$this->house.' '.$this->appartment.' '.$this->city.' '.$this->zip.' '.$this->regionOblast.' '.$this->regionRayon);
     }
-
+    /**
+     * @return Collection|Order[]
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
 }
