@@ -22,7 +22,13 @@ services:
         arguments: [~, App\Entity\User, ~]
         tags:
         - { name: sonata.admin, manager_type: orm, group: admin, label: Users }
-        
+
+    app.admin.orderstatus:
+        class: App\Admin\OrderStatusAdmin
+        arguments: [~, App\Entity\OrderStatus, ~]
+        tags:
+        - { name: sonata.admin, manager_type: orm, group: admin, label: OrderStatus }
+
     email_service:
         class: App\Service\SendMailService
         calls:

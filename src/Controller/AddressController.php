@@ -13,6 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use App\Form\AddressFormType;
 
+use Knp\Component\Pager\PaginatorInterface;
+
 /**
  * @Route("/post/addresses")
  */
@@ -22,7 +24,7 @@ class AddressController extends CabinetController
     /**
      * @Route("/", name="post_addresses")
      */
-    public function addressesAction(): Response
+    public function addressesAction(Request $request, PaginatorInterface $paginator): Response
     {
         $this->getTemplateData();
         $this->optionToTemplate['page_id']='post_addresses';
@@ -30,15 +32,14 @@ class AddressController extends CabinetController
 
         $entityManager = $this->getDoctrine()->getManager();
 
-        $addressList=$entityManager->getRepository(Address::class)
+        $addressListQuery=$entityManager->getRepository(Address::class)
                        ->getAdressList($this->user);
 
-        if ($addressList){
-            foreach ($addressList as $address){
-                dump($address);
-            }
-        }
-
+        $addressList = $paginator->paginate(
+            $addressListQuery,
+            $request->query->getInt('page', 1),
+            20
+        );
 
         return $this->render('cabinet/addresses/addresses.html.twig', array_merge($this->optionToTemplate,['items'=>$addressList]));
     }
