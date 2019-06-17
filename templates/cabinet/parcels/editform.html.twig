@@ -1,0 +1,98 @@
+{% extends 'cabinet/cabinet_layout.html.twig' %}
+
+    {% set title= 'Addresses Edit' %}
+    {% if page_title is defined and page_title is not empty %}
+        {% set title=page_title %}
+    {% endif %}
+
+{% block title %}{{title|trans }}{% endblock %}
+
+{% block content %}
+        <div class="col-xl-1">
+        </div>
+        <div class="col-xl-11">
+            <div class="card card-default">
+                <div class="card-header">
+                    <div class="card-title">{{title|trans }}</div>
+                </div>
+                <div class="card-body">
+{{ dump(form) }}
+                    {%
+                        form_theme form
+                        'system/product-order-theme.html.twig'
+                        'system/jquery.collection.html.twig'
+                    %}
+                    {{  form_errors(form) }}
+
+                    {{ form_start(form, {"method": "POST", "attr": {"id": "orderForm","class":"mb-3"}}) }}
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {{ form_label(form.trackingNumber,"trackingNumber"|trans, {
+                                    "label_attr": {"class": "text-muted"}
+                                }) }}
+                                <div class="input-group with-focus ">
+                                    {% if form.trackingNumber.vars.errors|length %}
+                                        {{ form_widget(form.trackingNumber, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                    {% else %}
+                                        {{ form_widget(form.trackingNumber) }}
+                                    {% endif %}
+                                    <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                    </div>
+                                    <div class="invalid-feedback">{{ form_errors(form.trackingNumber) }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {{ form_label(form.shipDate,"shipDate"|trans, {
+                                    "label_attr": {"class": "text-muted"}
+                                }) }}
+                                <div class="input-group with-focus ">
+                                    {% if form.shipDate.vars.errors|length %}
+                                        {{ form_widget(form.shipDate, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                    {% else %}
+                                        {{ form_widget(form.shipDate) }}
+                                    {% endif %}
+                                    <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                    </div>
+                                    <div class="invalid-feedback">{{ form_errors(form.shipDate) }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+ {% block javascripts %}
+     <script src="{{ asset('sklad-express/js/jquery.collection.js') }}"></script>
+<script>
+     jQuery('.datepicker').datepicker({
+     uiLibrary: 'bootstrap4'
+     });
+
+
+
+    $('.product-list').collection({
+        'allow_up': false,
+        'allow_down': false,
+        'add': '<a href="#" class="btn btn-success">{{ "Add product" | trans }}</a>',
+        'add_at_the_end': true
+     });
+
+
+</script>
+ {% endblock %}

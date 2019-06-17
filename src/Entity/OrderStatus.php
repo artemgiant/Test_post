@@ -29,6 +29,12 @@ class OrderStatus
     private $status;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="status_name", type="string", length=255, nullable=true)
+     */
+    private $statusName;
+    /**
      * @return int
      */
     public function getId(): int
@@ -39,7 +45,7 @@ class OrderStatus
     /**
      * @return string
      */
-    public function getStatus(): string
+    public function getStatus(): ?string
     {
         return $this->status;
     }
@@ -48,9 +54,27 @@ class OrderStatus
      * @param string $status
      * @return string
      */
-    public function setStatus(string $status)
+    public function setStatus(?string $status)
     {
         $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatusName(): ?string
+    {
+        return $this->statusName;
+    }
+
+    /**
+     * @param string $statusName
+     * @return string
+     */
+    public function setStatusName(?string $statusName)
+    {
+        $this->statusName = $statusName;
         return $this;
     }
 }

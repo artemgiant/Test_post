@@ -25,9 +25,9 @@ class Order
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="OrderProducts", mappedBy="order_id")
+     * @ORM\OneToMany(targetEntity="OrderProducts", mappedBy="orderId", cascade={"persist", "remove"})
      */
-    private $product;
+    private $products;
 
     /**
      * @var User
@@ -35,6 +35,22 @@ class Order
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $user;
+
+
+    /**
+     * @var Address
+     *
+     * @ORM\ManyToOne(targetEntity="Address")
+     * @ORM\JoinColumn(name="address_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $addresses;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tracking_number", type="string", length=255, nullable=true)
+     */
+    private $trackingNumber;
 
     /**
      * @var string
@@ -151,12 +167,7 @@ class Order
      */
     private $orderStatus;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="tracking_number", type="string", length=255, nullable=true)
-     */
-    private $trackingNumber;
+
 
     /**
      * @var float
@@ -255,7 +266,7 @@ class Order
         $this->quantity = 0;
         $this->createdAt = new \DateTime();
         $this->adminCreate = false;
-        $this->product = new ArrayCollection();
+        $this->products = new ArrayCollection();
     }
 
     /**
@@ -276,6 +287,23 @@ class Order
         }
     }
 
+    /**
+     * @return mixed
+     */
+    public function getAddresses()
+    {
+        return $this->addresses;
+    }
+
+    /**
+     * @param mixed $addresses
+     * @return Order
+     */
+    public function setAddresses($addresses)
+    {
+        $this->addresses = $addresses;
+        return $this;
+    }
     /**
      * Set trackingNumber
      *
@@ -408,13 +436,13 @@ class Order
      */
     public function addProduct(OrderProducts $product)
     {
-        if ( !$product->getOrd() instanceof OrderProducts ) {
-            $product->setOrd($this);
+        if ( !$product->getOrderId() instanceof Order ) {
+            $product->setOrderId($this);
         }
 
-        if( !$this->product->contains($product) )
+        if( !$this->products->contains($product) )
         {
-            $this->product->add($product);
+            $this->products->add($product);
         }
         return $this;
     }
@@ -427,7 +455,7 @@ class Order
     public function removeProduct(OrderProducts $product)
     {
         if ($product instanceof OrderProducts && !empty($this->product))
-        $this->product->removeElement($product);
+        $this->products->removeElement($product);
     }
 
     /**
@@ -435,9 +463,9 @@ class Order
      *
      * @return Collection
      */
-    public function getProduct()
+    public function getProducts()
     {
-        return $this->product;
+        return $this->products;
     }
 
 
