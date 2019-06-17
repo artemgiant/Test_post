@@ -15,6 +15,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Form\OrderFormType;
 
 use Knp\Component\Pager\PaginatorInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @Route("/post/parcels")
  */
@@ -59,6 +61,7 @@ class ParcelsController extends CabinetController
         $this->optionToTemplate['page_title']='Parcels Create';
 
         $order = new Order();
+
 
         $orderForm=$request->request->get('order_form',false);
         if ($orderForm)
@@ -117,14 +120,27 @@ class ParcelsController extends CabinetController
 
         }
         /* @var $order Order */
+        $originalProducts = new ArrayCollection();
+
+        // Создать ArrayCollection текущих объектов Tag в БД
+        foreach ($order->getProducts() as $product) {
+            $originalProducts->add($product);
+        }
+
+
+        $originalCount=$originalProducts->count();
         $orderForm=$request->request->get('order_form',false);
         if ($orderForm)
         {
             if ($products=$orderForm['products']??false){
-                foreach($products as &$product){
-                    $orderProduct=new OrderProducts();
-                    $order->addProduct($orderProduct);
+                $count=$originalCount-count($products);
+                if ($count>0){
+                    for ($x=0; $x<=$count; $x++){
+                        $orderProduct=new OrderProducts();
+                        $order->addProduct($orderProduct);
+                    }
                 }
+
             }
         }
         //$address = new Address();
@@ -132,19 +148,28 @@ class ParcelsController extends CabinetController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-
             if ($order->getProducts()){
-                foreach ($order->getProducts() as &$product){
-                    if (empty($product->getdescEn())){
+                foreach ($order->getProducts() as $product){
+
+                    if (empty($product->getDescEn())){
+                        $order->removeProduct($product);
                         $entityManager->remove($product);
-                        continue;
+                        $entityManager->persist($order);
                     }
-                    $product->setOrderId($order);
-                    $entityManager->persist($product);
+                    else {
+                        $product->setOrderId($order);
+                        $entityManager->persist($product);
+                    }
                 }
             }
             unset($product);
+            foreach ($originalProducts as $product) {
+                if (false === $order->getProducts()->contains($product)) {
+
+                    $entityManager->remove($product);
+                }
+            }
+
             $entityManager->persist($order);
             $entityManager->flush();
 

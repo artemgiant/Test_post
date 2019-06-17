@@ -440,7 +440,7 @@ class Order
             $product->setOrderId($this);
         }
 
-        if( !$this->products->contains($product) )
+        if( !$this->products->contains($product))
         {
             $this->products->add($product);
         }
@@ -454,7 +454,7 @@ class Order
      */
     public function removeProduct(OrderProducts $product)
     {
-        if ($product instanceof OrderProducts && !empty($this->product))
+        if ($product instanceof OrderProducts)
         $this->products->removeElement($product);
     }
 
