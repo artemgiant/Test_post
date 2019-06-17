@@ -17,8 +17,14 @@ Contact: Контакт
 Edit profile: Редактировать профиль
 Contact Information: Контактная информация
 First name: Имя
+User First Name: Имя
 Second name: Отчество
+User Second Name: Отчество
 Last name: Фамилия
+User Last Name: Фамилия
+First Name: Имя
+Second Name: Отчество
+Last Name: Фамилия
 Phone: Телефон
 'Email address': Email
 Logout: Выход
@@ -51,19 +57,24 @@ Cabinet: Кабинет
 'Choise delivery method': 'Выбрать способ доставки'
 'Addresses Edit': 'Редактирование адреса'
 'Address Create': 'Добавить адрес'
-Region: Область
+'Region': Область
+'Region Oblast': Область
 'Enter region': 'Введите область'
-District: Район
+'District': Район
+'Region Rayon': Район
 'Enter district': 'Введите район'
-City: Город
+'City': Город
 'Enter city': 'Введите название города'
-ZIP: Индекс
+'ZIP': Индекс
+'Zip': Индекс
 'Enter ZIP': 'Введите индекс'
-Street: 'Название улицы'
+'Street': 'Название улицы'
 'Enter street': 'Введите название улицы'
 'Number of house': 'Номер дома'
+'House': 'Номер дома'
 'Enter number house': 'Введите номер дома'
 'Number of apartment': Квартира/комната
+'Apartment': Квартира/комната
 'Enter number apartment': 'Введите номер квартиры/комнаты'
 'Receivers first name': 'Имя получателя'
 'Enter first name': 'Введите имя'
@@ -74,32 +85,48 @@ Street: 'Название улицы'
 'Receivers phone': 'Телефон получателя'
 'Enter receivers phone': 'Введите номер телефона'
 'Alias of address': 'Краткое название адреса'
+'Alias Of Address': 'Краткое название адреса'
+'My address': 'Личный адрес'
 'Enter alias of address': 'Введите краткое название адреса'
-'New Parcerls List': '__New Parcerls List'
+'New Parcerls List': 'Новый список посылок'
 'Send Parcerls List': '__Send Parcerls List'
 'Send Parcels List': '__Send Parcels List'
 'Parcels Create': '__Parcels Create'
-trackingNumber: __trackingNumber
-shipDate: __shipDate
-products: __products
-addresses: __addresses
-sendDetailWeight: __sendDetailWeight
-sendDetailLength: __sendDetailLength
-sendDetailWidth: __sendDetailWidth
-sendDetailHeight: __sendDetailHeight
-shippingCosts: __shippingCosts
-volumeWeigth: __volumeWeigth
-declareValue: __declareValue
-comment: __comment
-'Add product': '__Add product'
-'Add order': '__Add order'
-'Create Date': '__Create Date'
-'trackingNumber Nova Pochta': '__trackingNumber Nova Pochta'
-shipgCost: __shipgCost
-'Edit Order': '__Edit Order'
-descEn: __descEn
-price: __price
-count: __count
-Remove product: __Remove product
-copyRigtht: __copyRigtht
-Status: Статус
+'trackingNumber': 'Трекинговый номер'
+'shipDate': 'Дата отгрузки'
+'products': 'Продукты'
+'addresses': 'Адреса'
+'sendDetailWeight': 'Вес'
+'sendDetailLength': 'Длина'
+'sendDetailWidth': 'Ширина'
+'sendDetailHeight': 'Высота'
+'shippingCosts': 'Стоимость'
+'volumeWeigth': 'Объем'
+'declareValue': 'Объявленная стоимость'
+'comment': 'Комментарий'
+'Add product': 'Добавить'
+'Add order': 'Добвить'
+'Create Date': 'Дата добавления'
+'trackingNumber Nova Pochta': 'Трекинговый номер Нова почта'
+'shipgCost': 'Стоимость доставки'
+'Edit Order': 'Редактировать'
+'descEn': 'Описание на английском'
+'price': 'Цена'
+'count': 'Количество'
+'Remove product': 'Удалить'
+'copyRigtht': 'Авторское право'
+'Status': 'Статус'
+'Users': 'Пользователи'
+'User': 'Пользователь'
+'Cost': 'Стоимость'
+'Weight': 'Вес'
+'DeliveryPrice': 'Прайс на доставку'
+'OrderStatus': 'Статус посылки'
+'Order': 'Посылки'
+'Orders': 'Посылки'
+'Last Login': 'Последний вход'
+'Is Suspended': 'Неактивный'
+'Suspended': 'Неактивный'
+'Plain Password': 'Пароль'
+'Status Name': 'Название'
+'new': 'Новый'
