@@ -402,4 +402,17 @@ class User implements UserInterface, \Serializable
      */
 
     public  $avatarFile;
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        if (!$this->firstName && !$this->lastName)
+        {
+            return 'No name';
+        }
+
+        return $this->firstName . ' ' . $this->lastName;
+    }
 }

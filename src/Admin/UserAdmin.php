@@ -35,10 +35,17 @@ class UserAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
+            ->add('firstName')
+            ->add('secondName')
+            ->add('lastName')
             ->add('email')
+            ->add('phone')
             ->add('plainPassword', TextType::class, [
                 'required' => (!$this->getSubject() || is_null($this->getSubject()->getId())),
             ])
-            ->add('isSuspended', null, ['required' => false, 'label' => 'Suspended']);
+            ->add('isSuspended', null, [
+                'required' => false,
+                'label' => 'Suspended'
+            ]);
     }
 }
