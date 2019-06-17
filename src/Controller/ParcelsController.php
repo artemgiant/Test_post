@@ -101,6 +101,10 @@ class ParcelsController extends CabinetController
                 }
             }
         }
+        else{
+            $orderProduct=new OrderProducts();
+            $order->addProduct($orderProduct);
+        }
         $form = $this->createForm(OrderFormType::class, $order);
         $form->handleRequest($request);
 
