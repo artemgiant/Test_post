@@ -29,6 +29,12 @@ services:
         tags:
         - { name: sonata.admin, manager_type: orm, group: admin, label: OrderStatus }
 
+    app.admin.deliveryprice:
+            class: App\Admin\DeliveryPriceAdmin
+            arguments: [~, App\Entity\DeliveryPrice, ~]
+            tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: DeliveryPrice }
+
     email_service:
         class: App\Service\SendMailService
         calls:

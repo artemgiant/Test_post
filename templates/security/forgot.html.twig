@@ -1,9 +1,9 @@
-{% extends 'base_operation.html.twig' %}
+{% extends "base_operation.html.twig" %}
 
-{% block title %}{{'Authentication'|trans }}{% endblock %}
+{% block title %}{{"Authentication"|trans }}{% endblock %}
 
 {% block content %}
-    <p class="text-center py-2">{{'PASSWORD RESET'|trans}}</p>
+    <p class="text-center py-2">{{"PASSWORD RESET"|trans}}</p>
     {% if success %}
         {% if message %}
            <p style="color: green" class="login-box-msg">{{ message | trans}}</p>
@@ -18,9 +18,9 @@
         {% endif %}
     {% endif %}
                <form method="post">
-                    <p class="text-center">{{ 'Fill with your mail to receive instructions on how to reset your password.' | trans }}</p>
+                    <p class="text-center">{{ "Fill with your mail to receive instructions on how to reset your password." | trans }}</p>
                   <div class="form-group">
-                      <label class="text-muted" for="resetInputEmail1">{{'Enter email'|trans}}</label>
+                      <label class="text-muted" for="resetInputEmail1">{{"Enter email"|trans}}</label>
                      <div class="input-group with-focus">
                          <input 
                              class="form-control border-right-0" 
@@ -38,6 +38,6 @@
                      </div>
                   </div>
                    <button class="btn btn-danger btn-block" type="submit">Reset</button>
-                   <a class="btn btn-block btn-secondary" href="{{url('user_login')}}">{{'Signup'|trans}}</a>
+                   <a class="btn btn-block btn-secondary" href="{{url("user_login")}}">{{"Signup"|trans}}</a>
                </form>
 {% endblock %}

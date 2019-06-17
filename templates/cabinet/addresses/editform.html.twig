@@ -1,6 +1,6 @@
-{% extends 'cabinet/cabinet_layout.html.twig' %}
+{% extends "cabinet/cabinet_layout.html.twig" %}
 
-    {% set title= 'Addresses Edit' %}
+    {% set title= "Addresses Edit" %}
     {% if page_title is defined and page_title is not empty %}
         {% set title=page_title %}
     {% endif %}
@@ -205,7 +205,7 @@
                 <div class="row py-4 justify-content-center">
                     <div class="col-4 col-sm-4">
                         <div class="form-group">
-                            {{ form_label(addressForm.userFirstName,"Receiver's first name"|trans, {
+                            {{ form_label(addressForm.userFirstName,"Receivers first name"|trans, {
                                 "label_attr": {"class": "text-muted"}
                             }) }}
                             <div class="input-group with-focus">
@@ -225,7 +225,7 @@
                     </div>
                     <div class="col-4 col-sm-4">
                         <div class="form-group">
-                            {{ form_label(addressForm.userLastName,"Receiver's last name"|trans, {
+                            {{ form_label(addressForm.userLastName,"Receivers last name"|trans, {
                                 "label_attr": {"class": "text-muted"}
                             }) }}
                             <div class="input-group with-focus">
@@ -245,7 +245,7 @@
                     </div>
                     <div class="col-4 col-sm-4">
                         <div class="form-group">
-                            {{ form_label(addressForm.userSecondName,"Receiver's second name"|trans, {
+                            {{ form_label(addressForm.userSecondName,"Receivers second name"|trans, {
                                 "label_attr": {"class": "text-muted"}
                             }) }}
                             <div class="input-group with-focus">
@@ -267,7 +267,7 @@
                 <div class="row py-4 justify-content-center">
                     <div class="col-4 col-sm-4">
                         <div class="form-group">
-                            {{ form_label(addressForm.phone,"Receiver's phone"|trans, {
+                            {{ form_label(addressForm.phone,"Receivers phone"|trans, {
                                 "label_attr": {"class": "text-muted"}
                             }) }}
                             <div class="input-group with-focus">

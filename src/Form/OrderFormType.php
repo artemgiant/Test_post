@@ -148,6 +148,24 @@ class OrderFormType extends AbstractType
                 'label'=>'shippingCosts',
                 'required'=>false
             ])
+            ->add('volumeWeigth',null,[
+                'attr'=>[
+                    'id'=>'volumeWeigth',
+                    'class'=>'form-control',
+                    'readonly'=>true,
+                    'autocomplete'=>'off'],
+                'label'=>'volumeWeigth',
+                'required'=>false
+            ])
+            ->add('declareValue',null,[
+                'attr'=>[
+                    'id'=>'declareValue',
+                    'class'=>'form-control',
+                    'readonly'=>true,
+                    'autocomplete'=>'off'],
+                'label'=>'declareValue',
+                'required'=>false
+            ])
         ->add('save', SubmitType::class, [
                                 'attr' => ['class' => 'btn btn-block btn-primary mt-3'],
                                 ]);

@@ -1,13 +1,13 @@
-{% extends 'cabinet/cabinet_layout.html.twig' %}
+{% extends "cabinet/cabinet_layout.html.twig" %}
 
-{% block title %}{{'Parcels'|trans }}{% endblock %}
+{% block title %}{{"Parcels"|trans }}{% endblock %}
 
 {% block content %}
     <div class="col-xl-12">
         <!-- START card-->
         <div class="card card-default">
             <div class="card-header">
-                <a  href="{{ path('post_parcels_create') }}" class="float-left badge badge-primary">{{ 'Add order' | trans }}
+                <a  href="{{ path("post_parcels_create") }}" class="float-left badge badge-primary">{{ "Add order" | trans }}
                 </a>
             </div>
             <div class="card-body">
@@ -16,8 +16,12 @@
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th>{{ "trackingNumber" | trans }}</th>
+                            <th>{{ "Create Date" | trans }}</th>
+                            <th>{{ "trackingNumber Nova Pochta" | trans }}</th>
+                            <th>{{ "sendDetailWeight" | trans }}</th>
+                            <th>{{ "volumeWeigth " | trans }}</th>
                             <th>{{ "shipgCost" | trans }}</th>
+                            <th>{{ "declareValue" | trans }}</th>
                             <th>{{ "Adress" | trans }}</th>
                             <th></th>
                         </tr>
@@ -26,10 +30,14 @@
                         {% if items is defined and items is iterable  %}
                             {% for item in items %}
                                 <tr>
+                                    <td>{{ item.getCreatedAtStr }}</td>
                                     <td>{{ item.trackingNumber }}</td>
+                                    <td>{{ item.sendDetailWeight }}</td>
+                                    <td>{{ item.volumeWeigth }}</td>
                                     <td>{{ item.shippingCosts }}</td>
+                                    <td>{{ item.declareValue }}</td>
                                     <td>{{ item.addresses.fullAddress }}</td>
-                                    <td><a  href="{{ path('post_parcels_edit',{"id":item.id}) }}" class="btn btn-success">{{ 'Edit Order' | trans }}
+                                    <td><a  href="{{ path("post_parcels_edit",{"id":item.id}) }}" class="btn btn-success">{{ "Edit Order" | trans }}
                                         </a></td>
                                 </tr>
                             {% endfor %}

@@ -55,16 +55,16 @@ class Order
     /**
      * @var string
      *
-     * @ORM\Column(name="send_from_name", type="string", length=255, nullable=true)
+     * @ORM\Column(name="volume_weigth", type="string", length=255, nullable=true)
      */
-    private $sendFromName;
+    private $volumeWeigth;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="send_from_type", type="string", length=255, nullable=true)
+     * @ORM\Column(name="declareValue", type="string", length=255, nullable=true)
      */
-    private $sendFromType;
+    private $declareValue;
 
     /**
      * @var string
@@ -372,6 +372,18 @@ class Order
     {
         return $this->createdAt;
     }
+
+    public $createdAtStr;
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAtStr()
+    {
+        return $this->createdAt->format('Y-m-d H:i:s');
+    }
+
 
     /**
      * Set user
@@ -834,41 +846,41 @@ class Order
     }
 
     /**
-     * Set sendFromName
+     * Set volumeWeigth
      *
-     * @param string $sendFromName
+     * @param string $volumeWeigth
      * @return Order
      */
 
-    public function setSendFromName($sendFromName)
+    public function setVolumeWeigth($volumeWeigth)
     {
-        $this->sendFromName = $sendFromName;
+        $this->volumeWeigth = $volumeWeigth;
 
         return $this;
     }
 
     /**
-     * Get sendFromName
+     * Get volumeWeigth
      *
      * @return string
      */
 
-    public function getSendFromName()
+    public function getVolumeWeigth()
     {
-        return $this->sendFromName;
+        return $this->volumeWeigth;
     }
 
 
-    public function setSendFromType($sendFromType)
+    public function setDeclareValue($declareValue)
     {
-        $this->sendFromType = $sendFromType;
+        $this->declareValue = $declareValue;
 
         return $this;
     }
 
-    public function getSendFromType()
+    public function getDeclareValue()
     {
-        return $this->sendFromType;
+        return $this->declareValue;
     }
 
     /**
@@ -1075,17 +1087,7 @@ class Order
 //        return $this->shippingCompany;
 //    }
 
-//    public $createdAtStr;
-//    /**
-//     * Get createdAt
-//     *
-//     * @return \DateTime
-//     */
-//    public function getCreatedAtStr()
-//    {
-//        return $this->createdAt->format('Y-m-d H:i:s');
-//    }
-//
+
 //    /**
 //     * Set dhlLabel
 //     *

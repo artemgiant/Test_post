@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Order;
 use App\Entity\User;
 use App\Entity\Address;
+use App\Entity\DeliveryPrice;
 use App\Entity\OrderProducts;
 use App\Controller\CabinetController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -38,6 +39,33 @@ class ParcelsController extends CabinetController
         $orders = $entityManager
             ->getRepository(Order::class)
             ->getNewOrders($this->user->getId());
+
+        $ordersList = $paginator->paginate(
+            $orders,
+            $request->query->getInt('page', 1),
+            20
+        );
+
+        return $this->render('cabinet/parcels/parcels.html.twig'
+            , array_merge($this->optionToTemplate,['items'=>$ordersList])
+        );
+    }
+
+    /**
+     * new orders list
+     * @Route("/send", name="post_parcels_send")
+     */
+    public function parcelsSendAction(Request $request, PaginatorInterface $paginator): Response
+    {
+        $this->getTemplateData();
+        $this->optionToTemplate['page_id']='post_parcels_send';
+        $this->optionToTemplate['page_title']='Send Parcerls List';
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $orders = $entityManager
+            ->getRepository(Order::class)
+            ->getSendOrders($this->user->getId());
 
         $ordersList = $paginator->paginate(
             $orders,
@@ -133,7 +161,9 @@ class ParcelsController extends CabinetController
         if ($orderForm)
         {
             if ($products=$orderForm['products']??false){
-                $count=$originalCount-count($products);
+
+                $count=count($products) - $originalCount;
+
                 if ($count>0){
                     for ($x=0; $x<=$count; $x++){
                         $orderProduct=new OrderProducts();
@@ -148,6 +178,7 @@ class ParcelsController extends CabinetController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $declareValue=0;
             if ($order->getProducts()){
                 foreach ($order->getProducts() as $product){
 
@@ -159,10 +190,16 @@ class ParcelsController extends CabinetController
                     else {
                         $product->setOrderId($order);
                         $entityManager->persist($product);
+                        $declareValue=$declareValue+$product->getCount()*$product->getPrice();
                     }
                 }
             }
             unset($product);
+                $order->setDeclareValue($declareValue);
+            list($shipCost,$volume)=$this->CalculateShipCost($order);
+            $order->setShippingCosts($shipCost);
+            $order->setVolumeWeigth($volume);
+
             foreach ($originalProducts as $product) {
                 if (false === $order->getProducts()->contains($product)) {
 
@@ -172,8 +209,6 @@ class ParcelsController extends CabinetController
 
             $entityManager->persist($order);
             $entityManager->flush();
-
-            // do anything else you need here, like send an email
 
             return $this->redirectToRoute('post_parcels');
         }elseif ($form->isSubmitted() && !$form->isValid()){
@@ -185,5 +220,50 @@ class ParcelsController extends CabinetController
         return $this->render('cabinet/parcels/editform.html.twig', $twigoption);
 
     }
+
+    private function CalculateShipCost( $object )
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $resReturn=0;
+        $volume=0;
+        /* @var $object Order */
+        $weight=(float)$object->getSendDetailWeight();
+        $s1=(float)$object->getSendDetailWidth();
+        $s2=(float)$object->getSendDetailHeight();
+        $s3=(float)$object->getSendDetailLength();
+        $volume=round($s1*$s2*$s3/5000,3);
+        $resW=max($weight,$volume);
+        if (!empty($resW)){
+            $a=floor($resW);
+            $b = $resW - $a;
+
+            if ($b!=0){
+                if ($b<=0.25){
+                    $b=0.25;
+                }else if ($b<=0.500){
+                    $b=0.5;
+                }else if ($b<=0.75){
+                    $b=0.75;
+                }else{
+                    $b=0;
+                    $a=$a+1;
+                }
+            }
+
+            $resReturn=0;
+            $WeightPrice = $entityManager->getRepository(DeliveryPrice::class)->findAll();
+            foreach($WeightPrice as $weight){
+                /* @var $weight DeliveryPrice */
+                if ($b==0.25 && $weight->getWeight()==0.25) $resReturn=$resReturn+$weight->getCost();
+                if ($b==0.5 && $weight->getWeight()==0.5) $resReturn=$resReturn+$weight->getCost();
+                if ($b==0.75 && $weight->getWeight()==0.75) $resReturn=$resReturn+$weight->getCost();
+                if ($a>0 && $weight->getWeight()==1) $resReturn=$resReturn+$a*$weight->getCost();
+            }
+
+        }
+
+        return [$resReturn,$volume];
+    }
+
 }
 

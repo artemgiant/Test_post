@@ -122,7 +122,7 @@ class AddressFormType extends AbstractType
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'phone',
-                    'placeholder'=>'Enter receiver\'s phone',
+                    'placeholder'=>"Enter receivers phone",
                     'autocomplete'=>'off'],
                 'label'=>'phone',
                 'required'=>true
@@ -131,7 +131,7 @@ class AddressFormType extends AbstractType
             'attr'=>[
                 'class'=>'form-control border-right-0',
                 'id'=>'aliasOfAddress',
-                'placeholder'=>'Enter alias of address',
+                'placeholder'=>"Enter alias of address",
                 'autocomplete'=>'off'],
             'label'=>'aliasOfAddress',
             'required'=>true

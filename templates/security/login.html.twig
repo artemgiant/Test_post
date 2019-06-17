@@ -1,4 +1,4 @@
-{% extends 'standard_layout.html.twig' %}
+{% extends "standard_layout.html.twig" %}
 
 {% block sonata_nav %}
 {% endblock sonata_nav %}
@@ -14,7 +14,7 @@
 {% block sonata_wrapper %}
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ path('sonata_admin_dashboard') }}">
+            <a href="{{ path("sonata_admin_dashboard") }}">
                 <span>Login</span>
             </a>
         </div>
@@ -23,7 +23,7 @@
                 {% block sonata_user_login_error %}
                     {% if error %}
                         <div class="alert alert-danger">
-                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                            {{ error.messageKey|trans(error.messageData, "security") }}
                         </div>
                     {% endif %}
                 {% endblock %}
@@ -34,7 +34,7 @@
                         </div>
                     {% endfor %}
                 {% endfor %}
-                <p class="login-box-msg">{{ 'Authentication'|trans }}</p>
+                <p class="login-box-msg">{{ "Authentication"|trans }}</p>
                 <form action="{{ path("admin_login") }}" method="post" role="form">
                     {{ form_row(form._token) }}
 

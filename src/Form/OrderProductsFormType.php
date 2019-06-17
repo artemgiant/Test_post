@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\OrderProducts;
 use App\Entity\Address;
 
+//use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -13,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -29,7 +31,7 @@ class OrderProductsFormType extends AbstractType
             ->add('descEn', null, [
                 'attr' => [
                     'class' => 'form-control',
-                    'id' => 'trackingNumber',
+                    'data-name'   => 'descEn',
                     'placeholder' => 'descEn',
                     'autocomplete' => 'off'],
                 'label' => 'descEn',
@@ -38,16 +40,16 @@ class OrderProductsFormType extends AbstractType
             ->add('price', null, [
                 'attr' => [
                     'class' => 'form-control',
-                    'id' => 'price',
+                    'data-name'   => 'price',
                     'placeholder' => 'price',
                     'autocomplete' => 'off'],
                 'label' => 'price',
                 'required' => false
             ])
-            ->add('count', null, [
+            ->add('count', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
-                    'id' => 'count',
+                    'data-name'   => 'count',
                     'placeholder' => 'count',
                     'autocomplete' => 'off'],
                 'label' => 'count',
