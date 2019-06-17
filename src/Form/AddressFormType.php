@@ -5,20 +5,27 @@ namespace App\Form;
 use App\Entity\User;
 use App\Entity\Address;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Length;
 
 class AddressFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+//            ->add('deliveryMethod',ChoiceType::class,[
+//                'attr' => [
+//                  'class' => 'form-check-input'
+//                ],
+//                'choices' => [
+//                    'method_1' => '1',
+//                    'method_2' => '2',
+//                ],
+//                'expanded' => true,
+//                'required' => true,
+//            ])
             ->add('country',null,[
                 'attr'=>[
                         'class'=>'form-control border-right-0',

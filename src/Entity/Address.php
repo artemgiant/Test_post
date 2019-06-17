@@ -158,6 +158,13 @@ class Address
     private $phone;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="delivery_method", type="string")
+     */
+    private $deliveryMethod;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -454,6 +461,24 @@ class Address
     }
 
     /**
+     * @return string
+     */
+    public function getDeliveryMethod(): ?string
+    {
+        return $this->deliveryMethod;
+    }
+
+    /**
+     * @param string $deliveryMethod
+     * @return Address
+     */
+    public function setDeliveryMethod(string $deliveryMethod): Address
+    {
+        $this->deliveryMethod = $deliveryMethod;
+        return $this;
+    }
+
+    /**
      *
      * @return string
      */
@@ -470,5 +495,4 @@ class Address
     {
         return trim($this->street.' '.$this->house.' '.$this->apartment.' '.$this->city.' '.$this->zip.' '.$this->regionOblast.' '.$this->regionRayon);
     }
-
 }
