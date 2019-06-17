@@ -1,6 +1,6 @@
-{% extends 'cabinet/cabinet_layout.html.twig' %}
+{% extends "cabinet/cabinet_layout.html.twig" %}
 
-    {% set title= 'Addresses Edit' %}
+    {% set title= "Addresses Edit" %}
     {% if page_title is defined and page_title is not empty %}
         {% set title=page_title %}
     {% endif %}
@@ -16,11 +16,11 @@
                     <div class="card-title">{{title|trans }}</div>
                 </div>
                 <div class="card-body">
-{{ dump(form) }}
+
                     {%
                         form_theme form
-                        'system/product-order-theme.html.twig'
-                        'system/jquery.collection.html.twig'
+                        "system/product-order-theme.html.twig"
+                        "system/jquery.collection.html.twig"
                     %}
                     {{  form_errors(form) }}
 
@@ -69,28 +69,200 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                {{ form_label(form.products,"products"|trans, {
+                                    "label_attr": {"class": "text-muted"}
+                                }) }}
+                                <div class="input-group with-focus ">
+                                    {{ form_widget(form.products) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                    {{ form_end(form) }}
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                {{ form_label(form.shipDate,"addresses"|trans, {
+                                    "label_attr": {"class": "text-muted"}
+                                }) }}
+                                <div class="input-group with-focus ">
+                                    {% if form.addresses.vars.errors|length %}
+                                        {{ form_widget(form.addresses, {"attr": {"class": "is-invalid custom-select custom-select-mb"}}) }}
+                                    {% else %}
+                                        {{ form_widget(form.addresses) }}
+                                    {% endif %}
+                                    <div class="input-group-append">
+                                        <a  href="{{ path("post_address_create") }}" target="_blank" class="btn btn-info btn-sm">{{ "Add Address" | trans }}
+                                        </a>
+                                    </div>
+                                    <div class="invalid-feedback">{{ form_errors(form.addresses) }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                {{ form_label(form.sendDetailWeight,"sendDetailWeight"|trans, {
+                                    "label_attr": {"class": "text-muted"}
+                                }) }}
+                                <div class="input-group with-focus ">
+                                    {% if form.sendDetailWeight.vars.errors|length %}
+                                        {{ form_widget(form.sendDetailWeight, {"attr": {"class": "is-invalid form-control"}}) }}
+                                    {% else %}
+                                        {{ form_widget(form.sendDetailWeight) }}
+                                    {% endif %}
+                                    <div class="invalid-feedback">{{ form_errors(form.sendDetailWeight) }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                {{ form_label(form.sendDetailLength,"sendDetailLength"|trans, {
+                                    "label_attr": {"class": "text-muted"}
+                                }) }}
+                                <div class="input-group with-focus ">
+                                    {% if form.sendDetailLength.vars.errors|length %}
+                                        {{ form_widget(form.sendDetailLength, {"attr": {"class": "is-invalid form-control"}}) }}
+                                    {% else %}
+                                        {{ form_widget(form.sendDetailLength) }}
+                                    {% endif %}
+                                    <div class="invalid-feedback">{{ form_errors(form.sendDetailLength) }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                {{ form_label(form.sendDetailWidth,"sendDetailWidth"|trans, {
+                                    "label_attr": {"class": "text-muted"}
+                                }) }}
+                                <div class="input-group with-focus ">
+                                    {% if form.sendDetailWidth.vars.errors|length %}
+                                        {{ form_widget(form.sendDetailWidth, {"attr": {"class": "is-invalid form-control"}}) }}
+                                    {% else %}
+                                        {{ form_widget(form.sendDetailWidth) }}
+                                    {% endif %}
+                                    <div class="invalid-feedback">{{ form_errors(form.sendDetailWidth) }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                {{ form_label(form.sendDetailHeight,"sendDetailHeight"|trans, {
+                                    "label_attr": {"class": "text-muted"}
+                                }) }}
+                                <div class="input-group with-focus ">
+                                    {% if form.sendDetailHeight.vars.errors|length %}
+                                        {{ form_widget(form.sendDetailHeight, {"attr": {"class": "is-invalid form-control"}}) }}
+                                    {% else %}
+                                        {{ form_widget(form.sendDetailHeight) }}
+                                    {% endif %}
+                                    <div class="invalid-feedback">{{ form_errors(form.sendDetailHeight) }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                {{ form_label(form.shippingCosts,"shippingCosts"|trans, {
+                                    "label_attr": {"class": "text-muted"}
+                                }) }}
+                                <div class="input-group with-focus ">
+                                    {% if form.shippingCosts.vars.errors|length %}
+                                        {{ form_widget(form.shippingCosts, {"attr": {"class": "is-invalid form-control"}}) }}
+                                    {% else %}
+                                        {{ form_widget(form.shippingCosts) }}
+                                    {% endif %}
+                                    <div class="invalid-feedback">{{ form_errors(form.shippingCosts) }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                {{ form_label(form.volumeWeigth,"volumeWeigth"|trans, {
+                                    "label_attr": {"class": "text-muted"}
+                                }) }}
+                                <div class="input-group with-focus ">
+                                    {% if form.volumeWeigth.vars.errors|length %}
+                                        {{ form_widget(form.volumeWeigth, {"attr": {"class": "is-invalid form-control"}}) }}
+                                    {% else %}
+                                        {{ form_widget(form.volumeWeigth) }}
+                                    {% endif %}
+                                    <div class="invalid-feedback">{{ form_errors(form.volumeWeigth) }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                {{ form_label(form.declareValue,"declareValue"|trans, {
+                                    "label_attr": {"class": "text-muted"}
+                                }) }}
+                                <div class="input-group with-focus ">
+                                    {% if form.declareValue.vars.errors|length %}
+                                        {{ form_widget(form.declareValue, {"attr": {"class": "is-invalid form-control"}}) }}
+                                    {% else %}
+                                        {{ form_widget(form.declareValue) }}
+                                    {% endif %}
+                                    <div class="invalid-feedback">{{ form_errors(form.declareValue) }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                {{ form_label(form.comment,"comment"|trans, {
+                                    "label_attr": {"class": "text-muted"}
+                                }) }}
+                                <div class="input-group with-focus ">
+                                    {% if form.comment.vars.errors|length %}
+                                        {{ form_widget(form.comment, {"attr": {"class": "is-invalid form-control"}}) }}
+                                    {% else %}
+                                        {{ form_widget(form.comment) }}
+                                    {% endif %}
+
+                                    <div class="invalid-feedback">{{ form_errors(form.comment) }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="row">
+                             <div class="col-md-3">
+                                   {{ form_widget(form.save) }}
+                            </div>
+                            <div class="col-md-3">
+                                <a href="{{ path("post_parcels") }}" class="btn btn-secondary btn-block mt-3"> {{ "Cancel" | trans }}</a>
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                            </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+
+
 
 {% endblock %}
  {% block javascripts %}
-     <script src="{{ asset('sklad-express/js/jquery.collection.js') }}"></script>
+     <script src="{{ asset("sklad-express/js/jquery.collection.js") }}"></script>
 <script>
-     jQuery('.datepicker').datepicker({
-     uiLibrary: 'bootstrap4'
+     jQuery(".datepicker").datepicker({
+     uiLibrary: "bootstrap4"
      });
 
 
 
-    $('.product-list').collection({
-        'allow_up': false,
-        'allow_down': false,
-        'add': '<a href="#" class="btn btn-success">{{ "Add product" | trans }}</a>',
-        'add_at_the_end': true
+    $(".product-list").collection({
+        "allow_up": false,
+        "allow_down": false,
+        "add": "<a href='#' class='btn btn-success'>{{ "Add product" | trans }}</a>",
+        "add_at_the_end": true
      });
 
 

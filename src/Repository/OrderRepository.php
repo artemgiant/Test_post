@@ -31,6 +31,7 @@ class OrderRepository extends ServiceEntityRepository
             ->andWhere('o.orderStatus IS NULL or (o.orderStatus IS NOT NULL and s.status = :status)')
             ->setParameter('user_id', $user_id)
             ->setParameter('status', 'new')
+            ->orderBy('o.createdAt','DESC')
         ;
         return $qr->getQuery();
     }
@@ -43,7 +44,9 @@ class OrderRepository extends ServiceEntityRepository
             ->andWhere('o.orderStatus IS NOT NULL ')
             ->andWhere('s.status = :status')
             ->setParameter('user_id', $user_id)
-            ->setParameter('status', 'complit');
+            ->setParameter('status', 'complit')
+            ->orderBy('o.createdAt','DESC')
+        ;
         return $qr->getQuery()->getResult();
     }
 

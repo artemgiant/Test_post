@@ -1,5 +1,5 @@
-{% extends 'cabinet/cabinet_layout.html.twig' %}
-    {% set title= 'Addresses' %}
+{% extends "cabinet/cabinet_layout.html.twig" %}
+    {% set title= "Addresses" %}
     {% if page_title is defined and page_title is not empty %}
         {% set title=page_title %}
     {% endif %}
@@ -10,7 +10,7 @@
                             <!-- START card-->
                             <div class="card card-default">
                                 <div class="card-header">
-                                    <a  href="{{ path('post_address_create') }}" class="float-left badge badge-primary">{{ 'Add Address' | trans }}
+                                    <a  href="{{ path("post_address_create") }}" class="float-left badge badge-primary">{{ "Add Address" | trans }}
                                     </a>
                                 </div>
                                 <div class="card-body">
@@ -32,7 +32,7 @@
                                                     <td>{{ item.fullName }}</td>
                                                     <td>{{ item.country }}</td>
                                                     <td>{{ item.fullAddress }}</td>
-                                                     <td><a  href="{{ path('post_address_edit',{"id":item.id}) }}" class="btn btn-success">{{ 'Edit Address' | trans }}
+                                                     <td><a  href="{{ path("post_address_edit",{"id":item.id}) }}" class="btn btn-success">{{ "Edit Address" | trans }}
                                                          </a></td>
                                                  </tr>
                                                 {% endfor %}
