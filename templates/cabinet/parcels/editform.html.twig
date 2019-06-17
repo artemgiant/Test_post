@@ -16,6 +16,12 @@
                     <div class="card-title">{{title|trans }}</div>
                 </div>
                 <div class="card-body">
+{{ dump(form) }}
+                    {%
+                        form_theme form
+                        'system/product-order-theme.html.twig'
+                        'system/jquery.collection.html.twig'
+                    %}
                     {{  form_errors(form) }}
 
                     {{ form_start(form, {"method": "POST", "attr": {"id": "orderForm","class":"mb-3"}}) }}
@@ -72,10 +78,21 @@
 
 {% endblock %}
  {% block javascripts %}
+     <script src="{{ asset('sklad-express/js/jquery.collection.js') }}"></script>
 <script>
-     console.log('ddddddddddd');
      jQuery('.datepicker').datepicker({
      uiLibrary: 'bootstrap4'
      });
+
+
+
+    $('.product-list').collection({
+        'allow_up': false,
+        'allow_down': false,
+        'add': '<a href="#" class="btn btn-success">{{ "Add product" | trans }}</a>',
+        'add_at_the_end': true
+     });
+
+
 </script>
  {% endblock %}

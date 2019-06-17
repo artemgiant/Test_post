@@ -42,21 +42,12 @@
                                                 <td colspan="3">Нет покупок</td>
                                             </tr>
                                             {% endif %}
-{#                                            <tr>#}
-{#                                                <td>2</td>#}
-{#                                                <td>Jacob</td>#}
-{#                                                <td>Thornton</td>#}
-{#                                                <td>@fat</td>#}
-{#                                            </tr>#}
-{#                                            <tr>#}
-{#                                                <td>3</td>#}
-{#                                                <td>Larry</td>#}
-{#                                                <td>the Bird</td>#}
-{#                                                <td>@twitter</td>#}
-{#                                            </tr>#}
                                             </tbody>
                                         </table>
                                     </div><!-- END table-responsive-->
+                                </div>
+                                <div class="col-md-12">
+                                    {{ knp_pagination_render(items) }}
                                 </div>
                             </div><!-- END card-->
                         </div>

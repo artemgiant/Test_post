@@ -15,16 +15,36 @@
                         <em class="icon-grid"></em><span data-localize="sidebar.nav.DASHBOARD">{{"Dashboard"|trans }}</span>
                     </a>
                 </li>
-                <li class="{% if page_id is defined
-                    and
-                    page_id is not empty
-                    and
-                    page_id =="post_parcels"
-                %} active {% endif %} ">
-                    <a href="{{ path("post_parcels") }}" title="Parcels">
-                        <em class="icon-grid"></em><span data-localize="sidebar.nav.PARCELS">{{"Parcels"|trans }}</span>
-                    </a>
-                </li>
+               <li class="{% if page_id is defined
+                   and
+                   page_id is not empty
+                   and
+                   page_id in ["post_parcels","post_parcels_create","post_parcels_edit"]
+               %} active {% endif %} ">
+                   <a  href="#parcels" title="{{"Parcels"|trans }}" data-toggle="collapse">
+                       <em class="icon-paper-clip"></em><span data-localize="sidebar.nav.PARCELS">{{"Parcels"|trans }}</span>
+                   </a>
+                   <ul class="sidebar-nav sidebar-subnav collapse" id="parcels">
+                       <li class="sidebar-subnav-header">{{"Parcels"|trans }}</li>
+                       <li class="{% if page_id is defined
+                           and
+                           page_id is not empty
+                           and
+                           page_id =="post_parcels"
+                       %} active {% endif %} ">
+                           <a href="{{ path("post_parcels") }}" title="{{"Parcerls List"|trans }}"><span data-localize="sidebar.nav.form.PARCELS_LIST">{{"Parcels List"|trans }}</span></a>
+                       </li>
+                       <li class="{% if page_id is defined
+                           and
+                           page_id is not empty
+                           and
+                           page_id =="post_parcels_create"
+                       %} active {% endif %} ">
+                           <a href="{{ path("post_parcels_create") }}" title="{{"Parcels Create"|trans }}"><span data-localize="sidebar.nav.form.CREATE_PARCELS">{{"Parcels Create"|trans }}</span></a>
+                       </li>
+                   </ul>
+               </li>
+
                 <li class="{% if page_id is defined
                     and
                     page_id is not empty

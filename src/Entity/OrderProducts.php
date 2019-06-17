@@ -58,10 +58,10 @@ class OrderProducts
 
     /**
      * @var Order
-     * @ORM\ManyToOne(targetEntity="Order")
+     * @ORM\ManyToOne(targetEntity="Order", inversedBy="products", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="order_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
-    private $order_id;
+    private $orderId;
 
     /**
      * Get id
@@ -99,12 +99,12 @@ class OrderProducts
     /**
      * Set order_id
      *
-     * @param string $order_id
+     * @param string $orderId
      * @return OrderProducts
      */
-    public function setOrderId($order_id)
+    public function setOrderId($orderId)
     {
-        $this->order_id = $order_id;
+        $this->orderId = $orderId;
 
         return $this;
     }
@@ -116,7 +116,7 @@ class OrderProducts
      */
     public function getOrderId()
     {
-        return $this->order_id;
+        return $this->orderId;
     }
 
     /**
@@ -209,5 +209,13 @@ class OrderProducts
     public function getTotalSumm()
     {
         return $this->totalSumm;
+    }
+
+    public function __toString() {
+        if($this->getId()) {
+            return '#' . $this->getId();
+        } else {
+            return 'New orders product';
+        }
     }
 }

@@ -25,9 +25,9 @@ class Order
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="OrderProducts", mappedBy="order_id")
+     * @ORM\OneToMany(targetEntity="OrderProducts", mappedBy="orderId", cascade={"persist", "remove"})
      */
-    private $product;
+    private $products;
 
     /**
      * @var User
@@ -266,7 +266,7 @@ class Order
         $this->quantity = 0;
         $this->createdAt = new \DateTime();
         $this->adminCreate = false;
-        $this->product = new ArrayCollection();
+        $this->products = new ArrayCollection();
     }
 
     /**
@@ -436,13 +436,13 @@ class Order
      */
     public function addProduct(OrderProducts $product)
     {
-        if ( !$product->getOrd() instanceof OrderProducts ) {
-            $product->setOrd($this);
+        if ( !$product->getOrderId() instanceof Order ) {
+            $product->setOrderId($this);
         }
 
-        if( !$this->product->contains($product) )
+        if( !$this->products->contains($product) )
         {
-            $this->product->add($product);
+            $this->products->add($product);
         }
         return $this;
     }
@@ -455,7 +455,7 @@ class Order
     public function removeProduct(OrderProducts $product)
     {
         if ($product instanceof OrderProducts && !empty($this->product))
-        $this->product->removeElement($product);
+        $this->products->removeElement($product);
     }
 
     /**
@@ -463,9 +463,9 @@ class Order
      *
      * @return Collection
      */
-    public function getProduct()
+    public function getProducts()
     {
-        return $this->product;
+        return $this->products;
     }
 
 
