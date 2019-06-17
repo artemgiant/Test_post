@@ -24,7 +24,7 @@ class AddressRepository extends ServiceEntityRepository
         $qr = $this->createQueryBuilder('address')
             ->select('address')
             ->where('address.user = :user')
-            ->andWhere('address.my_address is null')
+            ->andWhere('address.isMyAddress is null')
             ->setParameter('user', $user);
         return $qr->getQuery();
     }
