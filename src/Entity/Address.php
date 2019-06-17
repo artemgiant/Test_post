@@ -82,9 +82,9 @@ class Address
     /**
      * @var boolean
      *
-     * @ORM\Column(name="my_address", type="boolean", nullable=true)
+     * @ORM\Column(name="is_my_address", type="boolean", nullable=true)
      */
-    private $my_address;
+    private $isMyAddress = false;
 
     /**
      * @var string
@@ -272,18 +272,18 @@ class Address
     /**
      * @return bool
      */
-    public function isMyAddress(): ?bool
+    public function isMyAddress()
     {
-        return $this->my_address;
+        return $this->isMyAddress;
     }
 
     /**
-     * @param bool $my_address
+     * @param bool $isMyAddress
      * @return Address
      */
-    public function setMyAddress(bool $my_address): Address
+    public function setIsMyAddress(bool $isMyAddress)
     {
-        $this->my_address = $my_address;
+        $this->isMyAddress = $isMyAddress;
         return $this;
     }
     /**
