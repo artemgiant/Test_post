@@ -18,6 +18,7 @@ use App\Form\OrderFormType;
 use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
+use App\Service\LiqPayService;
 /**
  * @Route("/post/parcels")
  */
@@ -28,7 +29,7 @@ class ParcelsController extends CabinetController
      * new orders list
      * @Route("/", name="post_parcels")
      */
-    public function parcelsAction(Request $request, PaginatorInterface $paginator): Response
+    public function parcelsAction(Request $request, PaginatorInterface $paginator, LiqPayService $liqPay ): Response
     {
         $this->getTemplateData();
         $this->optionToTemplate['page_id']='post_parcels';
