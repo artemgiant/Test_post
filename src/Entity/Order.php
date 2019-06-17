@@ -40,7 +40,7 @@ class Order
     /**
      * @var Address
      *
-     * @ORM\ManyToOne(targetEntity="Address")
+     * @ORM\ManyToOne(targetEntity="Address", inversedBy="order")
      * @ORM\JoinColumn(name="address_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $addresses;
@@ -896,51 +896,7 @@ class Order
         $this->trNum = $trNum;
     }
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255, nullable=true)
-     */
-    private $customer;
 
-    /**
-     * @return string
-     */
-    public function getCustomer()
-    {
-        return $this->customer;
-    }
-
-    /**
-     * @param string $customer
-     */
-    public function setCustomer($customer)
-    {
-        $this->customer = $customer;
-    }
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="lot_number", type="string", length=255, nullable=true)
-     */
-    private $lotNumber;
-
-    /**
-     * @return string
-     */
-    public function getLotNumber()
-    {
-        return $this->lotNumber;
-    }
-
-    /**
-     * @param string $lotNumber
-     */
-    public function setLotNumber($lotNumber)
-    {
-        $this->lotNumber = $lotNumber;
-    }
 
 //    /**
 //     * @ORM\OneToMany(targetEntity="DocumentDHL", mappedBy="ordersDHL",

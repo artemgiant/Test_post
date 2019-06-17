@@ -90,17 +90,62 @@ class OrderFormType extends AbstractType
            ->add('addresses', EntityType::class, [
                 'class'        => Address::class,
                 'choice_label' => 'fullName',
-                'label'        => 'Who is fighting in this round?',
+                'label'        => 'addresses',
                 'expanded'     => false,
                 'multiple'     => false,
+                'attr'         => [
+                                    'class' =>'custom-select custom-select-mb',
+                ],
             ])
             ->add('comment',null,[
                 'attr'=>[
-                    'class'=>'form-control border-right-0',
+                    'class'=>'form-control',
                     'id'=>'country',
                     'placeholder'=>'comment',
                     'autocomplete'=>'off'],
                 'label'=>'comment',
+                'required'=>false
+            ])
+
+            ->add('sendDetailWeight',null,[
+                'attr'=>[
+                    'class'=>'form-control',
+                    'placeholder'=>'sendDetailWeight placeholder',
+                    'autocomplete'=>'off'],
+                'label'=>'sendDetailWeight',
+                'required'=>true
+            ])
+            ->add('sendDetailLength',null,[
+                'attr'=>[
+                    'class'=>'form-control',
+                    'placeholder'=>'sendDetailLength placeholder',
+                    'autocomplete'=>'off'],
+                'label'=>'sendDetailLength',
+                'required'=>true
+            ])
+            ->add('sendDetailWidth',null,[
+                'attr'=>[
+                    'class'=>'form-control',
+                    'placeholder'=>'sendDetailWidth placeholder',
+                    'autocomplete'=>'off'],
+                'label'=>'sendDetailWidth',
+                'required'=>true
+            ])
+            ->add('sendDetailHeight',null,[
+                'attr'=>[
+                    'class'=>'form-control',
+                    'placeholder'=>'sendDetailHeight placeholder',
+                    'autocomplete'=>'off'],
+                'label'=>'sendDetailHeight',
+                'required'=>true
+            ])
+            ->add('shippingCosts',null,[
+                'attr'=>[
+                    'id'=>'shippingCosts',
+                    'class'=>'form-control',
+                    'readonly'=>true,
+                    'autocomplete'=>'off'],
+                'label'=>'shippingCosts',
                 'required'=>false
             ])
         ->add('save', SubmitType::class, [
