@@ -23,8 +23,11 @@ class ProfileController extends CabinetController
 
     public function __construct()
     {}
+
     /**
      * @Route("/", name="post_profile")
+     * @param Request $request
+     * @return Response
      */
     public function profileAction(Request $request): Response
     {
