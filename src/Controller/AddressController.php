@@ -26,6 +26,7 @@ class AddressController extends CabinetController
      */
     public function addressesAction(Request $request, PaginatorInterface $paginator): Response
     {
+        $user = $this->getUser();
         $this->getTemplateData();
         $this->optionToTemplate['page_id']='post_addresses';
         $this->optionToTemplate['page_title']='Address List';
@@ -33,7 +34,7 @@ class AddressController extends CabinetController
         $entityManager = $this->getDoctrine()->getManager();
 
         $addressListQuery=$entityManager->getRepository(Address::class)
-                       ->getAdressList($this->user);
+                       ->getAdressList($user);
 
         $addressList = $paginator->paginate(
             $addressListQuery,
@@ -90,9 +91,11 @@ class AddressController extends CabinetController
         $this->getTemplateData();
         $entityManager = $this->getDoctrine()->getManager();
         $errors =[];
+        $id = $request->get('id',false);
         $this->optionToTemplate['page_id']='post_addresses';
         $this->optionToTemplate['page_title']='Address Edit';
-        $id = $request->get('id',false);
+        $this->optionToTemplate['address_id']=$id;
+
         if ($id && (int)$id>0){
             $address =$entityManager->getRepository(Address::class)->find((int)$id);
             if(empty($address) || $address->getUser()!=$this->getUser()){
@@ -107,23 +110,26 @@ class AddressController extends CabinetController
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
 
-
             $address->setUser($this->user);
+
             $entityManager->persist($address);
             $entityManager->flush();
 
             // do anything else you need here, like send an email
 
             return $this->redirectToRoute('post_addresses');
-        }elseif ($form->isSubmitted() && !$form->isValid()){
+        }
+        elseif ($form->isSubmitted() && !$form->isValid())
+        {
             $errors = $form->getErrors(true);
         }
+
         $twigoption=array_merge($this->optionToTemplate,[
             'addressForm' => $form->createView(),
             'error' => $errors,
             ]);
 
-        return $this->render('cabinet/addresses/editform.html.twig', $twigoption);
+        return $this->render('cabinet/addresses/edit_form_of_address.html.twig', $twigoption);
 
     }
 }

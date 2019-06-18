@@ -32,8 +32,9 @@
                                                     <td>{{ item.fullName }}</td>
                                                     <td>{{ item.country }}</td>
                                                     <td>{{ item.fullAddress }}</td>
-                                                     <td><a  href="{{ path("post_address_edit",{"id":item.id}) }}" class="btn btn-success">{{ "Edit Address" | trans }}
-                                                         </a></td>
+                                                     <td>
+                                                        <a  href="{{ path("post_address_edit",{"id":item.id}) }}" class="btn btn-success">{{ "Edit Address" | trans }}</a>
+                                                     </td>
                                                  </tr>
                                                 {% endfor %}
 

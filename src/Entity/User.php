@@ -410,7 +410,7 @@ class User implements UserInterface, \Serializable
     {
         if (!$this->firstName && !$this->lastName)
         {
-            return 'No name';
+            return $this->email;
         }
 
         return $this->firstName . ' ' . $this->lastName;
