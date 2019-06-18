@@ -24,18 +24,12 @@
                                             {% if ordersNew %}
                                                 {% for order in ordersNew %}
                                                     <tr>
-                                                        {% if order.trackingNumber is defined and order.trackingNumber is not null %}
-                                                            <td>{{ order.trackingNumber }}</td>
-                                                        {% endif %}
-                                                        {% if order.shippingCosts is defined and order.shippingCosts is not null %}
+                                                            <td>
+                                                               {{ order.trackingNumber }}
+                                                            </td>
                                                             <td>{{ order.shippingCosts }}</td>
-                                                        {% endif %}
-                                                        {% if order.declareValue is defined and order.declareValue is not null %}
                                                             <td>{{ order.declareValue }}</td>
-                                                        {% endif %}
-                                                        {% if order.addresses.fullAddress is defined and order.addresses.fullAddress is not null %}
                                                             <td>{{ order.addresses.fullAddress }}</td>
-                                                        {% endif %}
                                                     </tr>
                                                 {% endfor %}
                                             {% else %}
