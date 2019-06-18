@@ -143,6 +143,7 @@ class LiqPayService
                         $orderStatus=$this->getEm()->getRepository(OrderStatus::class)->findOneBy(['status'=>'paid']);
                         $order->setOrderStatus($orderStatus);
                         $order->setTransaction($trLiqPay);
+                        $order->setTrNum("EP".($trLiqPay->getId()+57354658)."UA");
                         $trLiqPay->setOrder($order);
                         $this->getEm()->persist($order);
                     }

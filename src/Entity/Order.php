@@ -913,6 +913,7 @@ class Order
     }
 
     /**
+     * tracking number for user
      * @var string
      *
      * @ORM\Column(name="number", type="string", length=512, nullable=true)
@@ -937,7 +938,31 @@ class Order
         $this->trNum = $trNum;
     }
 
+    /**
+     * tracking number for system
+     * @var string
+     *
+     * @ORM\Column(name="system_number", type="string", length=512, nullable=true)
+     */
 
+    public $systemNum;
+
+
+    /**
+     * @return string
+     */
+    public function getSystemNum()
+    {
+        return $this->systemNum;
+    }
+
+    /**
+     * @param string $systemNum
+     */
+    public function setSystemNum($systemNum)
+    {
+        $this->systemNum = $systemNum;
+    }
 
 //    /**
 //     * @ORM\OneToMany(targetEntity="DocumentDHL", mappedBy="ordersDHL",
