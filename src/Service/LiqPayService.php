@@ -2,6 +2,7 @@
 namespace App\Service;
 
 
+use App\Entity\OrderStatus;
 use App\Entity\TransactionLiqPay;
 use App\Entity\Order;
 
@@ -130,25 +131,26 @@ class LiqPayService
             $this->getEm()->flush([$trLiqPay]);
             $arrTmp = explode("_", $data['order_id']);
             $userTmp=null;
-            if ($arrTmp[0] == 'SKLAD' && count($arrTmp) > 2) {
-                if (isset($arrTmp[1]) && !empty($arrTmp[1]) && strpos($arrTmp[1], 'UID') !== false) {
-                    $userId = trim(str_replace("UID", "", $arrTmp[1]));
+            if ($arrTmp[0] == 'EXPRESSORDER' && count($arrTmp) > 2) {
+                if (isset($arrTmp[1]) && !empty($arrTmp[1])) {
+                    $orderId = (int)$arrTmp[1];
                     error_log("---------- USER ID -----------", 3, LOG_LIQPAY);
-                    error_log($userId . PHP_EOL, 3, LOG_LIQPAY);
-                    $userTmp=$this->getEm()->getRepository("AppBundle:User")->find((int)$userId);
-                    if ($userTmp){
-                        $this->container->get('app.balance')
-                            ->addMoney($userTmp, $trLiqPay->getSum(),
-                                'new payment from LiqPay added, id:' . $trLiqPay->getId(),null,$trLiqPay);
+                    error_log($orderId . PHP_EOL, 3, LOG_LIQPAY);
+                    /* @var $order Order */
+                    $order=$this->getEm()->getRepository(Order::class)->find((int)$orderId);
+                    if ($order){
+                        $trLiqPay->setUser($order->getUser());
+                        $orderStatus=$this->getEm()->getRepository(OrderStatus::class)->findOneBy(['status'=>'paid']);
+                        $order->setOrderStatus($orderStatus);
+                        $order->setTransaction($trLiqPay);
+                        $trLiqPay->setOrder($order);
+                        $this->getEm()->persist($order);
                     }
                 }
             }
-            if (!empty($userTmp)){
-                $trLiqPay->setUser($userTmp);
-            }
 
             $this->getEm()->persist($trLiqPay);
-            $this->getEm()->flush([$trLiqPay]);
+            $this->getEm()->flush();
         }
     }
 

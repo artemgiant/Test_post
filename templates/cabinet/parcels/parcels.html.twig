@@ -42,7 +42,7 @@
                                             <a  href="{{ path("post_parcels_edit",{"id":item.id}) }}" class="btn btn-success">{{ "Edit Order" | trans }}
                                             </a>
                                             {% if item.shippingCosts > 0 %}
-                                            {% set liqPayForm=liqpay.LiqPayForm(item.shippingCosts,'Pay by ExpreaaPochta.com',"EXPRASSORDER_"~item.id) %}
+                                            {% set liqPayForm=liqpay.LiqPayForm(item.shippingCosts,'Pay by ExpreaaPochta.com',"EXPRESSORDER_"~item.id) %}
                                         {{ liqPayForm | raw }}
                                             {% endif %}
                                         {% endif %}

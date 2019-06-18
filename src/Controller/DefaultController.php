@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Entity\User;
+use App\Entity\TransactionLiqPay;
 use App\Entity\Address;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -29,18 +30,30 @@ class DefaultController extends CabinetController
      */
     public function dashboardAction(): Response
     {
+        $this->getTemplateData();
+        $this->optionToTemplate['page_id']='post_dashboard';
+        $this->optionToTemplate['page_title']='Dashboard';
+
         $this->user = $this->getUser();
         $my_address = $this->getMyAddress($this->user->getId());
-        $orders = $this->getDoctrine()
+        $ordersNew = $this->getDoctrine()
             ->getRepository(Order::class)
-            ->getOrders($this->user->getId());
+            ->getNewOrders($this->user->getId(),5);
+        $ordersSend = $this->getDoctrine()
+            ->getRepository(Order::class)
+            ->getSendOrders($this->user->getId(),5);
 
+        $payment = $this->getDoctrine()
+            ->getRepository(TransactionLiqPay::class)
+            ->getNewPayments($this->user->getId(),5);
 
-        return $this->render('cabinet/dashboard/dashboard.html.twig', [
-            'user' => $this->user,
-            'my_address' => $my_address,
-            'orders' => $orders,
-        ]);
+        return $this->render('cabinet/dashboard/dashboard.html.twig',
+            array_merge($this->optionToTemplate,
+                [   'ordersNew'=>$ordersNew,
+                    'ordersSend'=>$ordersSend,
+                    'payment'=>$payment,
+                    ]
+            ));
     }
 
 

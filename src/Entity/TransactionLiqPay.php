@@ -78,6 +78,12 @@ class TransactionLiqPay
     protected $user;
 
     /**
+     * @ORM\OneToOne(targetEntity="Order", mappedBy="transaction")
+     * @ORM\JoinColumn(name="order", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
+    private $order;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="created_at", type="datetime", length=512, nullable=true)
@@ -133,10 +139,10 @@ class TransactionLiqPay
     /**
      * Set user
      *
-     * @param \AppBundle\Entity\User $user
-     * @return Account
+     * @param User $user
+     * @return TransactionLiqPay
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
 
@@ -146,12 +152,36 @@ class TransactionLiqPay
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User 
+     * @return User
      */
     public function getUser()
     {
         return $this->user;
     }
+
+    /**
+     * Set order
+     *
+     * @param Order $order
+     * @return TransactionLiqPay
+     */
+    public function setOrder(Order $order = null)
+    {
+        $this->order = $order;
+
+        return $this;
+    }
+
+    /**
+     * Get order
+     *
+     * @return Order
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
     /**
      * Constructor
      */

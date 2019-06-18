@@ -32,12 +32,12 @@ class TransactionLiqPayRepository extends ServiceEntityRepository
         return $qr->getQuery();
     }
 
-    public function getNewPayments($user_id)
+    public function getNewPayments($user_id,$maxResult=5)
     {
         $qr = $this->createQueryBuilder('o')
             ->where('o.user = :user_id')
             ->setParameter('user_id', $user_id)
-            ->setMaxResults(10)
+            ->setMaxResults($maxResult)
             ->orderBy('o.createdAt','DESC')
         ;
         return $qr->getQuery()->getResult();

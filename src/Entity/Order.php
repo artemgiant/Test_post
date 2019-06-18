@@ -46,6 +46,12 @@ class Order
     private $addresses;
 
     /**
+     * @ORM\OneToOne(targetEntity="TransactionLiqPay", mappedBy="order")
+     * @ORM\JoinColumn(name="transaction", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
+    private $transaction;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="tracking_number", type="string", length=255, nullable=true)
@@ -406,6 +412,29 @@ class Order
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set transaction
+     *
+     * @param TransactionLiqPay $transaction
+     * @return Order
+     */
+    public function setTransaction(TransactionLiqPay $transaction = null)
+    {
+        $this->transaction = $transaction;
+
+        return $this;
+    }
+
+    /**
+     * Get transaction
+     *
+     * @return TransactionLiqPay
+     */
+    public function getTransaction()
+    {
+        return $this->transaction;
     }
 
     /**
