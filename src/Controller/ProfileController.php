@@ -75,9 +75,9 @@ class ProfileController extends CabinetController
         $errors =[];
         $this->optionToTemplate['page_id']='post_profile_from_address';
         $this->optionToTemplate['page_title']='post_profile_from_address';
-       if (!empty($this->optionToTemplate['my_address']))
+       if (!empty($this->optionToTemplate['my_address']) && $id=$this->optionToTemplate['my_address']['id']??false)
        {
-           $address=$this->optionToTemplate['my_address'];
+           $address =$entityManager->getRepository(Address::class)->find((int)$id);
        }else{
            $address= new Address();
 
