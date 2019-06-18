@@ -179,7 +179,7 @@ class ParcelsController extends CabinetController
             }
         }
         //$address = new Address();
-        $form = $this->createForm(OrderFormType::class, $order);
+        $form = $this->createForm(OrderFormType::class, $order, ['attr'=>['user' => $this->user]]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
