@@ -39,7 +39,8 @@ class OrdersAdmin extends AbstractAdmin
                 'choice_label' => 'order_status',
             ])
             ->addIdentifier('sendFromAddress')
-            ->addIdentifier('comment');
+            ->addIdentifier('comment')
+            ->addIdentifier('orderStatus');
     }
 
     /**
