@@ -26,6 +26,7 @@ class PayController extends CabinetController
      */
     public function addressesAction(Request $request, PaginatorInterface $paginator): Response
     {
+        $user = $this->getUser();
         $this->getTemplateData();
         $this->optionToTemplate['page_id']='post_payment';
         $this->optionToTemplate['page_title']='Payment List';
@@ -33,7 +34,7 @@ class PayController extends CabinetController
         $entityManager = $this->getDoctrine()->getManager();
 
         $paymentsListQuery=$entityManager->getRepository(TransactionLiqPay::class)
-                       ->getNewPayments($this->user);
+                       ->getNewPayments($user->getId());
 
         $paymentsList = $paginator->paginate(
             $paymentsListQuery,

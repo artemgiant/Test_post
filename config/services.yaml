@@ -47,6 +47,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Addresses }
 
+    app.admin.payments:
+        class: App\Admin\PaymentsAdmin
+        arguments: [~, App\Entity\TransactionLiqPay, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Payments }
+
     email_service:
         class: App\Service\SendMailService
         calls:

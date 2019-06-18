@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Order;
+use App\Form\AddressSenderFormType;
 use App\Form\ProfileFormType;
+use App\Helper\ConverterArrayToObject;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,8 +23,11 @@ class ProfileController extends CabinetController
 
     public function __construct()
     {}
+
     /**
      * @Route("/", name="post_profile")
+     * @param Request $request
+     * @return Response
      */
     public function profileAction(Request $request): Response
     {
@@ -48,7 +54,8 @@ class ProfileController extends CabinetController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($this->user);
             $entityManager->flush();
-            $mess='Save success';
+//            $mess='Save success';
+            $mess='Изменения успешно сохранены';
         }
         elseif($form->isSubmitted() && !$form->isValid())
         {
@@ -83,31 +90,32 @@ class ProfileController extends CabinetController
 
        }
 
-        //$address = new Address();
-        $form = $this->createForm(AddressFormType::class, $address);
+        $form = $this->createForm(AddressSenderFormType::class, $address);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-
-
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $address->setUser($this->user);
-            $address->setIsMyAddress(true);
+            $address->setIsMyAddress(1);
+            $address->setAddress();
             $entityManager->persist($address);
             $entityManager->flush();
 
             // do anything else you need here, like send an email
 
             return $this->redirectToRoute('post_profile_from_address');
-        }elseif ($form->isSubmitted() && !$form->isValid()){
+        }
+        elseif ($form->isSubmitted() && !$form->isValid())
+        {
+            dd(!true);
             $errors = $form->getErrors(true);
         }
+
         $twigoption=array_merge($this->optionToTemplate,[
             'addressForm' => $form->createView(),
             'error' => $errors,
         ]);
 
-        return $this->render('cabinet/addresses/editform.html.twig', $twigoption);
+        return $this->render('cabinet/profile/edit_form.html.twig', $twigoption);
     }
 
 

@@ -16,16 +16,13 @@ class AddressRepository extends ServiceEntityRepository
         parent::__construct($registry, Address::class);
     }
 
-
-
     public function getAdressList($user)
     {
-
         $qr = $this->createQueryBuilder('address')
             ->select('address')
             ->where('address.user = :user')
-            ->andWhere('address.isMyAddress is null')
-            ->setParameter('user', $user);
+            ->andWhere('address.isMyAddress is null or address.isMyAddress = 0')
+            ->setParameter('user', 8);
         return $qr->getQuery();
     }
 }

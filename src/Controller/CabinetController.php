@@ -18,10 +18,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class CabinetController extends AbstractController
 {
-
     public $user;
     public $my_address;
-
     public $optionToTemplate;
 
     public function getTemplateData()

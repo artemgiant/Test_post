@@ -233,21 +233,39 @@ class Address
         return $this;
     }
 
+//    /**
+//     * @return string
+//     */
+//    public function getAddress(): ?string
+//    {
+//        return $this->address;
+//    }
+
     /**
      * @return string
      */
     public function getAddress(): ?string
     {
-        return $this->address;
+        return $this->street.' str.,'.$this->apartment.'ap.';
     }
 
     /**
-     * @param string $address
+     * @param string $street
+     * @param string $apartment
      * @return Address
      */
-    public function setAddress(string $address): Address
+    public function setAddress(): Address
     {
+        $address = '';
+        if ($this->street)
+            $address.=$this->street.' str.';
+        if ($this->house)
+            $address.=', '.$this->house;
+        if ($this->apartment)
+            $address.=', ap. '.$this->apartment;
+
         $this->address = $address;
+
         return $this;
     }
 
@@ -278,10 +296,10 @@ class Address
     }
 
     /**
-     * @param bool $isMyAddress
+     * @param integer $isMyAddress
      * @return Address
      */
-    public function setIsMyAddress(bool $isMyAddress)
+    public function setIsMyAddress($isMyAddress)
     {
         $this->isMyAddress = $isMyAddress;
         return $this;
