@@ -93,7 +93,7 @@ class OrderFormType extends AbstractType
            ->add('addresses', EntityType::class, [
                'class'        => Address::class,
                'query_builder' => function(AddressRepository $repo) use ($user) {
-                   return $repo->getAdressList($user);
+                   return $repo->getAdressListQuery($user);
                },
                 'choice_label' => 'fullName',
                 'label'        => 'addresses',
