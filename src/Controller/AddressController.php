@@ -111,7 +111,7 @@ class AddressController extends CabinetController
             // encode the plain password
 
             $address->setUser($this->user);
-            
+
             $entityManager->persist($address);
             $entityManager->flush();
 

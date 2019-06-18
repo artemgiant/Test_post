@@ -8,20 +8,20 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @ORM\Entity
  * @ORM\Table(name="transaction_liq_pay")
  * @ORM\Entity(repositoryClass="App\Repository\TransactionLiqPayRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class TransactionLiqPay
 {
-
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
@@ -44,15 +44,12 @@ class TransactionLiqPay
      */
     protected $status;
 
-
     /**
      * @var string
      *
      * @ORM\Column(name="first_name", type="string", length=512, nullable=true)
      */
     protected $firstName;
-
-
 
     /**
      * @var string
@@ -61,14 +58,12 @@ class TransactionLiqPay
      */
     protected $lastName;
 
-
     /**
      * @var string
      *
      * @ORM\Column(name="phone_number", type="string", length=512, nullable=true)
      */
     protected $phoneNumber;
-
 
     /**
      * @var integer
@@ -79,14 +74,14 @@ class TransactionLiqPay
 
     /**
      * @ORM\OneToOne(targetEntity="Order", mappedBy="transaction")
-     * @ORM\JoinColumn(name="order", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     * @ORM\JoinColumn(name="order_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $order;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime", length=512, nullable=true)
+     * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
@@ -107,7 +102,7 @@ class TransactionLiqPay
      * Set number
      *
      * @param string $number
-     * @return Lot
+     * @return TransactionLiqPay
      */
     public function setNumber($number)
     {
@@ -126,7 +121,7 @@ class TransactionLiqPay
         return $this->number;
     }
 
-        /**
+    /**
      * Get id
      *
      * @return integer 
@@ -152,7 +147,7 @@ class TransactionLiqPay
     /**
      * Get user
      *
-     * @return User
+     * @return string
      */
     public function getUser()
     {
@@ -190,18 +185,16 @@ class TransactionLiqPay
         $this->createdAt = new \DateTime();
     }
 
-
     public function __toString()
     {
         return $this->getNumber();
     }
 
-
     /**
      * Set firstName
      *
      * @param string $firstName
-     * @return Account
+     * @return TransactionLiqPay
      */
     public function setFirstName($firstName)
     {
@@ -224,7 +217,7 @@ class TransactionLiqPay
      * Set lastName
      *
      * @param string $lastName
-     * @return Account
+     * @return TransactionLiqPay
      */
     public function setLastName($lastName)
     {
@@ -258,7 +251,7 @@ class TransactionLiqPay
      * Set phoneNumber
      *
      * @param string $phoneNumber
-     * @return Account
+     * @return TransactionLiqPay
      */
     public function setPhoneNumber($phoneNumber)
     {
@@ -281,7 +274,8 @@ class TransactionLiqPay
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Account
+     *
+     * @return TransactionLiqPay
      */
     public function setCreatedAt($createdAt)
     {

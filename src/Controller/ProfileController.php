@@ -54,7 +54,8 @@ class ProfileController extends CabinetController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($this->user);
             $entityManager->flush();
-            $mess='Save success';
+//            $mess='Save success';
+            $mess='Изменения успешно сохранены';
         }
         elseif($form->isSubmitted() && !$form->isValid())
         {
