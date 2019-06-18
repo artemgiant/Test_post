@@ -24,7 +24,7 @@ class PaymentsAdmin extends AbstractAdmin
     {
         $collection
                ->remove('edit')
-                ->remove('batch')
+               ->remove('batch')
                ->remove('create');
     }
 

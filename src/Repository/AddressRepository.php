@@ -22,7 +22,7 @@ class AddressRepository extends ServiceEntityRepository
             ->select('address')
             ->where('address.user = :user')
             ->andWhere('address.isMyAddress is null or address.isMyAddress = 0')
-            ->setParameter('user', 8);
+            ->setParameter('user', $user);
         return $qr->getQuery();
     }
 }

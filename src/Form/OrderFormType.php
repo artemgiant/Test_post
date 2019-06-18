@@ -27,7 +27,7 @@ class OrderFormType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
+        $user=$options['user'];
         $builder
             ->add('trackingNumber',null,[
                 'attr'=>[
@@ -88,7 +88,10 @@ class OrderFormType extends AbstractType
                 )
             ))
            ->add('addresses', EntityType::class, [
-                'class'        => Address::class,
+               'class'        => Address::class,
+               'query_builder' => function(AddressRepository $repo) use ($user) {
+                   return $repo->getAdressList($user);
+               },
                 'choice_label' => 'fullName',
                 'label'        => 'addresses',
                 'expanded'     => false,
