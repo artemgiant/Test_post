@@ -23,8 +23,6 @@ class DefaultController extends CabinetController
     public $user;
     public $my_address;
 
-
-
     /**
      * @Route("/post/dashboard", name="post_dashboard")
      */
@@ -52,13 +50,10 @@ class DefaultController extends CabinetController
                 [   'ordersNew'=>$ordersNew,
                     'ordersSend'=>$ordersSend,
                     'payment'=>$payment,
+                    'addresses'=>$my_address,
                     ]
             ));
     }
-
-
-
-
 
     /**
      * @Route("/", name="homepage")

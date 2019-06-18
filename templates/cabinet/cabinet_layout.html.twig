@@ -23,10 +23,18 @@
 
                              {% if my_address is not empty  and my_address is not empty %}
                                  <address>
-                                     {{ my_address.address }} <br>
-                                     {{ my_address.city }} <br>
-                                     {{ my_address.country }} <br>
-                                     {{ my_address.zip }}
+                                     {% if my_address.address is defined and my_address.address is not null %}
+                                        {{ my_address.address }} <br>
+                                     {% endif %}
+                                     {% if my_address.city is defined and my_address.city is not null %}
+                                        {{ my_address.city }} <br>
+                                     {% endif %}
+                                     {% if my_address.country is defined and my_address.country is not null %}
+                                         {{ my_address.country }} <br>
+                                     {% endif %}
+                                     {% if my_address.zip is defined and my_address.zip is not null %}
+                                        {{ my_address.zip }}
+                                     {% endif %}
                                  </address>
                              {% endif %}
                          </div>

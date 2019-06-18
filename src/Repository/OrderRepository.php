@@ -19,7 +19,6 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
-
     /*
      new orders
     */
@@ -33,8 +32,10 @@ class OrderRepository extends ServiceEntityRepository
             ->setParameter('status', 'new')
             ->orderBy('o.createdAt','DESC')
         ;
-        if ($maxResult>0) return $qr->setMaxResults($maxResult)->getQuery()->getResult();
-        else return $qr->getQuery();
+        if ($maxResult>0)
+            return $qr->setMaxResults($maxResult)->getQuery()->getResult();
+        else
+            return $qr->getQuery();
     }
 
     public function getSendOrders($user_id,$maxResult=0)
@@ -48,8 +49,10 @@ class OrderRepository extends ServiceEntityRepository
             ->setParameter('status', 'complit')
             ->orderBy('o.createdAt','DESC')
         ;
-        if ($maxResult>0)return $qr->setMaxResults($maxResult)->getQuery()->getResult();
-        else return $qr->getQuery();
+        if ($maxResult>0)
+            return $qr->setMaxResults($maxResult)->getQuery()->getResult();
+        else
+            return $qr->getQuery();
     }
 
     public function getOrders($user_id)
