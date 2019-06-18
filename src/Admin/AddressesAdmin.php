@@ -13,8 +13,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class AddressesAdmin extends AbstractAdmin
 {
-    protected $baseRoutePattern = 'addresses_status';
-    protected $baseRouteName = 'addresses_status';
+    protected $baseRoutePattern = 'addresses';
+    protected $baseRouteName = 'addresses';
     /**
      * @param DatagridMapper $datagridMapper
      */

@@ -14,8 +14,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class OrdersAdmin extends AbstractAdmin
 {
-    protected $baseRoutePattern = 'orders_status';
-    protected $baseRouteName = 'orders_status';
+    protected $baseRoutePattern = 'orders';
+    protected $baseRouteName = 'orders';
     /**
      * @param DatagridMapper $datagridMapper
      */
