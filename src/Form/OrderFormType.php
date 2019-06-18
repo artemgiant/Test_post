@@ -9,6 +9,9 @@ use App\Entity\OrderProducts;
 use App\Repository\AddressRepository;
 use Symfony\Component\Form\AbstractType;
 
+use Doctrine\ORM\QueryBuilder;
+
+
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -88,7 +91,7 @@ class OrderFormType extends AbstractType
                 )
             ))
            ->add('addresses', EntityType::class, [
-               'class'        => Address::class,
+               //'class'        => Address::class,
                'query_builder' => function(AddressRepository $repo) use ($user) {
                    return $repo->getAdressList($user);
                },
