@@ -111,12 +111,27 @@ class ParcelsController extends CabinetController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $declareValue=0;
             if ($order->getProducts()){
-                foreach ($order->getProducts() as &$product){
-                    $product->setOrderId($order);
-                    $entityManager->persist($product);
+                foreach ($order->getProducts() as $product){
+
+                    if (empty($product->getDescEn())){
+                        $order->removeProduct($product);
+                        $entityManager->remove($product);
+                        $entityManager->persist($order);
+                    }
+                    else {
+                        $product->setOrderId($order);
+                        $entityManager->persist($product);
+                        $declareValue=$declareValue+$product->getCount()*$product->getPrice();
+                    }
                 }
             }
+            unset($product);
+            $order->setDeclareValue($declareValue);
+            list($shipCost,$volume)=$this->CalculateShipCost($order);
+            $order->setShippingCosts($shipCost);
+            $order->setVolumeWeigth($volume);
             $order->setUser($this->user);
             $entityManager->persist($order);
             $entityManager->flush();
