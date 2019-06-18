@@ -287,7 +287,7 @@ class Order
 
     public function __toString() {
         if($this->getUser()) {
-            return '#' . $this->getId() . " : " . $this->getCustomer();
+            return '#' . $this->getId() . " : " . $this->getCustom();
         } else {
             return 'New orders';
         }

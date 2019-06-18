@@ -77,4 +77,15 @@ class OrderStatus
         $this->statusName = $statusName;
         return $this;
     }
+
+    /**
+     * return string
+     */
+    public function __toString()
+    {
+        if (!$this->getStatusName())
+            return $this->getStatus();
+
+        return $this->statusName;
+    }
 }
