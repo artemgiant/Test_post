@@ -2,6 +2,7 @@
 namespace App\Service;
 
 
+use App\Entity\OrderStatus;
 use App\Entity\TransactionLiqPay;
 use App\Entity\Order;
 
@@ -12,6 +13,8 @@ use App\Helper\LiqPay;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Doctrine\ORM\EntityManagerInterface;
+
 define("LOG_LIQPAY", getcwd() . "/../liqPay.log");
 /**
  * Class LiqPayService
@@ -19,30 +22,37 @@ define("LOG_LIQPAY", getcwd() . "/../liqPay.log");
 class LiqPayService
 {
 
-    //private $liqpay_public_key = "i51022028690";
-   // private $liqpay_private_key = "EFQZ16fDWsmGLtA9Afea57LhmZN1MCDmbIbrDDvf";
+    private $liqpay_public_key = "i51022028690";
+    private $liqpay_private_key = "EFQZ16fDWsmGLtA9Afea57LhmZN1MCDmbIbrDDvf";
 
 
-    private $liqpay_public_key = "i49780947016";
-    private $liqpay_private_key = "vzWMZHg2z2AQh2Eg7EYiI5YDiQHYQS7K1XoJbEap";
+ //   private $liqpay_public_key = "i49780947016";
+ //   private $liqpay_private_key = "vzWMZHg2z2AQh2Eg7EYiI5YDiQHYQS7K1XoJbEap";
 
+    private $em;
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
 
     /**
      * @param $object Order
      *
      * @return array
      */
-    public function LiqPayForm($summ,$description,$order_id)
+    public function LiqPayForm($summ,$description,$orderId)
     {
         $liqpay = new Liqpay($this->liqpay_public_key, $this->liqpay_private_key);
-
+        $summ=round($summ+$summ*2.75/100,2);
         $buttonHtml = $liqpay->cnb_form(array(
             'action'         => 'pay',
             'amount'         => $summ,
             'currency'       => Liqpay::CURRENCY_USD,
             'description'    => $description,
-            'order_id'       => $order_id,
+            'order_id'       => $orderId,
             'version'        => '3',
+            'result_url'     => 'https://expressposhta.com/payment/result',
+            'server_url'     => 'https://expressposhta.com/payment/check'
            // 'sandbox'        => '1',
         ));
 
@@ -50,9 +60,8 @@ class LiqPayService
     }
 
     /**
-     * @param $object OrdersDHL
      *
-     * @return array
+     * @return mixed
      */
     public function check($post)
     {
@@ -104,7 +113,7 @@ class LiqPayService
         error_log("----------SAVE-----------", 3, LOG_LIQPAY);
         error_log(print_r($data, true) . PHP_EOL, 3, LOG_LIQPAY);
         /* @var TransactionLiqPay $trLiqPay */
-        $trLiqPay =$this->getEm()->getRepository('AppBundle:TransactionLiqPay')->findBy(['number'=>$data['order_id']]);
+        $trLiqPay =$this->getEm()->getRepository(TransactionLiqPay::class)->findBy(['number'=>$data['order_id']]);
         if (empty($trLiqPay)) {
             $trLiqPay = new TransactionLiqPay();
             $trLiqPay->setCreatedAt(new \DateTime());
@@ -122,25 +131,26 @@ class LiqPayService
             $this->getEm()->flush([$trLiqPay]);
             $arrTmp = explode("_", $data['order_id']);
             $userTmp=null;
-            if ($arrTmp[0] == 'SKLAD' && count($arrTmp) > 2) {
-                if (isset($arrTmp[1]) && !empty($arrTmp[1]) && strpos($arrTmp[1], 'UID') !== false) {
-                    $userId = trim(str_replace("UID", "", $arrTmp[1]));
+            if ($arrTmp[0] == 'EXPRESSORDER' && count($arrTmp) > 2) {
+                if (isset($arrTmp[1]) && !empty($arrTmp[1])) {
+                    $orderId = (int)$arrTmp[1];
                     error_log("---------- USER ID -----------", 3, LOG_LIQPAY);
-                    error_log($userId . PHP_EOL, 3, LOG_LIQPAY);
-                    $userTmp=$this->getEm()->getRepository("AppBundle:User")->find((int)$userId);
-                    if ($userTmp){
-                        $this->container->get('app.balance')
-                            ->addMoney($userTmp, $trLiqPay->getSum(),
-                                'new payment from LiqPay added, id:' . $trLiqPay->getId(),null,$trLiqPay);
+                    error_log($orderId . PHP_EOL, 3, LOG_LIQPAY);
+                    /* @var $order Order */
+                    $order=$this->getEm()->getRepository(Order::class)->find((int)$orderId);
+                    if ($order){
+                        $trLiqPay->setUser($order->getUser());
+                        $orderStatus=$this->getEm()->getRepository(OrderStatus::class)->findOneBy(['status'=>'paid']);
+                        $order->setOrderStatus($orderStatus);
+                        $order->setTransaction($trLiqPay);
+                        $trLiqPay->setOrder($order);
+                        $this->getEm()->persist($order);
                     }
                 }
             }
-            if (!empty($userTmp)){
-                $trLiqPay->setUser($userTmp);
-            }
 
             $this->getEm()->persist($trLiqPay);
-            $this->getEm()->flush([$trLiqPay]);
+            $this->getEm()->flush();
         }
     }
 
@@ -149,7 +159,7 @@ class LiqPayService
      */
     protected function getEm()
     {
-        return $this->container->get('doctrine')->getManager();
+        return $this->em;
     }
 
 

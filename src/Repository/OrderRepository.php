@@ -23,7 +23,7 @@ class OrderRepository extends ServiceEntityRepository
     /*
      new orders
     */
-    public function getNewOrders($user_id)
+    public function getNewOrders($user_id,$maxResult=0)
     {
         $qr = $this->createQueryBuilder('o')
             ->leftJoin('o.orderStatus', 's')
@@ -33,10 +33,11 @@ class OrderRepository extends ServiceEntityRepository
             ->setParameter('status', 'new')
             ->orderBy('o.createdAt','DESC')
         ;
-        return $qr->getQuery();
+        if ($maxResult>0) return $qr->setMaxResults($maxResult)->getQuery()->getResult();
+        else return $qr->getQuery();
     }
 
-    public function getSendOrders($user_id)
+    public function getSendOrders($user_id,$maxResult=0)
     {
         $qr = $this->createQueryBuilder('o')
             ->leftJoin('o.orderStatus', 's')
@@ -47,7 +48,8 @@ class OrderRepository extends ServiceEntityRepository
             ->setParameter('status', 'complit')
             ->orderBy('o.createdAt','DESC')
         ;
-        return $qr->getQuery()->getResult();
+        if ($maxResult>0)return $qr->setMaxResults($maxResult)->getQuery()->getResult();
+        else return $qr->getQuery();
     }
 
     public function getOrders($user_id)

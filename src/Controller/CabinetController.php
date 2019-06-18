@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Form\AddressFormType;
+use App\Service\LiqPayService;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 
 class CabinetController extends AbstractController
@@ -32,28 +34,6 @@ class CabinetController extends AbstractController
         ];
 
     }
-    /**
-     * @Route("/post/dashboard", name="post_dashboard")
-     */
-    public function dashboardAction(): Response
-    {
-        $this->user = $this->getUser();
-        $my_address = $this->getMyAddress($this->user->getId());
-        $orders = $this->getDoctrine()
-            ->getRepository(Order::class)
-            ->getOrders($this->user->getId());
-
-//        var_dump($my_address);
-//        die();
-
-        return $this->render('cabinet/dashboard/dashboard.html.twig', [
-            'user' => $this->user,
-            'my_address' => $my_address,
-            'orders' => $orders,
-        ]);
-    }
-
-
 
     public function getMyAddress($user_id)
     {
@@ -61,15 +41,5 @@ class CabinetController extends AbstractController
             ->getRepository(User::class)
             ->getMyAddress($user_id);
     }
-
-    /**
-     * @Route("/", name="homepage")
-     */
-
-    public function homepage()
-    {
-        return $this->redirectToRoute('post_dashboard');
-    }
-
 }
 

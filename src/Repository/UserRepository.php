@@ -41,7 +41,8 @@ class UserRepository extends ServiceEntityRepository
             ->select('u.firstName', 'u.lastName', 'a.zip', 'a.country', 'a.city', 'a.address')
             ->join('u.addresses', 'a')
             ->where('u.id = :user_id AND a.isMyAddress = 1')
-            ->setParameter('user_id', $user_id);
-        return $qr->getQuery()->getResult();
+            ->setParameter('user_id', $user_id)
+        ->setMaxResults(1);
+        return $qr->getQuery()->getOneOrNullResult();
     }
 }
