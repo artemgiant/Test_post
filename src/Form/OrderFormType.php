@@ -27,7 +27,7 @@ class OrderFormType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $user=$options['user'];
+        $user=$options['attr']['user'];
         $builder
             ->add('trackingNumber',null,[
                 'attr'=>[
