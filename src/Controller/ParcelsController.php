@@ -106,7 +106,7 @@ class ParcelsController extends CabinetController
             $orderProduct=new OrderProducts();
             $order->addProduct($orderProduct);
         }
-        $form = $this->createForm(OrderFormType::class, $order);
+        $form = $this->createForm(OrderFormType::class, $order, ['user' => $this->user]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
