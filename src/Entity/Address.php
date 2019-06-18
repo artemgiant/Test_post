@@ -265,7 +265,7 @@ class Address
             $address.=', ap. '.$this->apartment;
 
         $this->address = $address;
-        
+
         return $this;
     }
 

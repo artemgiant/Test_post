@@ -19,7 +19,7 @@
                             <th>{{ "Create Date" | trans }}</th>
                             <th>{{ "trackingNumber Nova Pochta" | trans }}</th>
                             <th>{{ "sendDetailWeight" | trans }}</th>
-                            <th>{{ "volumeWeigth " | trans }}</th>
+                            <th>{{ "volumeWeigth" | trans }}</th>
                             <th>{{ "shipgCost" | trans }}</th>
                             <th>{{ "declareValue" | trans }}</th>
                             <th>{{ "Adress" | trans }}</th>
@@ -36,7 +36,11 @@
                                     <td>{{ item.volumeWeigth }}</td>
                                     <td>{{ item.shippingCosts }}</td>
                                     <td>{{ item.declareValue }}</td>
-                                    <td>{{ item.addresses.fullAddress }}</td>
+                                    <td>
+                                        {% if item.addresses.fullAddress is defined and item.addresses.fullAddress is not null %}
+                                            {{ item.addresses.fullAddress }}
+                                        {% endif %}
+                                    </td>
                                     <td>
                                         {% if item.orderStatus is empty or item.orderStatus.status == 'new'%}
                                             <a  href="{{ path("post_parcels_edit",{"id":item.id}) }}" class="btn btn-success">{{ "Edit Order" | trans }}
