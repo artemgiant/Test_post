@@ -25,4 +25,14 @@ class AddressRepository extends ServiceEntityRepository
             ->setParameter('user', $user);
         return $qr->getQuery();
     }
+
+    public function getAdressListQuery($user)
+    {
+        $qr = $this->createQueryBuilder('address')
+            ->select('address')
+            ->where('address.user = :user')
+            ->andWhere('address.isMyAddress is null or address.isMyAddress = 0')
+            ->setParameter('user', $user);
+        return $qr;
+    }
 }
