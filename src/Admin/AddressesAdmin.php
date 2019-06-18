@@ -49,7 +49,13 @@ class AddressesAdmin extends AbstractAdmin
             ->add('isMyAddress', null, [
                 'required' => false,
                 'label' => 'My address'
-            ]);
+            ])
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'edit' => array(),
+                    'delete' => array(),
+                )
+            ));
     }
 
     /**
