@@ -482,7 +482,11 @@ class Address
      */
     public function getFullAddress(): string
     {
-        return trim($this->street.' '.$this->house.' '.$this->apartment.' '.$this->city.' '.$this->zip.' '.$this->regionOblast.' '.$this->regionRayon);
+        $fullAddress = trim($this->street.' '.$this->house.' '.$this->apartment.' '.$this->city.' '.$this->zip.' '.$this->regionOblast.' '.$this->regionRayon);
+        if (!$fullAddress)
+            return ' ';
+
+        return $fullAddress;
     }
 
     /**
