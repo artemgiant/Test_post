@@ -16,6 +16,18 @@ class PaymentsAdmin extends AbstractAdmin
 {
     protected $baseRoutePattern = 'payments';
     protected $baseRouteName = 'payments';
+
+    /**
+     * @param \Sonata\AdminBundle\Route\RouteCollection $collection
+     */
+    protected function configureRoutes(\Sonata\AdminBundle\Route\RouteCollection $collection)
+    {
+        $collection
+               ->remove('edit')
+                ->remove('batch')
+               ->remove('create');
+    }
+
     /**
      * @param DatagridMapper $datagridMapper
      */
