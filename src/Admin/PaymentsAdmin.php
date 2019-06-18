@@ -4,6 +4,7 @@ namespace App\Admin;
 
 use App\Entity\Order;
 use App\Entity\User;
+use Doctrine\ORM\EntityRepository;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -52,12 +53,15 @@ class PaymentsAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper): void
     {
-        $userFieldOptions = [];
-        $orderFieldOptions = [];
+        $query = $this->modelManager
+            ->getEntityManager('App\Entity\Order')
+            ->createQuery(
+                'SELECT o FROM App\Entity\Order o WHERE o.id not in (SELECT IDENTITY(t.order) FROM App\Entity\TransactionLiqPay t)'
+            );
 
         $formMapper
-            ->add('user', ModelType::class, $userFieldOptions)
-            ->add('order', ModelType::class, $orderFieldOptions)
+            ->add('user', ModelType::class)
+            ->add('order', ModelType::class, array('required' => true, 'query' => $query), array('edit' => 'standard'))
             ->add('number')
             ->add('sum')
             ->add('status')
