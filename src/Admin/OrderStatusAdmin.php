@@ -28,6 +28,12 @@ class OrderStatusAdmin extends AbstractAdmin
         $listMapper->addIdentifier('id')
             ->add('status')
             ->add('statusName')
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'edit' => array(),
+                    'delete' => array(),
+                )
+            ))
         ;
     }
 

@@ -28,6 +28,12 @@ class DeliveryPriceAdmin extends AbstractAdmin
         $listMapper->addIdentifier('id')
             ->add('cost')
             ->add('weight')
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'edit' => array(),
+                    'delete' => array(),
+                )
+            ))
         ;
     }
 

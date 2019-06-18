@@ -40,7 +40,14 @@ class OrdersAdmin extends AbstractAdmin
             ])
             ->addIdentifier('sendFromAddress')
             ->addIdentifier('comment')
-            ->addIdentifier('orderStatus');
+            ->addIdentifier('orderStatus')
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'edit' => array(),
+                    'delete' => array(),
+                )
+            ))
+        ;;
     }
 
     /**
