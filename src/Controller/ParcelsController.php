@@ -33,7 +33,7 @@ class ParcelsController extends CabinetController
     {
         $this->getTemplateData();
         $this->optionToTemplate['page_id']='post_parcels';
-        $this->optionToTemplate['page_title']='Address List';
+        $this->optionToTemplate['page_title']='New Parcels List';
 
         $entityManager = $this->getDoctrine()->getManager();
 
@@ -46,21 +46,25 @@ class ParcelsController extends CabinetController
             $request->query->getInt('page', 1),
             20
         );
+        $totalItemCount = $ordersList->getTotalItemCount();
 
         return $this->render('cabinet/parcels/parcels.html.twig'
-            , array_merge($this->optionToTemplate,['items'=>$ordersList])
+            , array_merge($this->optionToTemplate,[
+                'items'=>$ordersList,
+                'totalItemCount'=>$totalItemCount,
+            ])
         );
     }
 
     /**
-     * new orders list
+     * sent orders list
      * @Route("/send", name="post_parcels_send")
      */
     public function parcelsSendAction(Request $request, PaginatorInterface $paginator): Response
     {
         $this->getTemplateData();
         $this->optionToTemplate['page_id']='post_parcels_send';
-        $this->optionToTemplate['page_title']='Send Parcerls List';
+        $this->optionToTemplate['page_title']='Send Parcels List';
 
         $entityManager = $this->getDoctrine()->getManager();
 
@@ -74,8 +78,13 @@ class ParcelsController extends CabinetController
             20
         );
 
+        $totalItemCount = $ordersList->getTotalItemCount();
+
         return $this->render('cabinet/parcels/parcels.html.twig'
-            , array_merge($this->optionToTemplate,['items'=>$ordersList])
+            , array_merge($this->optionToTemplate,[
+                'items'=>$ordersList,
+                'totalItemCount'=>$totalItemCount,
+                ])
         );
     }
 
