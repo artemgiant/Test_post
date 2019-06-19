@@ -177,6 +177,13 @@ class Address
     }
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_confirmed", type="boolean")
+     */
+    private $isConfirmed = false;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -513,15 +520,6 @@ class Address
     }
 
     /**
-     *
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return trim($this->street.' '.$this->house.' '.$this->apartment.' '.$this->city.' '.$this->zip.' '.$this->regionOblast.' '.$this->regionRayon);
-    }
-
-    /**
      * @return Collection|Order[]
      */
     public function getOrder()
@@ -529,4 +527,30 @@ class Address
         return $this->order;
     }
 
+    /**
+     * @return bool
+     */
+    public function isConfirmed(): bool
+    {
+        return $this->isConfirmed;
+    }
+
+    /**
+     * @param bool $isConfirmed
+     * @return Address
+     */
+    public function setIsConfirmed(bool $isConfirmed): Address
+    {
+        $this->isConfirmed = $isConfirmed;
+        return $this;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return trim($this->street.' '.$this->house.' '.$this->apartment.' '.$this->city.' '.$this->zip.' '.$this->regionOblast.' '.$this->regionRayon);
+    }
 }

@@ -30,7 +30,7 @@ class FindController extends CabinetController
         $this->user = $this->getUser();
         $trNum=$request->request->get('tracnum',false);
 
-        $errors =["Nothin Found"];
+        $errors =[];
         $mess=[];
         if ($trNum)
         {

@@ -79,7 +79,6 @@ class Order
      */
     private $sendFromAddress;
 
-
     /**
      * @var string
      *
@@ -150,7 +149,6 @@ class Order
      */
     private $comment;
 
-
     /**
      * @var string
      *
@@ -165,15 +163,12 @@ class Order
      */
     private $address;
 
-
     /**
      * @var OrderStatus
      * @ORM\ManyToOne(targetEntity="OrderStatus")
      * @ORM\JoinColumn(name="order_status", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $orderStatus;
-
-
 
     /**
      * @var float

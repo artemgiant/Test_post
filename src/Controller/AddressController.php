@@ -132,5 +132,33 @@ class AddressController extends CabinetController
         return $this->render('cabinet/addresses/edit_form_of_address.html.twig', $twigoption);
 
     }
+
+    /**
+     * @Route("/{id}/delete", name="post_address_delete")
+     * @param Request $request
+     * @return Response
+     */
+    public function addressDeleteAction(Request $request): Response
+    {
+        $this->getTemplateData();
+        $entityManager = $this->getDoctrine()->getManager();
+        $errors =[];
+        $id = $request->get('id',false);
+        $this->optionToTemplate['page_id']='post_addresses';
+        $this->optionToTemplate['page_title']='Address Delete';
+        $this->optionToTemplate['address_id']=$id;
+
+        if ($id && (int)$id>0){
+            $address =$entityManager->getRepository(Address::class)->find((int)$id);
+            if(empty($address) || $address->getUser()!=$this->getUser()){
+                throw new ServiceException('Not found');
+            }
+
+            $entityManager->remove($address);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('post_addresses');
+        }
+    }
 }
 

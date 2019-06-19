@@ -7,7 +7,7 @@
         <!-- START card-->
         <div class="card card-default">
             <div class="card-header">
-                {{ "Find for tracking number "| trans }}: {{ trNum  }}
+                {{ "Find for tracking number"| trans }}: {{ trNum  }}
             </div>
             <div class="card-body">
                 <!-- START table-responsive-->
@@ -33,7 +33,7 @@
 
                         {% else %}
                             <tr>
-                                <td colspan="3">{{ errors }}</td>
+                                <td colspan="3">{{ errors }} {{ "Nothing Found" | trans }}</td>
                             </tr>
                         {% endif %}
                         </tbody>
