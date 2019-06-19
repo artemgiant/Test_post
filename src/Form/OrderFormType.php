@@ -36,7 +36,7 @@ class OrderFormType extends AbstractType
                 'attr'=>[
                         'class'=>'form-control border-right-0',
                         'id'=>'trackingNumber',
-                        'placeholder'=>'trackingNumber',
+//                        'placeholder'=>'trackingNumber',
                         'autocomplete'=>'off'],
                 'label'=>'trackingNumber',
                 'required'=>true
@@ -56,7 +56,7 @@ class OrderFormType extends AbstractType
                 'attr'=>[
                     'class'=>'form-control border-right-0 datepicker',
                     'id'=>'shipDate',
-                    'placeholder'=>'shipDate',
+//                    'placeholder'=>'shipDate',
                     'autocomplete'=>'off'],
                 'label'=>'shipDate',
                 'widget' => 'single_text',
@@ -107,7 +107,7 @@ class OrderFormType extends AbstractType
                 'attr'=>[
                     'class'=>'form-control',
                     'id'=>'country',
-                    'placeholder'=>'comment',
+//                    'placeholder'=>'comment',
                     'autocomplete'=>'off'],
                 'label'=>'comment',
                 'required'=>false
@@ -116,7 +116,7 @@ class OrderFormType extends AbstractType
             ->add('sendDetailWeight',null,[
                 'attr'=>[
                     'class'=>'form-control',
-                    'placeholder'=>'sendDetailWeight placeholder',
+//                    'placeholder'=>'sendDetailWeight placeholder',
                     'autocomplete'=>'off'],
                 'label'=>'sendDetailWeight',
                 'required'=>true
@@ -124,7 +124,7 @@ class OrderFormType extends AbstractType
             ->add('sendDetailLength',null,[
                 'attr'=>[
                     'class'=>'form-control',
-                    'placeholder'=>'sendDetailLength placeholder',
+//                    'placeholder'=>'sendDetailLength placeholder',
                     'autocomplete'=>'off'],
                 'label'=>'sendDetailLength',
                 'required'=>true
@@ -132,7 +132,7 @@ class OrderFormType extends AbstractType
             ->add('sendDetailWidth',null,[
                 'attr'=>[
                     'class'=>'form-control',
-                    'placeholder'=>'sendDetailWidth placeholder',
+//                    'placeholder'=>'sendDetailWidth placeholder',
                     'autocomplete'=>'off'],
                 'label'=>'sendDetailWidth',
                 'required'=>true
@@ -140,7 +140,7 @@ class OrderFormType extends AbstractType
             ->add('sendDetailHeight',null,[
                 'attr'=>[
                     'class'=>'form-control',
-                    'placeholder'=>'sendDetailHeight placeholder',
+//                    'placeholder'=>'sendDetailHeight placeholder',
                     'autocomplete'=>'off'],
                 'label'=>'sendDetailHeight',
                 'required'=>true

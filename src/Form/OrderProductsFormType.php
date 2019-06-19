@@ -32,7 +32,7 @@ class OrderProductsFormType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                     'data-name'   => 'descEn',
-                    'placeholder' => 'descEn',
+//                    'placeholder' => 'descEn',
                     'autocomplete' => 'off'],
                 'label' => 'descEn',
                 'required' => true
@@ -41,7 +41,7 @@ class OrderProductsFormType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                     'data-name'   => 'descUa',
-                    'placeholder' => 'descUa',
+//                    'placeholder' => 'descUa',
                     'autocomplete' => 'off'],
                     'label' => 'descUa',
                     'required' => true
@@ -50,7 +50,7 @@ class OrderProductsFormType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                     'data-name'   => 'price',
-                    'placeholder' => 'price',
+//                    'placeholder' => 'price',
                     'autocomplete' => 'off'],
                 'label' => 'price',
                 'required' => false
@@ -59,7 +59,7 @@ class OrderProductsFormType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                     'data-name'   => 'count',
-                    'placeholder' => 'count',
+//                    'placeholder' => 'count_short',
                     'autocomplete' => 'off'],
                 'label' => 'count',
                 'required' => false

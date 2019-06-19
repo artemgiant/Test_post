@@ -45,7 +45,7 @@
     <li class="nav-item dropdown dropdown-list">
             <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-toggle="dropdown" style="max-height: 55px;">
                 <div class="row" style="margin-top: -10px;">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <img class="rounded-circle" src="
                             {% if user.avatar %}
                               {{ asset(user.avatar) }}
@@ -54,8 +54,8 @@
                             {% endif %}
                            " alt="Avatar" width="33" height="36" style="max-height: 33px;max-width: 36px;">
                     </div>
-                    <div class="col-md-10">
-                        <div class="row" >
+                    <div class="col-md-9">
+                        <div class="row justify-content-center" >
                             <div class="col-md-12">
                                 {% if user.firstName %}
                                     {{ user.firstName }}
@@ -73,7 +73,7 @@
         <!-- START Dropdown menu-->
         <div class="dropdown-menu dropdown-menu-right animated flipInX">
             <div class="dropdown-item">
-                <div class="user-block-picture">
+                <div class="user-block-picture text-center">
                     <div class="user-block-status"><img class="img-thumbnail rounded-circle" src="
                     {% if user.avatar %}
                       {{ asset(user.avatar) }}
@@ -84,7 +84,7 @@
                         <div class="circle bg-success circle-lg"></div>
                     </div>
                 </div><!-- Name and Job-->
-                <div class="user-block-info">
+                <div class="user-block-info text-center">
                                 <span class="user-block-name">
                                     {% if user.firstName %}
                                         {{"Hello"|trans }}, {{ user.firstName }}
