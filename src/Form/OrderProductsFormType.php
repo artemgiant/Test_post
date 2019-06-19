@@ -37,6 +37,15 @@ class OrderProductsFormType extends AbstractType
                 'label' => 'descEn',
                 'required' => true
             ])
+            ->add('descUa', null, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'data-name'   => 'descUa',
+                    'placeholder' => 'descUa',
+                    'autocomplete' => 'off'],
+                    'label' => 'descUa',
+                    'required' => true
+            ])
             ->add('price', null, [
                 'attr' => [
                     'class' => 'form-control',

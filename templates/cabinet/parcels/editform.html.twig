@@ -58,9 +58,10 @@
                                     {% else %}
                                         {{ form_widget(form.shipDate) }}
                                     {% endif %}
-                                    <div class="input-group-append">
+                                    <div class="input-group-append input-group-addon">
                              <span class="input-group-text text-muted bg-transparent border-left-0">
                                  <em class="fa fa-user"></em>
+
                              </span>
                                     </div>
                                     <div class="invalid-feedback">{{ form_errors(form.shipDate) }}</div>
@@ -253,7 +254,8 @@
      <script src="{{ asset("sklad-express/js/jquery.collection.js") }}"></script>
 <script>
      jQuery(".datepicker").datepicker({
-     uiLibrary: "bootstrap4"
+        uiLibrary: "bootstrap4",
+        autoclose: true
      });
 
 
