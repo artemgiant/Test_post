@@ -38,14 +38,14 @@ class Address
 
     private $order;
 
-    /**
-     * @var string
-     *
-     * @Assert\NotBlank
-     *
-     * @ORM\Column(name="country", type="string")
-     */
-    private $country;
+//    /**
+//     * @var string
+//     *
+//     * @Assert\NotBlank
+//     *
+//     * @ORM\Column(name="country", type="string")
+//     */
+//    private $country;
 
     /**
      * @var string
@@ -164,12 +164,17 @@ class Address
      */
     private $phone;
 
+    /**
+     * @var Country
+     * @ORM\ManyToOne(targetEntity="Country")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $country;
+
     public function __construct()
     {
         $this->order = new ArrayCollection();
     }
-
-
 
     /**
      * @return int
@@ -198,18 +203,18 @@ class Address
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getCountry(): ?string
+    public function getCountry()
     {
         return $this->country;
     }
 
     /**
-     * @param string $country
+     * @param mixed $country
      * @return Address
      */
-    public function setCountry(string $country): Address
+    public function setCountry($country)
     {
         $this->country = $country;
         return $this;
@@ -523,4 +528,5 @@ class Address
     {
         return $this->order;
     }
+
 }
