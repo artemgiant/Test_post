@@ -44,7 +44,7 @@ class DefaultController extends CabinetController
         $payment = $this->getDoctrine()
             ->getRepository(TransactionLiqPay::class)
             ->getNewPayments($this->user->getId(),5);
-
+//dd($ordersSend, $ordersNew);
         return $this->render('cabinet/dashboard/dashboard.html.twig',
             array_merge($this->optionToTemplate,
                 [   'ordersNew'=>$ordersNew,

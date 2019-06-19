@@ -88,3 +88,5 @@ Error: Ошибка
 'Please enter last name': 'Пожалуйста. Введите фамилию.'
 'Please enter email': 'Пожалуйста. Введите Email.'
 'Please enter phone': 'Пожалуйста. Введите телефон.'
+'This value is required.': 'Обязательное значение'
+'There is already an account with this email': 'Это значение уже используется.'

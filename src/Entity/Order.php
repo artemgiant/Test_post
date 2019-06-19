@@ -40,7 +40,7 @@ class Order
     /**
      * @var Address
      *
-     * @ORM\ManyToOne(targetEntity="Address", inversedBy="order")
+     * @ORM\ManyToOne(targetEntity="Address")
      * @ORM\JoinColumn(name="address_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $addresses;

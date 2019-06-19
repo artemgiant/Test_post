@@ -42,40 +42,39 @@
                          </div>
                      </div>
                  </div>
-
                  <div class="col-xl-6 col-6 br py-2">
                      <div class="row">
-                         <div class="col-lg-12">
-                             <h4>{{ "Отследить отправление"| trans }}</h4>
+                         <div class="col-12">
+                             <h4>
+                                 {{ "Отследить отправление"| trans }}
+                             </h4>
+                             <form>
                              {% if page_id is defined
                                  and
                                  page_id is not empty
                                  and
                                  page_id in ["post_find"]
                              %}
-                             <form action="{{ path("post_find") }}" method="post" >
+                             <div action="{{ path("post_find") }}" method="post" >
                                  {% else %}
                              <form action="{{ path("post_find") }}" method="post" target="_blank">
 
                                  {% endif %}
                                  <div class="form-group">
                                       <div class="input-group with-focus ">
-                                             <input
-                                                     class="form-control border-right-0"
-                                                name="tracnum"
+                                             <input class="form-control border-right-0" name="tracnum"
                                                      value="{% if trNum is defined %} {{ trNum }}{% endif %}"
                                                      required="required"
                                              />
-                                                 <div class="input-group-append">
-                                                    <button type="submit" class="btn btn-success">{{ "Отследить"|trans }}</button>
-                                                 </div>
+                                             <div class="input-group-append">
+                                                <button type="submit" class="btn btn-success">{{ "Отследить"|trans }}</button>
+                                             </div>
                                      </div>
                                  </div>
                              </form>
                          </div>
                      </div>
                  </div>
-
              </div>
          </div>
          {% for message in app.flashes('success') %}

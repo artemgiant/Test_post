@@ -74,6 +74,7 @@ class ProfileFormType extends AbstractType
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'email',
+//                    'disabled' => 'disabled',
                     'placeholder'=>'',
                     'autocomplete'=>'off'],
                 'label'=>'email',

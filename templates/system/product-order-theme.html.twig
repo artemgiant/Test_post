@@ -9,63 +9,76 @@
 {% endblock %}
 
 {% block OrderProductsFormType_widget %}
-<div class="row justify-content-center align-items-center">
-    <div class="col-md-11">
-        <div class="row justify-content-center align-items-center">
-                <div class="col-md-8">
-                    <div class="form-group">
-
-                        {{ form_label(form.descEn,"descEn"|trans, {
-                            "label_attr": {"class": "text-muted"}
-                        }) }}
-                        <div class="input-group with-focus ">
-                            {% if form.descEn.vars.errors|length %}
-                                {{ form_widget(form.descEn, {"attr": {"class": "is-invalid form-control"}}) }}
-                            {% else %}
-                                {{ form_widget(form.descEn) }}
-                            {% endif %}
-                            <div class="invalid-feedback">{{ form_errors(form.descEn) }}</div>
-                        </div>
-                    </div>
+    <div class="row align-items-start">
+        <div class="col-md-7">
+            <div class="form-group">
+                {{ form_label(form.descEn,"descEn"|trans, {
+                    "label_attr": {"class": "text-muted"}
+                }) }}
+                <div class="input-group with-focus ">
+                    {% if form.descEn.vars.errors|length %}
+                        {{ form_widget(form.descEn, {"attr": {"class": "is-invalid form-control"}}) }}
+                    {% else %}
+                        {{ form_widget(form.descEn) }}
+                    {% endif %}
+                    <div class="invalid-feedback">{{ form_errors(form.descEn) }}</div>
                 </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-
-                        {{ form_label(form.price,"price"|trans, {
-                            "label_attr": {"class": "text-muted"}
-                        }) }}
-                        <div class="input-group with-focus ">
-                            {% if form.price.vars.errors|length %}
-                                {{ form_widget(form.price, {"attr": {"class": "is-invalid form-control"}}) }}
-                            {% else %}
-                                {{ form_widget(form.price) }}
-                            {% endif %}
-                            <div class="invalid-feedback">{{ form_errors(form.price) }}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-
-                        {{ form_label(form.count,"count"|trans, {
-                            "label_attr": {"class": "text-muted"}
-                        }) }}
-                        <div class="input-group with-focus ">
-                            {% if form.price.vars.errors|length %}
-                                {{ form_widget(form.count, {"attr": {"class": "is-invalid form-control"}}) }}
-                            {% else %}
-                                {{ form_widget(form.count) }}
-                            {% endif %}
-                            <div class="invalid-feedback">{{ form_errors(form.count) }}</div>
-                        </div>
-                    </div>
-                </div>
-                {{ form_widget(form) }}
             </div>
         </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                {{ form_label(form.price,"price"|trans, {
+                    "label_attr": {"class": "text-muted"}
+                }) }}
+                <div class="input-group with-focus ">
+                    {% if form.price.vars.errors|length %}
+                        {{ form_widget(form.price, {"attr": {"class": "is-invalid form-control"}}) }}
+                    {% else %}
+                        {{ form_widget(form.price) }}
+                    {% endif %}
+                    <div class="invalid-feedback">{{ form_errors(form.price) }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                {{ form_label(form.count,"count"|trans, {
+                    "label_attr": {"class": "text-muted"}
+                }) }}
+                <div class="input-group with-focus ">
+                    {% if form.price.vars.errors|length %}
+                        {{ form_widget(form.count, {"attr": {"class": "is-invalid form-control"}}) }}
+                    {% else %}
+                        {{ form_widget(form.count) }}
+                    {% endif %}
+                    <div class="invalid-feedback">{{ form_errors(form.count) }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-end">
+        <div class="col-md-7">
+            <div class="form-group">
+                {{ form_label(form.descUa,"descUa"|trans, {
+                    "label_attr": {"class": "text-muted"}
+                }) }}
+                <div class="input-group with-focus ">
+                    {% if form.descUa.vars.errors|length %}
+                        {{ form_widget(form.descUa, {"attr": {"class": "is-invalid form-control"}}) }}
+                    {% else %}
+                        {{ form_widget(form.descUa) }}
+                    {% endif %}
+                    <div class="invalid-feedback">{{ form_errors(form.descUa) }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="offset-md-3 col-md-1">
+            <a href="#" class="collection-remove btn btn-danger">{{ "Remove product" | trans }}</a>
+        </div>
+    </div>
     <div class="col-md-1">
-        <a href="#" class="collection-remove btn btn-danger">{{ "Remove product" | trans }}</a>
         <a href="#" class="collection-add btn btn-success">{{ "Add product" | trans }}</a>
     </div>
-</div>
+{#    {{ form_widget(form) }}#}
+    </div>
 {% endblock %}
