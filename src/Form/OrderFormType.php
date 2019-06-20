@@ -61,7 +61,7 @@ class OrderFormType extends AbstractType
                 'label'=>'shipDate',
                 'widget' => 'single_text',
                 'html5' => false,
-                'format' => 'dd/MM/yyyy',
+                'format' => 'dd-MM-yyyy',
                 'required'=>true
             ])
         /*
