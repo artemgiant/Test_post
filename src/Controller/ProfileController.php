@@ -31,7 +31,23 @@ class ProfileController extends CabinetController
      */
     public function profileAction(Request $request): Response
     {
-        $this->user = $this->getUser();
+        $this->user=$user = $this->getUser();
+        $userAdress = $this->getDoctrine()
+            ->getRepository(Address::class)
+            ->findOneBy(['user'=>$this->user,'isMyAddress'=>true]);
+
+        /* @var Address $userAdress  */
+        /* @var User $user  */
+        if (!empty($userAdress)){
+            $user->country=$userAdress->getCountry();
+            $user->regionOblast=$userAdress->getRegionOblast();
+            $user->regionRayon=$userAdress->getRegionRayon();
+            $user->city=$userAdress->getCity();
+            $user->zip= $userAdress->getZip();
+            $user->street=$userAdress->getStreet();
+            $user->house= $userAdress->getHouse();
+            $user->apartment=$userAdress->getApartment();
+        }
         $form = $this->createForm(ProfileFormType::class, $this->user);
         $form->handleRequest($request);
 
@@ -50,8 +66,29 @@ class ProfileController extends CabinetController
                 //kostil
                 $this->user->setAvatar('sklad-express/uploads/avatars/'.$fileName);
             }
+            $userData=$form->getData();
+
+            if (empty($userAdress)){
+                $userAdress=new Address();
+                $userAdress->setUser($this->user)
+                    ->setIsMyAddress(true);
+            }
+            $userAdress->setCountry($userData->country)
+                ->setRegionOblast($userData->regionOblast)
+                ->setRegionRayon($userData->regionRayon)
+                ->setCity($userData->city)
+                ->setZip($userData->zip)
+                ->setStreet($userData->street)
+                ->setHouse($userData->house)
+                ->setApartment($userData->apartment)
+                ->setUserFirstName($userData->getFirstName())
+                ->setUserLastName($userData->getLastName())
+                ->setUserSecondName($userData->getSecondName())
+                ->setPhone($userData->getPhone())
+                ->setAliasOfAddress($userData->__toString());
 
             $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($userAdress);
             $entityManager->persist($this->user);
             $entityManager->flush();
 //            $mess='Save success';

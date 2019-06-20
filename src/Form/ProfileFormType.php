@@ -11,6 +11,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Country;
 
 class ProfileFormType extends AbstractType
 {
@@ -98,6 +100,78 @@ class ProfileFormType extends AbstractType
                         'message' => 'Please enter phone',
                     ]),
                 ],
+            ])
+            ->add('country', EntityType::class, [
+                'class' => Country::class,
+                'attr'=>[
+                    'class'=>'form-control border-right-0',
+                    'id'=>'country',
+//                        'placeholder'=>'Country',
+                    'autocomplete'=>'off'],
+                'choice_label' => 'name',
+            ])
+            ->add('regionOblast',null,[
+                'attr'=>[
+                    'class'=>'form-control border-right-0',
+                    'id'=>'country',
+                    'placeholder'=>'Enter region',
+                    'autocomplete'=>'off'],
+                'label'=>'regionOblast',
+                'required'=>true
+            ])
+            ->add('regionRayon',null,[
+                'attr'=>[
+                    'class'=>'form-control border-right-0',
+                    'id'=>'country',
+                    'placeholder'=>'Enter district',
+                    'autocomplete'=>'off'],
+                'label'=>'regionRayon',
+                'required'=>false
+            ])
+            ->add('city',null,[
+                'attr'=>[
+                    'class'=>'form-control border-right-0',
+                    'id'=>'country',
+                    'placeholder'=>'Enter city',
+                    'autocomplete'=>'off'],
+                'label'=>'city',
+                'required'=>true
+            ])
+            ->add('zip',null,[
+                'attr'=>[
+                    'class'=>'form-control border-right-0',
+                    'id'=>'country',
+                    'placeholder'=>'Enter ZIP',
+                    'autocomplete'=>'off'],
+                'label'=>'zip',
+                'required'=>true
+            ])
+            ->add('street',null,[
+                'attr'=>[
+                    'class'=>'form-control border-right-0',
+                    'id'=>'street',
+                    'placeholder'=>'Enter street',
+                    'autocomplete'=>'off'],
+                'label'=>'street',
+                'required'=>true
+            ])
+            ->add('house',null,[
+                'attr'=>[
+                    'class'=>'form-control border-right-0',
+                    'id'=>'zip',
+                    'placeholder'=>'Enter number house',
+                    'autocomplete'=>'off'],
+                'label'=>'house',
+                'required'=>true
+            ])
+            ->add('apartment',null,[
+                'attr'=>[
+                    'class'=>'form-control border-right-0',
+                    'id'=>'apartment',
+                    'placeholder'=>'Enter number apartment',
+                    'autocomplete'=>'off'],
+                'label'=>'apartment',
+                'required'=>false
             ])
             ->add('save_avatar', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-block btn-primary mt-3 mx-auto d-block'],

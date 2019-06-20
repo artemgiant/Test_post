@@ -415,4 +415,49 @@ class User implements UserInterface, \Serializable
 
         return $this->firstName . ' ' . $this->lastName;
     }
+
+     /**
+     * @var string
+     *
+     */
+    public $country;
+
+
+    /**
+     * @var string
+     *
+     */
+    public $regionOblast;
+
+    /**
+     * @var string
+     *
+     */
+    public $regionRayon;
+
+    /**
+     * @var string
+     *
+     */
+    public $city;
+
+    /**
+     * @var string
+     *
+     */
+    public $zip;
+
+    /**
+     * @var string
+     *
+     */
+    public $street;
+
+    /**
+     * @var string
+     *
+     */
+
+    public $house;
+    public  $apartment;
 }
