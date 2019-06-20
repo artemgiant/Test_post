@@ -12,6 +12,8 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Form\Type\ModelType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 class OrdersAdmin extends AbstractAdmin
 {
     protected $baseRoutePattern = 'orders';
@@ -41,6 +43,10 @@ class OrdersAdmin extends AbstractAdmin
             ->addIdentifier('sendFromAddress')
             ->addIdentifier('comment')
             ->addIdentifier('orderStatus')
+            ->add('trNum',null,['label'=>'Трек для пользователя'])
+            ->add('trackingNumber',null,['label'=>'Трекномер Новой Почты'])
+            ->add('systemNum',null,['label'=>'Трек системный(Посылка едет в страну назначения)'])
+            ->add('systemNumInUsa',null,['label'=>'Трек системный(Посылка едет к аддресу назначения)'])
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -58,14 +64,34 @@ class OrdersAdmin extends AbstractAdmin
         $userFieldOptions = [];
         $orderStatusFieldOptions = [];
         $addressesFieldOptions = [];
+        $carrierCodes = [
+            'Select company'                                => null,
+            'DHL'                                           => 'dhl',
+            'FedEx'                                         => 'fedex',
+            'USPS'                                          => 'usps',
+            'Parcel Priority with Delcon (14 - 21) days'    => 'apc',
+            'UPS'                                           => 'ups',
 
+//            'Нова Пошта'                                    => 'nova-poshta',
+        ];
         $formMapper
             ->add('user', ModelType::class, $userFieldOptions)
             ->add('orderStatus', ModelType::class, $orderStatusFieldOptions)
             ->add('addresses', ModelType::class, $addressesFieldOptions)
             ->add('trackingNumber',null,['label'=>'Трек новой почты'])
             ->add('trNum',null,['label'=>'Трек для пользователя','disabled'=>true,'required'=>false])
+            ->add('companySendToUsa', ChoiceType::class, [
+                        'choices'  => $carrierCodes,
+                        'label'=>'Компания доставки(Посылка едет в страну назначения)'
+                 ]
+            )
             ->add('systemNum',null,['label'=>'Трек системный(Тот что меняет админ)','required'=>false])
+            ->add('companySendInUsa', ChoiceType::class, [
+                    'choices'  => $carrierCodes,
+                    'label'=>'Компания доставки(Посылка едет к аддресу назначения)'
+                ]
+            )
+            ->add('systemNumInUsa',null,['label'=>'Трек системный(Посылка едет к аддресу назначения)','required'=>false])
             ->add('volumeWeigth')
             ->add('declareValue')
             ->add('sendFromAddress')

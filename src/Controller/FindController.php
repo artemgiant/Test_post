@@ -30,7 +30,7 @@ class FindController extends CabinetController
         $this->user = $this->getUser();
         $trNum=$request->request->get('tracnum',false);
 
-        $errors =["Nothin Found"];
+        $errors =[];
         $mess=[];
         if ($trNum)
         {
@@ -41,26 +41,30 @@ class FindController extends CabinetController
                 ->findOneBy(['trNum'=>$trNum]);
             if ($order){
             /* @var $order Order */
-                $trackNum=$order->getSystemNum();
-                if (empty($trackNum)){
-                    $trackNum=$order->getTrackingNumber();
-                }
-                if (!empty($trackNum)){
-                    $carier=$trackingMore->detectCarrier($trackNum);
-                    $carierData=$carier['data']??false;
-                    if ($carierData && $carierCode=$carier['code']??false)
-                    {
-                       $info=$trackingMore->getSingleTrackingResult($carierCode,$trackNum,'ru');
-                        $infoData=$info['data']??false;
-                        if ($infoData && $infoDatatrack=$infoData["origin_info"]??false){
-                            $trackinfo=$infoDatatrack["trackinfo"]??false;
+                $tracksArray=array(
+                   'nova-poshta'=>$order->getTrackingNumber(),
+                    "tousa_".$order->getCompanySendToUsa() =>$order->getSystemNum(),
+                    "inusa_".$order->getCompanySendInUsa() =>$order->getSystemNumInUsa()
+                );
+                foreach($tracksArray as $carier=>$trackNum) {
+                    if (empty($trackNum)) {
+                        $mess[$carier] = [];
+                        continue;
+                    }
+                    $carierCode=str_replace(["tousa_","inusa_"],'',$carier);
+                    $info=$trackingMore->getSingleTrackingResult($carierCode,$trackNum,'ru');
+                    $infoData=$info['data']??false;
+                    if ($infoData && $infoDatatrack=$infoData["origin_info"]??false){
+                        $trackinfo=$infoDatatrack["trackinfo"]??false;
 
-                            foreach($trackinfo as $item){
-                                $mess[]=$item;
-                            }
+                        foreach($trackinfo as $item){
+                            $mess[$carier][]=$item;
                         }
                     }
+
                 }
+                foreach($mess as &$marr) $marr=array_reverse($marr);
+                unset($marr);
             }
         }
 

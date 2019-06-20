@@ -2,10 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Country;
 use App\Entity\User;
 use App\Entity\Address;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,26 +16,24 @@ class AddressFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-//            ->add('deliveryMethod',ChoiceType::class,[
-//                'attr' => [
-//                  'class' => 'form-check-input'
-//                ],
-//                'choices' => [
-//                    'method_1' => '1',
-//                    'method_2' => '2',
-//                ],
-//                'expanded' => true,
-//                'required' => true,
-//            ])
-            ->add('country',null,[
+            ->add('country', EntityType::class, [
+                'class' => Country::class,
                 'attr'=>[
                         'class'=>'form-control border-right-0',
                         'id'=>'country',
-                        'placeholder'=>'Country',
+//                        'placeholder'=>'Country',
                         'autocomplete'=>'off'],
-                'label'=>'Country',
-                'required'=>true,
-                ])
+                'choice_label' => 'name',
+            ])
+//            ->add('country',null,[
+//                'attr'=>[
+//                        'class'=>'form-control border-right-0',
+//                        'id'=>'country',
+//                        'placeholder'=>'Country',
+//                        'autocomplete'=>'off'],
+//                'label'=>'Country',
+//                'required'=>true,
+//                ])
             ->add('regionOblast',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',

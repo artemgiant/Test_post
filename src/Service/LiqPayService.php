@@ -22,12 +22,12 @@ define("LOG_LIQPAY", getcwd() . "/../liqPay.log");
 class LiqPayService
 {
 
-    private $liqpay_public_key = "i51022028690";
-    private $liqpay_private_key = "EFQZ16fDWsmGLtA9Afea57LhmZN1MCDmbIbrDDvf";
+   // private $liqpay_public_key = "i51022028690";
+   // private $liqpay_private_key = "EFQZ16fDWsmGLtA9Afea57LhmZN1MCDmbIbrDDvf";
 
 
- //   private $liqpay_public_key = "i49780947016";
- //   private $liqpay_private_key = "vzWMZHg2z2AQh2Eg7EYiI5YDiQHYQS7K1XoJbEap";
+    private $liqpay_public_key = "i49780947016";
+    private $liqpay_private_key = "vzWMZHg2z2AQh2Eg7EYiI5YDiQHYQS7K1XoJbEap";
 
     private $em;
     public function __construct(EntityManagerInterface $em)
@@ -114,6 +114,7 @@ class LiqPayService
         error_log(print_r($data, true) . PHP_EOL, 3, LOG_LIQPAY);
         /* @var TransactionLiqPay $trLiqPay */
         $trLiqPay =$this->getEm()->getRepository(TransactionLiqPay::class)->findBy(['number'=>$data['order_id']]);
+
         if (empty($trLiqPay)) {
             $trLiqPay = new TransactionLiqPay();
             $trLiqPay->setCreatedAt(new \DateTime());
@@ -131,13 +132,16 @@ class LiqPayService
             $this->getEm()->flush([$trLiqPay]);
             $arrTmp = explode("_", $data['order_id']);
             $userTmp=null;
-            if ($arrTmp[0] == 'EXPRESSORDER' && count($arrTmp) > 2) {
+
+            if ($arrTmp[0] == 'EXPRESSORDER' && count($arrTmp) >= 2) {
+
                 if (isset($arrTmp[1]) && !empty($arrTmp[1])) {
                     $orderId = (int)$arrTmp[1];
+
                     error_log("---------- USER ID -----------", 3, LOG_LIQPAY);
                     error_log($orderId . PHP_EOL, 3, LOG_LIQPAY);
                     /* @var $order Order */
-                    $order=$this->getEm()->getRepository(Order::class)->find((int)$orderId);
+                    $order=$this->getEm()->getRepository(Order::class)->find($orderId);
                     if ($order){
                         $trLiqPay->setUser($order->getUser());
                         $orderStatus=$this->getEm()->getRepository(OrderStatus::class)->findOneBy(['status'=>'paid']);
@@ -149,7 +153,6 @@ class LiqPayService
                     }
                 }
             }
-
             $this->getEm()->persist($trLiqPay);
             $this->getEm()->flush();
         }

@@ -1,17 +1,20 @@
 {% extends "cabinet/cabinet_layout.html.twig" %}
 
-{% block title %}{{"Parcels"|trans }}{% endblock %}
+{% block title %}{{page_title|trans }}{% endblock %}
 
 {% block content %}
     <div class="col-xl-12">
         <!-- START card-->
         <div class="card card-default">
             <div class="card-header">
-                <a  href="{{ path("post_parcels_create") }}" class="float-left badge badge-primary">{{ "Add order" | trans }}
-                </a>
+                {% if page_title == 'Send Parcels List' %}
+                {% else %}
+                    <a  href="{{ path("post_parcels_create") }}" class="float-left badge badge-primary">{{ "Add order" | trans }}</a>
+                {% endif %}
             </div>
             <div class="card-body">
                 <!-- START table-responsive-->
+                {% if totalItemCount %}
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
@@ -27,7 +30,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {% if items is defined and items is iterable  %}
+                        {% if items is defined and items is iterable %}
                             {% for item in items %}
                                 <tr>
                                     <td>{{ item.getCreatedAtStr }}</td>
@@ -43,11 +46,17 @@
                                     </td>
                                     <td>
                                         {% if item.orderStatus is empty or item.orderStatus.status == 'new'%}
-                                            <a  href="{{ path("post_parcels_edit",{"id":item.id}) }}" class="btn btn-success">{{ "Edit Order" | trans }}
-                                            </a>
+                                            <a  href="{{ path("post_parcels_edit",{"id":item.id}) }}" class="btn btn-success">{{ "Edit Order" | trans }}</a>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if item.orderStatus is empty or item.orderStatus.status == 'new'%}
                                             {% if item.shippingCosts > 0 %}
-                                            {% set liqPayForm=liqpay.LiqPayForm(item.shippingCosts,'Pay by ExpreaaPochta.com',"EXPRESSORDER_"~item.id) %}
-                                        {{ liqPayForm | raw }}
+                                                {% set liqPayForm=liqpay.LiqPayForm(item.shippingCosts,'Pay by ExpreaaPochta.com',"EXPRESSORDER_"~item.id) %}
+                                                    <div class="liq-pay-button">
+                                                        {{ liqPayForm | raw }}
+                                                    </div>
+                                                    <input type="button" id="" class="payment-btn btn btn-success liq-pay-button-change" value="{{ "Pay" | trans }}" />
                                             {% endif %}
                                         {% endif %}
                                     </td>
@@ -62,6 +71,9 @@
                         </tbody>
                     </table>
                 </div><!-- END table-responsive-->
+                {% else %}
+                    {{ "No Parcels" | trans }}
+                {% endif %}
             </div>
             <div class="col-md-12">
                 {{ knp_pagination_render(items) }}

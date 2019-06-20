@@ -1685,10 +1685,10 @@
 		datesDisabled: [],
 		endDate: Infinity,
 		forceParse: true,
-		format: 'mm/dd/yyyy',
+		format: 'mm-dd-yyyy',
 		keepEmptyValues: false,
 		keyboardNavigation: true,
-		language: 'en',
+		language: 'ru',
 		minViewMode: 0,
 		maxViewMode: 4,
 		multidate: false,
@@ -1729,6 +1729,16 @@
 			monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 			today: "Today",
 			clear: "Clear",
+			titleFormat: "MM yyyy"
+		},
+		ru: {
+			days: ["Воскресенье", "Понеедельник", "Вторник", "Среда", "Четверг", "Пятница", "Воскресенье"],
+			daysShort: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+			daysMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+			months: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+			monthsShort: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+			today: "Сегодня",
+			clear: "",
 			titleFormat: "MM yyyy"
 		}
 	};

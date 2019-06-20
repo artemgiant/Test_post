@@ -7,7 +7,7 @@
         <!-- START card-->
         <div class="card card-default">
             <div class="card-header">
-                {{ "Find for tracking number "| trans }}: {{ trNum  }}
+                {{ "Find for tracking number"| trans }}: {{ trNum  }}
             </div>
             <div class="card-body">
                 <!-- START table-responsive-->
@@ -23,17 +23,33 @@
                         </thead>
                         <tbody>
                         {% if items is defined and items is iterable  and  items is not empty %}
-                            {% for item in items %}
+                            {% for itemCriers in items %}
+                                {% for item in itemCriers %}
+                                {% if item is not empty %}
                                 <tr>
-                                    <td>{{ item.Date }}</td>
-                                    <td>{{ item.StatusDescription }}</td>
-                                    <td>{{ item.Details }}</td>
+                                    <td>
+                                    {% if item.Date is defined %}
+                                        {{ item.Date }}
+                                    {% endif %}
+                                    </td>
+                                    <td>
+                                    {% if item.StatusDescription is defined %}
+                                            {{ item.StatusDescription }}
+                                    {% endif %}
+                                    </td>
+                                    <td>
+                                    {% if item.Details is defined %}
+                                            {{ item.Details }}
+                                    {% endif %}
+                                    </td>
                                 </tr>
+                                {% endif %}
+                                {% endfor %}
                             {% endfor %}
 
                         {% else %}
                             <tr>
-                                <td colspan="3">{{ errors }}</td>
+                                <td colspan="3">{{ errors }} {{ "Nothing Found" | trans }}</td>
                             </tr>
                         {% endif %}
                         </tbody>

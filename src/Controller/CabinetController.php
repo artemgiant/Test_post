@@ -15,7 +15,9 @@ use App\Form\AddressFormType;
 use App\Service\LiqPayService;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-
+/**
+ * @Route("/")
+ */
 class CabinetController extends AbstractController
 {
     public $user;
@@ -41,8 +43,26 @@ class CabinetController extends AbstractController
 
         if (!$result)
             return ' ';
+        $result['address'] = '';
+
+        if ($result['street'])
+            $result['address'].= 'ул. '.$result['street'];
+        if ($result['house'])
+            $result['address'].= ', д. '.$result['house'];
+        if ($result['apartment'])
+            $result['address'].= ', кв. '.$result['apartment'];
 
         return $result;
     }
+
+    /**
+     * @Route("/", name="homepage")
+     */
+
+    public function homepage()
+    {
+        return $this->redirectToRoute('post_dashboard');
+    }
+
 }
 

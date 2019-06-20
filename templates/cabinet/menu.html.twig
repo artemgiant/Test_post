@@ -63,14 +63,6 @@
                        %} active {% endif %} ">
                            <a href="{{ path("post_parcels_send") }}" title="{{"Send Parcerls List"|trans }}"><span data-localize="sidebar.nav.form.PARCELS_SEND">{{"Send Parcels List"|trans }}</span></a>
                        </li>
-                       <li class="{% if page_id is defined
-                           and
-                           page_id is not empty
-                           and
-                           page_id =="post_parcels_create"
-                       %} active {% endif %} ">
-                           <a href="{{ path("post_parcels_create") }}" title="{{"Parcels Create"|trans }}"><span data-localize="sidebar.nav.form.CREATE_PARCELS">{{"Parcels Create"|trans }}</span></a>
-                       </li>
                    </ul>
                </li>
 

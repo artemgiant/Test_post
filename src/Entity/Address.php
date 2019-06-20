@@ -38,14 +38,14 @@ class Address
 
     private $order;
 
-    /**
-     * @var string
-     *
-     * @Assert\NotBlank
-     *
-     * @ORM\Column(name="country", type="string")
-     */
-    private $country;
+//    /**
+//     * @var string
+//     *
+//     * @Assert\NotBlank
+//     *
+//     * @ORM\Column(name="country", type="string")
+//     */
+//    private $country;
 
     /**
      * @var string
@@ -164,12 +164,24 @@ class Address
      */
     private $phone;
 
+    /**
+     * @var Country
+     * @ORM\ManyToOne(targetEntity="Country")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $country;
+
     public function __construct()
     {
         $this->order = new ArrayCollection();
     }
 
-
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_confirmed", type="boolean")
+     */
+    private $isConfirmed = false;
 
     /**
      * @return int
@@ -198,18 +210,18 @@ class Address
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getCountry(): ?string
+    public function getCountry()
     {
         return $this->country;
     }
 
     /**
-     * @param string $country
+     * @param mixed $country
      * @return Address
      */
-    public function setCountry(string $country): Address
+    public function setCountry($country)
     {
         $this->country = $country;
         return $this;
@@ -508,19 +520,37 @@ class Address
     }
 
     /**
+     * @return Collection|Order[]
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isConfirmed(): bool
+    {
+        return $this->isConfirmed;
+    }
+
+    /**
+     * @param bool $isConfirmed
+     * @return Address
+     */
+    public function setIsConfirmed(bool $isConfirmed): Address
+    {
+        $this->isConfirmed = $isConfirmed;
+        return $this;
+    }
+
+    /**
      *
      * @return string
      */
     public function __toString(): string
     {
         return trim($this->street.' '.$this->house.' '.$this->apartment.' '.$this->city.' '.$this->zip.' '.$this->regionOblast.' '.$this->regionRayon);
-    }
-
-    /**
-     * @return Collection|Order[]
-     */
-    public function getOrder()
-    {
-        return $this->order;
     }
 }

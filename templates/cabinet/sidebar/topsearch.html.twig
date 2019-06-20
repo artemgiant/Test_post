@@ -1,6 +1,7 @@
 <!-- START Search form-->
-<form class="navbar-form" role="search" action="search.html">
-    <div class="form-group"><input class="form-control" type="text" placeholder="Type and hit enter ...">
+<form class="navbar-form" role="search" action="{{ path("post_find") }}" method="post">
+    <div class="form-group"><input class="form-control" type="text" name="tracnum"
+                                   value="{% if trNum is defined %} {{ trNum }}{% endif %}" placeholder="{{ "Type and hit enter ..."| trans }}">
         <div class="fas fa-times navbar-form-close" data-search-dismiss=""></div>
     </div><button class="d-none" type="submit">Submit</button>
 </form><!-- END Search form-->

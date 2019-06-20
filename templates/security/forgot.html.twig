@@ -26,7 +26,7 @@
                              class="form-control border-right-0" 
                              id="resetInputEmail1" 
                              type="email" 
-                             placeholder="Enter email" 
+                             placeholder={{"Enter _email"|trans}}
                              autocomplete="off"
                              name="_username"
                              />
@@ -37,7 +37,7 @@
                         </div>
                      </div>
                   </div>
-                   <button class="btn btn-danger btn-block" type="submit">Reset</button>
+                   <button class="btn btn-danger btn-block" type="submit">{{"Reset"|trans}}</button>
                    <a class="btn btn-block btn-secondary" href="{{url("user_login")}}">{{"Signup"|trans}}</a>
                </form>
 {% endblock %}

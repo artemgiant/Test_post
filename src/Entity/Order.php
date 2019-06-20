@@ -40,7 +40,7 @@ class Order
     /**
      * @var Address
      *
-     * @ORM\ManyToOne(targetEntity="Address", inversedBy="order")
+     * @ORM\ManyToOne(targetEntity="Address")
      * @ORM\JoinColumn(name="address_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $addresses;
@@ -78,7 +78,6 @@ class Order
      * @ORM\Column(name="send_from_address", type="string", length=512, nullable=true)
      */
     private $sendFromAddress;
-
 
     /**
      * @var string
@@ -150,7 +149,6 @@ class Order
      */
     private $comment;
 
-
     /**
      * @var string
      *
@@ -165,15 +163,12 @@ class Order
      */
     private $address;
 
-
     /**
      * @var OrderStatus
      * @ORM\ManyToOne(targetEntity="OrderStatus")
      * @ORM\JoinColumn(name="order_status", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $orderStatus;
-
-
 
     /**
      * @var float
@@ -939,10 +934,35 @@ class Order
     }
 
     /**
+     *
+     * @var string
+     *
+     * @ORM\Column(name="company_send_to_usa", type="string", length=512, nullable=true)
+     */
+
+    public $companySendToUsa;
+
+    /**
+     * @return string
+     */
+    public function getCompanySendToUsa()
+    {
+        return $this->companySendToUsa;
+    }
+
+    /**
+     * @param string $companySendToUsa
+     */
+    public function setCompanySendToUsa($companySendToUsa)
+    {
+        $this->companySendToUsa = $companySendToUsa;
+    }
+
+    /**
      * tracking number for system
      * @var string
      *
-     * @ORM\Column(name="system_number", type="string", length=512, nullable=true)
+     * @ORM\Column(name="system_number_to_usa", type="string", length=512, nullable=true)
      */
 
     public $systemNum;
@@ -964,6 +984,56 @@ class Order
         $this->systemNum = $systemNum;
     }
 
+    /**
+     *
+     * @var string
+     *
+     * @ORM\Column(name="company_send_in_usa", type="string", length=512, nullable=true)
+     */
+
+    public $companySendInUsa;
+
+    /**
+     * @return string
+     */
+    public function getCompanySendInUsa()
+    {
+        return $this->companySendInUsa;
+    }
+
+    /**
+     * @param string $companySendInUsa
+     */
+    public function setCompanySendInUsa($companySendInUsa)
+    {
+        $this->companySendInUsa = $companySendInUsa;
+    }
+
+    /**
+     * tracking number for system
+     * @var string
+     *
+     * @ORM\Column(name="system_number_in_usa", type="string", length=512, nullable=true)
+     */
+
+    public $systemNumInUsa;
+
+
+    /**
+     * @return string
+     */
+    public function getSystemNumInUsa()
+    {
+        return $this->systemNumInUsa;
+    }
+
+    /**
+     * @param string $systemNumInUsa
+     */
+    public function setSystemNumInUsa($systemNumInUsa)
+    {
+        $this->systemNumInUsa = $systemNumInUsa;
+    }
 //    /**
 //     * @ORM\OneToMany(targetEntity="DocumentDHL", mappedBy="ordersDHL",
 //     *     cascade={"persist", "remove"}, orphanRemoval=true)
