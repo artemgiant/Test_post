@@ -16,6 +16,8 @@ use App\Form\AddressFormType;
 use App\Service\LiqPayService;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+use App\Controller\CabinetController;
+
 
 class DefaultController extends CabinetController
 {
@@ -55,14 +57,6 @@ class DefaultController extends CabinetController
             ));
     }
 
-    /**
-     * @Route("/", name="homepage")
-     */
-
-    public function homepage()
-    {
-        return $this->redirectToRoute('post_dashboard');
-    }
 
     /**
      * @Route("/payment/check", name="payment_check")

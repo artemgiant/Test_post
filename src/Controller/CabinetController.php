@@ -15,7 +15,9 @@ use App\Form\AddressFormType;
 use App\Service\LiqPayService;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-
+/**
+ * @Route("/")
+ */
 class CabinetController extends AbstractController
 {
     public $user;
@@ -52,5 +54,15 @@ class CabinetController extends AbstractController
 
         return $result;
     }
+
+    /**
+     * @Route("/", name="homepage")
+     */
+
+    public function homepage()
+    {
+        return $this->redirectToRoute('post_dashboard');
+    }
+
 }
 

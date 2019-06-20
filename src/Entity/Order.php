@@ -934,10 +934,35 @@ class Order
     }
 
     /**
+     *
+     * @var string
+     *
+     * @ORM\Column(name="company_send_to_usa", type="string", length=512, nullable=true)
+     */
+
+    public $companySendToUsa;
+
+    /**
+     * @return string
+     */
+    public function getCompanySendToUsa()
+    {
+        return $this->companySendToUsa;
+    }
+
+    /**
+     * @param string $companySendToUsa
+     */
+    public function setCompanySendToUsa($companySendToUsa)
+    {
+        $this->companySendToUsa = $companySendToUsa;
+    }
+
+    /**
      * tracking number for system
      * @var string
      *
-     * @ORM\Column(name="system_number", type="string", length=512, nullable=true)
+     * @ORM\Column(name="system_number_to_usa", type="string", length=512, nullable=true)
      */
 
     public $systemNum;
@@ -959,6 +984,56 @@ class Order
         $this->systemNum = $systemNum;
     }
 
+    /**
+     *
+     * @var string
+     *
+     * @ORM\Column(name="company_send_in_usa", type="string", length=512, nullable=true)
+     */
+
+    public $companySendInUsa;
+
+    /**
+     * @return string
+     */
+    public function getCompanySendInUsa()
+    {
+        return $this->companySendInUsa;
+    }
+
+    /**
+     * @param string $companySendInUsa
+     */
+    public function setCompanySendInUsa($companySendInUsa)
+    {
+        $this->companySendInUsa = $companySendInUsa;
+    }
+
+    /**
+     * tracking number for system
+     * @var string
+     *
+     * @ORM\Column(name="system_number_in_usa", type="string", length=512, nullable=true)
+     */
+
+    public $systemNumInUsa;
+
+
+    /**
+     * @return string
+     */
+    public function getSystemNumInUsa()
+    {
+        return $this->systemNumInUsa;
+    }
+
+    /**
+     * @param string $systemNumInUsa
+     */
+    public function setSystemNumInUsa($systemNumInUsa)
+    {
+        $this->systemNumInUsa = $systemNumInUsa;
+    }
 //    /**
 //     * @ORM\OneToMany(targetEntity="DocumentDHL", mappedBy="ordersDHL",
 //     *     cascade={"persist", "remove"}, orphanRemoval=true)
