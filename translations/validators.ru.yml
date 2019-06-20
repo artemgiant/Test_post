@@ -90,3 +90,4 @@ Error: Ошибка
 'Please enter phone': 'Пожалуйста. Введите телефон.'
 'This value is required.': 'Обязательное значение'
 'There is already an account with this email': 'Это значение уже используется.'
+Your password should be at least {{ limit }} characters: Ваш пароль должен содержать не менее 6 символов

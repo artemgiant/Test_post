@@ -13,3 +13,4 @@
 'Credentials have expired.': 'Время действия аутентификационных данных истекло.'
 'Account is disabled.': 'Учетная запись отключена.'
 'Account is locked.': 'Учетная запись заблокирована.'
+Your password should be at least 6 characters: Ваш пароль должен содержать не менее 6 символов
