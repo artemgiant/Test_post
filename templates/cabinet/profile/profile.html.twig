@@ -141,6 +141,176 @@
                                 <div class="invalid-feedback">{{ form_errors(profileForm.email) }}</div>
                             </div>
                         </div>
+
+                        <div class="row py-4 justify-content-center">
+                            <div class="col-4 col-sm-4">
+                                <div class="form-group">
+                                    {{ form_label(profileForm.country,"Country"|trans, {
+                                        "label_attr": {"class": "text-muted"}
+                                    }) }}
+                                    <div class="input-group with-focus">
+                                        {% if profileForm.country.vars.errors|length %}
+                                            {{ form_widget(profileForm.country, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                        {% else %}
+                                            {{ form_widget(profileForm.country) }}
+                                        {% endif %}
+                                        <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                        </div>
+                                        <div class="invalid-feedback">{{ form_errors(profileForm.country) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-sm-4">
+                                <div class="form-group">
+                                    {{ form_label(profileForm.regionOblast,"Region"|trans, {
+                                        "label_attr": {"class": "text-muted"}
+                                    }) }}
+                                    <div class="input-group with-focus">
+                                        {% if profileForm.regionOblast.vars.errors|length %}
+                                            {{ form_widget(profileForm.regionOblast, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                        {% else %}
+                                            {{ form_widget(profileForm.regionOblast) }}
+                                        {% endif %}
+                                        <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                        </div>
+                                        <div class="invalid-feedback">{{ form_errors(profileForm.regionOblast) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-sm-4">
+                                <div class="form-group">
+                                    {{ form_label(profileForm.regionRayon,"District"|trans, {
+                                        "label_attr": {"class": "text-muted"}
+                                    }) }}
+                                    <div class="input-group with-focus">
+                                        {% if profileForm.regionRayon.vars.errors|length %}
+                                            {{ form_widget(profileForm.regionRayon, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                        {% else %}
+                                            {{ form_widget(profileForm.regionRayon) }}
+                                        {% endif %}
+                                        <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                        </div>
+                                        <div class="invalid-feedback">{{ form_errors(profileForm.regionRayon) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row py-4 justify-content-center">
+                            <div class="col-8 col-sm-8">
+                                <div class="form-group">
+                                    {{ form_label(profileForm.country,"City"|trans, {
+                                        "label_attr": {"class": "text-muted"}
+                                    }) }}
+                                    <div class="input-group with-focus">
+                                        {% if profileForm.city.vars.errors|length %}
+                                            {{ form_widget(profileForm.city, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                        {% else %}
+                                            {{ form_widget(profileForm.city) }}
+                                        {% endif %}
+                                        <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                        </div>
+                                        <div class="invalid-feedback">{{ form_errors(profileForm.city) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-sm-4">
+                                <div class="form-group">
+                                    {{ form_label(profileForm.regionOblast,"ZIP"|trans, {
+                                        "label_attr": {"class": "text-muted"}
+                                    }) }}
+                                    <div class="input-group with-focus">
+                                        {% if profileForm.zip.vars.errors|length %}
+                                            {{ form_widget(profileForm.zip, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                        {% else %}
+                                            {{ form_widget(profileForm.zip) }}
+                                        {% endif %}
+                                        <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                        </div>
+                                        <div class="invalid-feedback">{{ form_errors(profileForm.zip) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row py-4 justify-content-center">
+                            <div class="col-4 col-sm-4">
+                                <div class="form-group">
+                                    {{ form_label(profileForm.street,"Street"|trans, {
+                                        "label_attr": {"class": "text-muted"}
+                                    }) }}
+                                    <div class="input-group with-focus">
+                                        {% if profileForm.street.vars.errors|length %}
+                                            {{ form_widget(profileForm.street, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                        {% else %}
+                                            {{ form_widget(profileForm.street) }}
+                                        {% endif %}
+                                        <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                        </div>
+                                        <div class="invalid-feedback">{{ form_errors(profileForm.street) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-sm-4">
+                                <div class="form-group">
+                                    {{ form_label(profileForm.house,"Number of house"|trans, {
+                                        "label_attr": {"class": "text-muted"}
+                                    }) }}
+                                    <div class="input-group with-focus">
+                                        {% if profileForm.house.vars.errors|length %}
+                                            {{ form_widget(profileForm.house, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                        {% else %}
+                                            {{ form_widget(profileForm.house) }}
+                                        {% endif %}
+                                        <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                        </div>
+                                        <div class="invalid-feedback">{{ form_errors(profileForm.house) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-sm-4">
+                                <div class="form-group">
+                                    {{ form_label(profileForm.apartment,"Number of apartment"|trans, {
+                                        "label_attr": {"class": "text-muted"}
+                                    }) }}
+                                    <div class="input-group with-focus">
+                                        {% if profileForm.apartment.vars.errors|length %}
+                                            {{ form_widget(profileForm.apartment, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                        {% else %}
+                                            {{ form_widget(profileForm.apartment) }}
+                                        {% endif %}
+                                        <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                        </div>
+                                        <div class="invalid-feedback">{{ form_errors(profileForm.apartment) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="offset-5 col-2">
                                 {{ form_row(profileForm.save, {"label": "Save"|trans}) }}
