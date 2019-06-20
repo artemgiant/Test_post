@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Order;
 use App\Entity\User;
 use App\Entity\Address;
+use App\Entity\OrderStatus;
 use App\Entity\DeliveryPrice;
 use App\Entity\OrderProducts;
 use App\Controller\CabinetController;
@@ -12,7 +13,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Contracts\Translation\TranslatorInterface;
 use App\Form\OrderFormType;
 
 use Knp\Component\Pager\PaginatorInterface;
@@ -82,6 +83,7 @@ class ParcelsController extends CabinetController
 
         return $this->render('cabinet/parcels/parcels.html.twig'
             , array_merge($this->optionToTemplate,[
+                'isSend'=>1,
                 'items'=>$ordersList,
                 'totalItemCount'=>$totalItemCount,
                 ])
@@ -91,7 +93,7 @@ class ParcelsController extends CabinetController
     /**
      * @Route("/create", name="post_parcels_create")
      */
-    public function parcelsCreateAction(Request $request): Response
+    public function parcelsCreateAction(Request $request,TranslatorInterface $translateService): Response
     {
         $this->getTemplateData();
         $errors =[];
@@ -142,11 +144,15 @@ class ParcelsController extends CabinetController
             $order->setShippingCosts($shipCost);
             $order->setVolumeWeigth($volume);
             $order->setUser($this->user);
+            $orderStatus=$entityManager->getRepository(OrderStatus::class)->findOneBy(['status'=>'new']);
+            $order->setOrderStatus($orderStatus);
             $entityManager->persist($order);
             $entityManager->flush();
 
-            // do anything else you need here, like send an email
-
+            $this->addFlash(
+                'success',
+                $translateService->trans("Orders Added sucusfull")
+            );
             return $this->redirectToRoute('post_parcels');
         }elseif ($form->isSubmitted() && !$form->isValid()){
             $errors = $form->getErrors(true);
@@ -161,7 +167,7 @@ class ParcelsController extends CabinetController
     /**
      * @Route("/{id}/edit", name="post_parcels_edit")
      */
-    public function parcelsEditAction(Request $request): Response
+    public function parcelsEditAction(Request $request,TranslatorInterface $translateService): Response
     {
         $this->getTemplateData();
         $entityManager = $this->getDoctrine()->getManager();
@@ -238,7 +244,10 @@ class ParcelsController extends CabinetController
 
             $entityManager->persist($order);
             $entityManager->flush();
-
+            $this->addFlash(
+                'success',
+                $translateService->trans("Orders Update sucusfull")
+            );
             return $this->redirectToRoute('post_parcels');
         }elseif ($form->isSubmitted() && !$form->isValid()){
             $errors = $form->getErrors(true);

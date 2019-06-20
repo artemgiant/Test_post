@@ -64,6 +64,11 @@ class User implements UserInterface, \Serializable
     private $phone;
 
     /**
+     * @ORM\OneToMany(targetEntity="TransactionLiqPay", mappedBy="user")
+     */
+    private $transaction;
+
+  /**
      * @ORM\OneToMany(targetEntity="Address", mappedBy="user")
      */
     private $addresses;

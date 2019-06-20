@@ -11,7 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 use App\Form\AddressFormType;
+use App\Form\AddressFormAjaxType;
 
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -159,6 +161,54 @@ class AddressController extends CabinetController
 
             return $this->redirectToRoute('post_addresses');
         }
+    }
+
+    /**
+     * @Route("/ajax/create", name="ajax_post_address_create")
+     * @param Request $request
+     * @return Response
+     */
+    public function ajaxAddressCreateAction(Request $request): Response
+    {
+        $this->getTemplateData();
+        $errors =[];
+        $this->optionToTemplate['page_id']='post_address_create';
+        $this->optionToTemplate['page_title']='Address Create';
+
+        $address = new Address();
+        $form = $this->createForm(AddressFormAjaxType::class, $address);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $address->setUser($this->user);
+            $entityManager->persist($address);
+            $entityManager->flush();
+
+            // do anything else you need here, like send an email
+
+          //  return $this->redirectToRoute('post_addresses');
+            $adressList=$entityManager->getRepository(Address::class)
+            ->getAdressList($this->user)->getResult();
+            $data=[];
+            if ($adressList){
+                foreach($adressList as $address){
+                    $data[$address->getId()]=$address->getFullName();
+                }
+            }
+            return new JsonResponse($data);
+        }elseif ($form->isSubmitted() && !$form->isValid()){
+            $errors = $form->getErrors(true);
+        }
+
+        $twigoption=array_merge($this->optionToTemplate,[
+            'addressForm' => $form->createView(),
+            'error' => $errors,]);
+
+        return $this->render('cabinet/addresses/modalAddress.html.twig', $twigoption);
+
     }
 }
 
