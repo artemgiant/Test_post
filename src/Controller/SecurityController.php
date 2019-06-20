@@ -102,9 +102,9 @@ class SecurityController extends AbstractController
                 $template = $this->render('Email/password.html.twig');
                 $template = str_replace("{{name}}", $user->getUsername(), $template);
                 $template = str_replace("{{password}}", $newPassword, $template);
-                $message = (new \Swift_Message('Hello Email'));
-                $message      ->setSubject('Password recovery in  site.')
-                               ->setFrom('tets@test.te')
+                $message = (new \Swift_Message('Password recovery in  site expressposhta.com'));
+                $message      ->setSubject('Password recovery in  site expressposhta.com')
+                               ->setFrom('admin@expressposhta.com')
                                ->setTo($user->getEmail())
                                ->setBody(html_entity_decode($template),'text/html');
                 $mailer->send($message);
