@@ -20,12 +20,17 @@
                         <thead>
                         <tr>
                             <th>{{ "Create Date" | trans }}</th>
-                            <th>{{ "trackingNumber Nova Pochta" | trans }}</th>
+                            {% if isSend is defined and isSend == 1 %}
+                                <th>{{ "trackingNumber" | trans }}</th>
+                            {% else %}
+                                <th>{{ "trackingNumber Nova Pochta" | trans }}</th>
+                            {% endif %}
                             <th>{{ "sendDetailWeight" | trans }}</th>
                             <th>{{ "volumeWeigth" | trans }}</th>
                             <th>{{ "shipgCost" | trans }}</th>
                             <th>{{ "declareValue" | trans }}</th>
                             <th>{{ "Adress" | trans }}</th>
+                            <th>{{ "Status" | trans }}</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -34,7 +39,11 @@
                             {% for item in items %}
                                 <tr>
                                     <td>{{ item.getCreatedAtStr }}</td>
-                                    <td>{{ item.trackingNumber }}</td>
+                                    {% if isSend is defined and isSend == 1 %}
+                                        <td>{{ item.trNum }}</td>
+                                    {% else %}
+                                        <td>{{ item.trackingNumber }}</td>
+                                    {% endif %}
                                     <td>{{ item.sendDetailWeight }}</td>
                                     <td>{{ item.volumeWeigth }}</td>
                                     <td>{{ item.shippingCosts }}</td>
@@ -44,6 +53,7 @@
                                             {{ item.addresses.fullAddress }}
                                         {% endif %}
                                     </td>
+                                    <td>{{ item.orderStatus }}</td>
                                     <td>
                                         {% if item.orderStatus is empty or item.orderStatus.status == 'new'%}
                                             <a  href="{{ path("post_parcels_edit",{"id":item.id}) }}" class="btn btn-success">{{ "Edit Order" | trans }}</a>
@@ -65,7 +75,7 @@
 
                         {% else %}
                             <tr>
-                                <td colspan="3">Нет покупок</td>
+                                <td colspan="3">{{ "No parcel" | trans}}</td>
                             </tr>
                         {% endif %}
                         </tbody>

@@ -67,13 +67,13 @@ class TransactionLiqPay
 
     /**
      * @var integer
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="accounts")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="transaction")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     protected $user;
 
     /**
-     * @ORM\OneToOne(targetEntity="Order", mappedBy="transaction")
+     * @ORM\OneToOne(targetEntity="Order",inversedBy="transaction")
      * @ORM\JoinColumn(name="order_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $order;
