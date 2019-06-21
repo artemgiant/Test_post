@@ -52,18 +52,18 @@ class OrderFormType extends AbstractType
                 'required'=>true
             ])
             */
-            ->add('shipDate',DateType::class,[
-                'attr'=>[
-                    'class'=>'form-control border-right-0 datepicker',
-                    'id'=>'shipDate',
-//                    'placeholder'=>'shipDate',
-                    'autocomplete'=>'off'],
-                'label'=>'shipDate',
-                'widget' => 'single_text',
-                'html5' => false,
-                'format' => 'dd-MM-yyyy',
-                'required'=>true
-            ])
+//            ->add('shipDate',DateType::class,[
+//                'attr'=>[
+//                    'class'=>'form-control border-right-0 datepicker',
+//                    'id'=>'shipDate',
+////                    'placeholder'=>'shipDate',
+//                    'autocomplete'=>'off'],
+//                'label'=>'shipDate',
+//                'widget' => 'single_text',
+//                'html5' => false,
+//                'format' => 'dd-MM-yyyy',
+//                'required'=>true
+//            ])
         /*
             ->add('product',null,[
                 'attr'=>[
