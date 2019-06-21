@@ -45,7 +45,7 @@
                         {% if form.descEn.vars.errors|length %}
                             {{ form_widget(form.descEn, {"attr": {"class": "is-invalid form-control"}}) }}
                         {% else %}
-                            {{ form_widget(form.descEn) }}
+                            {{ form_widget(form.descEn, {"attr": {"class": "textarea-desc"}}) }}
                         {% endif %}
                         <div class="invalid-feedback">{{ form_errors(form.descEn) }}</div>
                     </div>
@@ -57,7 +57,7 @@
                     {% if form.descUa.vars.errors|length %}
                         {{ form_widget(form.descUa, {"attr": {"class": "is-invalid form-control"}}) }}
                     {% else %}
-                        {{ form_widget(form.descUa) }}
+                        {{ form_widget(form.descUa, {"attr": {"class": "textarea-desc"}}) }}
                     {% endif %}
                     <div class="invalid-feedback">{{ form_errors(form.descUa) }}</div>
                 </div>
@@ -90,7 +90,7 @@
             <div class="col-2">
                     <div class="form-group">
                         <a href="#" class="collection-remove btn btn-danger">{{ "Remove product" | trans }}</a>
-{#                        <a href="#" class="collection-add btn btn-success">{{ "Add product" | trans }}</a>#}
+                        <a href="#" class="collection-add btn">{{ "Add product" | trans }}</a>
                     </div>
                 </div>
         </div>
