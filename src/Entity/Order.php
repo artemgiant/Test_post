@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
+
 /**
  * Order
  *
@@ -30,9 +31,9 @@ class Order
     private $products;
 
     /**
-     * @ORM\OneToMany(targetEntity="AddPayment", mappedBy="orderId", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="Invoices", mappedBy="orderId", cascade={"persist", "remove"})
      */
-    private $addPayments;
+    private $invoices;
 
     /**
      * @var User
@@ -50,11 +51,7 @@ class Order
      */
     private $addresses;
 
-    /**
-     * @ORM\OneToMany(targetEntity="TransactionLiqPay", mappedBy="order")
-     *
-     */
-    private $transactions;
+
 
     /**
      * @var string
@@ -274,8 +271,7 @@ class Order
         $this->shipDate = new \DateTime();
         $this->adminCreate = false;
         $this->products = new ArrayCollection();
-        $this->addPayments = new ArrayCollection();
-        $this->transactions = new ArrayCollection();
+        $this->invoices = new ArrayCollection();
     }
 
     /**
@@ -416,30 +412,6 @@ class Order
     {
         return $this->user;
     }
-
-    public function addTransaction(TransactionLiqPay $transaction)
-    {
-        if ($this->transactions->contains($transaction)) {
-            return;
-        }
-
-        $this->transactions[] = $transaction;
-        $transaction->setOrder($this);
-    }
-    /**
-     * @return Collection|TransactionLiqPay[]
-     */
-    public function getTransactions()
-    {
-        return $this->transactions;
-    }
-
-    public function removeTransaction(TransactionLiqPay $transaction)
-    {
-        $this->transactions->removeElement($transaction);
-        // установите владеющую сторону, как null
-        $transaction->setOrder(null);
-    }
     /**
      * @return string
      */
@@ -514,43 +486,43 @@ class Order
 
 
     /**
-     * Add addPayments
+     * Add invoices
      *
-     * @param AddPayment $addPayment
+     * @param Invoice $invoice
      * @return Order
      */
-    public function addAddPayment(AddPayment $addPayment=null)
+    public function addInvoice(Invoice $invoice=null)
     {
-        if ( !$addPayment->getOrderId() instanceof AddPayment ) {
-            $addPayment->setOrderId($this);
+        if ( !$invoice->getOrderId() instanceof Invoice ) {
+            $invoice->setOrderId($this);
         }
 
-        if( !$this->addPayments->contains($addPayment))
+        if( !$this->invoices->contains($invoice))
         {
-            $this->addPayments->add($addPayment);
+            $this->invoices->add($invoice);
         }
         return $this;
     }
 
     /**
-     * Remove addPayment
+     * Remove invoice
      *
-     * @param OrderProducts $addPayment
+     * @param OrderProducts $invoice
      */
-    public function removeAddPayment(AddPayment $addPayment)
+    public function removeInvoice(Invoice $invoice)
     {
-        if ($addPayment instanceof AddPayment)
-        $this->addPayments->removeElement($addPayment);
+        if ($invoice instanceof Invoice)
+        $this->invoices->removeElement($invoice);
     }
 
     /**
-     * Get addPayments
+     * Get invoices
      *
      * @return Collection
      */
-    public function getAddPayments()
+    public function getInvoices()
     {
-        return $this->addPayments;
+        return $this->invoices;
     }
 
 

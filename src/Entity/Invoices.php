@@ -3,14 +3,19 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
+use App\Entity\Order;
+use App\Entity\User;
+use App\Entity\Address;
+use App\Entity\TransactionLiqPay;
 /**
- * OrderProducts
+ * Invoices
  *
- * @ORM\Table(name="add_payment")
+ * @ORM\Table(name="invoices")
  * @ORM\Entity
  */
-class AddPayment
+class Invoices
 {
     /**
      * @var integer
@@ -38,11 +43,24 @@ class AddPayment
 
     /**
      * @var Order
-     * @ORM\ManyToOne(targetEntity="Order", inversedBy="products", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="Order", inversedBy="invoices", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="order_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
 
     private $orderId;
+
+    /**
+     * @ORM\OneToMany(targetEntity="TransactionLiqPay", mappedBy="invoice")
+     *
+     */
+    private $transactions;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_paid", type="boolean")
+     */
+    private $isPaid = false;
 
     /**
      * Get id
@@ -52,6 +70,10 @@ class AddPayment
     public function getId()
     {
         return $this->id;
+    }
+
+    public function __construct() {
+        $this->transactions = new ArrayCollection();
     }
 
        /**
@@ -99,6 +121,17 @@ class AddPayment
     {
         return $this->comment;
     }
+    public function isPaid()
+    {
+        return $this->isPaid;
+    }
+
+    public function setIsPaid(bool $isPaid)
+    {
+        $this->isPaid = $isPaid;
+
+        return $this;
+    }
 
 
     /**
@@ -132,5 +165,29 @@ class AddPayment
         } else {
             return 'New orders add payment';
         }
+    }
+
+    public function addTransaction(TransactionLiqPay $transaction)
+    {
+        if ($this->transactions->contains($transaction)) {
+            return;
+        }
+
+        $this->transactions[] = $transaction;
+        $transaction->setOrder($this);
+    }
+    /**
+     * @return Collection|TransactionLiqPay[]
+     */
+    public function getTransactions()
+    {
+        return $this->transactions;
+    }
+
+    public function removeTransaction(TransactionLiqPay $transaction)
+    {
+        $this->transactions->removeElement($transaction);
+        // установите владеющую сторону, как null
+        $transaction->setOrder(null);
     }
 }
