@@ -46,10 +46,10 @@ class Order
     private $addresses;
 
     /**
-     * @ORM\OneToOne(targetEntity="TransactionLiqPay", mappedBy="order")
-     * @ORM\JoinColumn(name="transaction", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     * @ORM\OneToMany(targetEntity="TransactionLiqPay", mappedBy="order")
+     *
      */
-    private $transaction;
+    private $transactions;
 
     /**
      * @var string
@@ -424,13 +424,13 @@ class Order
     }
 
     /**
-     * Get transaction
+     * Get transactions
      *
      * @return TransactionLiqPay
      */
-    public function getTransaction()
+    public function getTransactions()
     {
-        return $this->transaction;
+        return $this->transactions;
     }
 
     /**

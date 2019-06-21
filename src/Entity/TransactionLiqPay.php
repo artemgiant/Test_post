@@ -73,7 +73,7 @@ class TransactionLiqPay
     protected $user;
 
     /**
-     * @ORM\OneToOne(targetEntity="Order",inversedBy="transaction")
+     * @ORM\ManyToOne(targetEntity="Order",inversedBy="transaction")
      * @ORM\JoinColumn(name="order_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $order;
