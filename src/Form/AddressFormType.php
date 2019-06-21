@@ -21,19 +21,9 @@ class AddressFormType extends AbstractType
                 'attr'=>[
                         'class'=>'form-control border-right-0',
                         'id'=>'country',
-//                        'placeholder'=>'Country',
                         'autocomplete'=>'off'],
                 'choice_label' => 'name',
             ])
-//            ->add('country',null,[
-//                'attr'=>[
-//                        'class'=>'form-control border-right-0',
-//                        'id'=>'country',
-//                        'placeholder'=>'Country',
-//                        'autocomplete'=>'off'],
-//                'label'=>'Country',
-//                'required'=>true,
-//                ])
             ->add('regionOblast',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
@@ -42,15 +32,6 @@ class AddressFormType extends AbstractType
                     'autocomplete'=>'off'],
                 'label'=>'regionOblast',
                 'required'=>true
-            ])
-            ->add('regionRayon',null,[
-                'attr'=>[
-                    'class'=>'form-control border-right-0',
-                    'id'=>'country',
-                    'placeholder'=>'Enter district',
-                    'autocomplete'=>'off'],
-                'label'=>'regionRayon',
-                'required'=>false
             ])
             ->add('city',null,[
                 'attr'=>[
@@ -87,15 +68,6 @@ class AddressFormType extends AbstractType
                     'autocomplete'=>'off'],
                 'label'=>'house',
                 'required'=>true
-            ])
-            ->add('apartment',null,[
-                'attr'=>[
-                    'class'=>'form-control border-right-0',
-                    'id'=>'apartment',
-                    'placeholder'=>'Enter number apartment',
-                    'autocomplete'=>'off'],
-                'label'=>'apartment',
-                'required'=>false
             ])
             ->add('userFirstName',null,[
                 'attr'=>[

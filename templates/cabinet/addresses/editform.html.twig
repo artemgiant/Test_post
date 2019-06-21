@@ -95,48 +95,6 @@
                     </div>
                     <div class="col-4 col-sm-4">
                         <div class="form-group">
-                            {{ form_label(addressForm.regionRayon,"District"|trans, {
-                                "label_attr": {"class": "text-muted"}
-                            }) }}
-                            <div class="input-group with-focus">
-                                {% if addressForm.regionRayon.vars.errors|length %}
-                                    {{ form_widget(addressForm.regionRayon, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
-                                {% else %}
-                                    {{ form_widget(addressForm.regionRayon) }}
-                                {% endif %}
-                                <div class="input-group-append">
-                             <span class="input-group-text text-muted bg-transparent border-left-0">
-                                 <em class="fa fa-user"></em>
-                             </span>
-                                </div>
-                                <div class="invalid-feedback">{{ form_errors(addressForm.regionRayon) }}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row py-4 justify-content-center">
-                    <div class="col-8 col-sm-8">
-                        <div class="form-group">
-                            {{ form_label(addressForm.country,"City"|trans, {
-                                "label_attr": {"class": "text-muted"}
-                            }) }}
-                            <div class="input-group with-focus">
-                                {% if addressForm.city.vars.errors|length %}
-                                    {{ form_widget(addressForm.city, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
-                                {% else %}
-                                    {{ form_widget(addressForm.city) }}
-                                {% endif %}
-                                <div class="input-group-append">
-                             <span class="input-group-text text-muted bg-transparent border-left-0">
-                                 <em class="fa fa-user"></em>
-                             </span>
-                                </div>
-                                <div class="invalid-feedback">{{ form_errors(addressForm.city) }}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 col-sm-4">
-                        <div class="form-group">
                             {{ form_label(addressForm.regionOblast,"ZIP"|trans, {
                                 "label_attr": {"class": "text-muted"}
                             }) }}
@@ -157,6 +115,26 @@
                     </div>
                 </div>
                 <div class="row py-4 justify-content-center">
+                    <div class="col-4 col-sm-4">
+                        <div class="form-group">
+                            {{ form_label(addressForm.country,"City"|trans, {
+                                "label_attr": {"class": "text-muted"}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {% if addressForm.city.vars.errors|length %}
+                                    {{ form_widget(addressForm.city, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                {% else %}
+                                    {{ form_widget(addressForm.city) }}
+                                {% endif %}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(addressForm.city) }}</div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-4 col-sm-4">
                         <div class="form-group">
                             {{ form_label(addressForm.street,"Street"|trans, {
@@ -194,26 +172,6 @@
                              </span>
                                 </div>
                                 <div class="invalid-feedback">{{ form_errors(addressForm.house) }}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 col-sm-4">
-                        <div class="form-group">
-                            {{ form_label(addressForm.apartment,"Number of apartment"|trans, {
-                                "label_attr": {"class": "text-muted"}
-                            }) }}
-                            <div class="input-group with-focus">
-                                {% if addressForm.apartment.vars.errors|length %}
-                                    {{ form_widget(addressForm.apartment, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
-                                {% else %}
-                                    {{ form_widget(addressForm.apartment) }}
-                                {% endif %}
-                                <div class="input-group-append">
-                             <span class="input-group-text text-muted bg-transparent border-left-0">
-                                 <em class="fa fa-user"></em>
-                             </span>
-                                </div>
-                                <div class="invalid-feedback">{{ form_errors(addressForm.apartment) }}</div>
                             </div>
                         </div>
                     </div>

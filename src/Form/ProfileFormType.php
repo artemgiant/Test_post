@@ -20,15 +20,7 @@ class ProfileFormType extends AbstractType
     {
         $builder
             ->add('avatarFile', FileType::class,[
-//                'data_class' => null,
-//                'empty_data' => ' ',
                 'required'=>false,
-               /* 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please upload avatar',
-                    ]),
-
-                ],*/
             ])
             ->add('firstName',null,[
                 'attr'=>[
@@ -119,15 +111,16 @@ class ProfileFormType extends AbstractType
                 'label'=>'regionOblast',
                 'required'=>true
             ])
-            ->add('regionRayon',null,[
-                'attr'=>[
-                    'class'=>'form-control border-right-0',
-                    'id'=>'country',
-                    'placeholder'=>'Enter district',
-                    'autocomplete'=>'off'],
-                'label'=>'regionRayon',
-                'required'=>false
-            ])
+//            ->add('regionRayon',null,[
+//                'attr'=>[
+//                    'class'=>'form-control border-right-0',
+//                    'id'=>'country',
+//                    'placeholder'=>'Enter district',
+//                    'autocomplete'=>'off'],
+//                'label'=>'regionRayon',
+//                'required'=>false,
+//                'empty_data'=> ' ',
+//            ])
             ->add('city',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
@@ -164,15 +157,16 @@ class ProfileFormType extends AbstractType
                 'label'=>'house',
                 'required'=>true
             ])
-            ->add('apartment',null,[
-                'attr'=>[
-                    'class'=>'form-control border-right-0',
-                    'id'=>'apartment',
-                    'placeholder'=>'Enter number apartment',
-                    'autocomplete'=>'off'],
-                'label'=>'apartment',
-                'required'=>false
-            ])
+//            ->add('apartment',null,[
+//                'attr'=>[
+//                    'class'=>'form-control border-right-0',
+//                    'id'=>'apartment',
+//                    'placeholder'=>'Enter number apartment',
+//                    'autocomplete'=>'off'],
+//                'label'=>'apartment',
+//                'required'=>false,
+//                'empty_data'=> ' ',
+//            ])
             ->add('save_avatar', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-block btn-primary mt-3 mx-auto d-block'],
             ])

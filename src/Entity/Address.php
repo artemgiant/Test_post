@@ -116,7 +116,6 @@ class Address
     /**
      * @var string
      *
-     *
      * @ORM\Column(name="apartment", type="string", nullable=true)
      */
     private $apartment;
@@ -262,8 +261,6 @@ class Address
     }
 
     /**
-     * @param string $street
-     * @param string $apartment
      * @return Address
      */
     public function setAddress(): Address
@@ -515,7 +512,6 @@ class Address
         $fullAddress = trim($this->street.' '.$this->house.' '.$this->apartment.' '.$this->city.' '.$this->zip.' '.$this->regionOblast.' '.$this->regionRayon);
         if (!$fullAddress)
             return ' ';
-
         return $fullAddress;
     }
 
