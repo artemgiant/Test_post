@@ -74,9 +74,9 @@ Cabinet: Кабинет
 'Number of house': 'Номер дома'
 'House': 'Номер дома'
 'Enter number house': 'Введите номер дома'
-'Number of apartment': Квартира/комната
-'Apartment': Квартира/комната
-'Enter number apartment': 'Введите номер квартиры/комнаты'
+'Number of apartment': Квартира
+'Apartment': Квартира
+'Enter number apartment': 'Введите номер квартиры'
 'Receivers first name': 'Имя получателя'
 'Enter first name': 'Введите имя'
 'Receivers last name': 'Фамилия получателя'
@@ -110,16 +110,16 @@ Cabinet: Кабинет
 'declareValue': 'Объявленная стоимость'
 'Declare Value': 'Объявленная стоимость'
 'comment': 'Комментарий'
-'Add product': 'Добавить'
+'Add product': +
 'Add order': 'Добавить'
 'Create Date': 'Дата добавления'
-'trackingNumber Nova Pochta': 'Трек номер|Нова почта'
+'trackingNumber Nova Pochta': 'ТН|Нова почта'
 'Tracking Number': 'Трек номер'
 'shipgCost': 'Стоимость доставки'
 'Edit Order': 'Редактировать'
 'descEn': 'Описание на английском'
 'descUa': 'Описание на украинском'
-'price': 'Цена'
+'price': 'Стоимость'
 'count': 'Количество'
 'Remove product': 'Удалить'
 'copyRigtht': 'Авторское право'

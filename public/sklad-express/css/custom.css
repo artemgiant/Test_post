@@ -1,5 +1,18 @@
+.textarea-desc{
+    font-size: 1rem;
+    min-width: 100%;
+}
+
+.btn-add-products{
+    font-size: 1.5rem;
+}
+
 .liq-pay-button{
     visibility: hidden;
     height: 0px;
     width: 0px;
+}
+
+.btn-edit-parcel{
+    margin-bottom: 5px;
 }

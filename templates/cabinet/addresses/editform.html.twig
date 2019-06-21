@@ -115,7 +115,7 @@
                     </div>
                 </div>
                 <div class="row py-4 justify-content-center">
-                    <div class="col-4 col-sm-4">
+                    <div class="col-3 col-sm-3">
                         <div class="form-group">
                             {{ form_label(addressForm.country,"City"|trans, {
                                 "label_attr": {"class": "text-muted"}
@@ -135,7 +135,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4 col-sm-4">
+                    <div class="col-3 col-sm-3">
                         <div class="form-group">
                             {{ form_label(addressForm.street,"Street"|trans, {
                                 "label_attr": {"class": "text-muted"}
@@ -155,7 +155,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4 col-sm-4">
+                    <div class="col-3 col-sm-3">
                         <div class="form-group">
                             {{ form_label(addressForm.house,"Number of house"|trans, {
                                 "label_attr": {"class": "text-muted"}
@@ -175,9 +175,29 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-3 col-sm-3">
+                        <div class="form-group">
+                            {{ form_label(addressForm.apartment,"Number of apartment"|trans, {
+                                "label_attr": {"class": "text-muted"}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {% if addressForm.apartment.vars.errors|length %}
+                                    {{ form_widget(addressForm.apartment, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                {% else %}
+                                    {{ form_widget(addressForm.apartment) }}
+                                {% endif %}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(addressForm.apartment) }}</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row py-4 justify-content-center">
-                    <div class="col-4 col-sm-4">
+                    <div class="col-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(addressForm.userFirstName,"Receivers first name"|trans, {
                                 "label_attr": {"class": "text-muted"}
@@ -197,7 +217,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4 col-sm-4">
+                    <div class="col-6 col-sm-6">
                         <div class="form-group">
                             {{ form_label(addressForm.userLastName,"Receivers last name"|trans, {
                                 "label_attr": {"class": "text-muted"}
@@ -217,26 +237,26 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4 col-sm-4">
-                        <div class="form-group">
-                            {{ form_label(addressForm.userSecondName,"Receivers second name"|trans, {
-                                "label_attr": {"class": "text-muted"}
-                            }) }}
-                            <div class="input-group with-focus">
-                                {% if addressForm.userSecondName.vars.errors|length %}
-                                    {{ form_widget(addressForm.userSecondName, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
-                                {% else %}
-                                    {{ form_widget(addressForm.userSecondName) }}
-                                {% endif %}
-                                <div class="input-group-append">
-                             <span class="input-group-text text-muted bg-transparent border-left-0">
-                                 <em class="fa fa-user"></em>
-                             </span>
-                                </div>
-                                <div class="invalid-feedback">{{ form_errors(addressForm.userSecondName) }}</div>
-                            </div>
-                        </div>
-                    </div>
+{#                    <div class="col-4 col-sm-4">#}
+{#                        <div class="form-group">#}
+{#                            {{ form_label(addressForm.userSecondName,"Receivers second name"|trans, {#}
+{#                                "label_attr": {"class": "text-muted"}#}
+{#                            }) }}#}
+{#                            <div class="input-group with-focus">#}
+{#                                {% if addressForm.userSecondName.vars.errors|length %}#}
+{#                                    {{ form_widget(addressForm.userSecondName, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}#}
+{#                                {% else %}#}
+{#                                    {{ form_widget(addressForm.userSecondName) }}#}
+{#                                {% endif %}#}
+{#                                <div class="input-group-append">#}
+{#                             <span class="input-group-text text-muted bg-transparent border-left-0">#}
+{#                                 <em class="fa fa-user"></em>#}
+{#                             </span>#}
+{#                                </div>#}
+{#                                <div class="invalid-feedback">{{ form_errors(addressForm.userSecondName) }}</div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
                 </div>
                 <div class="row py-4 justify-content-center">
                     <div class="col-4 col-sm-4">

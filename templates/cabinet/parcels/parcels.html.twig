@@ -3,36 +3,64 @@
 {% block title %}{{page_title|trans }}{% endblock %}
 
 {% block content %}
-    <div class="col-xl-12">
-        <!-- START card-->
-        <div class="card card-default">
-            <div class="card-header">
-                {% if page_title == 'Send Parcels List' %}
+        <div class="col-xl-6"></div>
+        <div class="col-xl-6">
+            <h4>{{ "Отследить отправление"| trans }}</h4>
+            {% if page_id is defined
+                and
+                page_id is not empty
+                and
+                page_id in ["post_find"] %}
+            <div action="{{ path("post_find") }}" method="post">
                 {% else %}
-                    <a  href="{{ path("post_parcels_create") }}" class="float-left badge badge-primary">{{ "Add order" | trans }}</a>
-                {% endif %}
+                <form action="{{ path("post_find") }}" method="post" target="_blank">
+                    {% endif %}
+                    <div class="form-group">
+                        <div class="input-group with-focus ">
+                            <input class="form-control border-right-0" name="tracnum"
+                                   value="{% if trNum is defined %} {{ trNum }}{% endif %}"
+                                   required="required"
+                            />
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-success">{{ "Отследить"|trans }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="card-body">
-                <!-- START table-responsive-->
-                {% if totalItemCount %}
+        </div>
+<div class="row">
+    <div class="col-12">
+
+    <!-- START card-->
+    <div class="card card-default">
+        <div class="card-header">
+            {% if page_title == 'Send Parcels List' %}
+            {% else %}
+                <a  href="{{ path("post_parcels_create") }}" class="float-left badge badge-primary">{{ "Add order" | trans }}</a>
+            {% endif %}
+        </div>
+        <div class="card-body">
+            <!-- START table-responsive-->
+            {% if totalItemCount %}
                 <div class="table-responsive">
-                    <table class="table-sm table-bordered table-striped">
+                    <table class="table table-striped table-bordered table-hover">
                         <thead>
-                            <tr class="text-center">
-                                <th  scope="col">{{ "Create Date" | trans }}</th>
-                                {% if isSend is defined and isSend == 1 %}
-                                    <th scope="col">{{ "trackingNumber" | trans }}</th>
-                                {% else %}
-                                    <th scope="col">{{ "trackingNumber Nova Pochta" | trans }}</th>
-                                {% endif %}
-                                 <th scope="col">{{ "sendDetailWeight" | trans }}</th>
-                                 <th scope="col">{{ "volumeWeigth" | trans }}</th>
-                                 <th scope="col">{{ "shipgCost" | trans }}</th>
-                                 <th scope="col">{{ "declareValue" | trans }}</th>
-                                 <th scope="col">{{ "Adress" | trans }}</th>
-                                 <th scope="col">{{ "Status" | trans }}</th>
-                                 <th colspan="2" scope="col">{{ "Action" | trans }}</th>
-                            </tr>
+                        <tr class="text-center">
+                            <th  scope="col">{{ "Create Date" | trans }}</th>
+                            {% if isSend is defined and isSend == 1 %}
+                                <th scope="col">{{ "trackingNumber" | trans }}</th>
+                            {% else %}
+                                <th scope="col">{{ "trackingNumber Nova Pochta" | trans }}</th>
+                            {% endif %}
+                            <th scope="col">{{ "sendDetailWeight" | trans }}</th>
+                            <th scope="col">{{ "volumeWeigth" | trans }}</th>
+                            <th scope="col">{{ "shipgCost" | trans }}</th>
+                            <th scope="col">{{ "declareValue" | trans }}</th>
+                            <th scope="col">{{ "Adress" | trans }}</th>
+                            <th scope="col">{{ "Status" | trans }}</th>
+                            <th colspan="2" scope="col">{{ "Action" | trans }}</th>
+                        </tr>
                         </thead>
                         <tbody>
                         {% if items is defined and items is iterable %}
@@ -54,27 +82,26 @@
                                         {% endif %}
                                     </td>
                                     <td>{{ item.orderStatus }}</td>
-                                    <td>
-                                        {% if item.orderStatus is empty or item.orderStatus.status == 'new'%}
-                                            <a  href="{{ path("post_parcels_edit",{"id":item.id}) }}" class="btn btn-success">{{ "Edit Order" | trans }}</a>
-                                        {% endif %}
-                                    </td>
-                                    <td>
-                                        {% if item.orderStatus is empty or item.orderStatus.status == 'new'%}
-                                            {% if item.shippingCosts > 0 %}
-                                                {% set liqPayForm=liqpay.LiqPayForm(item.shippingCosts,'Pay by ExpreaaPochta.com',"EXPRESSORDER_"~item.id) %}
+                                    {% if page_title != 'Send Parcels List' %}
+                                        <td>
+                                            {% if item.orderStatus is empty or item.orderStatus.status == 'new'%}
+                                                <a  href="{{ path("post_parcels_edit",{"id":item.id}) }}" class="btn btn-success btn-edit-parcel ">{{ "Edit Order" | trans }}</a>
+                                            {% endif %}
+                                            {% if item.orderStatus is empty or item.orderStatus.status == 'new'%}
+                                                {% if item.shippingCosts > 0 %}
+                                                    {% set liqPayForm=liqpay.LiqPayForm(item.shippingCosts,'Pay by ExpreaaPochta.com',"EXPRESSORDER_"~item.id) %}
                                                     <div class="liq-pay-button">
                                                         {{ liqPayForm | raw }}
                                                     </div>
                                                     <input type="button" id="" class="payment-btn btn btn-success liq-pay-button-change" value="{{ "Pay" | trans }}" />
+                                                {% endif %}
+                                            {% elseif page_title != 'Send Parcels List' %}
+                                                <input type="button" id="" class="payment-btn btn btn-success liq-pay-button-change disabled" value="{{ "Pay" | trans }}" />
                                             {% endif %}
-                                        {% else %}
-                                            <input type="button" id="" class="payment-btn btn btn-success liq-pay-button-change disabled" value="{{ "Pay" | trans }}" />
-                                        {% endif %}
-                                    </td>
+                                        </td>
+                                    {% endif %}
                                 </tr>
                             {% endfor %}
-
                         {% else %}
                             <tr>
                                 <td colspan="3">{{ "No parcel" | trans}}</td>
@@ -83,14 +110,16 @@
                         </tbody>
                     </table>
                 </div><!-- END table-responsive-->
-                {% else %}
-                    {{ "No Parcels" | trans }}
-                {% endif %}
-            </div>
-            <div class="col-md-12">
-                {{ knp_pagination_render(items) }}
-            </div>
-        </div><!-- END card-->
+            {% else %}
+                {{ "No Parcels" | trans }}
+            {% endif %}
+        </div>
+        <div class="col-md-12">
+            {{ knp_pagination_render(items) }}
+        </div>
     </div>
+    <!-- END card-->
+    </div>
+</div>
 {% endblock %}
  {% block javascripts %}{% endblock %}

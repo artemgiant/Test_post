@@ -266,6 +266,7 @@ class Order
     public function __construct() {
         $this->quantity = 0;
         $this->createdAt = new \DateTime();
+        $this->shipDate = new \DateTime();
         $this->adminCreate = false;
         $this->products = new ArrayCollection();
     }

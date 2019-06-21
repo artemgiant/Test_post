@@ -97,6 +97,8 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
                                     {{ form_label(form.sendDetailWeight,"sendDetailWeight"|trans, {
@@ -112,9 +114,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     {{ form_label(form.sendDetailLength,"sendDetailLength"|trans, {
                                         "label_attr": {"class": "text-muted"}
@@ -129,7 +129,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     {{ form_label(form.sendDetailWidth,"sendDetailWidth"|trans, {
                                         "label_attr": {"class": "text-muted"}
@@ -144,7 +144,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     {{ form_label(form.sendDetailHeight,"sendDetailHeight"|trans, {
                                         "label_attr": {"class": "text-muted"}
@@ -278,7 +278,7 @@
     $(".product-list").collection({
         "allow_up": false,
         "allow_down": false,
-        "add": "<a href='#' class='btn btn-success'>{{ "Add product" | trans }}</a>",
+        "add": "<a href='#' class='btn btn-success btn-add-products'>{{ "Add product" | trans }}</a>",
         "add_at_the_end": true
      });
 
