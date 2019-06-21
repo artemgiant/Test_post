@@ -343,9 +343,13 @@ class Address
      * @param string $regionRayon
      * @return Address
      */
-    public function setRegionRayon(string $regionRayon): Address
+    public function setRegionRayon($regionRayon): Address
     {
-        $this->regionRayon = $regionRayon;
+        if ($regionRayon)
+            $this->regionRayon = $regionRayon;
+        else
+            $this->regionRayon = ' ';
+
         return $this;
     }
 
