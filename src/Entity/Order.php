@@ -30,6 +30,11 @@ class Order
     private $products;
 
     /**
+     * @ORM\OneToMany(targetEntity="AddPayment", mappedBy="orderId", cascade={"persist", "remove"})
+     */
+    private $addPayments;
+
+    /**
      * @var User
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
@@ -269,6 +274,8 @@ class Order
         $this->shipDate = new \DateTime();
         $this->adminCreate = false;
         $this->products = new ArrayCollection();
+        $this->addPayments = new ArrayCollection();
+        $this->transactions = new ArrayCollection();
     }
 
     /**
@@ -410,29 +417,29 @@ class Order
         return $this->user;
     }
 
-    /**
-     * Set transaction
-     *
-     * @param TransactionLiqPay $transaction
-     * @return Order
-     */
-    public function setTransaction(TransactionLiqPay $transaction = null)
+    public function addTransaction(TransactionLiqPay $transaction)
     {
-        $this->transaction = $transaction;
+        if ($this->transactions->contains($transaction)) {
+            return;
+        }
 
-        return $this;
+        $this->transactions[] = $transaction;
+        $transaction->setOrder($this);
     }
-
     /**
-     * Get transactions
-     *
-     * @return TransactionLiqPay
+     * @return Collection|TransactionLiqPay[]
      */
     public function getTransactions()
     {
         return $this->transactions;
     }
 
+    public function removeTransaction(TransactionLiqPay $transaction)
+    {
+        $this->transactions->removeElement($transaction);
+        // установите владеющую сторону, как null
+        $transaction->setOrder(null);
+    }
     /**
      * @return string
      */
@@ -503,6 +510,47 @@ class Order
     public function getProducts()
     {
         return $this->products;
+    }
+
+
+    /**
+     * Add addPayments
+     *
+     * @param AddPayment $addPayment
+     * @return Order
+     */
+    public function addAddPayment(AddPayment $addPayment=null)
+    {
+        if ( !$addPayment->getOrderId() instanceof AddPayment ) {
+            $addPayment->setOrderId($this);
+        }
+
+        if( !$this->addPayments->contains($addPayment))
+        {
+            $this->addPayments->add($addPayment);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove addPayment
+     *
+     * @param OrderProducts $addPayment
+     */
+    public function removeAddPayment(AddPayment $addPayment)
+    {
+        if ($addPayment instanceof AddPayment)
+        $this->addPayments->removeElement($addPayment);
+    }
+
+    /**
+     * Get addPayments
+     *
+     * @return Collection
+     */
+    public function getAddPayments()
+    {
+        return $this->addPayments;
     }
 
 
