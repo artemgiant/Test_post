@@ -157,16 +157,16 @@ class ProfileFormType extends AbstractType
                 'label'=>'house',
                 'required'=>true
             ])
-//            ->add('apartment',null,[
-//                'attr'=>[
-//                    'class'=>'form-control border-right-0',
-//                    'id'=>'apartment',
-//                    'placeholder'=>'Enter number apartment',
-//                    'autocomplete'=>'off'],
-//                'label'=>'apartment',
-//                'required'=>false,
-//                'empty_data'=> ' ',
-//            ])
+            ->add('apartment',null,[
+                'attr'=>[
+                    'class'=>'form-control border-right-0',
+                    'id'=>'apartment',
+                    'placeholder'=>'Enter number apartment',
+                    'autocomplete'=>'off'],
+                'label'=>'apartment',
+                'required'=>false,
+                'empty_data'=> ' ',
+            ])
             ->add('save_avatar', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-block btn-primary mt-3 mx-auto d-block'],
             ])

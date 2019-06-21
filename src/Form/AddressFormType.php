@@ -33,6 +33,16 @@ class AddressFormType extends AbstractType
                 'label'=>'regionOblast',
                 'required'=>true
             ])
+//            ->add('regionRayon',null,[
+//                'attr'=>[
+//                    'class'=>'form-control border-right-0',
+//                    'id'=>'country',
+//                    'placeholder'=>'Enter district',
+//                    'autocomplete'=>'off'],
+//                'label'=>'regionRayon',
+//                'empty_data'=>' ',
+//                'required'=>false
+//            ])
             ->add('city',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
