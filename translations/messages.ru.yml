@@ -74,9 +74,9 @@ Cabinet: Кабинет
 'Number of house': 'Номер дома'
 'House': 'Номер дома'
 'Enter number house': 'Введите номер дома'
-'Number of apartment': Квартира/комната
-'Apartment': Квартира/комната
-'Enter number apartment': 'Введите номер квартиры/комнаты'
+'Number of apartment': Квартира
+'Apartment': Квартира
+'Enter number apartment': 'Введите номер квартиры'
 'Receivers first name': 'Имя получателя'
 'Enter first name': 'Введите имя'
 'Receivers last name': 'Фамилия получателя'
