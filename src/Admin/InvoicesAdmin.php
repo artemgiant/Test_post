@@ -24,7 +24,7 @@ class InvoicesAdmin extends AbstractAdmin
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
-        $datagridMapper->add('orderStatus');
+       // $datagridMapper->add('orderStatus');
     }
 
     /**

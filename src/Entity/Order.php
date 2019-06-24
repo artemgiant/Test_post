@@ -488,10 +488,10 @@ class Order
     /**
      * Add invoices
      *
-     * @param Invoice $invoice
+     * @param Invoices $invoice
      * @return Order
      */
-    public function addInvoice(Invoice $invoice=null)
+    public function addInvoice(Invoices $invoice=null)
     {
         if ( !$invoice->getOrderId() instanceof Invoice ) {
             $invoice->setOrderId($this);
@@ -509,9 +509,9 @@ class Order
      *
      * @param OrderProducts $invoice
      */
-    public function removeInvoice(Invoice $invoice)
+    public function removeInvoice(Invoices $invoice)
     {
-        if ($invoice instanceof Invoice)
+        if ($invoice instanceof Invoices)
         $this->invoices->removeElement($invoice);
     }
 
@@ -1316,4 +1316,10 @@ class Order
     {
         return $this->adminCreate;
     }
+
+/**
+ * @var string
+ *
+ */
+    public $invoicesStr='';
 }
