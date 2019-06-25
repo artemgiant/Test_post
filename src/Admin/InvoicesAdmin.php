@@ -27,6 +27,13 @@ class InvoicesAdmin extends AbstractAdmin
        // $datagridMapper->add('orderStatus');
     }
 
+
+
+    protected function configureRoutes(\Sonata\AdminBundle\Route\RouteCollection $collection)
+    {
+        // parent::configureRoutes($collection);
+        $collection->add('add-invoice', 'add-invoice');
+    }
     /**
      * @param ListMapper $listMapper
      */
@@ -43,7 +50,7 @@ class InvoicesAdmin extends AbstractAdmin
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
-                    'delete' => array(),
+                    'delete' => array()
                 )
             ))
         ;;

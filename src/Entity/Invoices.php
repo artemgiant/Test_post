@@ -43,7 +43,7 @@ class Invoices
 
     /**
      * @var Order
-     * @ORM\ManyToOne(targetEntity="Order", inversedBy="invoices", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="Order", inversedBy="invoices")
      * @ORM\JoinColumn(name="order_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
 
@@ -190,4 +190,6 @@ class Invoices
         // установите владеющую сторону, как null
         $transaction->setOrder(null);
     }
+
+    public $order;
 }

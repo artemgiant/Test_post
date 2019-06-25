@@ -55,7 +55,7 @@ services:
 
     app.admin.invoices:
         class: App\Admin\InvoicesAdmin
-        arguments: [~, App\Entity\Invoices, ~]
+        arguments: [~, App\Entity\Invoices,App\Controller\InvoicesAdminController]
         tags:
         - { name: sonata.admin, manager_type: orm, group: admin, label: Invoices }
 
