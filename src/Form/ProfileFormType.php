@@ -13,6 +13,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Country;
+use Symfony\Component\Validator\Constraints\File;
 
 class ProfileFormType extends AbstractType
 {
@@ -21,6 +22,18 @@ class ProfileFormType extends AbstractType
         $builder
             ->add('avatarFile', FileType::class,[
                 'required'=>false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1M',
+                        'mimeTypes' => [
+                            'image/png',
+                            'image/jpeg',
+                            'image/jpg',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid image',
+                    ])
+                ]
+
             ])
             ->add('firstName',null,[
                 'attr'=>[

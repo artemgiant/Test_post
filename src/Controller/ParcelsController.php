@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Order;
 use App\Entity\User;
 use App\Entity\Address;
+use App\Entity\Invoices;
 use App\Entity\OrderStatus;
 use App\Entity\DeliveryPrice;
 use App\Entity\OrderProducts;
@@ -146,6 +147,11 @@ class ParcelsController extends CabinetController
             $order->setUser($this->user);
             $orderStatus=$entityManager->getRepository(OrderStatus::class)->findOneBy(['status'=>'new']);
             $order->setOrderStatus($orderStatus);
+            $invoice=new Invoices();
+            $invoice->setOrderId($order)
+                ->setPrice($order->getShippingCosts());
+            $entityManager->persist($invoice);
+            $order->addInvoice($invoice);
             $entityManager->persist($order);
             $entityManager->flush();
 
@@ -240,6 +246,26 @@ class ParcelsController extends CabinetController
 
                     $entityManager->remove($product);
                 }
+            }
+        $noInvoice=true;
+            if (!empty($order->getInvoices())){
+                foreach($order->getInvoices() as $invoice){
+                    /* @var Invoices $invoice*/
+                    if (!$invoice->isPaid()){
+                        $noInvoice=false;
+                        if ($invoice->getPrice()<>$order->getShippingCosts() ){
+                            $invoice->setPrice($order->getShippingCosts());
+                            $entityManager->persist($invoice);
+                        }
+                    }
+                }
+            }
+            if ($noInvoice){
+                $invoice=new Invoices();
+                $invoice->setOrderId($order)
+                    ->setPrice($order->getShippingCosts());
+                $entityManager->persist($invoice);
+                $order->addInvoice($invoice);
             }
 
             $entityManager->persist($order);

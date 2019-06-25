@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
+
 /**
  * Order
  *
@@ -30,6 +31,11 @@ class Order
     private $products;
 
     /**
+     * @ORM\OneToMany(targetEntity="Invoices", mappedBy="orderId", cascade={"persist", "remove"})
+     */
+    private $invoices;
+
+    /**
      * @var User
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
@@ -45,11 +51,7 @@ class Order
      */
     private $addresses;
 
-    /**
-     * @ORM\OneToOne(targetEntity="TransactionLiqPay", mappedBy="order")
-     * @ORM\JoinColumn(name="transaction", referencedColumnName="id", nullable=true, onDelete="SET NULL")
-     */
-    private $transaction;
+
 
     /**
      * @var string
@@ -269,6 +271,7 @@ class Order
         $this->shipDate = new \DateTime();
         $this->adminCreate = false;
         $this->products = new ArrayCollection();
+        $this->invoices = new ArrayCollection();
     }
 
     /**
@@ -409,30 +412,6 @@ class Order
     {
         return $this->user;
     }
-
-    /**
-     * Set transaction
-     *
-     * @param TransactionLiqPay $transaction
-     * @return Order
-     */
-    public function setTransaction(TransactionLiqPay $transaction = null)
-    {
-        $this->transaction = $transaction;
-
-        return $this;
-    }
-
-    /**
-     * Get transaction
-     *
-     * @return TransactionLiqPay
-     */
-    public function getTransaction()
-    {
-        return $this->transaction;
-    }
-
     /**
      * @return string
      */
@@ -503,6 +482,47 @@ class Order
     public function getProducts()
     {
         return $this->products;
+    }
+
+
+    /**
+     * Add invoices
+     *
+     * @param Invoices $invoice
+     * @return Order
+     */
+    public function addInvoice(Invoices $invoice=null)
+    {
+        if ( !$invoice->getOrderId() instanceof Invoice ) {
+            $invoice->setOrderId($this);
+        }
+
+        if( !$this->invoices->contains($invoice))
+        {
+            $this->invoices->add($invoice);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove invoice
+     *
+     * @param OrderProducts $invoice
+     */
+    public function removeInvoice(Invoices $invoice)
+    {
+        if ($invoice instanceof Invoices)
+        $this->invoices->removeElement($invoice);
+    }
+
+    /**
+     * Get invoices
+     *
+     * @return Collection
+     */
+    public function getInvoices()
+    {
+        return $this->invoices;
     }
 
 
@@ -1296,4 +1316,10 @@ class Order
     {
         return $this->adminCreate;
     }
+
+/**
+ * @var string
+ *
+ */
+    public $invoicesStr='';
 }

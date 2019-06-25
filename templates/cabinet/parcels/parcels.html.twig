@@ -88,13 +88,19 @@
                                                 <a  href="{{ path("post_parcels_edit",{"id":item.id}) }}" class="btn btn-success btn-edit-parcel ">{{ "Edit Order" | trans }}</a>
                                             {% endif %}
                                             {% if item.orderStatus is empty or item.orderStatus.status == 'new'%}
-                                                {% if item.shippingCosts > 0 %}
-                                                    {% set liqPayForm=liqpay.LiqPayForm(item.shippingCosts,'Pay by ExpreaaPochta.com',"EXPRESSORDER_"~item.id) %}
-                                                    <div class="liq-pay-button">
-                                                        {{ liqPayForm | raw }}
-                                                    </div>
-                                                    <input type="button" id="" class="payment-btn btn btn-success liq-pay-button-change" value="{{ "Pay" | trans }}" />
+                                                {% if item.invoices is not empty %}
+                                                    {% for invoice in item.invoices if invoice.isPaid == false %}
+                                                        {% if invoice.price > 0 %}
+                                                            {% set liqPayForm=liqpay.LiqPayForm(invoice.price,'Pay by ExpreaaPochta.com',"EXPRESSINVOICE_"~invoice.id) %}
+                                                            <div class="liq-pay-button">
+                                                                {{ liqPayForm | raw }}
+                                                            </div>
+                                                            <input type="button" id="" class="payment-btn btn btn-success liq-pay-button-change" value="{{ "Pay" | trans }}" />
+                                                        {% endif %}
+
+                                                    {% endfor %}
                                                 {% endif %}
+
                                             {% elseif page_title != 'Send Parcels List' %}
                                                 <input type="button" id="" class="payment-btn btn btn-success liq-pay-button-change disabled" value="{{ "Pay" | trans }}" />
                                             {% endif %}

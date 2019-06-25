@@ -1,0 +1,55 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends base_template %}
+
+{% block title %}{{ 'title_dashboard'|trans({}, 'SonataAdminBundle') }}{% endblock %}
+
+
+
+{% block top_total %}
+    <h1>
+        {{ 'Calculator DHL'|trans }}
+
+    </h1>
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> {{ 'Home'|trans }}</a></li>
+        <li class="active">{{ 'Calculator DHL'|trans }}</li>
+    </ol>
+{% endblock %}
+{% block sonata_page_content %}
+
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+
+        {{ form(form) }}
+
+    </section>
+    <style>
+        .form-group:not(.clientpp) label,.form-group:not(.clientpp) div{ width:100% !important;    text-align: left !important;}
+        .form-group.clientpp .radio {
+            width: auto;
+            float: left;
+            margin-right: 15px;
+        }
+        .form-group.clientpp .control-label{
+            width: auto;
+        }
+    </style>
+    <!-- /.content -->
+
+{% endblock %}
+
+
+

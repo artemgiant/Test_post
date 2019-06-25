@@ -4,6 +4,8 @@ namespace App\Admin;
 
 use App\Entity\OrderStatus;
 use App\Entity\User;
+//use Doctrine\DBAL\Types\TextType;
+use Proxies\__CG__\App\Entity\Order;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -11,19 +13,37 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 
 use Sonata\AdminBundle\Form\Type\ModelType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Sonata\AdminBundle\Form\Type\AdminType;
 
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use App\Form\InvoiceFormType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
+use Symfony\Contracts\Translation\TranslatorInterface;
+
 
 class OrdersAdmin extends AbstractAdmin
 {
     protected $baseRoutePattern = 'orders';
     protected $baseRouteName = 'orders';
+    protected $router;
     /**
      * @param DatagridMapper $datagridMapper
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper->add('orderStatus');
+    }
+
+    public function __construct(string $code, string $class, string $baseControllerName,UrlGeneratorInterface $router)
+    {
+        parent::__construct($code, $class, $baseControllerName);
+        $this->router=$router;
+
     }
 
     /**
@@ -61,6 +81,32 @@ class OrdersAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper): void
     {
+        $invoicesStr='';
+        /* @var Order $object*/
+        $object=$this->getSubject();
+
+        if (!empty($object->getInvoices())){
+            $invoicesStr='<table class="table"><thead>'.
+            '<th>'.$this->trans( "Price").'</th>'.
+            '<th>'.$this->trans( "Comment").'</th>'.
+            '<th>'.$this->trans( "Status").'</th>'.
+                '</thead><tbody>';
+            foreach ($object->getInvoices() as $invoice){
+                /* @var \App\Entity\Invoices $invoice */
+                $invoiceStatus=($invoice->isPaid())?
+                    '<span class="label label-success">'.$this->trans( "paid").'</span>'
+                    :
+                    '<span class="label label-danger">'.$this->trans( "nopaid").'</span>';
+                $invoicesStr .='<tr>'.
+                        '<td>'.$invoice->getPrice().'</td>'.
+                        '<td>'.$invoice->getComment().'</td>'.
+                        '<td>'.$invoiceStatus.'</td>'.
+                        '</tr>';
+            }
+            $invoicesStr .='</tbody></table>'.
+            '<a class="btn btn-info" href="'.$this->router->generate("invoices_add-invoice",["order"=>$object->getId()],UrlGeneratorInterface::ABSOLUTE_URL).'">'.$this->trans("Add Invoice").'</a>';
+        }
+
         $userFieldOptions = [];
         $orderStatusFieldOptions = [];
         $addressesFieldOptions = [];
@@ -114,6 +160,8 @@ class OrdersAdmin extends AbstractAdmin
             ->add('city')
             ->add('zip')
             ->add('towarehouse')
-            ->add('quantity');
+            ->add('quantity')
+            ->add('invoicesStr', TextType::class,[
+                ],['help'=>$invoicesStr]);
     }
 }

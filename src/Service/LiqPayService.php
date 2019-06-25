@@ -2,6 +2,7 @@
 namespace App\Service;
 
 
+use App\Entity\Invoices;
 use App\Entity\OrderStatus;
 use App\Entity\TransactionLiqPay;
 use App\Entity\Order;
@@ -133,7 +134,7 @@ class LiqPayService
             $arrTmp = explode("_", $data['order_id']);
             $userTmp=null;
 
-            if ($arrTmp[0] == 'EXPRESSORDER' && count($arrTmp) >= 2) {
+            if ($arrTmp[0] == 'EXPRESSINVOICE' && count($arrTmp) >= 2) {
 
                 if (isset($arrTmp[1]) && !empty($arrTmp[1])) {
                     $orderId = (int)$arrTmp[1];
@@ -141,7 +142,9 @@ class LiqPayService
                     error_log("---------- USER ID -----------", 3, LOG_LIQPAY);
                     error_log($orderId . PHP_EOL, 3, LOG_LIQPAY);
                     /* @var $order Order */
-                    $order=$this->getEm()->getRepository(Order::class)->find($orderId);
+                    $invoice=$this->getEm()->getRepository(Invoices::class)->find($orderId);
+                    /* @var $invoice Invoices */
+                    $order=($invoice && $invoice->getOrderId())?$invoice->getOrderId():false;
                     if ($order){
                         $trLiqPay->setUser($order->getUser());
                         $orderStatus=$this->getEm()->getRepository(OrderStatus::class)->findOneBy(['status'=>'paid']);
@@ -150,6 +153,7 @@ class LiqPayService
                         $order->setTrNum("EP".($trLiqPay->getId()+57354658)."UA");
                         $trLiqPay->setOrder($order);
                         $this->getEm()->persist($order);
+                        $invoice->setIsPaid(true);
                     }
                 }
             }

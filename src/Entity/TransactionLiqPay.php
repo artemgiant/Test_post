@@ -7,6 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Request;
 
+use App\Entity\Order;
+use App\Entity\User;
+use App\Entity\Address;
+use App\Entity\Invoices;
+
 /**
  * @ORM\Table(name="transaction_liq_pay")
  * @ORM\Entity(repositoryClass="App\Repository\TransactionLiqPayRepository")
@@ -73,10 +78,10 @@ class TransactionLiqPay
     protected $user;
 
     /**
-     * @ORM\OneToOne(targetEntity="Order",inversedBy="transaction")
-     * @ORM\JoinColumn(name="order_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     * @ORM\ManyToOne(targetEntity="Invoices",inversedBy="transactions")
+     * @ORM\JoinColumn(name="invoice", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
-    private $order;
+    private $invoice;
 
     /**
      * @var \DateTime
@@ -155,26 +160,26 @@ class TransactionLiqPay
     }
 
     /**
-     * Set order
+     * Set invoice
      *
-     * @param Order $order
+     * @param Invoices $invoice
      * @return TransactionLiqPay
      */
-    public function setOrder(Order $order = null)
+    public function setInvoice(Invoices $invoice = null)
     {
-        $this->order = $order;
+        $this->invoice = $invoice;
 
         return $this;
     }
 
     /**
-     * Get order
+     * Get invoice
      *
-     * @return Order
+     * @return Invoices
      */
-    public function getOrder()
+    public function getInvoice()
     {
-        return $this->order;
+        return $this->invoice;
     }
 
     /**

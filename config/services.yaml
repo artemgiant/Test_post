@@ -53,6 +53,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Payments }
 
+    app.admin.invoices:
+        class: App\Admin\InvoicesAdmin
+        arguments: [~, App\Entity\Invoices,App\Controller\InvoicesAdminController]
+        tags:
+        - { name: sonata.admin, manager_type: orm, group: admin, label: Invoices }
+
     email_service:
         class: App\Service\SendMailService
         calls:
