@@ -33,6 +33,7 @@ class InvoicesAdmin extends AbstractAdmin
     {
         // parent::configureRoutes($collection);
         $collection->add('add-invoice', 'add-invoice');
+        $collection->remove('create');
     }
     /**
      * @param ListMapper $listMapper
