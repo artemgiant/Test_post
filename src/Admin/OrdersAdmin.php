@@ -162,6 +162,10 @@ class OrdersAdmin extends AbstractAdmin
             ->add('towarehouse')
             ->add('quantity')
             ->add('invoicesStr', TextType::class,[
+                'label'=>'Invoices',
+                'required'=>false,
+                'attr'=>['class'=>'hide'],
+                //'label_attr'=>['class'=>'hideddd'],
                 ],['help'=>$invoicesStr]);
     }
 }

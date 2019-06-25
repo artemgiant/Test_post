@@ -95,6 +95,9 @@
                                                             <div class="liq-pay-button">
                                                                 {{ liqPayForm | raw }}
                                                             </div>
+                                                            {% if invoice.comment is not empty %}
+                                                                <p>invoice.comment</p>
+                                                            {% endif %}
                                                             <input type="button" id="" class="payment-btn btn btn-success liq-pay-button-change" value="{{ "Pay" | trans }}" />
                                                         {% endif %}
 
