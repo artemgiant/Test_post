@@ -165,7 +165,7 @@ class OrdersAdmin extends AbstractAdmin
                 'label'=>'Invoices',
                 'required'=>false,
                 'attr'=>['class'=>'hide'],
-                //'label_attr'=>['class'=>'hide'],
+                //'label_attr'=>['class'=>'hideddd'],
                 ],['help'=>$invoicesStr]);
     }
 }
