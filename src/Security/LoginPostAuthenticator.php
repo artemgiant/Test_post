@@ -48,7 +48,8 @@ class LoginPostAuthenticator extends AbstractFormLoginAuthenticator implements A
 
     public function supports(Request $request): bool
     {
-        if ($request->getPathInfo() != '/post/login' || $request->getMethod() != 'POST') {
+        if (strpos($request->getPathInfo(),'/post/login')===false || $request->getMethod() != 'POST') {
+
             return false;
         }
 
