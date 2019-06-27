@@ -112,13 +112,13 @@ class DefaultController extends CabinetController
             $locale=$request->get('locale',null);
             if (!empty($locale) && !empty($this->user)){
                 $this->user->setLocale($locale);
-                $this->session->set('_locale', $locale);
+                $request->getSession()->set('_locale', $locale);
                 $entityManager->persist($this->user);
                 $entityManager->flush();
             }
 
 
-        return new JsonResponse([true]);
+        return new JsonResponse([$locale]);
 
     }
 }

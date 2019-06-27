@@ -19,20 +19,25 @@ $(document).ready(function() {
             default:
                 local = 'ua';
         }
+
+        var datastr="locale="+local;
         var date = new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000);
-        document.cookie = "local=" + local + "; path=/; domain=" + window.location.hostname + ";expires=" + date.toUTCString();
+
         $.ajax({
             url: '/post/ajax/set-locale',
             type: 'POST',
-            data: {"local":local},
+            data: datastr,
             success: function(mess) {
-                    console.log('success_'.local);
+                    console.log('success_'+local);
+                console.log(mess);
            },
             error:function(mess) {
-                console.log('error_'.local);
+                console.log('error_'+local);
             }
         })
+        document.cookie = "local=" + local + "; path=/; domain=" + window.location.hostname + ";expires=" + date.toUTCString();
         window.location = url;
+
     });
 
 //    $(".payment-btn").click(function () {

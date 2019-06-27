@@ -22,11 +22,12 @@ class LastLoginSubscriber implements EventSubscriberInterface
 
     public function onInteractiveLogin(InteractiveLoginEvent $event): void
     {
+        $request = $event->getRequest();
         /** @var User $user */
         $user = $event->getAuthenticationToken()->getUser();
-
-        if (null !== $user->getLocale()) {
+        if (!empty($user->getLocale())) {
             $this->session->set('_locale', $user->getLocale());
+            $request->setLocale($user->getLocale());
         }
 
         $user->setLastLogin(new \DateTime());
