@@ -28,11 +28,15 @@ class CabinetController extends AbstractController
     public function getTemplateData()
     {
         $this->user = $this->getUser();
-        $this->my_address = $this->getMyAddress($this->user->getId());
-        $this->optionToTemplate=[
-            'user'=>$this->user,
-            'my_address' => $this->my_address
-        ];
+        if (!empty($this->user)) {
+            $this->my_address = $this->getMyAddress($this->user->getId());
+            $this->optionToTemplate = [
+                'user' => $this->user,
+                'my_address' => $this->my_address
+            ];
+        }else{
+            return $this->redirectToRoute('user_login');
+        }
 
     }
 

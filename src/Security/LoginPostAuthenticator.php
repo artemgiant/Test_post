@@ -107,6 +107,10 @@ class LoginPostAuthenticator extends AbstractFormLoginAuthenticator implements A
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): RedirectResponse
     {
+        if (!empty($token)){
+            $user=$token->getUser();
+            return new RedirectResponse($this->router->generate('post_dashboard',['_locale'=>$user->getLocale()]));
+        }
         return new RedirectResponse($this->router->generate('post_dashboard'));
     }
 }
