@@ -117,6 +117,14 @@ class User implements UserInterface, \Serializable
      */
     private $avatar;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="locale", type="string", nullable=true)
+     *
+     */
+    private $locale;
+
     public $agreed = false;
 
     public function getId()
@@ -465,4 +473,23 @@ class User implements UserInterface, \Serializable
 
     public $house;
     public  $apartment;
+
+    /**
+     * @return mixed
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
+    /**
+     * @param mixed $locale
+     * @return User
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+        return $this;
+    }
+
 }

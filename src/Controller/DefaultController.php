@@ -99,5 +99,27 @@ class DefaultController extends CabinetController
         return $this->redirect($this->generateUrl('post_dashboard'));
     }
 
+    /**
+     * @Route("post/ajax/set-locale", name="ajax_post_set_locale")
+     * @param Request $request
+     * @return Response
+     */
+    public function ajaxSetLocaleAction(Request $request): Response
+    {
+        $this->getTemplateData();
+        $entityManager = $this->getDoctrine()->getManager();
+        $errors =[];
+            $locale=$request->get('locale',null);
+            if (!empty($locale) && !empty($this->user)){
+                $this->user->setLocale($locale);
+                $this->session->set('_locale', $locale);
+                $entityManager->persist($this->user);
+                $entityManager->flush();
+            }
+
+
+        return new JsonResponse([true]);
+
+    }
 }
 

@@ -2,46 +2,20 @@
 <ul class="navbar-nav flex-row">
     <!-- Search icon-->
     <li class="nav-item"><a class="nav-link" href="#" data-search-open=""><em class="icon-magnifier"></em></a></li><!-- Fullscreen (only desktops)-->
-{#    <li class="nav-item d-none d-md-block"><a class="nav-link" href="#" data-toggle-fullscreen=""><em class="fas fa-expand"></em></a></li><!-- START Alert menu-->#}
-{#    <li class="nav-item dropdown dropdown-list"><a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-toggle="dropdown"><em class="icon-bell"></em><span class="badge badge-danger">11</span></a><!-- START Dropdown menu-->#}
-{#        <div class="dropdown-menu dropdown-menu-right animated flipInX">#}
-{#            <div class="dropdown-item">#}
-{#                <!-- START list group-->#}
-{#                <div class="list-group">#}
-{#                    <!-- list item-->#}
-{#                    <div class="list-group-item list-group-item-action">#}
-{#                        <div class="media">#}
-{#                            <div class="align-self-start mr-2"><em class="fab fa-twitter fa-2x text-info"></em></div>#}
-{#                            <div class="media-body">#}
-{#                                <p class="m-0">New followers</p>#}
-{#                                <p class="m-0 text-muted text-sm">1 new follower</p>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div><!-- list item-->#}
-{#                    <div class="list-group-item list-group-item-action">#}
-{#                        <div class="media">#}
-{#                            <div class="align-self-start mr-2"><em class="fas fa-envelope fa-2x text-warning"></em></div>#}
-{#                            <div class="media-body">#}
-{#                                <p class="m-0">New e-mails</p>#}
-{#                                <p class="m-0 text-muted text-sm">You have 10 new emails</p>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div><!-- list item-->#}
-{#                    <div class="list-group-item list-group-item-action">#}
-{#                        <div class="media">#}
-{#                            <div class="align-self-start mr-2"><em class="fas fa-tasks fa-2x text-success"></em></div>#}
-{#                            <div class="media-body">#}
-{#                                <p class="m-0">Pending Tasks</p>#}
-{#                                <p class="m-0 text-muted text-sm">11 pending task</p>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div><!-- last list item-->#}
-{#                    <div class="list-group-item list-group-item-action"><span class="d-flex align-items-center"><span class="text-sm">More notifications</span><span class="badge badge-danger ml-auto">14</span></span></div>#}
-{#                </div><!-- END list group-->#}
-{#            </div>#}
-{#        </div><!-- END Dropdown menu-->#}
-{#    </li><!-- END Alert menu-->#}
-    <!-- END User menu-->
+    <li class="">
+        <select id="select_language" class="form-control select select_language">
+            <option {% if app.request.locale == 'ua' %}selected{% endif %} value="">
+                <i class="flag-icon flag-icon-ua "></i>
+                {{ 'Ukrainian' | trans }}
+            </option>
+            <option {% if app.request.locale == 'ru' %}selected{% endif %} value="/ru">
+                <i class="flag-icon flag-icon-ru "></i>
+                {{ 'Russian' | trans }}
+            </option>
+        </select>
+
+
+    </li>
     <li class="nav-item dropdown dropdown-list">
         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-toggle="dropdown" style="max-height: 55px;">
                 <div class="row" style="margin-top: -10px;">

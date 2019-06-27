@@ -3,7 +3,7 @@
 {% block title %}{{"Authentication"|trans }}{% endblock %}
 
 {% block content %}
-    <p class="text-center py-2">{{"SIGN IN TO CONTINUE."|trans}}</p>
+    <p class="text-center py-2">{{"SIGN IN TO CONTINUE"|trans}}</p>
           {% if error %}
                         <div class="alert alert-danger">
                             {{ error.messageKey|trans(error.messageData, "security") }}
@@ -48,8 +48,8 @@
                   </div>
                   <div class="clearfix">
                      <div class="checkbox c-checkbox float-left mt-0"><label><input type="checkbox" value="" name="remember"><span class="fa fa-check"></span>{{ "Remember Me"|trans }}</label></div>
-                     <div class="float-right"><a class="text-muted" href="{{ path("user_logout_fogot_pasword")}}">{{"Forgot your password?"|trans}}</a></div>
+                     <div class="float-right"><a class="text-muted" href="{{ path("user_logout_fogot_pasword")}}">{{"Forgot your password"|trans}}</a></div>
                   </div><button class="btn btn-block btn-primary mt-3" type="submit">{{"Login"|trans}}</button>
                </form>
-               <p class="pt-3 text-center">{{"Need to Signup?"|trans}}</p><a class="btn btn-block btn-secondary" href="{{ path("app_register")}}">{{"Register Now"|trans}}</a>
+               <p class="pt-3 text-center">{{"Need to Signup"|trans}}</p><a class="btn btn-block btn-secondary" href="{{ path("app_register")}}">{{"Register Now"|trans}}</a>
 {% endblock %}
