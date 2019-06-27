@@ -4,6 +4,19 @@
 
 {% block content %}
     <p class="text-center py-2">{{"SIGN IN TO CONTINUE"|trans}}</p>
+   <div class="row">
+       <div class="col-md-1">
+        <a href="/post/login">
+            <span  class="flag-icon flag-icon-ua "></span>
+        </a>
+       </div>
+       <div class="col-md-1">
+       <a href="/ru/post/login">
+            <span  class="flag-icon flag-icon-ru "></span>
+        </a>
+       </div>
+   </div>
+
           {% if error %}
                         <div class="alert alert-danger">
                             {{ error.messageKey|trans(error.messageData, "security") }}

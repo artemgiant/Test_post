@@ -4,6 +4,18 @@
 
 {% block content %}
     <p class="text-center py-2">{{"PASSWORD RESET"|trans}}</p>
+    <div class="row">
+        <div class="col-md-1">
+            <a href="/post/fogot-pasword">
+                <span  class="flag-icon flag-icon-ua "></span>
+            </a>
+        </div>
+        <div class="col-md-1">
+            <a href="/ru/post/fogot-pasword">
+                <span  class="flag-icon flag-icon-ru "></span>
+            </a>
+        </div>
+    </div>
     {% if success %}
         {% if message %}
            <p style="color: green" class="login-box-msg">{{ message | trans}}</p>
