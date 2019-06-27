@@ -5,7 +5,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
    <meta name="description" content="Bootstrap Admin App">
    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
-   <link rel="icon" type="image/x-icon" href="favicon.ico">
+   <link rel="icon" type="image/x-icon" href="/favicon.ico">
    <title>{% block title %} {{"Sklad Express"|trans }} {% endblock %}</title>
         <link rel="stylesheet" href="{{ asset("sklad-express/vendor/@fortawesome/fontawesome-free/css/brands.css") }}"/>
         <link rel="stylesheet" href="{{ asset("sklad-express/vendor/@fortawesome/fontawesome-free/css/regular.css") }}"/>
@@ -34,7 +34,12 @@
         <script src="{{ asset("sklad-express/vendor/popper.js/dist/umd/popper.js") }}"></script>
         <script src="{{ asset("sklad-express/vendor/bootstrap/dist/js/bootstrap.js") }}"></script>
         <script src="{{ asset("sklad-express/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js?ver=0.1") }}"></script>
-        <script src="{{ asset("sklad-express/vendor/parsleyjs/dist/parsley.js?ver=0.1") }}"></script>
+        <script src="{{ asset("sklad-express/vendor/parsleyjs/dist/parsley.js?ver=0.123") }}"></script>
+        {% if app.request.locale == 'ru' %}
+            <script src="{{ asset("sklad-express/js/parsleyi18n/ru.js") }}"></script>
+        {% else %}
+            <script src="{{ asset("sklad-express/js/parsleyi18n/ua.js") }}"></script>
+        {% endif %}
         <script src="{{ asset("sklad-express/js/app.js") }}"></script>
         <script src="{{ asset("sklad-express/js/custom.js?ver=0.1") }}"></script>
         {% block javascripts %}{% endblock %}

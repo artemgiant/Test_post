@@ -8,6 +8,38 @@ $(document).ready(function() {
             }
     })
 
+    $("body").on('change', '#select_language', function (e) {
+        tmp = window.location.pathname.replace('/ru/', '/');
+        url = $(this).val() + tmp + window.location.search + window.location.hash;
+
+        switch ($(this).val()) {
+            case '/ru':
+                local = 'ru';
+                break;
+            default:
+                local = 'ua';
+        }
+
+        var datastr="locale="+local;
+        var date = new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000);
+
+        $.ajax({
+            url: '/post/ajax/set-locale',
+            type: 'POST',
+            data: datastr,
+            success: function(mess) {
+                    console.log('success_'+local);
+                console.log(mess);
+           },
+            error:function(mess) {
+                console.log('error_'+local);
+            }
+        })
+        document.cookie = "local=" + local + "; path=/; domain=" + window.location.hostname + ";expires=" + date.toUTCString();
+        window.location = url;
+
+    });
+
 //    $(".payment-btn").click(function () {
 //        $("input[name='btn_text']").click();
 //    });
