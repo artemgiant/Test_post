@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="row py-4 justify-content-center">
+                <div class="row py-sm-4 justify-content-center">
                     <div class="col-4 col-sm-12">
                         <div class="form-group">
                             <div class="h6 m-0">{{ "Choise delivery method"|trans }}</div>
@@ -52,8 +52,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row py-4 justify-content-center">
-                    <div class="col-4 col-sm-4">
+                <div class="row py-sm-4 justify-content-center">
+                    <div class="col-sm-12 col-lg-4">
                         <div class="form-group">
                             {{ form_label(addressForm.country,"Country"|trans, {
                                 "label_attr": {"class": "text-muted"}
@@ -73,7 +73,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4 col-sm-4">
+                    <div class="col-sm-12 col-lg-4">
                         <div class="form-group">
                             {{ form_label(addressForm.regionOblast,"Region"|trans, {
                                 "label_attr": {"class": "text-muted"}
@@ -93,7 +93,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4 col-sm-4">
+                    <div class="col-sm-12 col-lg-4">
                         <div class="form-group">
                             {{ form_label(addressForm.regionOblast,"ZIP"|trans, {
                                 "label_attr": {"class": "text-muted"}
@@ -114,8 +114,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row py-4 justify-content-center">
-                    <div class="col-3 col-sm-3">
+                <div class="row py-sm-4 justify-content-center">
+                    <div class="col-12 col-sm-6 col-lg-3">
                         <div class="form-group">
                             {{ form_label(addressForm.country,"City"|trans, {
                                 "label_attr": {"class": "text-muted"}
@@ -135,7 +135,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-3 col-sm-3">
+                    <div class="col-12 col-sm-6 col-lg-3">
                         <div class="form-group">
                             {{ form_label(addressForm.street,"Street"|trans, {
                                 "label_attr": {"class": "text-muted"}
@@ -155,7 +155,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-3 col-sm-3">
+                    <div class="col-12 col-sm-6 col-lg-3">
                         <div class="form-group">
                             {{ form_label(addressForm.house,"Number of house"|trans, {
                                 "label_attr": {"class": "text-muted"}
@@ -175,7 +175,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-3 col-sm-3">
+                    <div class="col-12 col-sm-6 col-lg-3">
                         <div class="form-group">
                             {{ form_label(addressForm.apartment,"Number of apartment"|trans, {
                                 "label_attr": {"class": "text-muted"}
@@ -196,8 +196,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row py-4 justify-content-center">
-                    <div class="col-6 col-sm-6">
+                <div class="row py-sm-4 justify-content-center">
+                    <div class="col-sm-6">
                         <div class="form-group">
                             {{ form_label(addressForm.userFirstName,"Receivers first name"|trans, {
                                 "label_attr": {"class": "text-muted"}
@@ -217,7 +217,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6 col-sm-6">
+                    <div class="col-sm-6">
                         <div class="form-group">
                             {{ form_label(addressForm.userLastName,"Receivers last name"|trans, {
                                 "label_attr": {"class": "text-muted"}
@@ -258,8 +258,8 @@
 {#                        </div>#}
 {#                    </div>#}
                 </div>
-                <div class="row py-4 justify-content-center">
-                    <div class="col-4 col-sm-4">
+                <div class="row py-sm-4 justify-content-center">
+                    <div class="col-sm-5">
                         <div class="form-group">
                             {{ form_label(addressForm.phone,"Receivers phone"|trans, {
                                 "label_attr": {"class": "text-muted"}
@@ -279,7 +279,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-8 col-sm-8">
+                    <div class="col-sm-7">
                         <div class="form-group">
                             {{ form_label(addressForm.aliasOfAddress,"Alias of address"|trans, {
                                 "label_attr": {"class": "text-muted"}
@@ -300,8 +300,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row py-4 justify-content-center">
-                    <div class="col-2 col-sm-2">
+                <div class="row py-sm-4 justify-content-center">
+                    <div class="save-btn">
                         <div class="form-group">
                             {{ form_row(addressForm.save, {"label": "Save"|trans}) }}
                         </div>
