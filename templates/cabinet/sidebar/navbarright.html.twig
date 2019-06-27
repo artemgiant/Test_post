@@ -3,7 +3,7 @@
     <!-- Search icon-->
     <li class="nav-item"><a class="nav-link" href="#" data-search-open=""><em class="icon-magnifier"></em></a></li><!-- Fullscreen (only desktops)-->
     <li class="">
-        <select id="select_language" class="form-control select select_language">
+        <select id="select_language" class="form-control select select_language selectpicker lang-select">
             <option {% if app.request.locale == 'ua' %}selected{% endif %} value="">
                 <i class="flag-icon flag-icon-ua "></i>
                 {{ 'Ukrainian' | trans }}
@@ -16,6 +16,7 @@
 
 
     </li>
+
     <li class="nav-item dropdown dropdown-list">
         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-toggle="dropdown" style="max-height: 55px;">
                 <div class="row" style="margin-top: -10px;">
