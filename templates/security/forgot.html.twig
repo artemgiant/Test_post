@@ -1,0 +1,55 @@
+{% extends "base_operation.html.twig" %}
+
+{% block title %}{{"Authentication"|trans }}{% endblock %}
+
+{% block content %}
+    <p class="text-center py-2">{{"PASSWORD RESET"|trans}}</p>
+    <div class="row">
+        <div class="col-md-1">
+            <a href="/post/fogot-pasword">
+                <span  class="flag-icon flag-icon-ua "></span>
+            </a>
+        </div>
+        <div class="col-md-1">
+            <a href="/ru/post/fogot-pasword">
+                <span  class="flag-icon flag-icon-ru "></span>
+            </a>
+        </div>
+    </div>
+    {% if success %}
+        {% if message %}
+           <p style="color: green" class="login-box-msg">{{ message | trans}}</p>
+        {% else %}
+           <br>
+        {% endif %}
+    {% else %}
+        {% if message %}
+            <p style="color: red" class="login-box-msg">{{ message | trans}}</p>
+        {% else %}
+            <br>
+        {% endif %}
+    {% endif %}
+               <form method="post">
+                    <p class="text-center">{{ "Fill with your mail to receive instructions on how to reset your password." | trans }}</p>
+                  <div class="form-group">
+                      <label class="text-muted" for="resetInputEmail1">{{"Enter email"|trans}}</label>
+                     <div class="input-group with-focus">
+                         <input 
+                             class="form-control border-right-0" 
+                             id="resetInputEmail1" 
+                             type="email" 
+                             placeholder={{"Enter _email"|trans}}
+                             autocomplete="off"
+                             name="_username"
+                             />
+                        <div class="input-group-append">
+                            <span class="input-group-text text-muted bg-transparent border-left-0">
+                                    <em class="fa fa-envelope"></em>
+                            </span>
+                        </div>
+                     </div>
+                  </div>
+                   <button class="btn btn-danger btn-block" type="submit">{{"Reset"|trans}}</button>
+                   <a class="btn btn-block btn-secondary" href="{{url("user_login")}}">{{"Signup"|trans}}</a>
+               </form>
+{% endblock %}

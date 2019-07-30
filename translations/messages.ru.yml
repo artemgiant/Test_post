@@ -1,0 +1,214 @@
+Sklad Express: Sklad Express
+Footer brand: Footer brand
+Footer text: Footer text
+Add Address: Добавить адрес
+User Name: Имя пользователя
+Country: Страна
+Adress: Адрес
+Edit Address: Редактировать адрес
+Dashboard: Главная
+Main Navigation: 
+Profile: Профиль
+Parcels: Посылки
+Addresses: Адреса
+Addresses List: Список адресов
+Addresses Create: Добавить адрес
+Contact: Контакт
+Edit profile: Редактировать профиль
+Contact Information: Контактная информация
+First name: Имя
+User First Name: Имя
+Second name: Отчество
+User Second Name: Отчество
+Last name: Фамилия
+User Last Name: Фамилия
+First Name: Имя
+Second Name: Отчество
+Last Name: Фамилия
+Phone: Телефон
+Email address: Email
+Logout: Выход
+Register: Регистрация
+SIGNUP TO GET INSTANT ACCESS: Зарегистрируйтесь, чтобы войти
+Password: Пароль
+Retype Password: Повторите пароль
+I agree with the: Я согласен(-сна)
+terms: с условиями
+Create account: Создать аккаунт
+Have an account?: Нет аккаунта?
+Signup: Вход
+Authentication: Вход
+PASSWORD RESET: Сброс пароля
+Fill with your mail to receive instructions on how to reset your password.: Введите свой Email для получения инструкции для сброса пароля.
+Enter email: Введите Email
+Enter _email: Email
+SIGN IN TO CONTINUE: Войдите для продолжения
+Forgot your password: Забыли Ваш пароль?
+Login: Вход
+Need to Signup: Зарегистрироваться?
+Register Now: Зарегистрироваться сейчас
+Save sucess: Профиль успешно сохранен
+Save avatar: Сохранить
+Save: Сохранить
+Hello: Привет
+Cabinet: Кабинет
+Remember Me: Запомнить меня
+Error. Please fill all fields: Ошибка. Заполните, пожалуйста, все поля
+Data about the address delivery: Данные об адресе доставки
+Choise delivery method: Выбрать способ доставки
+Addresses Edit: Редактирование адреса
+Address Create: Добавить адрес
+Region: Область
+Region Oblast: Область
+Enter region: Введите область
+District: Район
+Region Rayon: Район
+Enter district: Введите район
+City: Город
+Enter city: Введите название города
+ZIP: Индекс
+Zip: Индекс
+Enter ZIP: Введите индекс
+Street: Название улицы
+Enter street: Введите название улицы
+Number of house: Номер дома
+House: Номер дома
+Enter number house: Введите номер дома
+Number of apartment: Квартира
+Apartment: Квартира
+Enter number apartment: Введите номер квартиры
+Receivers first name: Имя получателя
+Enter first name: Введите имя
+Receivers last name: Фамилия получателя
+Enter last name: Введите фамилию
+Receivers second name: Отчество получателя
+Enter second name: Введите отчество
+Receivers phone: Телефон получателя
+Enter receivers phone: Введите номер телефона
+Alias of address: Краткое название адреса
+Alias Of Address: Краткое название адреса
+My address: Личный адрес
+Enter alias of address: Введите краткое название адреса
+New Parcerls List: Новые посылки
+Send Parcerls List: Отправленные
+Send Parcels List: Отправленные
+Parcels Create: Создать
+trackingNumber: Трек номер
+shipDate: Дата отгрузки
+products: Продукты
+addresses: Адреса
+sendDetailWeight: Вес
+sendDetailLength: Длина
+sendDetailLength placeholder: Длина
+sendDetailWidth: Ширина
+sendDetailWidth placeholder: Ширина
+sendDetailHeight: Высота
+sendDetailHeight placeholder: Высота
+shippingCosts: Стоимость
+volumeWeigth: Объем
+Volume Weigth: Объем
+declareValue: Объявленная стоимость
+Declare Value: Объявленная стоимость
+comment: Комментарий
+Add product: +
+Add order: Добавить
+Create Date: Дата добавления
+trackingNumber Nova Pochta: ТН|Нова почта
+Tracking Number: Трек номер
+shipgCost: Стоимость доставки
+Edit Order: Редактировать
+descEn: Описание на английском
+descUa: Описание на украинском
+price: Стоимость
+count: Количество
+Remove product: Удалить
+copyRigtht: Авторское право
+Status: Статус
+Users: Пользователи
+User: Пользователь
+Cost: Стоимость
+Weight: Вес
+DeliveryPrice: Прайс на доставку
+OrderStatus: Статус посылки
+Order: Посылки
+Orders: Посылки
+Last Login: Последний вход
+Is Suspended: Неактивный
+Suspended: Неактивный
+Plain Password: Пароль
+Status Name: Название
+new: Новый
+Order Status: Статус
+Send From Address: Адрес отправки
+Comment: Комментарий
+Send From Index: Индекс отправки
+Send From City: Город отправки
+Send From Phone: Телефон отправителя
+Send From Email: Email отправителя
+Send Detail Places: Детали отправки
+Send Detail Weight: Вес
+Send Detail Length: Длина
+Send Detail Width: Ширина
+Send Detail Height: Высота
+Email: Email
+Address: Адрес
+Shipping Costs: Стоимость отгрузки
+Delivery Status: Статус доставки
+From Country: Страна отправки
+Towarehouse: Склад
+Quantity: Количество
+Save success: Изменения успешно сохранены
+post_profile_from_address: Адрес отправителя
+Payment: Оплаты
+Payment List: Список оплат
+Nomer scheta: Номер счета
+Sposob oplaty: Способ оплаты
+Sum: Сумма
+str.: улица
+Address List: Список адресов
+Address Edit: Редактировать адрес
+Payments: Оплаты
+Reset: Сброс
+Email not found: Email не найден
+New password was sent to you on your email: Новый пароль был отправлен на почту
+Card: Карта
+This value is required.: Обязательное значение
+New Orders: Новые
+Sent Orders: Отправленные
+Late Payments: Последние платежы
+Not pay yet: Нет платежей
+No order: Нет посылок
+TN: ТН
+Type and hit enter ...: Введите и нажмите ввод ...
+Pay: Оплатить
+count_short: К-во
+Cancel: Отмена
+Russia: Россия
+Find for tracking number: Результат поиска
+Nothing Found: Ничего не найдено
+Date: Дата
+StatusDescription: Статус
+Details: Подробней
+Recipient: Получатель
+Description: Описание
+EditAddress: Изменить
+DeleteAddress: Удалить
+Confirmed: Подтвержден
+Not Confirmed: Не подтвержден
+No Parcels: Нет посылок
+No Payments: Нет платежей
+New Parcels List: Новые посылки
+Orders Update sucusfull: Данные посылки обновлены
+Orders Added sucusfull: Посылка добавлена
+Loading...: Загрузка...
+Close: Закрыть
+Save changes: Сохранить
+Order Edit: Изменение посылки
+No parcel: Список отправлений пуст
+Your password should be at least 6 characters: Ваш пароль должен содержать не менее 6 символов
+Action: Действие
+nopaid: Ожидает оплаты
+Ukrainian: Украинский
+Russian: Русский
+Track the departure: Отследить отправление
+Track down: Отследить

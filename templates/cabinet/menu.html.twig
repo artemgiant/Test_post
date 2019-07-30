@@ -1,0 +1,121 @@
+               <!-- Iterates over all sidebar items-->
+                <li class="nav-heading "><span data-localize="sidebar.heading.HEADER">{{"Main Navigation"|trans }}</span></li>
+               <li class="{% if page_id is defined
+                   and
+                   page_id is not empty
+                   and
+                   page_id in ["post_profile","post_profile_from_address"]
+               %} active {% endif %} ">
+                   <a  href="#postprofile" title="{{"Payment"|trans }}" data-toggle="collapse">
+                       <em class="icon-note"></em><span data-localize="sidebar.nav.postprofile">{{"Profile"|trans }}</span>
+                   </a>
+                   <ul class="sidebar-nav sidebar-subnav collapse" id="postprofile">
+                       <li class="sidebar-subnav-header">{{"Profile"|trans }}</li>
+                       <li class="{% if page_id is defined
+                           and
+                           page_id is not empty
+                           and
+                           page_id =="post_profile"
+                       %} active {% endif %} ">
+                           <a href="{{ path("post_profile") }}" title="{{"Profile"|trans }}"><span data-localize="sidebar.nav.form.Profile">{{"Profile"|trans }}</span></a>
+                       </li>
+                       {#
+                       <li class="{% if page_id is defined
+                           and
+                           page_id is not empty
+                           and
+                           page_id =="post_profile_from_address"
+                       %} active {% endif %} ">
+                           <a href="{{ path("post_profile_from_address") }}" title="{{"post_profile_from_address"|trans }}"><span data-localize="sidebar.nav.form.post_profile_from_address">{{"post_profile_from_address"|trans }}</span></a>
+                       </li>
+                    #}
+                   </ul>
+               </li>
+
+                <li class=" ">
+                    <a href="{{ path("post_dashboard") }}" title="Dashboard">
+                        <em class="icon-grid"></em><span data-localize="sidebar.nav.DASHBOARD">{{"Dashboard"|trans }}</span>
+                    </a>
+                </li>
+               <li class="{% if page_id is defined
+                   and
+                   page_id is not empty
+                   and
+                   page_id in ["post_parcels","post_parcels_create","post_parcels_edit"]
+               %} active {% endif %} ">
+                   <a  href="#parcels" title="{{"Parcels"|trans }}" data-toggle="collapse">
+                       <em class="icon-paper-clip"></em><span data-localize="sidebar.nav.PARCELS">{{"Parcels"|trans }}</span>
+                   </a>
+                   <ul class="sidebar-nav sidebar-subnav collapse" id="parcels">
+                       <li class="sidebar-subnav-header">{{"Parcels"|trans }}</li>
+                       <li class="{% if page_id is defined
+                           and
+                           page_id is not empty
+                           and
+                           page_id =="post_parcels"
+                       %} active {% endif %} ">
+                           <a href="{{ path("post_parcels") }}" title="{{"New Parcerls List"|trans }}"><span data-localize="sidebar.nav.form.PARCELS_LIST">{{"New Parcerls List"|trans }}</span></a>
+                       </li>
+                       <li class="{% if page_id is defined
+                           and
+                           page_id is not empty
+                           and
+                           page_id =="post_parcels_send"
+                       %} active {% endif %} ">
+                           <a href="{{ path("post_parcels_send") }}" title="{{"Send Parcerls List"|trans }}"><span data-localize="sidebar.nav.form.PARCELS_SEND">{{"Send Parcels List"|trans }}</span></a>
+                       </li>
+                   </ul>
+               </li>
+
+                <li class="{% if page_id is defined
+                    and
+                    page_id is not empty
+                    and
+                    page_id in ["post_addresses","post_address_create"]
+                %} active {% endif %} ">
+                    <a  href="#address" title="{{"Addresses"|trans }}" data-toggle="collapse">
+                        <em class="icon-note"></em><span data-localize="sidebar.nav.ADDRESSES">{{"Addresses"|trans }}</span>
+                    </a>
+                        <ul class="sidebar-nav sidebar-subnav collapse" id="address">
+                            <li class="sidebar-subnav-header">{{"Addresses"|trans }}</li>
+                            <li class="{% if page_id is defined
+                                and
+                                page_id is not empty
+                                and
+                                page_id =="post_addresses"
+                            %} active {% endif %} ">
+                                <a href="{{ path("post_addresses") }}" title="{{"Addresses List"|trans }}"><span data-localize="sidebar.nav.form.LIST_ADDRESS">{{"Addresses List"|trans }}</span></a>
+                            </li>
+                            <li class="{% if page_id is defined
+                                and
+                                page_id is not empty
+                                and
+                                page_id =="post_address_create"
+                            %} active {% endif %} ">
+                                <a href="{{ path("post_address_create") }}" title="{{"Addresses Create"|trans }}"><span data-localize="sidebar.nav.form.CREATE_ADDRESS">{{"Addresses Create"|trans }}</span></a>
+                            </li>
+                        </ul>
+                    </li>
+
+               <li class="{% if page_id is defined
+                   and
+                   page_id is not empty
+                   and
+                   page_id in ["post_payment"]
+               %} active {% endif %} ">
+                   <a  href="#postpayment" title="{{"Payment"|trans }}" data-toggle="collapse">
+                       <em class="icon-note"></em><span data-localize="sidebar.nav.PAYMENTS">{{"Payment"|trans }}</span>
+                   </a>
+                   <ul class="sidebar-nav sidebar-subnav collapse" id="postpayment">
+                       <li class="sidebar-subnav-header">{{"Payment"|trans }}</li>
+                       <li class="{% if page_id is defined
+                           and
+                           page_id is not empty
+                           and
+                           page_id =="post_payment"
+                       %} active {% endif %} ">
+                           <a href="{{ path("post_payment") }}" title="{{"Payment List"|trans }}"><span data-localize="sidebar.nav.form.LIST_PAYMENTS">{{"Payment List"|trans }}</span></a>
+                       </li>
+
+                   </ul>
+               </li>

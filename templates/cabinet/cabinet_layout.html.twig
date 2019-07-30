@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+
+{% endblock %}
+ {% block body %}
+     <!-- top navbar-->
+     {{ include("cabinet/sidebar.html.twig") }}      <!-- sidebar-->
+     {{ include("cabinet/offsidebar.html.twig") }}   <!-- offsidebar-->
+
+     <aside class="offsidebar d-none">
+     </aside><!-- Main section-->
+     <section class="section-container">
+         <!-- Page content-->
+         <div class="content-wrapper">
+         {% for message in app.flashes('success') %}
+             <div class="alert alert-success">
+                 {{ message }}
+             </div>
+         {% endfor %}
+         {% for message in app.flashes('errors') %}
+             <div class="alert alert-error">
+                 {{ message }}
+             </div>
+         {% endfor %}
+         {% for message in app.flashes('warning') %}
+             <div class="alert alert-warning">
+                 {{ message }}
+             </div>
+         {% endfor %}
+         <div class="row">
+                 {% block content %}{% endblock %}
+         </div>
+         {#
+         </div>
+     </div>
+     #}
+     </section><!-- Page footer-->
+     {{ include("cabinet/footer.html.twig") }}
+
+
+ {% endblock %}
+ {% block javascripts %}{% endblock %}

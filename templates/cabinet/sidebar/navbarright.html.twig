@@ -1,0 +1,80 @@
+<!-- START Right Navbar-->
+<ul class="navbar-nav flex-row">
+    <!-- Search icon-->
+    <li class="nav-item"><a class="nav-link center-icon" href="#" data-search-open=""><em class="icon-magnifier"></em></a></li><!-- Fullscreen (only desktops)-->
+    <li class="lang-select-wrap">
+        <select id="select_language" class="form-control select select_language selectpicker lang-select">
+            <option {% if app.request.locale == 'ua' %}selected{% endif %} value="">
+                <i class="flag-icon flag-icon-ua "></i>
+                {{ 'Ukrainian' | trans }}
+            </option>
+            <option {% if app.request.locale == 'ru' %}selected{% endif %} value="/ru">
+                <i class="flag-icon flag-icon-ru "></i>
+                {{ 'Russian' | trans }}
+            </option>
+        </select>
+
+
+    </li>
+
+    <li class="nav-item dropdown dropdown-list">
+        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret profile-header" href="#" data-toggle="dropdown" style="max-height: 55px;">
+                <div class="row" style="margin-top: -10px;">
+                    <div class="col-3">
+                        <img class="rounded-circle" src="
+                            {% if user.avatar %}
+                              {{ asset(user.avatar) }}
+                            {% else %}
+                                {{ asset('img/user/02.jpg') }}
+                            {% endif %}
+                           " alt="Avatar" width="33" height="36" style="max-height: 33px;max-width: 36px;">
+                    </div>
+                    <div class="col-9">
+                        <div class="row justify-content-center" >
+                            <div class="col-md-12">
+                                {% if user.firstName %}
+                                    {{ user.firstName }}
+                                {% else %}
+                                    Somebody
+                                {% endif %}
+                            </div>
+                            <div class="col-md-12">
+                                {{"Cabinet"|trans }} : {{ user.id }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        <!-- START Dropdown menu-->
+        <div class="dropdown-menu dropdown-menu-right animated flipInX">
+            <div class="dropdown-item">
+                <div class="row user-block-picture text-center justify-content-center align-items-center ">
+                    <div class="user-block-status"><img class="img-thumbnail rounded-circle" src="
+                    {% if user.avatar %}
+                      {{ asset(user.avatar) }}
+                    {% else %}
+                        {{ asset('img/user/02.jpg') }}
+                    {% endif %}
+                   " alt="Avatar" width="60" height="60">
+                        <div class="circle bg-success circle-lg"></div>
+                    </div>
+                </div><!-- Name and Job-->
+                <div class="user-block-info text-center">
+                                <span class="user-block-name">
+                                    {% if user.firstName %}
+                                        {{"Hello"|trans }}, {{ user.firstName }}
+                                    {% else %}
+                                        {{"Hello"|trans }}, Somebody
+                                    {% endif %}
+                                </span>
+                    {#                                <span class="user-block-role">Designer</span>#}
+                </div>
+                <div class="user-block-info">
+                     <a href="{{ path('post_profile') }}" class="btn btn-light col-md-6" >{{ 'Profile' | trans }}</a>
+                     <a href="{{ path('user_logout') }}" class="btn btn-light col-md-6">{{ 'Logout' | trans }}</a>
+                </div>
+            </div>
+        </div>
+    </li><!-- END Alert menu-->
+
+</ul><!-- END Right Navbar-->

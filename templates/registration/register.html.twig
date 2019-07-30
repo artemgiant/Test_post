@@ -1,0 +1,83 @@
+{% extends "base_operation.html.twig" %}
+
+{% block title %}{{"Register"|trans }}{% endblock %}
+
+{% block content %}
+    <div class="card-body">
+               <p class="text-center py-2">{{"SIGNUP TO GET INSTANT ACCESS"|trans}}.</p>
+        
+        {{  form_errors(registrationForm) }}
+   {{ form_start(registrationForm, {"attr": {"id": "registerForm","class":"mb-3","novalidate":true}}) }}
+        <div class="form-group">
+               {{ form_label(registrationForm.email,"Email address"|trans, {
+                            "label_attr": {"class": "text-muted"}
+                                }) }}
+                  <div class="input-group with-focus">
+                      {% if registrationForm.email.vars.errors|length %}
+                          {{ form_widget(registrationForm.email, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                      {% else %}
+                          {{ form_widget(registrationForm.email) }}
+                      {% endif %}
+                         <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-envelope"></em>
+                             </span>
+                         </div>
+                      <div class="invalid-feedback">{{ form_errors(registrationForm.email) }}</div>
+                     </div>
+        </div>
+        
+        <div class="form-group">
+            {{form_label(registrationForm.plainPassword,"Password"|trans, {
+                                            "label_attr": {"class": "text-muted"}
+                                            }) }}
+                     <div class="input-group with-focus">
+                         {% if registrationForm.plainPassword.vars.errors|length %}
+                             {{ form_widget(registrationForm.plainPassword, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                         {% else %}
+                             {{ form_widget(registrationForm.plainPassword) }}
+                         {% endif %}
+                         <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-envelope"></em>
+                             </span>
+                         </div>
+                         <div class="invalid-feedback">{{ form_errors(registrationForm.plainPassword) }}</div>
+                     </div>
+        </div>
+       <div class="form-group">
+            {{form_label(registrationForm.rePlainPassword,"Retype Password"|trans, {
+                                            "label_attr": {"class": "text-muted"}
+                                            }) }}
+                     <div class="input-group with-focus">
+                         {% if registrationForm.rePlainPassword.vars.errors|length %}
+                             {{ form_widget(registrationForm.rePlainPassword, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                         {% else %}
+                             {{ form_widget(registrationForm.rePlainPassword) }}
+                         {% endif %}
+                         <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-envelope"></em>
+                             </span>
+                         </div>
+                         <div class="invalid-feedback">{{ form_errors(registrationForm.rePlainPassword) }}</div>
+                     </div>
+        </div>
+<div class="checkbox c-checkbox mt-0">
+    <label>
+        {% if registrationForm.agreed.vars.errors|length %}
+            {{ form_widget(registrationForm.agreed, {"attr": {"class": "is-invalid"}}) }}
+        {% else %}
+            {{ form_widget(registrationForm.agreed) }}
+        {% endif %}
+        <span class="fa fa-check">
+        </span> {{"I agree with the"|trans}}<a class="ml-1" href="#">{{"terms"|trans}}</a></label>
+    <div class="invalid-feedback">{{ form_errors(registrationForm.agreed) }}</div>
+</div>
+
+    {{ form_row(registrationForm.save, {"label": "Create account"|trans})}}
+    
+    {{ form_end(registrationForm) }}
+     <a class="btn btn-block btn-secondary" href="{{url("user_login")}}">{{"Signup"|trans}}</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,142 @@
+.textarea-desc{
+    font-size: 1rem;
+    min-width: 100%;
+}
+
+.btn-add-products{
+    font-size: 1.5rem;
+}
+
+.liq-pay-button{
+    visibility: hidden;
+    height: 0px;
+    width: 0px;
+}
+
+.btn-edit-parcel{
+    margin-bottom: 5px;
+}
+
+
+
+.bootstrap-select.dropdown.show .dropdown-menu {
+    position: static;
+    float: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid #dae0e5;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+
+.lang-select button{
+    min-width: 120px;
+}
+
+.lang-select-wrap{
+    display: flex;
+    align-items: center;
+}
+
+.center-icon{
+    position: relative;
+    top: 2px;
+}
+
+.badge {
+    padding: 5px 15px;
+    font-size: 1rem;
+    border-radius: 3px;
+}
+
+.bootstrap-select .dropdown-toggle:focus, .bootstrap-select>select.mobile-device:focus+.dropdown-toggle {
+    outline: thin dotted #333!important;
+    outline: 0 auto -webkit-focus-ring-color!important;
+    outline-offset: 0;
+}
+
+.btn-light:not(:disabled):not(.disabled):active:focus, .btn-light:not(:disabled):not(.disabled).active:focus, .show > .btn-light.dropdown-toggle:focus {
+    box-shadow: none;
+}
+
+.input-group-append .btn-success{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.m0-auto{
+    margin: 0 auto;
+}
+
+.save-btn{
+    width: 100%;
+    max-width: 230px;
+    margin: 0 auto;
+}
+
+.liq-pay-button-change{
+    min-width: 100px;
+}
+
+.addresses-table,
+.parcels-table{
+    min-width: 900px !important;
+}
+
+.login-lang{
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #d8d8d8;
+    box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.37);
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.37);
+    text-decoration: none;
+}
+
+.login-lang:hover{
+    text-decoration: none;
+}
+
+.login-lang-wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0 4px;
+}
+
+.login-lang-wrap .flag-icon {
+    width: 23px;
+    line-height: 17px;
+}
+
+.bottom-fix {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@media (max-width: 600px){
+    .table{
+        min-width: 600px;
+    }
+    .table-responsive{
+        overflow: scroll;
+    }
+
+    .navbar-nav.flex-row{
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 470px){
+    .profile-header{
+        width: 230px;
+    }
+}

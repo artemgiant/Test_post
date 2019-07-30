@@ -1,0 +1,66 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: 'ru'
+    avatar_directory: '%kernel.project_dir%/public/sklad-express/uploads/avatars'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{Entity,Admin,Resources}'
+
+    app.admin.user:
+        class: App\Admin\UserAdmin
+        arguments: [~, App\Entity\User, ~]
+        tags:
+        - { name: sonata.admin, manager_type: orm, group: admin, label: Users }
+
+    app.admin.orders:
+        class: App\Admin\OrdersAdmin
+        arguments: [~, App\Entity\Order, ~]
+        tags:
+        - { name: sonata.admin, manager_type: orm, group: admin, label: Orders }
+
+    app.admin.orderstatus:
+        class: App\Admin\OrderStatusAdmin
+        arguments: [~, App\Entity\OrderStatus, ~]
+        tags:
+        - { name: sonata.admin, manager_type: orm, group: admin, label: OrderStatus }
+
+    app.admin.deliveryprice:
+            class: App\Admin\DeliveryPriceAdmin
+            arguments: [~, App\Entity\DeliveryPrice, ~]
+            tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: DeliveryPrice }
+
+    app.admin.addresses:
+        class: App\Admin\AddressesAdmin
+        arguments: [~, App\Entity\Address, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Addresses }
+
+    app.admin.payments:
+        class: App\Admin\PaymentsAdmin
+        arguments: [~, App\Entity\TransactionLiqPay, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Payments }
+
+    app.admin.invoices:
+        class: App\Admin\InvoicesAdmin
+        arguments: [~, App\Entity\Invoices,App\Controller\InvoicesAdminController]
+        tags:
+        - { name: sonata.admin, manager_type: orm, group: admin, label: Invoices }
+
+    email_service:
+        class: App\Service\SendMailService
+        calls:
+            - [setMailer, ["@mailer"]]
+            - [setTemplateEngine, ["@templating"]]

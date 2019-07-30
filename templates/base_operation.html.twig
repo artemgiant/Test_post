@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+ {% block body %}
+   <div class="block-center mt-4 wd-xl">
+         <!-- START card-->
+         <div class="card card-flat">
+            <div class="card-header text-center bg-dark"><a href="#">
+                    <img class="block-center rounded" src="{{ asset("sklad-express/img/logo.png")}}" alt="Image"></a></div>
+            <div class="card-body">
+                {% block content %}{% endblock %}
+            </div>
+         </div><!-- END card-->
+
+
+         <div class="row justify-content-center mt-2">
+          <div class="col-md-1 login-lang-wrap">
+           <a href="/post/login" class="login-lang">
+               <span  class="flag-icon flag-icon-ua "></span>
+           </a>
+          </div>
+          <div class="col-md-1 login-lang-wrap">
+          <a href="/ru/post/login" class="login-lang">
+               <span  class="flag-icon flag-icon-ru "></span>
+           </a>
+          </div>
+      </div>
+
+         <div class="p-3 text-center bottom-fix">
+             <span class="mr-2">&copy;</span><span>2019</span>
+             {# <span class="mr-2">-</span><span>{{"Footer brand"|trans}}</span><br> #}
+             <span class="mr-2">-</span><span>Expressposhta</span><br>
+             {# <span>{{"Footer text"|trans}}</span> #}
+             <span>Expressposhta</span>
+         </div>
+   </div>
+ {% endblock %}
+ {% block javascripts %}{% endblock %}
+  

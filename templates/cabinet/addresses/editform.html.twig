@@ -1,0 +1,316 @@
+{% extends "cabinet/cabinet_layout.html.twig" %}
+
+    {% set title= "Addresses Edit" %}
+    {% if page_title is defined and page_title is not empty %}
+        {% set title=page_title %}
+    {% endif %}
+
+{% block title %}{{ title|trans }}{% endblock %}
+
+{% block content %}
+    <div class="col-lg-12">
+        {#  START FORM  #}
+        {% if  errors is defined and errors is not empty %}
+            <div class="alert alert-danger" role="alert">
+                {#        {{ errors }}#}
+                {{ "Error. Please fill all fields"|trans }}
+            </div>
+        {% endif %}
+        {% if  mess is defined and mess is not empty %}
+            <div class="alert alert-success" role="alert">
+                {{ mess }}
+            </div>
+        {% endif %}
+        {{ form_start(addressForm, {"action": path("post_address_create"), "method": "POST", "attr": {"id": "addressForm","class":"mb-3"}}) }}
+        <div class="card card-default">
+            <div class="card-header d-flex align-items-center">
+                <div class="d-flex justify-content-center col">
+                    <div class="h4 m-0 text-center">{{ "Data about the address delivery"|trans }}</div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row py-sm-4 justify-content-center">
+                    <div class="col-4 col-sm-12">
+                        <div class="form-group">
+                            <div class="h6 m-0">{{ "Choise delivery method"|trans }}</div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12">
+                        <div class="form-group">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" id="inlineRadio1"
+                                       type="radio" name="inlineRadioOptions"
+                                       value="option1">
+                                <label class="form-check-label" for="inlineRadio1">1</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" id="inlineRadio2"
+                                       type="radio" name="inlineRadioOptions"
+                                       value="option2">
+                                <label class="form-check-label" for="inlineRadio2">2</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row py-sm-4 justify-content-center">
+                    <div class="col-sm-12 col-lg-4">
+                        <div class="form-group">
+                            {{ form_label(addressForm.country,"Country"|trans, {
+                                "label_attr": {"class": "text-muted"}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {% if addressForm.country.vars.errors|length %}
+                                    {{ form_widget(addressForm.country, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                {% else %}
+                                    {{ form_widget(addressForm.country) }}
+                                {% endif %}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(addressForm.country) }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-4">
+                        <div class="form-group">
+                            {{ form_label(addressForm.regionOblast,"Region"|trans, {
+                                "label_attr": {"class": "text-muted"}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {% if addressForm.regionOblast.vars.errors|length %}
+                                    {{ form_widget(addressForm.regionOblast, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                {% else %}
+                                    {{ form_widget(addressForm.regionOblast) }}
+                                {% endif %}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(addressForm.regionOblast) }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-4">
+                        <div class="form-group">
+                            {{ form_label(addressForm.regionOblast,"ZIP"|trans, {
+                                "label_attr": {"class": "text-muted"}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {% if addressForm.zip.vars.errors|length %}
+                                    {{ form_widget(addressForm.zip, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                {% else %}
+                                    {{ form_widget(addressForm.zip) }}
+                                {% endif %}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(addressForm.zip) }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row py-sm-4 justify-content-center">
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="form-group">
+                            {{ form_label(addressForm.country,"City"|trans, {
+                                "label_attr": {"class": "text-muted"}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {% if addressForm.city.vars.errors|length %}
+                                    {{ form_widget(addressForm.city, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                {% else %}
+                                    {{ form_widget(addressForm.city) }}
+                                {% endif %}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(addressForm.city) }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="form-group">
+                            {{ form_label(addressForm.street,"Street"|trans, {
+                                "label_attr": {"class": "text-muted"}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {% if addressForm.street.vars.errors|length %}
+                                    {{ form_widget(addressForm.street, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                {% else %}
+                                    {{ form_widget(addressForm.street) }}
+                                {% endif %}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(addressForm.street) }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="form-group">
+                            {{ form_label(addressForm.house,"Number of house"|trans, {
+                                "label_attr": {"class": "text-muted"}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {% if addressForm.house.vars.errors|length %}
+                                    {{ form_widget(addressForm.house, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                {% else %}
+                                    {{ form_widget(addressForm.house) }}
+                                {% endif %}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(addressForm.house) }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="form-group">
+                            {{ form_label(addressForm.apartment,"Number of apartment"|trans, {
+                                "label_attr": {"class": "text-muted"}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {% if addressForm.apartment.vars.errors|length %}
+                                    {{ form_widget(addressForm.apartment, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                {% else %}
+                                    {{ form_widget(addressForm.apartment) }}
+                                {% endif %}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(addressForm.apartment) }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row py-sm-4 justify-content-center">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ form_label(addressForm.userFirstName,"Receivers first name"|trans, {
+                                "label_attr": {"class": "text-muted"}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {% if addressForm.userFirstName.vars.errors|length %}
+                                    {{ form_widget(addressForm.userFirstName, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                {% else %}
+                                    {{ form_widget(addressForm.userFirstName) }}
+                                {% endif %}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(addressForm.userFirstName) }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ form_label(addressForm.userLastName,"Receivers last name"|trans, {
+                                "label_attr": {"class": "text-muted"}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {% if addressForm.userLastName.vars.errors|length %}
+                                    {{ form_widget(addressForm.userLastName, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                {% else %}
+                                    {{ form_widget(addressForm.userLastName) }}
+                                {% endif %}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(addressForm.userLastName) }}</div>
+                            </div>
+                        </div>
+                    </div>
+{#                    <div class="col-4 col-sm-4">#}
+{#                        <div class="form-group">#}
+{#                            {{ form_label(addressForm.userSecondName,"Receivers second name"|trans, {#}
+{#                                "label_attr": {"class": "text-muted"}#}
+{#                            }) }}#}
+{#                            <div class="input-group with-focus">#}
+{#                                {% if addressForm.userSecondName.vars.errors|length %}#}
+{#                                    {{ form_widget(addressForm.userSecondName, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}#}
+{#                                {% else %}#}
+{#                                    {{ form_widget(addressForm.userSecondName) }}#}
+{#                                {% endif %}#}
+{#                                <div class="input-group-append">#}
+{#                             <span class="input-group-text text-muted bg-transparent border-left-0">#}
+{#                                 <em class="fa fa-user"></em>#}
+{#                             </span>#}
+{#                                </div>#}
+{#                                <div class="invalid-feedback">{{ form_errors(addressForm.userSecondName) }}</div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+                </div>
+                <div class="row py-sm-4 justify-content-center">
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            {{ form_label(addressForm.phone,"Receivers phone"|trans, {
+                                "label_attr": {"class": "text-muted"}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {% if addressForm.phone.vars.errors|length %}
+                                    {{ form_widget(addressForm.phone, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                {% else %}
+                                    {{ form_widget(addressForm.phone) }}
+                                {% endif %}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(addressForm.phone) }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="form-group">
+                            {{ form_label(addressForm.aliasOfAddress,"Alias of address"|trans, {
+                                "label_attr": {"class": "text-muted"}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {% if addressForm.aliasOfAddress.vars.errors|length %}
+                                    {{ form_widget(addressForm.aliasOfAddress, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                {% else %}
+                                    {{ form_widget(addressForm.aliasOfAddress) }}
+                                {% endif %}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(addressForm.aliasOfAddress) }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row py-sm-4 justify-content-center">
+                    <div class="save-btn">
+                        <div class="form-group">
+                            {{ form_row(addressForm.save, {"label": "Save"|trans}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ form_end(addressForm) }}
+        {#  FINISH FORM #}
+    </div>
+{% endblock %}
+{% block javascripts %}{% endblock %}
