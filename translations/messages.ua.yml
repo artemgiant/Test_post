@@ -58,7 +58,7 @@ Data about the address delivery: Дані про адресу доставки
 Choise delivery method: Вибрати спосіб доставки
 Addresses Edit: Редагування адреси
 Address Create: Додати адреса
-Region: Область
+Region: Штат/Провінція
 Region Oblast: Область
 Enter region: Введіть область
 District: Район
@@ -105,14 +105,14 @@ sendDetailWidth placeholder: Ширина
 sendDetailHeight: Висота
 sendDetailHeight placeholder: Висота
 shippingCosts: Вартість
-volumeWeigth: Обсяг
-Volume Weigth: Обсяг
+volumeWeigth: Об'ємна вага
+Volume Weigth: Об'ємна вага
 declareValue: Оголошена вартість
 Declare Value: Оголошена вартість
 comment: Коментар
 Add product: +
 Add order: Додати
-Create Date: Дата додавання
+Create Date: Дата створення
 trackingNumber Nova Pochta: ТН | Нова пошта
 Tracking Number: Трек номер
 shipgCost: Вартість доставки
@@ -189,8 +189,8 @@ Nothing Found: Нічого не знайдено
 Date: Дата
 StatusDescription: Статус
 Details: Детальніше
-Recipient: Одержувач
-Description: Опис
+Recipient: Отримувач
+Description: Назва адреси
 EditAddress: Змінити
 DeleteAddress: Видалити
 Confirmed: Підтверджено

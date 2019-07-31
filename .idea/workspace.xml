@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7ecac9fd-3794-435a-9190-193823a05041" name="Default Changelist" comment="" />
+    <list default="true" id="7ecac9fd-3794-435a-9190-193823a05041" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/composerJson.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/sklad-express/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/sklad-express/js/custom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190730094542.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/cabinet/addresses/edit_form_of_address.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cabinet/addresses/edit_form_of_address.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/cabinet/addresses/modalAddress.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cabinet/addresses/modalAddress.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/cabinet/cabinet_layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cabinet/cabinet_layout.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/translations/messages.ua.yml" beforeDir="false" afterPath="$PROJECT_DIR$/translations/messages.ua.yml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,8 +21,12 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
-      <executable path="D:\Composer-Setup (1).exe" />
+      <phar pharPath="D:\Новая папка\OSPanel\modules\php\PHP_7.3-x64\composer.phar" interpreterId="82dc5f0a-8400-43e4-b07d-a470fe24569b" />
     </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -142,10 +156,12 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1OivMxXYhhs7h8XACUQuckAdEpZ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -159,6 +175,12 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner scope="XML" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -170,11 +192,27 @@
       <option name="presentableId" value="Default" />
       <updated>1564473187996</updated>
       <workItem from="1564473190620" duration="1703000" />
-      <workItem from="1564478479398" duration="1555000" />
+      <workItem from="1564478479398" duration="5287000" />
+      <workItem from="1564487482792" duration="232000" />
+      <workItem from="1564487723116" duration="11048000" />
+      <workItem from="1564551192270" duration="4957000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

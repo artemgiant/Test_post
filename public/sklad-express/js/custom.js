@@ -45,5 +45,25 @@ $(document).ready(function() {
 //    });
 
 $('.selectpicker').selectpicker();
+
+
+ $('form[name=address_form]').find('input').keyup(function () {
+     var message = $(this).attr('message'),
+         pattern = new RegExp('^'+$(this).attr('pattern')+'$'),
+         el =$(this).closest('.form-group');
+     console.log($(this).val());
+     console.log( pattern.test( $(this).val()));
+   if(!pattern.test( $(this).val())){
+    if(!el.find('span.text-danger')[0]){
+        el.append('<span class="message_error text-danger">'+message+'</span>');
+    }else{
+        $('.message_error').text(message);
+    }
+       $("button:submit").addClass('disabled').attr({"disabled":true}).css({"cursor":"not-allowed"});
+   }else {
+       el.find('span.text-danger').remove();
+   }
+
+ });
 });
 

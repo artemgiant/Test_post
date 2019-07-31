@@ -28,7 +28,7 @@
     <div class="col-sm-6">
 
         <h4>{{ "Track the departure"| trans }}</h4>
-        
+
         {% if page_id is defined
             and
             page_id is not empty
@@ -80,7 +80,8 @@
                                         </td>
                                         <td>{{ order.shippingCosts }}</td>
                                         <td>{{ order.declareValue }}</td>
-                                        <td>{{ order.addresses.fullAddress }}</td>
+                                        <td>{{ order.addresses}}</td>
+{#                                        <td>{{ order.addresses.fullAddress }}</td>#}
                                     </tr>
                                 {% endfor %}
                             {% else %}

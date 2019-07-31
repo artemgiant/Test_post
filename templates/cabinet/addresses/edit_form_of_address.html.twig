@@ -59,7 +59,7 @@
                                 {% if addressForm.regionOblast.vars.errors|length %}
                                     {{ form_widget(addressForm.regionOblast, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
                                 {% else %}
-                                    {{ form_widget(addressForm.regionOblast) }}
+                                    {{ form_widget(addressForm.regionOblast,{"attr":{"pattern":"([a-zA-Z]+)","message":" Укажите область только латыни и без знаков"} }) }}
                                 {% endif %}
                                 <div class="input-group-append">
                              <span class="input-group-text text-muted bg-transparent border-left-0">
@@ -79,7 +79,7 @@
                                 {% if addressForm.zip.vars.errors|length %}
                                     {{ form_widget(addressForm.zip, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
                                 {% else %}
-                                    {{ form_widget(addressForm.zip) }}
+                                    {{ form_widget(addressForm.zip,{"attr":{"pattern":"([0-9]+)","message":"Только цифры"} }) }}
                                 {% endif %}
                                 <div class="input-group-append">
                              <span class="input-group-text text-muted bg-transparent border-left-0">
@@ -101,7 +101,7 @@
                                 {% if addressForm.city.vars.errors|length %}
                                     {{ form_widget(addressForm.city, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
                                 {% else %}
-                                    {{ form_widget(addressForm.city) }}
+                                    {{ form_widget(addressForm.city,{"attr":{"pattern":"([a-zA-Z]+)","message":"Укажите названия города на латыни и без знаков"} }) }}
                                 {% endif %}
                                 <div class="input-group-append">
                              <span class="input-group-text text-muted bg-transparent border-left-0">
@@ -117,11 +117,11 @@
                             {{ form_label(addressForm.street,"Street"|trans, {
                                 "label_attr": {"class": "text-muted"}
                             }) }}
-                            <div class="input-group with-focus">
+                            <div class="input-group with-focus ">
                                 {% if addressForm.street.vars.errors|length %}
                                     {{ form_widget(addressForm.street, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
                                 {% else %}
-                                    {{ form_widget(addressForm.street) }}
+                                    {{ form_widget(addressForm.street,{"attr":{"pattern":"([a-zA-Z]+)","message":"Укажите улицу только на латыни и без знаков"} } ) }}
                                 {% endif %}
                                 <div class="input-group-append">
                              <span class="input-group-text text-muted bg-transparent border-left-0">
@@ -141,7 +141,7 @@
                                 {% if addressForm.house.vars.errors|length %}
                                     {{ form_widget(addressForm.house, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
                                 {% else %}
-                                    {{ form_widget(addressForm.house) }}
+                                    {{ form_widget(addressForm.house,{"attr":{"pattern":"([0-9]+)","message":"Только цирфы "} }) }}
                                 {% endif %}
                                 <div class="input-group-append">
                              <span class="input-group-text text-muted bg-transparent border-left-0">
@@ -161,7 +161,7 @@
                                 {% if addressForm.apartment.vars.errors|length %}
                                     {{ form_widget(addressForm.apartment, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
                                 {% else %}
-                                    {{ form_widget(addressForm.apartment) }}
+                                    {{ form_widget(addressForm.apartment,{"attr":{"pattern":"([0-9]+)","message":"Только цирфы "} }) }}
                                 {% endif %}
                                 <div class="input-group-append">
                              <span class="input-group-text text-muted bg-transparent border-left-0">
@@ -183,7 +183,7 @@
                                 {% if addressForm.userFirstName.vars.errors|length %}
                                     {{ form_widget(addressForm.userFirstName, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
                                 {% else %}
-                                    {{ form_widget(addressForm.userFirstName) }}
+                                    {{ form_widget(addressForm.userFirstName,{"attr":{"pattern":"([a-zA-Z]+)","message":"Укажите имя на латыни и без знаков"} }) }}
                                 {% endif %}
                                 <div class="input-group-append">
                              <span class="input-group-text text-muted bg-transparent border-left-0">
@@ -203,7 +203,7 @@
                                 {% if addressForm.userLastName.vars.errors|length %}
                                     {{ form_widget(addressForm.userLastName, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
                                 {% else %}
-                                    {{ form_widget(addressForm.userLastName) }}
+                                    {{ form_widget(addressForm.userLastName,{"attr":{"pattern":"([a-zA-Z]+)","message":"Укажите фамилию на латыни и без знаков"} }) }}
                                 {% endif %}
                                 <div class="input-group-append">
                              <span class="input-group-text text-muted bg-transparent border-left-0">
@@ -245,7 +245,7 @@
                                 {% if addressForm.phone.vars.errors|length %}
                                     {{ form_widget(addressForm.phone, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
                                 {% else %}
-                                    {{ form_widget(addressForm.phone) }}
+                                    {{ form_widget(addressForm.phone,{"attr":{"pattern":"([0-9+]+)","message":"Только цифры"} }) }}
                                 {% endif %}
                                 <div class="input-group-append">
                              <span class="input-group-text text-muted bg-transparent border-left-0">
@@ -265,7 +265,7 @@
                                 {% if addressForm.aliasOfAddress.vars.errors|length %}
                                     {{ form_widget(addressForm.aliasOfAddress, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
                                 {% else %}
-                                    {{ form_widget(addressForm.aliasOfAddress) }}
+                                    {{ form_widget(addressForm.aliasOfAddress,{"attr":{"pattern":"([a-zA-Z]+)","message":"Укажите адресс только латыни"} }) }}
                                 {% endif %}
                                 <div class="input-group-append">
                              <span class="input-group-text text-muted bg-transparent border-left-0">
