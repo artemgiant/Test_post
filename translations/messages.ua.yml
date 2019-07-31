@@ -55,6 +55,7 @@ Cabinet: Кабінет
 Remember Me: Запам'ятати мене
 Error. Please fill all fields: Помилка. Заповніть, будь ласка, всі поля
 Data about the address delivery: Дані про адресу доставки
+Title form suport parcels: Contact us
 Choise delivery method: Вибрати спосіб доставки
 Addresses Edit: Редагування адреси
 Address Create: Додати адреса
@@ -77,13 +78,13 @@ Enter number house: Введіть номер будинку
 Number of apartment: Квартира
 Apartment: Квартира
 Enter number apartment: Введіть номер квартири
-Receivers first name: Ім'я одержувача
+Receivers first name: Ім'я отримувача
 Enter first name: Введіть ім'я
-Receivers last name: Прізвище одержувача
+Receivers last name: Прізвище отримувача
 Enter last name: Введіть прізвище
-Receivers second name: По батькові одержувача
+Receivers second name: По батькові отримувача
 Enter second name: Введіть батькові
-Receivers phone: Телефон одержувача
+Receivers phone: Телефон отримувача
 Enter receivers phone: Введіть номер телефону
 Alias ​​of address: Коротка назва адреси
 Alias ​​Of Address: Коротка назва адреси
@@ -194,6 +195,8 @@ Description: Назва адреси
 EditAddress: Змінити
 DeleteAddress: Видалити
 Confirmed: Підтверджено
+Alias of address: Назвіть цю адресу для адресної книги
+Alias Of Address: Назвіть цю адресу для адресної книги
 Not Confirmed: Чи не підтверджений
 No Parcels: Немає посилок
 No Payments: Немає платежів
@@ -212,3 +215,5 @@ Ukrainian: Український
 Russian: Русский
 Track the departure: Відстежити відправлення
 Track down: Відстежити
+Message : Ваше повідомнення
+Subject : Тема повідомнення

@@ -131,6 +131,8 @@ class ProfileController extends CabinetController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
+            dd($form);
+
             $address->setUser($this->user);
             $address->setIsMyAddress(1);
             $address->setAddress();

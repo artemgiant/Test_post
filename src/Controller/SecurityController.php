@@ -47,25 +47,25 @@ class SecurityController extends AbstractController
     public function adminLogoutAction(): void
     {
     }
-    
+
     /**
      * @Route("/post/login", name="user_login")
      */
     public function loginAction(): Response
     {
 
-        if (empty($this->getUser()) 
-                || 
-                !($this->getUser() instanceof User)) {
-        $form = $this->createForm(LoginForm::class, [
-            'email' => $this->authenticationUtils->getLastUsername()
-        ]);
+        if (empty($this->getUser())
+            ||
+            !($this->getUser() instanceof User)) {
+            $form = $this->createForm(LoginForm::class, [
+                'email' => $this->authenticationUtils->getLastUsername()
+            ]);
 
-        return $this->render('security/user_login.html.twig', [
-            'last_username' => $this->authenticationUtils->getLastUsername(),
-            'form' => $form->createView(),
-            'error' => $this->authenticationUtils->getLastAuthenticationError(),
-        ]);
+            return $this->render('security/user_login.html.twig', [
+                'last_username' => $this->authenticationUtils->getLastUsername(),
+                'form' => $form->createView(),
+                'error' => $this->authenticationUtils->getLastAuthenticationError(),
+            ]);
         }else{
             return $this->redirectToRoute('post_dashboard');
         }
@@ -77,14 +77,14 @@ class SecurityController extends AbstractController
     public function logoutAction(): void
     {
     }
-    
+
     /**
      * @Route("/post/fogot-pasword", name="user_logout_fogot_pasword")
      */
-    
+
     public function fogotPasswordAction(Request $request, \Swift_Mailer $mailer): Response
     {
-         if ($request->isMethod('post')) {
+        if ($request->isMethod('post')) {
             $email = $request->request->get('_username');
             $entityManager = $this->getDoctrine()->getManager();
             /* @var $em EntityMenedger */
@@ -94,19 +94,19 @@ class SecurityController extends AbstractController
             if (isset($user)) {
                 $newPassword = $this->generatePassword();
                 $user->setPlainPassword($newPassword);
-                
+
                 $entityManager->persist($user);
                 $entityManager->flush();
 
-               // $this->get('email_service')->sendRecoverPassword($user, $newPassword);
+                // $this->get('email_service')->sendRecoverPassword($user, $newPassword);
                 $template = $this->render('Email/password.html.twig');
                 $template = str_replace("{{name}}", $user->getUsername(), $template);
                 $template = str_replace("{{password}}", $newPassword, $template);
                 $message = (new \Swift_Message('Password recovery in  site expressposhta.com'));
                 $message      ->setSubject('Password recovery in  site expressposhta.com')
-                               ->setFrom('admin@expressposhta.com')
-                               ->setTo($user->getEmail())
-                               ->setBody(html_entity_decode($template),'text/html');
+                    ->setFrom('admin@expressposhta.com')
+                    ->setTo($user->getEmail())
+                    ->setBody(html_entity_decode($template),'text/html');
                 $mailer->send($message);
 
                 $success = true;
@@ -123,7 +123,7 @@ class SecurityController extends AbstractController
 
         return $this->render('security/forgot.html.twig', ['success' => $success, 'message' => $message]);
     }
-    
+
     protected function generatePassword($length = 8)
     {
         $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

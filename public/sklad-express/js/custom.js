@@ -1,3 +1,5 @@
+// import th from "../../bundles/sonatacore/vendor/moment/src/locale/th";
+
 $(document).ready(function() {
     $('body').on('click','.payment-btn',function () {
         var parentTd=$(this).parent('td');
@@ -46,18 +48,16 @@ $(document).ready(function() {
 
 $('.selectpicker').selectpicker();
 
-
+// $(document).on('keyup', 'form[name=address_form] input', function () {
  $('form[name=address_form]').find('input').keyup(function () {
      var message = $(this).attr('message'),
          pattern = new RegExp('^'+$(this).attr('pattern')+'$'),
          el =$(this).closest('.form-group');
-     console.log($(this).val());
-     console.log( pattern.test( $(this).val()));
-   if(!pattern.test( $(this).val())){
+    if(!pattern.test( $(this).val())){
     if(!el.find('span.text-danger')[0]){
         el.append('<span class="message_error text-danger">'+message+'</span>');
     }else{
-        $('.message_error').text(message);
+        el.find('.text-danger').text(message);
     }
        $("button:submit").addClass('disabled').attr({"disabled":true}).css({"cursor":"not-allowed"});
    }else {
