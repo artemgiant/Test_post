@@ -6,9 +6,11 @@
                    and
                    page_id in ["post_profile","post_profile_from_address"]
                %} active {% endif %} ">
-                   <a  href="#postprofile" title="{{"Payment"|trans }}" data-toggle="collapse">
+                    {#<a  href="#postprofile" title="{{"Payment"|trans }}" data-toggle="collapse">#}
+                   <a  href="{{ path("post_profile") }}" title="{{"Payment"|trans }}" >
                        <em class="icon-note"></em><span data-localize="sidebar.nav.postprofile">{{"Profile"|trans }}</span>
                    </a>
+                    {#
                    <ul class="sidebar-nav sidebar-subnav collapse" id="postprofile">
                        <li class="sidebar-subnav-header">{{"Profile"|trans }}</li>
                        <li class="{% if page_id is defined
@@ -19,6 +21,11 @@
                        %} active {% endif %} ">
                            <a href="{{ path("post_profile") }}" title="{{"Profile"|trans }}"><span data-localize="sidebar.nav.form.Profile">{{"Profile"|trans }}</span></a>
                        </li>
+
+
+
+
+
                        {#
                        <li class="{% if page_id is defined
                            and
@@ -28,8 +35,10 @@
                        %} active {% endif %} ">
                            <a href="{{ path("post_profile_from_address") }}" title="{{"post_profile_from_address"|trans }}"><span data-localize="sidebar.nav.form.post_profile_from_address">{{"post_profile_from_address"|trans }}</span></a>
                        </li>
-                    #}
-                   </ul>
+
+                       
+                   
+                   </ul>#}
                </li>
 
                 <li class=" ">

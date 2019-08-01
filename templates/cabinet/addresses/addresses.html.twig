@@ -10,7 +10,7 @@
                             <!-- START card-->
                             <div class="card card-default">
                                 <div class="card-header">
-                                    <a  href="{{ path("post_address_create") }}" class="float-left badge badge-primary">{{ "Add Address" | trans }}
+                                    <a  href="{{ path("post_address_create") }}" class="float-left btn-lg btn btn-outline-primary">{{ "Add Address" | trans }}
                                     </a>
                                 </div>
                                 <div class="card-body">
@@ -58,10 +58,10 @@
                                                          <td class="text-center">{{ "Not Confirmed" | trans }}</td>
                                                      {% endif %}
                                                      <td>
-                                                        <a  href="{{ path("post_address_edit",{"id":item.id}) }}" class="btn btn-success">{{ "EditAddress" | trans }}</a>
+                                                        <a  href="{{ path("post_address_edit",{"id":item.id}) }}" class="btn btn-outline-success">{{ "EditAddress" | trans }}</a>
                                                      </td>
                                                      <td>
-                                                         <a  href="{{ path("post_address_delete",{"id":item.id}) }}" class="btn btn-danger">{{ "DeleteAddress" | trans }}</a>
+                                                         <a  href="{{ path("post_address_delete",{"id":item.id}) }}" class="btn btn-outline-danger">{{ "DeleteAddress" | trans }}</a>
                                                      </td>
                                                  </tr>
                                                 {% endfor %}
