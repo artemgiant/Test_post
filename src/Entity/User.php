@@ -125,6 +125,13 @@ class User implements UserInterface, \Serializable
      */
     private $locale;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_vip", type="boolean")
+     */
+    private $isVip = false;
+
     public $agreed = false;
 
     public function getId()
@@ -475,16 +482,6 @@ class User implements UserInterface, \Serializable
     public  $apartment;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $isWip;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $markupEkspress;
-
-    /**
      * @return mixed
      */
     public function getLocale()
@@ -502,27 +499,15 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getIsWip(): ?bool
+
+    public function isVip()
     {
-        return $this->isWip;
+        return $this->isVip;
     }
 
-    public function setIsWip(?bool $isWip): self
+    public function setIsVip(bool $isVip)
     {
-        $this->isWip = $isWip;
-
-        return $this;
-    }
-
-
-    public function getMarkupEkspress(): ?string
-    {
-        return $this->markupEkspress;
-    }
-
-    public function setMarkupEkspress(?string $markupEkspress): self
-    {
-        $this->markupEkspress = $markupEkspress;
+        $this->isVip = $isVip;
 
         return $this;
     }

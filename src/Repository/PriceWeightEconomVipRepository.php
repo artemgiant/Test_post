@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\PriceWeightEconom;
+use App\Entity\PriceWeightEconomVip;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method PriceWeightEconom|null find($id, $lockMode = null, $lockVersion = null)
- * @method PriceWeightEconom|null findOneBy(array $criteria, array $orderBy = null)
- * @method PriceWeightEconom[]    findAll()
- * @method PriceWeightEconom[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method PriceWeightEconomVip|null find($id, $lockMode = null, $lockVersion = null)
+ * @method PriceWeightEconomVip|null findOneBy(array $criteria, array $orderBy = null)
+ * @method PriceWeightEconomVip[]    findAll()
+ * @method PriceWeightEconomVip[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PriceWeightEconomRepository extends ServiceEntityRepository
+class PriceWeightEconomVipRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, PriceWeightEconom::class);
+        parent::__construct($registry, PriceWeightEconomVip::class);
     }
 
     // /**
-    //  * @return PriceWeightEconom[] Returns an array of PriceWeightEconom objects
+    //  * @return PriceWeightEconomVip[] Returns an array of PriceWeightEconomVip objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class PriceWeightEconomRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?PriceWeightEconom
+    public function findOneBySomeField($value): ?PriceWeightEconomVip
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')
@@ -48,7 +48,8 @@ class PriceWeightEconomRepository extends ServiceEntityRepository
     }
     */
 
-    public function findPriceByWeight(float $weight): ?PriceWeightEconom
+
+    public function findPriceByWeight(float $weight): ?PriceWeightEconomVip
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.max_weight >= :DetailWeight')
@@ -59,5 +60,4 @@ class PriceWeightEconomRepository extends ServiceEntityRepository
             ;
 
     }
-
 }

@@ -27,6 +27,7 @@ class UserAdmin extends AbstractAdmin
         $listMapper->addIdentifier('email')
             ->add('lastLogin')
             ->add('isSuspended')
+            ->add('isVip')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -50,22 +51,14 @@ class UserAdmin extends AbstractAdmin
             ->add('plainPassword', TextType::class, [
                 'required' => (!$this->getSubject() || is_null($this->getSubject()->getId())),
             ])
-            ->add('isWip',CheckboxType::class , [
-            'required' => false,
-             'label' => 'WIP',
-                'attr'=>[
-             'class'=>'isWip',
-    ]
-             ])
-            ->add('markupEkspress',null, [
-                'required' => false,
-                'label' => 'Markup'
-            ])
             ->add('isSuspended', null, [
                 'required' => false,
-                'label' => 'Suspended',
-
+                'label' => 'Suspended'
             ])
-;
+            ->add('isVip', null, [
+                'required' => false,
+                'label' => 'VIP'
+            ])
+        ;
     }
 }
