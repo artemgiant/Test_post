@@ -173,6 +173,13 @@ class Order
     private $orderStatus;
 
     /**
+     * @var OrderType
+     * @ORM\ManyToOne(targetEntity="OrderType")
+     * @ORM\JoinColumn(name="order_type", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
+    private $orderType;
+
+    /**
      * @var float
      *
      * @ORM\Column(name="shipping_costs", type="float", nullable=true )
@@ -556,6 +563,22 @@ class Order
     public function setOrderStatus($orderStatus)
     {
         $this->orderStatus = $orderStatus;
+    }
+
+    /**
+     * @return OrderType
+     */
+    public function getOrderType()
+    {
+        return $this->orderType;
+    }
+
+    /**
+     * @param OrderType $orderType
+     */
+    public function setOrderType($orderType)
+    {
+        $this->orderType = $orderType;
     }
 
     /**

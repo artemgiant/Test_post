@@ -55,7 +55,7 @@ Cabinet: Кабінет
 Remember Me: Запам'ятати мене
 Error. Please fill all fields: Помилка. Заповніть, будь ласка, всі поля
 Data about the address delivery: Дані про адресу доставки
-Title form suport parcels: Contact us
+Title form suport parcels: Звернутись с тех підтримку
 Choise delivery method: Вибрати спосіб доставки
 Addresses Edit: Редагування адреси
 Address Create: Додати адреса
@@ -123,17 +123,17 @@ descUa: Опис на українській
 price: Вартість
 count: Кількість
 Remove product: Видалити
-copyRigtht: Авторське право
+copyRigtht: Все права защищены.
 Status: Статус
 Users: Користувачі
 User: Користувач
 Cost: Вартість
 Weight: Вага
 DeliveryPrice: Прайс на доставку
-OrderStatus: Статус посилки
+OrderStatus: Все права защищены.
 Order: Посилки
 Orders: Посилки
-Last Login: Останній вхід
+Last Login: Останній вхіда
 Is Suspended: Неактивний
 Suspended: Неактивний
 Plain Password: Пароль
@@ -151,7 +151,7 @@ Send Detail Weight: Вага
 Send Detail Length: Довжина
 Send Detail Width: Ширина
 Send Detail Height: Висота
-Email: Email
+Email: Ваш e-mail
 Address: Адреса
 Shipping Costs: Вартість відвантаження
 Delivery Status: Статус доставки
@@ -217,3 +217,5 @@ Track the departure: Відстежити відправлення
 Track down: Відстежити
 Message : Ваше повідомнення
 Subject : Тема повідомнення
+OrderType: Тип доставки
+PriceWeightEconom: Прайс Економ-Вага
