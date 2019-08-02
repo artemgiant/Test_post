@@ -5,6 +5,7 @@ namespace App\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 
@@ -49,9 +50,14 @@ class UserAdmin extends AbstractAdmin
             ->add('plainPassword', TextType::class, [
                 'required' => (!$this->getSubject() || is_null($this->getSubject()->getId())),
             ])
+        ->add('isWip',CheckboxType::class , [
+        'required' => false,
+        'label' => 'WIP'
+    ])
             ->add('isSuspended', null, [
                 'required' => false,
                 'label' => 'Suspended'
-            ]);
+            ])
+;
     }
 }
