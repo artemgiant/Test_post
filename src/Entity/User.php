@@ -480,6 +480,11 @@ class User implements UserInterface, \Serializable
     private $isWip;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $markup;
+
+    /**
      * @return mixed
      */
     public function getLocale()
@@ -505,6 +510,18 @@ class User implements UserInterface, \Serializable
     public function setIsWip(?bool $isWip): self
     {
         $this->isWip = $isWip;
+
+        return $this;
+    }
+
+    public function getMarkup(): ?string
+    {
+        return $this->markup;
+    }
+
+    public function setMarkup(string $markup): self
+    {
+        $this->markup = $markup;
 
         return $this;
     }
