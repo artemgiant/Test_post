@@ -23,6 +23,17 @@
 
                     {{ form_start(form, {"method": "POST", "attr": {"id": "orderForm","class":"mb-3"}}) }}
                         <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    {{ form_label(form.orderType,"OrderType"|trans, {
+                                        "label_attr": {"class": "text-muted"}
+                                    }) }}
+                                    {{ form_widget(form.orderType) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {{ form_label(form.trackingNumber,"trackingNumber"|trans, {

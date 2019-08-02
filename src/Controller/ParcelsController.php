@@ -7,6 +7,8 @@ use App\Entity\User;
 use App\Entity\Address;
 use App\Entity\Invoices;
 use App\Entity\OrderStatus;
+use App\Entity\OrderType;
+use App\Entity\PriceWeightEconom;
 use App\Entity\DeliveryPrice;
 use App\Entity\OrderProducts;
 use App\Controller\CabinetController;
@@ -240,6 +242,23 @@ class ParcelsController extends CabinetController
             list($shipCost,$volume)=$this->CalculateShipCost($order);
             $order->setShippingCosts($shipCost);
             $order->setVolumeWeigth($volume);
+
+            if($orderForm['orderType'] == 1){
+
+                $em = $this->getDoctrine()->getManager();
+                $qbuilder = $em->createQueryBuilder();
+
+                $weight_price  = $qbuilder->select('min(p.max_weight), p.price')
+                    ->from(PriceWeightEconom::class, 'p')
+                    ->where('p.max_weight >= :DetailWeight')
+                    ->setParameter('DetailWeight', (float)$orderForm['sendDetailWeight'])
+                    ->setMaxResults(1)
+                    ->getQuery()
+                    ->getResult();
+
+                $order->setShippingCosts($weight_price[0]['price']);
+            }
+
 
             foreach ($originalProducts as $product) {
                 if (false === $order->getProducts()->contains($product)) {

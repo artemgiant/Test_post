@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Order;
 use App\Entity\Address;
 use App\Entity\OrderProducts;
+use App\Entity\OrderType;
 use App\Repository\AddressRepository;
 use Symfony\Component\Form\AbstractType;
 
@@ -32,6 +33,19 @@ class OrderFormType extends AbstractType
     {
         $user=$options['attr']['user'];
         $builder
+
+            ->add('orderType', EntityType::class, [
+                'class' => OrderType::class,
+                'placeholder' => 'Select type',
+                'choice_label' => 'name',
+                'required'=>true,
+                'attr'=>[
+                    'class'=>'form-control',
+                    'id'=>'order_type',
+                    'autocomplete'=>'off',
+                ],
+            ])
+
             ->add('trackingNumber',null,[
                 'attr'=>[
                         'class'=>'form-control border-right-0',
