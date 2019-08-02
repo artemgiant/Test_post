@@ -247,8 +247,11 @@ class ParcelsController extends CabinetController
                 $weightPrice = $this->getDoctrine()
                     ->getRepository(PriceWeightEconom::class)
                     ->findPriceByWeight((float)$orderForm['sendDetailWeight']);
-
-                $order->setShippingCosts($weightPrice);
+                if($weightPrice){
+                    $order->setShippingCosts($weightPrice->getPrice());
+                }else{
+                    $order->setShippingCosts(null);
+                }
             }
 
             foreach ($originalProducts as $product) {
