@@ -47,7 +47,7 @@ $(document).ready(function() {
 $('.selectpicker').selectpicker();
 
 
- $('form').find('input').keyup(function () {
+ $('form').on('keyup','input,textarea',function () {
     var pattern = new RegExp('^([a-zA-Z]+)$'),
         el =$(this).closest('.form-group');
      if(!pattern.test( $(this).val())){
