@@ -35,6 +35,20 @@ services:
         tags:
         - { name: sonata.admin, manager_type: orm, group: admin, label: OrderStatus }
 
+    admin.order_type:
+        class: App\Admin\OrderTypeAdmin
+        arguments: [~, App\Entity\OrderType, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: OrderType }
+        public: true
+
+    admin.price_weight_econom:
+        class: App\Admin\PriceWeightEconomAdmin
+        arguments: [~, App\Entity\PriceWeightEconom, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: PriceWeightEconom }
+        public: true
+
     app.admin.deliveryprice:
             class: App\Admin\DeliveryPriceAdmin
             arguments: [~, App\Entity\DeliveryPrice, ~]
@@ -64,3 +78,4 @@ services:
         calls:
             - [setMailer, ["@mailer"]]
             - [setTemplateEngine, ["@templating"]]
+
