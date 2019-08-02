@@ -475,6 +475,11 @@ class User implements UserInterface, \Serializable
     public  $apartment;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isWip;
+
+    /**
      * @return mixed
      */
     public function getLocale()
@@ -489,6 +494,18 @@ class User implements UserInterface, \Serializable
     public function setLocale($locale)
     {
         $this->locale = $locale;
+        return $this;
+    }
+
+    public function getIsWip(): ?bool
+    {
+        return $this->isWip;
+    }
+
+    public function setIsWip(?bool $isWip): self
+    {
+        $this->isWip = $isWip;
+
         return $this;
     }
 
