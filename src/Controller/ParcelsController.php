@@ -146,6 +146,18 @@ class ParcelsController extends CabinetController
             list($shipCost,$volume)=$this->CalculateShipCost($order);
             $order->setShippingCosts($shipCost);
             $order->setVolumeWeigth($volume);
+
+            if($orderForm['orderType'] == 1){
+                $weightPrice = $this->getDoctrine()
+                    ->getRepository(PriceWeightEconom::class)
+                    ->findPriceByWeight((float)$orderForm['sendDetailWeight']);
+                if($weightPrice){
+                    $order->setShippingCosts($weightPrice->getPrice());
+                }else{
+                    $order->setShippingCosts(null);
+                }
+            }
+
             $order->setUser($this->user);
             $orderStatus=$entityManager->getRepository(OrderStatus::class)->findOneBy(['status'=>'new']);
             $order->setOrderStatus($orderStatus);
