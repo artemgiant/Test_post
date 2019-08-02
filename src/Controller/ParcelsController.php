@@ -244,21 +244,12 @@ class ParcelsController extends CabinetController
             $order->setVolumeWeigth($volume);
 
             if($orderForm['orderType'] == 1){
+                $weightPrice = $this->getDoctrine()
+                    ->getRepository(PriceWeightEconom::class)
+                    ->findPriceByWeight((float)$orderForm['sendDetailWeight']);
 
-                $em = $this->getDoctrine()->getManager();
-                $qbuilder = $em->createQueryBuilder();
-
-                $weight_price  = $qbuilder->select('min(p.max_weight), p.price')
-                    ->from(PriceWeightEconom::class, 'p')
-                    ->where('p.max_weight >= :DetailWeight')
-                    ->setParameter('DetailWeight', (float)$orderForm['sendDetailWeight'])
-                    ->setMaxResults(1)
-                    ->getQuery()
-                    ->getResult();
-
-                $order->setShippingCosts($weight_price[0]['price']);
+                $order->setShippingCosts($weightPrice);
             }
-
 
             foreach ($originalProducts as $product) {
                 if (false === $order->getProducts()->contains($product)) {

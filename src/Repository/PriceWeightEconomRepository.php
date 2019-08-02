@@ -47,4 +47,17 @@ class PriceWeightEconomRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findPriceByWeight(float $weight): float
+    {
+        $weight_price = $this->createQueryBuilder('p')
+            ->select('min(p.max_weight), p.price')
+            ->where('p.max_weight >= :DetailWeight')
+            ->setParameter('DetailWeight', $weight)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+
+        return $weight_price[0]['price'];
+    }
 }

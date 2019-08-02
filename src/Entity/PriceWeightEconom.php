@@ -54,4 +54,5 @@ class PriceWeightEconom
 
         return $this;
     }
+
 }
