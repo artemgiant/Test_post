@@ -59,7 +59,7 @@ $('.selectpicker').selectpicker();
          $("button:submit").addClass('disabled').attr({"disabled":true}).css({"cursor":"not-allowed"});
      }else {
          el.find('span.text-danger').remove();
-         $("button:submit").addClass('disabled').attr({"disabled":false}).css({"cursor":"point"});
+         $("button:submit").removeClass('disabled').attr({"disabled":false}).css({"cursor":"point"});
 
      }
  });
