@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ecac9fd-3794-435a-9190-193823a05041" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/composerJson.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/sklad-express/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/sklad-express/js/custom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190730094542.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/cabinet/addresses/edit_form_of_address.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cabinet/addresses/edit_form_of_address.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/cabinet/addresses/modalAddress.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cabinet/addresses/modalAddress.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/cabinet/cabinet_layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cabinet/cabinet_layout.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translations/messages.ua.yml" beforeDir="false" afterPath="$PROJECT_DIR$/translations/messages.ua.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Admin/UserAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin/UserAdmin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,6 +19,11 @@
     </execution>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
@@ -160,8 +159,8 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="E:/start_git_security" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -200,7 +199,9 @@
       <workItem from="1564478479398" duration="5287000" />
       <workItem from="1564487482792" duration="232000" />
       <workItem from="1564487723116" duration="11048000" />
-      <workItem from="1564551192270" duration="32605000" />
+      <workItem from="1564551192270" duration="33672000" />
+      <workItem from="1564723548018" duration="1532000" />
+      <workItem from="1564726459576" duration="5020000" />
     </task>
     <servers />
   </component>
