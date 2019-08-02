@@ -57,7 +57,7 @@ class UserAdmin extends AbstractAdmin
              'class'=>'isWip',
     ]
              ])
-            ->add('markup',null, [
+            ->add('markupEkspress',null, [
                 'required' => false,
                 'label' => 'Markup'
             ])

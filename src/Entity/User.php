@@ -480,9 +480,9 @@ class User implements UserInterface, \Serializable
     private $isWip;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $markup;
+    private $markupEkspress;
 
     /**
      * @return mixed
@@ -514,14 +514,15 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getMarkup(): ?string
+
+    public function getMarkupEkspress(): ?string
     {
-        return $this->markup;
+        return $this->markupEkspress;
     }
 
-    public function setMarkup(string $markup): self
+    public function setMarkupEkspress(?string $markupEkspress): self
     {
-        $this->markup = $markup;
+        $this->markupEkspress = $markupEkspress;
 
         return $this;
     }
