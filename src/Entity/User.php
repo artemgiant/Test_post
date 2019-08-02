@@ -125,6 +125,13 @@ class User implements UserInterface, \Serializable
      */
     private $locale;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_vip", type="boolean")
+     */
+    private $isVip = false;
+
     public $agreed = false;
 
     public function getId()
@@ -489,6 +496,19 @@ class User implements UserInterface, \Serializable
     public function setLocale($locale)
     {
         $this->locale = $locale;
+        return $this;
+    }
+
+
+    public function isVip()
+    {
+        return $this->isVip;
+    }
+
+    public function setIsVip(bool $isVip)
+    {
+        $this->isVip = $isVip;
+
         return $this;
     }
 

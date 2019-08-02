@@ -9,6 +9,7 @@ use App\Entity\Invoices;
 use App\Entity\OrderStatus;
 use App\Entity\OrderType;
 use App\Entity\PriceWeightEconom;
+use App\Entity\PriceWeightEconomVip;
 use App\Entity\DeliveryPrice;
 use App\Entity\OrderProducts;
 use App\Controller\CabinetController;
@@ -256,13 +257,24 @@ class ParcelsController extends CabinetController
             $order->setVolumeWeigth($volume);
 
             if($orderForm['orderType'] == 1){
-                $weightPrice = $this->getDoctrine()
-                    ->getRepository(PriceWeightEconom::class)
-                    ->findPriceByWeight((float)$orderForm['sendDetailWeight']);
-                if($weightPrice){
-                    $order->setShippingCosts($weightPrice->getPrice());
-                }else{
-                    $order->setShippingCosts(null);
+                if($this->user->isVip()){
+                    $weightPrice = $this->getDoctrine()
+                        ->getRepository(PriceWeightEconomVip::class)
+                        ->findPriceByWeight((float)$orderForm['sendDetailWeight']);
+                    if ($weightPrice) {
+                        $order->setShippingCosts($weightPrice->getPrice());
+                    } else {
+                        $order->setShippingCosts(null);
+                    }
+                }else {
+                    $weightPrice = $this->getDoctrine()
+                        ->getRepository(PriceWeightEconom::class)
+                        ->findPriceByWeight((float)$orderForm['sendDetailWeight']);
+                    if ($weightPrice) {
+                        $order->setShippingCosts($weightPrice->getPrice());
+                    } else {
+                        $order->setShippingCosts(null);
+                    }
                 }
             }
 
