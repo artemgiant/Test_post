@@ -480,6 +480,11 @@ class User implements UserInterface, \Serializable
     private $isWip;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $markupEkspress;
+
+    /**
      * @return mixed
      */
     public function getLocale()
@@ -505,6 +510,19 @@ class User implements UserInterface, \Serializable
     public function setIsWip(?bool $isWip): self
     {
         $this->isWip = $isWip;
+
+        return $this;
+    }
+
+
+    public function getMarkupEkspress(): ?string
+    {
+        return $this->markupEkspress;
+    }
+
+    public function setMarkupEkspress(?string $markupEkspress): self
+    {
+        $this->markupEkspress = $markupEkspress;
 
         return $this;
     }

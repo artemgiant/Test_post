@@ -18,7 +18,6 @@ class SupportType extends AbstractType
             ->add('Name',TextType::class,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
-                    'placeholder'=>'Your name',
                     'autocomplete'=>'off'],
                 'label'=>'Name',
                 'required'=>true
