@@ -39,7 +39,6 @@ Have an account?: Нет аккаунта?
 Signup: Вход
 Authentication: Вход
 PASSWORD RESET: Сброс пароля
-Title form suport parcels: Обратная связь
 Fill with your mail to receive instructions on how to reset your password.: Введите свой Email для получения инструкции для сброса пароля.
 Enter email: Введите Email
 Enter _email: Email
@@ -151,9 +150,7 @@ Send Detail Weight: Вес
 Send Detail Length: Длина
 Send Detail Width: Ширина
 Send Detail Height: Высота
-Email: Ваш e-mail
-Subject: Тема сообщения
-Message: Сообщения
+Email: Email
 Address: Адрес
 Shipping Costs: Стоимость отгрузки
 Delivery Status: Статус доставки
@@ -215,4 +212,3 @@ Ukrainian: Украинский
 Russian: Русский
 Track the departure: Отследить отправление
 Track down: Отследить
-Send: Отправить
