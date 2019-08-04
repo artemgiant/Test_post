@@ -18,7 +18,7 @@ class User implements UserInterface, \Serializable
     const DEFAULT_ROLE = 'ROLE_POST_USER';
     const ADMIN_ROLE = 'ROLE_SUPER_ADMIN';
     const POST_ROLE = 'ROLE_POST_USER';
-    
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -68,7 +68,7 @@ class User implements UserInterface, \Serializable
      */
     private $transaction;
 
-  /**
+    /**
      * @ORM\OneToMany(targetEntity="Address", mappedBy="user")
      */
     private $addresses;
@@ -134,7 +134,7 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-       return json_decode(stripslashes(trim($this->roles,'"')),1);
+        return json_decode(stripslashes(trim($this->roles,'"')),1);
     }
 
     public function getPassword()
@@ -180,9 +180,9 @@ class User implements UserInterface, \Serializable
 
     public function setRoles($roles)
     {
-         $this->roles = json_encode($roles);
+        $this->roles = json_encode($roles);
 
-       return $this;
+        return $this;
     }
 
     public function addRole($role)
@@ -207,7 +207,7 @@ class User implements UserInterface, \Serializable
         $roles=$this->getRoles();
         if (is_array($roles) && false !== $key = array_search(strtoupper($role), $roles, true)) {
             unset($roles[$key]);
-           $this->setRoles(array_values($roles));
+            $this->setRoles(array_values($roles));
         }
 
         return $this;
@@ -283,7 +283,7 @@ class User implements UserInterface, \Serializable
      */
     public function getFirstName(): ?string
     {
-            return $this->firstName;
+        return $this->firstName;
     }
 
     /**
@@ -301,7 +301,7 @@ class User implements UserInterface, \Serializable
      */
     public function getLastName(): ?string
     {
-            return $this->lastName;
+        return $this->lastName;
     }
 
     /**
@@ -429,7 +429,7 @@ class User implements UserInterface, \Serializable
         return $this->firstName . ' ' . $this->lastName;
     }
 
-     /**
+    /**
      * @var string
      *
      */
@@ -477,12 +477,9 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $isWip;
+    private $Vip;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $markup;
+ 
 
     /**
      * @return mixed
@@ -502,28 +499,17 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getIsWip(): ?bool
+    public function getVip(): ?bool
     {
-        return $this->isWip;
+        return $this->Vip;
     }
 
-    public function setIsWip(?bool $isWip): self
+    public function setVip(?bool $Vip): self
     {
-        $this->isWip = $isWip;
+        $this->Vip = $Vip;
 
         return $this;
     }
 
-    public function getMarkup(): ?string
-    {
-        return $this->markup;
-    }
-
-    public function setMarkup(string $markup): self
-    {
-        $this->markup = $markup;
-
-        return $this;
-    }
 
 }
