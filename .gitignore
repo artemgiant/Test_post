@@ -9,9 +9,11 @@
 ###> symfony/phpunit-bridge ###
 .phpunit
 /phpunit.xml
-/.idea
 ###< symfony/phpunit-bridge ###
 
 ###> symfony/web-server-bundle ###
 /.web-server-pid
 ###< symfony/web-server-bundle ###
+/.idea/
+
+

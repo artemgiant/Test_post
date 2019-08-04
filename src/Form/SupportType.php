@@ -29,13 +29,6 @@ class SupportType extends AbstractType
                 'label'=>'Email',
                 'required'=>true,
             ])
-            ->add('Subject',TextType::class,[
-                'attr'=>[
-                    'class'=>'form-control border-right-0',
-                    'autocomplete'=>'off'],
-                'label'=>'Subject',
-                'required'=>true
-            ])
             ->add('Message',TextareaType::class,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
@@ -44,7 +37,7 @@ class SupportType extends AbstractType
                 'required'=>true
             ])
             ->add('submit', SubmitType::class, [
-                'attr' => ['class' => 'btn btn-block btn-primary mt-3'],
+                'attr' => ['class' => 'btn btn-block btn-outline-primary mt-3 mx-auto d-block'],
             ]);
     }
 
