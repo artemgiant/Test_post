@@ -17,12 +17,12 @@
                     </a>
                 </div>
                 <div class="col-xl-2  col-md-12">
-                    
+
                 </div>
                 <div class="col-xl-6 col-lg-12 col-md-12">
                     <!-- START card-->
                     <div class="card col-12 align-items-center align-items-stretch border-0">
-                            
+
                         <h4 class="mt-8">{{ "Track the departure"| trans }}</h4>
 
                         {% if page_id is defined
@@ -47,7 +47,7 @@
                                 </div>
                             </form>
                         </div>
-                    
+
                 </div>
 
 {#
@@ -141,7 +141,7 @@
                                                     {% if item.invoices is not empty %}
                                                         {% for invoice in item.invoices if invoice.isPaid == false %}
                                                             {% if invoice.price > 0 %}
-                                                                {% set liqPayForm=liqpay.LiqPayForm(invoice.price,'Pay by ExpreaaPochta.com',"EXPRESSINVOICE_"~invoice.id) %}
+                                                                {% set liqPayForm=liqpay.LiqPayForm(invoice.price,'Pay by ExpressPoshta.com',"EXPRESSINVOICE_"~invoice.id) %}
                                                                 <div class="liq-pay-button">
                                                                     {{ liqPayForm | raw }}
                                                                 </div>

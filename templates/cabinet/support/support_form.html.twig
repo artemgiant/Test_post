@@ -58,7 +58,7 @@
                                 {% if SupportForm.Email.vars.errors|length %}
                                     {{ form_widget(SupportForm.Email, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
                                 {% else %}
-                                    {{ form_widget(SupportForm.Email,{"attr":{"pattern":"([a-zA-Z]+)","message":" Укажите область только латыни и без знаков"} }) }}
+                                    {{ form_widget(SupportForm.Email)}}
                                 {% endif %}
                                 <div class="input-group-append">
                              <span class="input-group-text text-muted bg-transparent border-left-0">

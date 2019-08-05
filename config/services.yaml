@@ -46,14 +46,14 @@ services:
         class: App\Admin\PriceWeightEconomAdmin
         arguments: [~, App\Entity\PriceWeightEconom, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: PriceWeightEconom }
+            - { name: sonata.admin, manager_type: orm, group: Price, label: PriceWeightEconom }
         public: true
 
     admin.price_weight_econom_vip:
         class: App\Admin\PriceWeightEconomVipAdmin
         arguments: [~, App\Entity\PriceWeightEconomVip, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: PriceWeightEconomVip }
+            - { name: sonata.admin, manager_type: orm, group: Price, label: PriceWeightEconomVip }
         public: true
 
     app.admin.deliveryprice:
