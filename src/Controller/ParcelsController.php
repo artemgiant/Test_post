@@ -196,7 +196,6 @@ class ParcelsController extends CabinetController
         }
         $twigoption=array_merge($this->optionToTemplate,['form' => $form->createView(),
             'error' => $errors,]);
-
         return $this->render('cabinet/parcels/editform.html.twig', $twigoption);
 
     }
