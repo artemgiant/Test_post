@@ -18,7 +18,7 @@ class User implements UserInterface, \Serializable
     const DEFAULT_ROLE = 'ROLE_POST_USER';
     const ADMIN_ROLE = 'ROLE_SUPER_ADMIN';
     const POST_ROLE = 'ROLE_POST_USER';
-    
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -68,7 +68,7 @@ class User implements UserInterface, \Serializable
      */
     private $transaction;
 
-  /**
+    /**
      * @ORM\OneToMany(targetEntity="Address", mappedBy="user")
      */
     private $addresses;
@@ -125,13 +125,6 @@ class User implements UserInterface, \Serializable
      */
     private $locale;
 
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="is_vip", type="boolean")
-     */
-    private $isVip = false;
-
     public $agreed = false;
 
     public function getId()
@@ -141,7 +134,7 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-       return json_decode(stripslashes(trim($this->roles,'"')),1);
+        return json_decode(stripslashes(trim($this->roles,'"')),1);
     }
 
     public function getPassword()
@@ -187,9 +180,9 @@ class User implements UserInterface, \Serializable
 
     public function setRoles($roles)
     {
-         $this->roles = json_encode($roles);
+        $this->roles = json_encode($roles);
 
-       return $this;
+        return $this;
     }
 
     public function addRole($role)
@@ -214,7 +207,7 @@ class User implements UserInterface, \Serializable
         $roles=$this->getRoles();
         if (is_array($roles) && false !== $key = array_search(strtoupper($role), $roles, true)) {
             unset($roles[$key]);
-           $this->setRoles(array_values($roles));
+            $this->setRoles(array_values($roles));
         }
 
         return $this;
@@ -290,7 +283,7 @@ class User implements UserInterface, \Serializable
      */
     public function getFirstName(): ?string
     {
-            return $this->firstName;
+        return $this->firstName;
     }
 
     /**
@@ -308,7 +301,7 @@ class User implements UserInterface, \Serializable
      */
     public function getLastName(): ?string
     {
-            return $this->lastName;
+        return $this->lastName;
     }
 
     /**
@@ -436,7 +429,7 @@ class User implements UserInterface, \Serializable
         return $this->firstName . ' ' . $this->lastName;
     }
 
-     /**
+    /**
      * @var string
      *
      */
@@ -482,6 +475,13 @@ class User implements UserInterface, \Serializable
     public  $apartment;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $Vip;
+
+
+
+    /**
      * @return mixed
      */
     public function getLocale()
@@ -499,17 +499,17 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-
-    public function isVip()
+    public function getVip(): ?bool
     {
-        return $this->isVip;
+        return $this->Vip;
     }
 
-    public function setIsVip(bool $isVip)
+    public function setVip(?bool $Vip): self
     {
-        $this->isVip = $isVip;
+        $this->Vip = $Vip;
 
         return $this;
     }
+
 
 }

@@ -55,7 +55,7 @@ Cabinet: Кабінет
 Remember Me: Запам'ятати мене
 Error. Please fill all fields: Помилка. Заповніть, будь ласка, всі поля
 Data about the address delivery: Дані про адресу доставки
-Title form suport parcels: Звернутись с тех підтримку
+Title form suport parcels: Зворотній зв'язок
 Choise delivery method: Вибрати спосіб доставки
 Addresses Edit: Редагування адреси
 Address Create: Додати адреса
@@ -220,3 +220,4 @@ Subject : Тема повідомнення
 OrderType: Тип доставки
 PriceWeightEconom: Прайс Економ-Вага
 PriceWeightEconomVip: VIP Прайс Економ-Вага
+Send: Відправити
