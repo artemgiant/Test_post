@@ -51,7 +51,7 @@ class UserAdmin extends AbstractAdmin
             ->add('plainPassword', TextType::class, [
                 'required' => (!$this->getSubject() || is_null($this->getSubject()->getId())),
             ])
-            ->add('Vip',CheckboxType::class , [
+            ->add('isVip',CheckboxType::class , [
             'required' => false,
              'label' => 'VIP',
                 'attr'=>[

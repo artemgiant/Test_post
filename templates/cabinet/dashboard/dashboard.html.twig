@@ -11,8 +11,8 @@
                     <div class="card flex-row align-items-center align-items-stretch border-0">
                         <div class="col-4 d-flex align-items-center bg-primary-dark justify-content-center rounded-left"><em class="fa-2x mr-2 fas fa-box-open"></em></div>
                         <div class="col-8 py-3 bg-primary rounded-right">
-                            <div class="h2 mt-0">Добавить</div>
-                            <div class="text-uppercase">посылку</div>
+                            <div class="h2 mt-0">{{ "Add"|trans}}</div>
+                            <div class="text-uppercase">{{ "Percles"|trans}}</div>
                         </div>
                     </div>
                 </a>
@@ -23,8 +23,8 @@
                     <div class="col-4 d-flex align-items-center bg-purple-dark justify-content-center rounded-left"><em class="icon-bubbles fa-3x"></em></div>
 
                     <div class="col-8 py-3 bg-purple rounded-right">
-                            <div class="h2 mt-0">Обратится</div>
-                        <div class="text-uppercase">В поддержку</div>
+                            <div class="h2 mt-0">{{ "Send_d"|trans}}</div>
+                        <div class="text-uppercase">{{ "Support"|trans}}</div>
                     </div>
                     </div>
                 </a>
@@ -46,7 +46,7 @@
                             {% endif %}
                             <div class="form-group">
                                 <div class="input-group with-focus ">
-                                    <input class="form-control border-right-0 search-track-input" name="tracnum"
+                                    <input class="form-control border-right-0 search-track-input number_only" name="tracnum"
                                         value="{% if trNum is defined %} {{ trNum }}{% endif %}"
                                         required="required"
                                     />
