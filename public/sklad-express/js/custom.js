@@ -46,20 +46,21 @@ $(document).ready(function() {
 
 $('.selectpicker').selectpicker();
 
-
- $('form').on('keyup','input,textarea',function () {
-    var pattern = new RegExp('^([a-zA-Z]+)$'),
-        el =$(this).closest('.form-group');
-     if(!pattern.test( $(this).val())){
-         if(!el.find('span.text-danger')[0]){
-             el.append('<span class="message_error text-danger"> В форме нельзя писать кириллицей, только латынь</span>');
-         }else{
-             el.find('.text-danger').text(' В форме нельзя писать кириллицей, только латынь');
-         }
-         $("button:submit").addClass('disabled').attr({"disabled":true}).css({"cursor":"not-allowed"});
-     }else {
-         el.find('span.text-danger').remove();
-         $("button:submit").removeClass('disabled').attr({"disabled":false}).css({"cursor":"point"});
+   $('form').on('keyup','input:not(#exampleInputEmail1,#exampleInputPassword1),textarea:not(#support_Message,#order_form_comment,#order_form_products_0_descUa)',function () {
+        var pattern = new RegExp('^([a-zA-Z0-9\\.\\,]+)$'),
+            el =$(this).closest('.form-group');
+        if(!pattern.test( $(this).val())){
+            if(!el.find('span.text-danger')[0]){
+                el.append('<span class="message_error text-danger"> В форме нельзя писать кириллицей, только латынь</span>');
+            }else{
+                el.find('.text-danger').text(' В форме нельзя писать кириллицей, только латынь');
+            }
+            $("button:submit").addClass('disabled').attr({"disabled":true}).css({"cursor":"not-allowed"});
+        }else {
+            el.find('span.text-danger').remove();
+            if(!$('body').find('span.text-danger')[0]){
+                $("button:submit").removeClass('disabled').attr({"disabled":false}).css({"cursor":"pointer"});
+            }
 
      }
  });

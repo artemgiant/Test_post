@@ -7,7 +7,7 @@ Country: Страна
 Adress: Адрес
 Edit Address: Редактировать адрес
 Dashboard: Главная
-Main Navigation: 
+Main Navigation:
 Profile: Профиль
 Parcels: Посылки
 Addresses: Адреса
@@ -39,7 +39,7 @@ Have an account?: Нет аккаунта?
 Signup: Вход
 Authentication: Вход
 PASSWORD RESET: Сброс пароля
-Title form suport parcels: Обратится в тех поддержку
+Title form suport parcels: Обратная связь
 Fill with your mail to receive instructions on how to reset your password.: Введите свой Email для получения инструкции для сброса пароля.
 Enter email: Введите Email
 Enter _email: Email
@@ -218,3 +218,4 @@ Track down: Отследить
 OrderType: Тип доставки
 PriceWeightEconom: Прайс Эконом-Вес
 PriceWeightEconomVip: VIP Прайс Эконом-Вес
+Send: Отправить
