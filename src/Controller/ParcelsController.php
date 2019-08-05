@@ -150,8 +150,8 @@ class ParcelsController extends CabinetController
             $order->setShippingCosts($shipCost);
             $order->setVolumeWeigth($volume);
 
-            if($orderForm['orderType'] == 1){
-                if($this->user->getIsVip()){
+            if($order->getOrderType()->getCode() == 'econom'){
+                if($this->user->isVip()){
                     $weightPrice = $this->getDoctrine()
                         ->getRepository(PriceWeightEconomVip::class)
                         ->findPriceByWeight((float)$orderForm['sendDetailWeight']);
@@ -160,7 +160,7 @@ class ParcelsController extends CabinetController
                     } else {
                         $order->setShippingCosts(null);
                     }
-                }else {
+                } else {
                     $weightPrice = $this->getDoctrine()
                         ->getRepository(PriceWeightEconom::class)
                         ->findPriceByWeight((float)$orderForm['sendDetailWeight']);
@@ -267,8 +267,8 @@ class ParcelsController extends CabinetController
             $order->setShippingCosts($shipCost);
             $order->setVolumeWeigth($volume);
 
-            if($orderForm['orderType'] == 1){
-                if($this->user->getIsVip()){
+            if($order->getOrderType()->getCode() == 'econom'){
+                if($this->user->isVip()){
                     $weightPrice = $this->getDoctrine()
                         ->getRepository(PriceWeightEconomVip::class)
                         ->findPriceByWeight((float)$orderForm['sendDetailWeight']);
