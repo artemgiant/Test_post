@@ -7,7 +7,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-//test
+
 class OrderTypeAdmin extends AbstractAdmin
 {
     protected $baseRoutePattern = 'orders-type';
@@ -18,6 +18,7 @@ class OrderTypeAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
+            ->add('code')
             ->add('name')
         ;
     }
@@ -29,6 +30,7 @@ class OrderTypeAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('id')
+            ->add('code')
             ->add('name')
             ->add('_action', null, [
                 'actions' => [
@@ -45,6 +47,7 @@ class OrderTypeAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
+            ->add('code')
             ->add('name')
         ;
     }
