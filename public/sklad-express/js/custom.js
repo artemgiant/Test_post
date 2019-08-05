@@ -73,8 +73,7 @@ $('.selectpicker').selectpicker();
      }
  });
 
-    $('form').on('keyup',"input#order_form_trackingNumber " +
-        ",#order_form_sendDetailLength" +
+    $('form').on('keyup',"#order_form_sendDetailLength" +
         ",#order_form_sendDetailWidth" +
         ",#order_form_sendDetailHeight" +
         ",#order_form_products_0_price" +
@@ -84,10 +83,9 @@ $('.selectpicker').selectpicker();
         ",#address_form_zip" +
         ",#address_form_phone" +
         ",#address_form_apartment" +
-        ',input.number_only' +
         ",#order_form_sendDetailWeight"
         ,function () {
-        var pattern = new RegExp('^([0-9\\.\\,\\s]+)$'),
+        var pattern = new RegExp('^([\\s,0-9\\.\\,]+)$'),
             el =$(this).closest('.form-group');
         if(!pattern.test( $(this).val())){
             if(!el.find('span.text-danger')[0]){
