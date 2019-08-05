@@ -477,7 +477,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $Vip;
+    private $isVip;
 
 
 
@@ -499,17 +499,21 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getVip(): ?bool
+    public function getIsVip(): ?bool
     {
-        return $this->Vip;
+        return $this->isVip;
     }
 
-    public function setVip(?bool $Vip): self
+    public function setIsVip(?bool $isVip): self
     {
-        $this->Vip = $Vip;
+        $this->isVip = $isVip;
 
         return $this;
     }
 
+    public function isVip(): ?bool
+    {
+        return $this->Vip;
+    }
 
 }

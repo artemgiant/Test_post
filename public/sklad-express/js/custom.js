@@ -45,13 +45,21 @@ $(document).ready(function() {
 //    });
 
 $('.selectpicker').selectpicker();
-
-   $('form').on('keyup','input:not(#exampleInputEmail1,#exampleInputPassword1),textarea:not(#support_Message,#order_form_comment,#order_form_products_0_descUa)',function () {
-        var pattern = new RegExp('^([a-zA-Z0-9\\.\\,]+)$'),
+    // console.log($('input#order_form_trackingNumber,#order_form_products_0_price')[0]);
+   $('form').on('keyup','input#address_form_city,' +
+       '#address_form_regionOblast,' +
+       '#address_form_street,' +
+       '#address_form_userFirstName,' +
+       '#address_form_userLastName,' +
+     'textarea:not(#support_Message,' +
+       '#order_form_comment,' +
+       '#order_form_products_0_descUa)'
+       ,function () {
+        var pattern = new RegExp('^([a-zA-Z0-9\\.\\,\\@,\\s]+)$'),
             el =$(this).closest('.form-group');
         if(!pattern.test( $(this).val())){
             if(!el.find('span.text-danger')[0]){
-                el.append('<span class="message_error text-danger"> В форме нельзя писать кириллицей, только латынь</span>');
+                el.append('<span class="message_error text-danger">В форме нельзя писать кириллицей, только латынь</span>');
             }else{
                 el.find('.text-danger').text(' В форме нельзя писать кириллицей, только латынь');
             }
@@ -64,6 +72,44 @@ $('.selectpicker').selectpicker();
 
      }
  });
+
+    $('form').on('keyup',"input#order_form_trackingNumber " +
+        ",#order_form_sendDetailLength" +
+        ",#order_form_sendDetailWidth" +
+        ",#order_form_sendDetailHeight" +
+        ",#order_form_products_0_price" +
+        ",#order_form_products_0_count" +
+        ",#address_form_house" +
+        ",#address_form_apartment" +
+        ",#address_form_zip" +
+        ",#address_form_phone" +
+        ",#address_form_apartment" +
+        ',input.number_only' +
+        ",#order_form_sendDetailWeight"
+        ,function () {
+        var pattern = new RegExp('^([0-9\\.\\,\\s]+)$'),
+            el =$(this).closest('.form-group');
+        if(!pattern.test( $(this).val())){
+            if(!el.find('span.text-danger')[0]){
+                el.append('<span class="message_error text-danger">Введите только цифры.</span>');
+            }else{
+                el.find('.text-danger').text('Введите только цифры.');
+            }
+            $("button:submit").addClass('disabled').attr({"disabled":true}).css({"cursor":"not-allowed"});
+        }else {
+            el.find('span.text-danger').remove();
+            if(!$('body').find('span.text-danger')[0]){
+                $("button:submit").removeClass('disabled').attr({"disabled":false}).css({"cursor":"pointer"});
+            }
+
+        }
+    });
+
+
+
+
+
+
 
 });
 

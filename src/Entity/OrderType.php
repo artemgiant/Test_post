@@ -24,6 +24,13 @@ class OrderType
     /**
      * @var string
      *
+     * @ORM\Column(name="code", type="string", length=255, nullable=true)
+     */
+    private $code;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
@@ -35,6 +42,26 @@ class OrderType
     {
         return $this->id;
     }
+
+    /**
+     * @return string
+     */
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param string $code
+     * @return string
+     */
+    public function setCode(string $code): self
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
 
     /**
      * @return string
@@ -54,5 +81,4 @@ class OrderType
 
         return $this;
     }
-
 }
