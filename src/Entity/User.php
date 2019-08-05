@@ -511,5 +511,9 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
+    public function isVip(): ?bool
+    {
+        return $this->Vip;
+    }
 
 }
