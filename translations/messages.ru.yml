@@ -123,12 +123,16 @@ descUa: Описание на украинском
 price: Стоимость
 count: Количество
 Remove product: Удалить
-copyRigtht: Авторское право
+copyRigtht: Expressposhta все права защищены.
 Status: Статус
 Users: Пользователи
 User: Пользователь
 Cost: Стоимость
 Weight: Вес
+Add: Добавить
+Percles: посылку
+Send_d: Обратится
+Support: В поддержку
 DeliveryPrice: Прайс на доставку
 OrderStatus: Статус посылки
 Order: Посылки
@@ -190,6 +194,8 @@ Russia: Россия
 Find for tracking number: Результат поиска
 Nothing Found: Ничего не найдено
 Date: Дата
+Order  id : Номер заказа
+Track comment: Комментарий
 StatusDescription: Статус
 Details: Подробней
 Recipient: Получатель

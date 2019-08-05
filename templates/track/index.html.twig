@@ -16,28 +16,29 @@
                         <thead>
                         <tr>
                         <tr>
-                            <th>Id Order</th>
-                            <th>Track Number </th>
-                            <th>Country</th>
+                            <th> {{ "Order  id"| trans }}</th>
+                            <th> {{ "Tack comment"| trans }}</th>
+                            <th>{{ "shippingCosts"| trans }}</th>
                             <th></th>
                         </tr>
                         </thead>
                         <tbody>
+{#                        {{ dump(items.shippingCosts) }}#}
                         {% if items is not empty  and items is defined %}
                                         <tr>
                                             <td>
-                                                {% if items.id is defined %}
-                                                    {{ items.id }}
-                                                {% endif %}
-                                            </td>
-                                            <td>
-                                                {% if items.country is defined %}
+                                                {% if items.trackingNumber is defined %}
                                                     {{ items.trackingNumber }}
                                                 {% endif %}
                                             </td>
                                             <td>
-                                                {% if items.country is defined %}
-                                                    {{ items.country }}
+                                                {% if items.comment is defined %}
+                                                    {{ items.comment }}
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if items.shippingCosts is defined %}
+                                                    {{ items.shippingCosts }}
                                                 {% endif %}
                                             </td>
                                         </tr>
