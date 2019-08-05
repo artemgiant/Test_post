@@ -513,7 +513,7 @@ class User implements UserInterface, \Serializable
 
     public function isVip(): ?bool
     {
-        return $this->Vip;
+        return $this->isVip;
     }
 
 }
