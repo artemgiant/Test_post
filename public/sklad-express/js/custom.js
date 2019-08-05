@@ -46,7 +46,7 @@ $(document).ready(function() {
 
 $('.selectpicker').selectpicker();
 
-   $('form').on('keyup','input:not(#exampleInputEmail1,#exampleInputPassword1),textarea:not(#support_Message,#order_form_comment,#order_form_products_0_descUa)',function () {
+   $('form').on('keyup','input:not(#exampleInputPassword1),textarea:not(#support_Message,#order_form_comment,#order_form_products_0_descUa)',function () {
         var pattern = new RegExp('^([a-zA-Z0-9\\.\\,\\@]+)$'),
             el =$(this).closest('.form-group');
         if(!pattern.test( $(this).val())){
