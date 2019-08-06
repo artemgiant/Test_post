@@ -106,7 +106,6 @@ class ParcelsController extends CabinetController
 
         $order = new Order();
 
-
         $orderForm=$request->request->get('order_form',false);
         if ($orderForm)
         {

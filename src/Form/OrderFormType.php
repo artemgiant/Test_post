@@ -26,6 +26,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class OrderFormType extends AbstractType
 {
@@ -36,7 +37,20 @@ class OrderFormType extends AbstractType
         $maxWeightEconom = $options['attr']['maxWeightEconom'];
         $maxWeightEconomVip = $options['attr']['maxWeightEconomVip'];
 
+        if($user->isVip()) {
+            $user_vip = 1;
+        } else {
+            $user_vip = 0;
+        }
+
         $builder
+            ->add('userVip', HiddenType::class, [
+                'mapped' => false,
+                'data' => $user_vip,
+                'attr'=>[
+                    'id'=>'user_vip',
+                ],
+            ])
 
            ->add('maxWeightEconom', HiddenType::class, [
                 'mapped' => false,
@@ -57,7 +71,8 @@ class OrderFormType extends AbstractType
             ->add('orderType', EntityType::class, [
                 'class' => OrderType::class,
                 'placeholder' => 'Select type',
-                'choice_label' => 'name',
+                'choice_label' => 'code',
+                'choice_translation_domain' => 'messages',
                 'required'=>true,
                 'attr'=>[
                     'class'=>'form-control',
