@@ -21,6 +21,12 @@
             </div>
         {% endif %}
         {{ form_start(SupportForm, {"action": path("parcles_support"), "method": "POST", "attr": {"id": "SupportFormEdit","class":"mb-3"}}) }}
+
+        {% for message in app.flashes('modal_window') %}
+            <div type="hidden" id="modal_window" value="{{message}}"></div>
+        {% endfor %}
+
+
         <div class="card card-default">
             <div class="card-header d-flex align-items-center">
                 <div class="d-flex justify-content-center col">
@@ -104,5 +110,14 @@
         {{ form_end(SupportForm) }}
         {#  FINISH FORM #}
     </div>
+{#    modal window#}
+    <div class="overlay js-overlay-campaign">
+        <div class="popup js-popup-campaign">
+            <h3 style=" margin: 10px;margin-bottom: -4px;">Спасибо за ваше обращение</h3><br>
+            Мы свяжемся с вами в ближайшее время.
+            <div class="close-popup js-close-campaign"></div>
+        </div>
+    </div>
+{#    modal window#}
 {% endblock %}
 {% block javascripts %}{% endblock %}

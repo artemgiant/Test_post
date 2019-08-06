@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Controller\CabinetController;
 use App\Entity\Order;
 use App\Entity\User;
 use App\Entity\Address;
@@ -12,7 +13,6 @@ use App\Entity\PriceWeightEconom;
 use App\Entity\PriceWeightEconomVip;
 use App\Entity\DeliveryPrice;
 use App\Entity\OrderProducts;
-use App\Controller\CabinetController;
 use App\Form\SupportType;
 use Swift_Mailer;
 use Swift_SmtpTransport;
@@ -95,7 +95,7 @@ class ParcelsController extends CabinetController
                 'isSend'=>1,
                 'items'=>$ordersList,
                 'totalItemCount'=>$totalItemCount,
-                ])
+            ])
         );
     }
 
@@ -266,7 +266,7 @@ class ParcelsController extends CabinetController
                 }
             }
             unset($product);
-                $order->setDeclareValue($declareValue);
+            $order->setDeclareValue($declareValue);
             list($shipCost,$volume)=$this->CalculateShipCost($order);
             $order->setShippingCosts($shipCost);
             $order->setVolumeWeigth($volume);
@@ -299,7 +299,7 @@ class ParcelsController extends CabinetController
                     $entityManager->remove($product);
                 }
             }
-        $noInvoice=true;
+            $noInvoice=true;
             if (!empty($order->getInvoices())){
                 foreach($order->getInvoices() as $invoice){
                     /* @var Invoices $invoice*/
@@ -399,18 +399,19 @@ class ParcelsController extends CabinetController
                 ->setFrom('send@example.com')
                 ->setTo('recipient@example.com')
                 ->setBody(html_entity_decode($template),'text/html');
-            ;
+
 
             $mailer->send($message);
-            $twigoption = array_merge($this->optionToTemplate, ['SupportForm' => $form->createView(),
-                'error' => $errors]);
-            return $this->render('cabinet/support/support_form.html.twig', $twigoption);
+
+            $this->addFlash('modal_window',"true");
+
+            return $this->redirectToRoute('parcles_support');
         }
 
         if ($form->isSubmitted() && !$form->isValid()) {
-        $errors = $form->getErrors(true);
+            $errors = $form->getErrors(true);
 
-    }
+        }
         $twigoption = array_merge($this->optionToTemplate, ['SupportForm' => $form->createView(),
             'error' => $errors]);
         return $this->render('cabinet/support/support_form.html.twig', $twigoption);
