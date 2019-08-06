@@ -108,13 +108,12 @@ $('.selectpicker').selectpicker();
 function test_max_weight(){
         var  el =$('#order_form_sendDetailWeight').closest('.form-group'),
             max_weight = '',
-            isVip = true,
+            isVip = $('#order_form_userVip').val(),
             now_weight = $('#order_form_sendDetailWeight').val(),
             max_weight_VipEconom = $('#order_form_maxWeightEconomVip').val(),
             max_weight_Econom = $('#order_form_maxWeightEconom').val(),
-            max_weight = (isVip)? max_weight_VipEconom : max_weight_Econom,
+            max_weight = (isVip==1)? max_weight_VipEconom : max_weight_Econom,
             massage_2 =' Выберете тип доставки';
-        // console.log(now_weight);
         if($('#order_form_orderType option:selected').val()==1){
             var massage_2 = "Максимально допустиме значения "+max_weight;
         }
