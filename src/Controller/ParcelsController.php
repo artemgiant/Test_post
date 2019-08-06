@@ -399,13 +399,12 @@ class ParcelsController extends CabinetController
                 ->setFrom('send@example.com')
                 ->setTo('recipient@example.com')
                 ->setBody(html_entity_decode($template),'text/html');
-
+            ;
 
             $mailer->send($message);
-
-            $this->addFlash('modal_window',"true");
-
-            return $this->redirectToRoute('parcles_support');
+            $twigoption = array_merge($this->optionToTemplate, ['SupportForm' => $form->createView(),
+                'error' => $errors]);
+            return $this->render('cabinet/support/support_form.html.twig', $twigoption);
         }
 
         if ($form->isSubmitted() && !$form->isValid()) {
