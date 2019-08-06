@@ -57,7 +57,15 @@ class PriceWeightEconomRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult()
             ;
+    }
 
+    public function findMaxWeight()
+    {
+        return $this->createQueryBuilder('p')
+            ->select('max(p.max_weight)')
+            ->getQuery()
+            ->getResult()[0][1]
+            ;
     }
 
 }

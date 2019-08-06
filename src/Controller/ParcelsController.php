@@ -111,7 +111,6 @@ class ParcelsController extends CabinetController
 
         $order = new Order();
 
-
         $orderForm=$request->request->get('order_form',false);
         if ($orderForm)
         {
@@ -126,7 +125,15 @@ class ParcelsController extends CabinetController
             $orderProduct=new OrderProducts();
             $order->addProduct($orderProduct);
         }
-        $form = $this->createForm(OrderFormType::class, $order, ['attr'=>['user' => $this->user]]);
+
+        $maxWeightEconom = $this->getDoctrine()
+            ->getRepository(PriceWeightEconom::class)
+            ->findMaxWeight();
+        $maxWeightEconomVip = $this->getDoctrine()
+            ->getRepository(PriceWeightEconomVip::class)
+            ->findMaxWeight();
+
+        $form = $this->createForm(OrderFormType::class, $order, ['attr'=>['user' => $this->user, 'maxWeightEconom' => $maxWeightEconom, 'maxWeightEconomVip' => $maxWeightEconomVip]]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -245,7 +252,15 @@ class ParcelsController extends CabinetController
             }
         }
         //$address = new Address();
-        $form = $this->createForm(OrderFormType::class, $order, ['attr'=>['user' => $this->user]]);
+
+        $maxWeightEconom = $this->getDoctrine()
+            ->getRepository(PriceWeightEconom::class)
+            ->findMaxWeight();
+        $maxWeightEconomVip = $this->getDoctrine()
+            ->getRepository(PriceWeightEconomVip::class)
+            ->findMaxWeight();
+
+        $form = $this->createForm(OrderFormType::class, $order, ['attr'=>['user' => $this->user, 'maxWeightEconom' => $maxWeightEconom, 'maxWeightEconomVip' => $maxWeightEconomVip]]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -281,7 +296,7 @@ class ParcelsController extends CabinetController
                     } else {
                         $order->setShippingCosts(null);
                     }
-                }else {
+                } else {
                     $weightPrice = $this->getDoctrine()
                         ->getRepository(PriceWeightEconom::class)
                         ->findPriceByWeight((float)$orderForm['sendDetailWeight']);
