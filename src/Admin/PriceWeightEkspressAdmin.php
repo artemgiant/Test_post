@@ -13,19 +13,23 @@ use Sonata\AdminBundle\Show\ShowMapper;
 final class PriceWeightEkspressAdmin extends AbstractAdmin
 {
 
+    /**
+     * @param DatagridMapper $datagridMapper
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
-            ->add('id')
             ->add('max_weight')
             ->add('price')
-            ;
+        ;
     }
 
+    /**
+     * @param ListMapper $listMapper
+     */
     protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
-            ->add('id')
             ->add('max_weight')
             ->add('price')
             ->add('_action', null, [
@@ -37,21 +41,14 @@ final class PriceWeightEkspressAdmin extends AbstractAdmin
             ]);
     }
 
+    /**
+     * @param FormMapper $formMapper
+     */
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-            ->add('id')
             ->add('max_weight')
             ->add('price')
-            ;
-    }
-
-    protected function configureShowFields(ShowMapper $showMapper): void
-    {
-        $showMapper
-            ->add('id')
-            ->add('max_weight')
-            ->add('price')
-            ;
+        ;
     }
 }
