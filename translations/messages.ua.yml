@@ -52,13 +52,20 @@ Save avatar: Зберегти
 Save: Зберегти
 Hello: Привіт
 Cabinet: Кабінет
+Add: Додати
+Percles: посилку
+Send_d: Звернутись
+Select type : Обрати
+Support: В пiдтримку
+Tack comment: Коментaрiй заказа
 Remember Me: Запам'ятати мене
 Error. Please fill all fields: Помилка. Заповніть, будь ласка, всі поля
 Data about the address delivery: Дані про адресу доставки
+Title form suport parcels: Зворотній зв'язок
 Choise delivery method: Вибрати спосіб доставки
 Addresses Edit: Редагування адреси
 Address Create: Додати адреса
-Region: Область
+Region: Штат/Провінція
 Region Oblast: Область
 Enter region: Введіть область
 District: Район
@@ -77,13 +84,13 @@ Enter number house: Введіть номер будинку
 Number of apartment: Квартира
 Apartment: Квартира
 Enter number apartment: Введіть номер квартири
-Receivers first name: Ім'я одержувача
+Receivers first name: Ім'я отримувача
 Enter first name: Введіть ім'я
-Receivers last name: Прізвище одержувача
+Receivers last name: Прізвище отримувача
 Enter last name: Введіть прізвище
-Receivers second name: По батькові одержувача
+Receivers second name: По батькові отримувача
 Enter second name: Введіть батькові
-Receivers phone: Телефон одержувача
+Receivers phone: Телефон отримувача
 Enter receivers phone: Введіть номер телефону
 Alias ​​of address: Коротка назва адреси
 Alias ​​Of Address: Коротка назва адреси
@@ -105,14 +112,14 @@ sendDetailWidth placeholder: Ширина
 sendDetailHeight: Висота
 sendDetailHeight placeholder: Висота
 shippingCosts: Вартість
-volumeWeigth: Обсяг
-Volume Weigth: Обсяг
+volumeWeigth: Об'ємна вага
+Volume Weigth: Об'ємна вага
 declareValue: Оголошена вартість
 Declare Value: Оголошена вартість
 comment: Коментар
 Add product: +
 Add order: Додати
-Create Date: Дата додавання
+Create Date: Дата створення
 trackingNumber Nova Pochta: ТН | Нова пошта
 NovaPochta: Нова пошта
 Tracking Number: Трек номер
@@ -123,17 +130,18 @@ descUa: Опис на українській
 price: Вартість
 count: Кількість
 Remove product: Видалити
-copyRigtht: Авторське право
+copyRigtht: Expressposhta всі права захищені.
+
 Status: Статус
 Users: Користувачі
 User: Користувач
 Cost: Вартість
 Weight: Вага
 DeliveryPrice: Прайс на доставку
-OrderStatus: Статус посилки
+OrderStatus: Все права защищены.
 Order: Посилки
 Orders: Посилки
-Last Login: Останній вхід
+Last Login: Останній вхіда
 Is Suspended: Неактивний
 Suspended: Неактивний
 Plain Password: Пароль
@@ -151,7 +159,7 @@ Send Detail Weight: Вага
 Send Detail Length: Довжина
 Send Detail Width: Ширина
 Send Detail Height: Висота
-Email: Email
+Email: Ваш e-mail
 Address: Адреса
 Shipping Costs: Вартість відвантаження
 Delivery Status: Статус доставки
@@ -190,11 +198,13 @@ Nothing Found: Нічого не знайдено
 Date: Дата
 StatusDescription: Статус
 Details: Детальніше
-Recipient: Одержувач
-Description: Опис
+Recipient: Отримувач
+Description: Назва адреси
 EditAddress: Змінити
 DeleteAddress: Видалити
 Confirmed: Підтверджено
+Alias of address: Назвіть цю адресу для адресної книги
+Alias Of Address: Назвіть цю адресу для адресної книги
 Not Confirmed: Чи не підтверджений
 No Parcels: Немає посилок
 No Payments: Немає платежів
@@ -213,8 +223,13 @@ Ukrainian: Український
 Russian: Русский
 Track the departure: Відстежити відправлення
 Track down: Відстежити
+Message : Ваше повідомнення
+Subject : Тема повідомнення
 OrderType: Тип доставки
 PriceWeightEconom: Прайс Економ-Вага
 PriceWeightEconomVip: VIP Прайс Економ-Вага
+VipPriceWeightEkspress: VIP Прайс Експрес-Вага
+PriceWeightEkspress: Прайс Експрес-Вага
+Send: Відправити
 econom: Економ
 express: Експрес

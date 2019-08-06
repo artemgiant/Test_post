@@ -6,6 +6,7 @@
         <select id="select_language" class="form-control select select_language selectpicker lang-select">
             <option {% if app.request.locale == 'ua' %}selected{% endif %} value="">
                 <i class="flag-icon flag-icon-ua "></i>
+
                 {{ 'Ukrainian' | trans }}
             </option>
             <option {% if app.request.locale == 'ru' %}selected{% endif %} value="/ru">

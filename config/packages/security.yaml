@@ -58,6 +58,7 @@ security:
     - { path: ^/admin/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
     - { path: ^/post/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/post/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
     - { path: ^/post/fogot-pasword$, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/post/, role: [ROLE_POST_USER,ROLE_ADMIN] }
     - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }

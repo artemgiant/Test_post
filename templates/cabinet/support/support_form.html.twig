@@ -1,0 +1,123 @@
+{% extends "cabinet/cabinet_layout.html.twig" %}
+
+    {% set title= "Addresses Edit" %}
+    {% if page_title is defined and page_title is not empty %}
+        {% set title=page_title %}
+    {% endif %}
+
+{% block title %}{{ title|trans }}{% endblock %}
+{% block content %}
+    <div class="col-lg-12">
+        {#  START FORM  #}
+        {% if  errors is defined and errors is not empty %}
+            <div class="alert alert-danger" role="alert">
+                {#        {{ errors }}#}
+                {{ "Error. Please fill all fields"|trans }}
+            </div>
+        {% endif %}
+        {% if  mess is defined and mess is not empty %}
+            <div class="alert alert-success" role="alert">
+                {{ mess }}
+            </div>
+        {% endif %}
+        {{ form_start(SupportForm, {"action": path("parcles_support"), "method": "POST", "attr": {"id": "SupportFormEdit","class":"mb-3"}}) }}
+
+        {% for message in app.flashes('modal_window') %}
+            <div type="hidden" id="modal_window" value="{{message}}"></div>
+        {% endfor %}
+
+
+        <div class="card card-default">
+            <div class="card-header d-flex align-items-center">
+                <div class="d-flex justify-content-center col">
+                    <div class="h4 m-0 text-center">{{ "Title form suport parcels"|trans }}</div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row py-4 justify-content-center">
+                    <div class="col-4 col-sm-4">
+                        <div class="form-group">
+                            {{ form_label(SupportForm.Name,"Enter first name"|trans, {
+                                "label_attr": {"class": "text-muted"}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {% if SupportForm.Name.vars.errors|length %}
+                                    {{ form_widget(SupportForm.country, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                {% else %}
+                                    {{ form_widget(SupportForm.Name) }}
+                                {% endif %}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(SupportForm.Name) }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 col-sm-4">
+                        <div class="form-group">
+                            {{ form_label(SupportForm.Email,"Email"|trans, {
+                                "label_attr": {"class": "text-muted"}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {% if SupportForm.Email.vars.errors|length %}
+                                    {{ form_widget(SupportForm.Email, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                {% else %}
+                                    {{ form_widget(SupportForm.Email)}}
+                                {% endif %}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(SupportForm.Email) }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row py-4 justify-content-center">
+                    <div class="col-8 col-sm-8">
+                        <div class="form-group">
+                            {{ form_label(SupportForm.Message,"Message"|trans, {
+                                "label_attr": {"class": "text-muted"}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {% if SupportForm.Message.vars.errors|length %}
+                                    {{ form_widget(SupportForm.Message, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                {% else %}
+                                    {{ form_widget(SupportForm.Message) }}
+                                {% endif %}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(SupportForm.Message) }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row py-4 justify-content-center">
+                    <div class="col-2 col-sm-2">
+                        <div class="form-group">
+                            {{ form_row(SupportForm.submit, {"label": "Send"|trans}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ form_end(SupportForm) }}
+        {#  FINISH FORM #}
+    </div>
+{#    modal window#}
+    <div class="overlay js-overlay-campaign">
+        <div class="popup js-popup-campaign">
+            <h3 style=" margin: 10px;margin-bottom: -4px;">Спасибо за ваше обращение</h3><br>
+            Мы свяжемся с вами в ближайшее время.
+            <div class="close-popup js-close-campaign"></div>
+        </div>
+    </div>
+{#    modal window#}
+{% endblock %}
+{% block javascripts %}{% endblock %}

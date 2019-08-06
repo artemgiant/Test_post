@@ -1,0 +1,54 @@
+{% extends"base.html.twig" %}
+{% block title %}{{ "Find Order"| trans }}{% endblock %}
+
+{% block body %}
+    <div class="col-xl-12">
+        <!-- START card-->
+        <div class="card card-default">
+            <div class="card-header">
+                {{ "Find for tracking number"| trans }}: {{ trNum  }}
+            </div>
+            <div class="card-body">
+                <!-- START table-responsive-->
+
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                        <tr>
+                        <tr>
+                            <th> {{ "Order  id"| trans }}</th>
+                            <th> {{ "Tack comment"| trans }}</th>
+                            <th>{{ "shippingCosts"| trans }}</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+{#                        {{ dump(items.shippingCosts) }}#}
+                        {% if items is not empty  and items is defined %}
+                                        <tr>
+                                            <td>
+                                                {% if items.trackingNumber is defined %}
+                                                    {{ items.trackingNumber }}
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if items.comment is defined %}
+                                                    {{ items.comment }}
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if items.shippingCosts is defined %}
+                                                    {{ items.shippingCosts }}
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endif %}
+                        </tbody>
+                    </table>
+                </div><!-- END table-responsive-->
+            </div>
+
+        </div><!-- END card-->
+    </div>
+{% endblock %}
+ {% block javascripts %}{% endblock %}

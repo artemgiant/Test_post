@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Controller\CabinetController;
 use App\Entity\Order;
 use App\Entity\User;
 use App\Entity\Address;
@@ -12,7 +13,9 @@ use App\Entity\PriceWeightEconom;
 use App\Entity\PriceWeightEconomVip;
 use App\Entity\DeliveryPrice;
 use App\Entity\OrderProducts;
-use App\Controller\CabinetController;
+use App\Form\SupportType;
+use Swift_Mailer;
+use Swift_SmtpTransport;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,6 +27,8 @@ use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
 use App\Service\LiqPayService;
+
+//use Swift_Message;
 /**
  * @Route("/post/parcels")
  */
@@ -90,7 +95,7 @@ class ParcelsController extends CabinetController
                 'isSend'=>1,
                 'items'=>$ordersList,
                 'totalItemCount'=>$totalItemCount,
-                ])
+            ])
         );
     }
 
@@ -165,7 +170,7 @@ class ParcelsController extends CabinetController
                     } else {
                         $order->setShippingCosts(null);
                     }
-                } else {
+                }else {
                     $weightPrice = $this->getDoctrine()
                         ->getRepository(PriceWeightEconom::class)
                         ->findPriceByWeight((float)$orderForm['sendDetailWeight']);
@@ -198,7 +203,6 @@ class ParcelsController extends CabinetController
         }
         $twigoption=array_merge($this->optionToTemplate,['form' => $form->createView(),
             'error' => $errors,]);
-
         return $this->render('cabinet/parcels/editform.html.twig', $twigoption);
 
     }
@@ -277,7 +281,7 @@ class ParcelsController extends CabinetController
                 }
             }
             unset($product);
-                $order->setDeclareValue($declareValue);
+            $order->setDeclareValue($declareValue);
             list($shipCost,$volume)=$this->CalculateShipCost($order);
             $order->setShippingCosts($shipCost);
             $order->setVolumeWeigth($volume);
@@ -310,7 +314,7 @@ class ParcelsController extends CabinetController
                     $entityManager->remove($product);
                 }
             }
-        $noInvoice=true;
+            $noInvoice=true;
             if (!empty($order->getInvoices())){
                 foreach($order->getInvoices() as $invoice){
                     /* @var Invoices $invoice*/
@@ -391,6 +395,43 @@ class ParcelsController extends CabinetController
 
         return [$resReturn,$volume];
     }
+
+    /**
+     * @Route("post/parcels/supprort",name="parcles_support")
+     */
+    public function parclesSupport(Request $request,\Swift_Mailer $mailer)
+    {
+        $this->getTemplateData();
+        $form = $this->createForm(SupportType::class, null, ['attr' => ['user' => $this->user]]);
+        $form->handleRequest($request);
+        $errors = [];
+
+
+        if ($form->isSubmitted()  && $form->isValid()) {
+            $user= $this->user;
+            $template = $this->render('cabinet/support/SupportFormMessage.html.twig');
+            $message = (new \Swift_Message('Hello Email'))
+                ->setFrom('send@example.com')
+                ->setTo('recipient@example.com')
+                ->setBody(html_entity_decode($template),'text/html');
+
+
+            $mailer->send($message);
+
+            $this->addFlash('modal_window',"true");
+
+            return $this->redirectToRoute('parcles_support');
+        }
+
+        if ($form->isSubmitted() && !$form->isValid()) {
+            $errors = $form->getErrors(true);
+
+        }
+        $twigoption = array_merge($this->optionToTemplate, ['SupportForm' => $form->createView(),
+            'error' => $errors]);
+        return $this->render('cabinet/support/support_form.html.twig', $twigoption);
+    }
+
 
 }
 
