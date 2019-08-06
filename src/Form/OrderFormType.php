@@ -13,6 +13,7 @@ use Symfony\Component\Form\AbstractType;
 use Doctrine\ORM\QueryBuilder;
 
 
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -32,7 +33,26 @@ class OrderFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $user=$options['attr']['user'];
+        $maxWeightEconom = $options['attr']['maxWeightEconom'];
+        $maxWeightEconomVip = $options['attr']['maxWeightEconomVip'];
+
         $builder
+
+           ->add('maxWeightEconom', HiddenType::class, [
+                'mapped' => false,
+                'data' => $maxWeightEconom,
+                'attr'=>[
+                    'id'=>'max_weight_econom',
+                ],
+            ])
+
+            ->add('maxWeightEconomVip', HiddenType::class, [
+                'mapped' => false,
+                'data' => $maxWeightEconomVip,
+                'attr'=>[
+                    'id'=>'max_weight_econom_vip',
+                ],
+            ])
 
             ->add('orderType', EntityType::class, [
                 'class' => OrderType::class,

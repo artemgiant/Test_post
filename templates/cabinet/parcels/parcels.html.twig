@@ -101,7 +101,7 @@
                                 {% if isSend is defined and isSend == 1 %}
                                     <th scope="col">{{ "trackingNumber" | trans }}</th>
                                 {% else %}
-                                    <th scope="col">{{ "trackingNumber Nova Pochta" | trans }}</th>
+                                    <th scope="col">{{ "NovaPochta" | trans }}</th>
                                 {% endif %}
                                 <th scope="col">{{ "sendDetailWeight" | trans }}</th>
                                 <th scope="col">{{ "volumeWeigth" | trans }}</th>
@@ -141,7 +141,7 @@
                                                     {% if item.invoices is not empty %}
                                                         {% for invoice in item.invoices if invoice.isPaid == false %}
                                                             {% if invoice.price > 0 %}
-                                                                {% set liqPayForm=liqpay.LiqPayForm(invoice.price,'Pay by ExpreaaPochta.com',"EXPRESSINVOICE_"~invoice.id) %}
+                                                                {% set liqPayForm=liqpay.LiqPayForm(invoice.price,'Pay by ExpressPochta.com',"EXPRESSINVOICE_"~invoice.id) %}
                                                                 <div class="liq-pay-button">
                                                                     {{ liqPayForm | raw }}
                                                                 </div>
