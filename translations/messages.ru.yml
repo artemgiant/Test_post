@@ -99,7 +99,7 @@ trackingNumber: Трек номер
 shipDate: Дата отгрузки
 products: Продукты
 addresses: Адреса
-sendDetailWeight: Вес
+sendDetailWeight: Вес (грамм)
 sendDetailLength: Длина
 sendDetailLength placeholder: Длина
 sendDetailWidth: Ширина
@@ -228,3 +228,6 @@ OrderType: Тип доставки
 PriceWeightEconom: Прайс Эконом-Вес
 PriceWeightEconomVip: VIP Прайс Эконом-Вес
 Send: Отправить
+
+econom: Эконом
+express: Экспресс
