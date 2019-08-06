@@ -109,7 +109,9 @@
                                 <th scope="col">{{ "declareValue" | trans }}</th>
                                 <th scope="col">{{ "Adress" | trans }}</th>
                                 <th scope="col">{{ "Status" | trans }}</th>
-                                <th colspan="2" scope="col">{{ "Action" | trans }}</th>
+                                {% if isSend is not defined %}
+                                    <th colspan="2" scope="col">{{ "Action" | trans }}</th>
+                                {% endif %}
                             </tr>
                             </thead>
                             <tbody>

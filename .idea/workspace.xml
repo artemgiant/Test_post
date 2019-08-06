@@ -2,44 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ecac9fd-3794-435a-9190-193823a05041" name="Default Changelist" comment="Merge remote-tracking branch 'origin/artemgiant' into sergey&#10;&#10;# Conflicts:&#10;#&#9;config/packages/security.yaml&#10;#&#9;public/sklad-express/js/custom.js&#10;#&#9;src/Controller/CabinetController.php&#10;#&#9;src/Controller/ParcelsController.php&#10;#&#9;src/Controller/ProfileController.php&#10;#&#9;src/Controller/SecurityController.php&#10;#&#9;templates/base.html.twig&#10;#&#9;templates/base_operation.html.twig&#10;#&#9;templates/cabinet/addresses/addresses.html.twig&#10;#&#9;templates/cabinet/addresses/edit_form_of_address.html.twig&#10;#&#9;templates/cabinet/addresses/editform.html.twig&#10;#&#9;templates/cabinet/addresses/modalAddress.html.twig&#10;#&#9;templates/cabinet/cabinet_layout.html.twig&#10;#&#9;templates/cabinet/dashboard/dashboard.html.twig&#10;#&#9;templates/cabinet/menu.html.twig&#10;#&#9;templates/cabinet/parcels/editform.html.twig&#10;#&#9;templates/cabinet/parcels/parcels.html.twig&#10;#&#9;templates/cabinet/profile/edit_form.html.twig&#10;#&#9;templates/cabinet/profile/profile.html.twig&#10;#&#9;templates/cabinet/sidebar.html.twig&#10;#&#9;templates/system/product-order-theme.html.twig&#10;#&#9;translations/messages.ua.yml">
-      <change afterPath="$PROJECT_DIR$/public/sklad-express/img/flag.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/sklad-express/img/logo_test.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Admin/PriceWeightEkspressAdmin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Admin/VipPriceWeightEkspressAdmin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/TrackController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/PriceWeightEkspress.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/VipPriceWeightEkspress.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/SupportType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/PriceWeightEkspressRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/VipPriceWeightEkspressRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/cabinet/support/SupportFormMessage.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/cabinet/support/support_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/track/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/sklad-express/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/sklad-express/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/sklad-express/img/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/sklad-express/img/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/sklad-express/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/sklad-express/js/custom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Admin/UserAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin/UserAdmin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CabinetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CabinetController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ParcelsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ParcelsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base_operation.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base_operation.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/cabinet/dashboard/dashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cabinet/dashboard/dashboard.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/cabinet/menu.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cabinet/menu.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/cabinet/parcels/editform.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cabinet/parcels/editform.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/cabinet/parcels/parcels.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cabinet/parcels/parcels.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/cabinet/sidebar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cabinet/sidebar.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/cabinet/sidebar/navbarright.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cabinet/sidebar/navbarright.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/forgot.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/forgot.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/standard_layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/standard_layout.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translations/messages.ru.yml" beforeDir="false" afterPath="$PROJECT_DIR$/translations/messages.ru.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translations/messages.ua.yml" beforeDir="false" afterPath="$PROJECT_DIR$/translations/messages.ua.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -238,7 +202,7 @@
       <workItem from="1564760066655" duration="13000" />
       <workItem from="1564760092551" duration="74000" />
       <workItem from="1565071535348" duration="11306000" />
-      <workItem from="1565087707356" duration="352000" />
+      <workItem from="1565087707356" duration="2659000" />
     </task>
     <task id="LOCAL-00001" summary="Merge remote-tracking branch 'origin/artemgiant' into sergey&#10;&#10;# Conflicts:&#10;#&#9;config/packages/security.yaml&#10;#&#9;public/sklad-express/js/custom.js&#10;#&#9;src/Controller/CabinetController.php&#10;#&#9;src/Controller/ParcelsController.php&#10;#&#9;src/Controller/ProfileController.php&#10;#&#9;src/Controller/SecurityController.php&#10;#&#9;templates/base.html.twig&#10;#&#9;templates/base_operation.html.twig&#10;#&#9;templates/cabinet/addresses/addresses.html.twig&#10;#&#9;templates/cabinet/addresses/edit_form_of_address.html.twig&#10;#&#9;templates/cabinet/addresses/editform.html.twig&#10;#&#9;templates/cabinet/addresses/modalAddress.html.twig&#10;#&#9;templates/cabinet/cabinet_layout.html.twig&#10;#&#9;templates/cabinet/dashboard/dashboard.html.twig&#10;#&#9;templates/cabinet/menu.html.twig&#10;#&#9;templates/cabinet/parcels/editform.html.twig&#10;#&#9;templates/cabinet/parcels/parcels.html.twig&#10;#&#9;templates/cabinet/profile/edit_form.html.twig&#10;#&#9;templates/cabinet/profile/profile.html.twig&#10;#&#9;templates/cabinet/sidebar.html.twig&#10;#&#9;templates/system/product-order-theme.html.twig&#10;#&#9;translations/messages.ua.yml">
       <created>1564730230263</created>
