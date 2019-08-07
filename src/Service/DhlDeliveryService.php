@@ -36,10 +36,13 @@ class DhlDeliveryService
     private $dhlUrl;
     private $logged = false;
 
-    public $dhlfromCountry;
+
+
     public $dhlToCountry;
     public $dhlErrors;
     public $sendTo;
+    public $dhlfromCountry;
+    public $dhlFromZip;
 
     public $elType;
     /*
@@ -50,14 +53,20 @@ class DhlDeliveryService
      * */
     private $container;
 
-    public function __construct($c)
+    public function __construct($c,$dhlSendBoxAddress = null)
     {
+
         $this->setContainer($c);
-        if ($this->dhlSendBox) {
+        if (!empty($dhlSendBoxAddress)) {
             $this->dhlSiteId = $this->dhlSiteIdTest;
             $this->dhlSitePass = $this->dhlSitePassTest;
             $this->dhlUrl = $this->dhlTestUrl;
-        } else $this->dhlUrl = $this->dhlProdUrl;
+            $this->dhlFromZip =$dhlSendBoxAddress['zip'];
+            $this->dhlfromCountry =$dhlSendBoxAddress['country'];
+            $this->dhlfromCity =$dhlSendBoxAddress['city'];
+            $this->dhlfromStreet =$dhlSendBoxAddress['street'];
+        }
+
     }
 
 
@@ -244,17 +253,13 @@ class DhlDeliveryService
 
 
         $From = $GetQuote->addChild("From", null, "_");
-        if (!empty($object->getCountryCode())) {
-            $From->addChild("CountryCode", "US");
-        }
-
-        $From->addChild("Postalcode", "10001");
-        $From->addChild("City", "New York");
+        $From->addChild("CountryCode", "US");
+        $From->addChild("Postalcode", $this->dhlFromZip);
+        $From->addChild("City", $this->dhlfromCity);
 
         $this->getAccountId($object);
 
         $BkgDetails = $GetQuote->addChild("BkgDetails", null, "_");
-
         $BkgDetails->addChild("PaymentCountryCode", $this->accountCode);
         $BkgDetails->addChild("Date", date('Y-m-d'));
         $BkgDetails->addChild("ReadyTime", 'PT10H21M');
@@ -263,24 +268,25 @@ class DhlDeliveryService
         $BkgDetails->addChild("WeightUnit", 'KG');
         $Pieces = $BkgDetails->addChild("Pieces", null, "_");
 
-        $x = 0;
+        $x = 1;
         do {
             $Piece = $Pieces->addChild("Piece");
             $Piece->addChild("PieceID", 12);
             //$Piece->addChild("PackageType","YP");
-            if ($x == 1) {
+            if ($x == 0) {
                 $Piece->addChild("Height", $object->getSendDetailHeight());
                 $Piece->addChild("Depth", $object->getSendDetailLength());
                 $Piece->addChild("Width", $object->getSendDetailWidth());
-                $Piece->addChild("Weight", number_format($object->getSendDetailWeight(), 3, '.', ''));
+                $Piece->addChild("Weight", number_format(($object->getSendDetailWeight()/100), 3, '.', ''));
             } else {
-                $Piece->addChild("Height", 2);
+                $Piece->addChild("Height", 24);
                 $Piece->addChild("Depth", 3);
                 $Piece->addChild("Width", 14);
                 $Piece->addChild("Weight", 1.500);
 
             }
         } while ($x++ < $object->getSendDetailPlaces());
+
         $BkgDetails->addChild("PaymentAccountNumber", $this->getAccountId($object));
         $BkgDetails->addChild("IsDutiable", 'Y');
         $QtdShp1 = $BkgDetails->addChild("QtdShp", null, "_");
@@ -292,15 +298,21 @@ class DhlDeliveryService
 
         $To = $GetQuote->addChild("To", null, "_");
 
-        if (1) {
-            if (!empty($this->getToCountry)) {
-                $To->addChild("CountryCode", $this->dhlToCountry->getCountyCode());
-            }
-            $To->addChild("CountryCode", "UA");
-            $To->addChild("Postalcode", "01000");
-            $To->addChild("City", "Kiev");
+            if (!empty(($object->getAddresses()))){
 
-        }
+                $To->addChild("CountryCode", "UA");
+                $To->addChild("Postalcode", "01000");
+                $To->addChild("City", "Kiev");
+            }else{
+                $To->addChild("CountryCode", "UA");
+                $To->addChild("Postalcode", $object->getAddresses()->getZip());
+                $To->addChild("City", $object->getAddresses()->getCity());
+            }
+
+
+
+
+
 
 
         $Dutiable = $GetQuote->addChild("Dutiable", null, "_");
@@ -327,8 +339,8 @@ class DhlDeliveryService
         curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
 
         $result = @curl_exec($ch);
-
         $movies = new \SimpleXMLElement($result);
+
         $GetQuoteResponse = $movies->GetQuoteResponse ?? false;
         $BkgDetails1 = ($GetQuoteResponse) ? $GetQuoteResponse->BkgDetails ?? false : false;
         $QtdShp1 = ($BkgDetails1) ? $BkgDetails1->QtdShp ?? false : false;
