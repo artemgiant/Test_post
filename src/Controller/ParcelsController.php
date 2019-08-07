@@ -14,6 +14,7 @@ use App\Entity\PriceWeightEconomVip;
 use App\Entity\DeliveryPrice;
 use App\Entity\OrderProducts;
 use App\Form\SupportType;
+use App\Service\DhlDeliveryService;
 use Swift_Mailer;
 use Swift_SmtpTransport;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -159,7 +160,7 @@ class ParcelsController extends CabinetController
             list($shipCost,$volume)=$this->CalculateShipCost($order);
             $order->setShippingCosts($shipCost);
             $order->setVolumeWeigth($volume);
-
+//Econom
             if($order->getOrderType()->getCode() == 'econom'){
                 if($this->user->isVip()){
                     $weightPrice = $this->getDoctrine()
@@ -181,6 +182,19 @@ class ParcelsController extends CabinetController
                     }
                 }
             }
+//Express
+            if($order->getOrderType()->getCode() == 'express'){
+                $entity = new Order();
+                $entityManager = $this->getDoctrine()->getManager();
+                $Dlh =new DhlDeliveryService($entityManager);
+                $order = $this->getDoctrine()->getRepository(Order::class);
+                $One_order=  $order->find(4);
+                $Dlh->getAccountId($One_order);
+                dd( $Dlh->getDHLPrice($One_order));
+
+                dd($request);
+            }
+
 
             $order->setUser($this->user);
             $orderStatus=$entityManager->getRepository(OrderStatus::class)->findOneBy(['status'=>'new']);
