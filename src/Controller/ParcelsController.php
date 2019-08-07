@@ -184,8 +184,18 @@ class ParcelsController extends CabinetController
             }
 //Express
             if($order->getOrderType()->getCode() == 'express'){
+                $entity = new Order();
+                $entityManager = $this->getDoctrine()->getManager();
+                $order2 = $this->getDoctrine()->getRepository(Order::class);
                 $order->setUser($this->user);
+                $One_order = $order;
                 $dhlSendBoxAddress =$this->my_address;
+                $Dlh = new DhlDeliveryService($entityManager,$dhlSendBoxAddress);
+                $Dlh->getAccountId($One_order);
+
+                dd( $Dlh->getDHLPrice($One_order));
+
+                $order->setUser($this->user);
                 $entityManager = $this->getDoctrine()->getManager();
                 $Dlh =new DhlDeliveryService($entityManager,$dhlSendBoxAddress);
                 $Dlh->getAccountId($order);
