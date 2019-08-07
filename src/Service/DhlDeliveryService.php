@@ -257,7 +257,7 @@ class DhlDeliveryService
                 $Piece->addChild("Height", $object->getSendDetailHeight());
                 $Piece->addChild("Depth", $object->getSendDetailLength());
                 $Piece->addChild("Width", $object->getSendDetailWidth());
-                $Piece->addChild("Weight", number_format(($object->getSendDetailWeight() / 1000), 3, '.', ''));
+                $Piece->addChild("Weight", number_format(($object->getSendDetailWeight() ), 3, '.', ''));
             } else {
                 $Piece->addChild("Height", 2);
                 $Piece->addChild("Depth", 3);
@@ -340,26 +340,32 @@ class DhlDeliveryService
             }
         }
 
-        if ($shipSumm == 0 && empty($this->dhlErrors)) {
-
-            $Response = $movies->Response ?? false;
-            $statusResponce = $Response->Status ?? false;
-
-            $ActionStatus = (string)$statusResponce->ActionStatus ?? false;
-            if ($ActionStatus && $ActionStatus == 'Error') {
-                $Condition = $statusResponce->Condition ?? false;
-                if ($Condition) {
-                    $ConditionData = (string)$Condition->ConditionData ?? false;
-                    if ($ConditionData) $this->dhlErrors = (string)$Condition->ConditionData;
-                }
-            }
-        }
+//        if ($shipSumm==0 && empty($this->dhlErrors)){
+//
+//            $Response=$movies->GetQuoteResponse->Response??false;
+//            $statusResponce=$Response->Status??false;
+//
+//
+//
+//            $ActionStatus=(string)$statusResponce->ActionStatus??false;
+//            if ($ActionStatus && $ActionStatus=='Error') {
+//                $Condition=$statusResponce->Condition??false;
+//                if ($Condition){
+//                    $ConditionData=(string)$Condition->ConditionData??false;
+//                    if ($ConditionData) $this->dhlErrors=(string)$Condition->ConditionData;
+//                }
+//            }
+//        }
 
       return  $this->markupAction($shipSumm, true);
     }
 
-    public function markupAction($shipSumm, $isVip)
+    public function markupAction($shipSumm = null, $isVip)
     {
+        dd($shipSumm);
+        if($shipSumm==null){
+            return false;
+        }
         return  ((float)$shipSumm + (($shipSumm / 100) * ($isVip)? $this->VipMarkup : $this->Markup));
 
     }

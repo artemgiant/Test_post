@@ -190,7 +190,10 @@ class ParcelsController extends CabinetController
                 $Dlh = new DhlDeliveryService($dhlSendBoxAddress);
                 $Dlh->getAccountId($One_order);
               $FinalPrice = $Dlh->getDHLPrice($One_order);
-              dd($FinalPrice);
+              if(!$FinalPrice){
+              $this->addFlash('errors','Вы превысили допустимые значения ');
+                  return $this->redirectToRoute('post_parcels_create');
+              }
                 $order->setShippingCosts($FinalPrice);
             }
 
