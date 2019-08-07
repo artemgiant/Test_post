@@ -35,7 +35,8 @@ class DhlDeliveryService
 
     private $dhlUrl;
     private $logged = false;
-
+    private $VipMarkup = 20;
+    private $Markup = 40;
 
 
     public $dhlToCountry;
@@ -53,26 +54,22 @@ class DhlDeliveryService
      * */
     private $container;
 
-    public function __construct($c,$dhlSendBoxAddress = null)
+    public function __construct($c, $dhlSendBoxAddress = null)
     {
-
         $this->setContainer($c);
         if (!empty($dhlSendBoxAddress)) {
-            $this->dhlFromZip =$dhlSendBoxAddress['zip'];
-            $this->dhlfromCountry =$dhlSendBoxAddress['country'];
-            $this->dhlfromCity =$dhlSendBoxAddress['city'];
-            $this->dhlfromStreet =$dhlSendBoxAddress['street'];
+            $this->dhlFromZip = $dhlSendBoxAddress['zip'];
+            $this->dhlfromCountry = $dhlSendBoxAddress['country'];
+            $this->dhlfromCity = $dhlSendBoxAddress['city'];
+            $this->dhlfromStreet = $dhlSendBoxAddress['street'];
         }
         if ($this->dhlSendBox) {
-            $this->dhlSiteId=$this->dhlSiteIdTest;
-            $this->dhlSitePass=$this->dhlSitePassTest;
+            $this->dhlSiteId = $this->dhlSiteIdTest;
+            $this->dhlSitePass = $this->dhlSitePassTest;
             $this->dhlUrl = $this->dhlTestUrl;
-        }
-        else $this->dhlUrl=$this->dhlProdUrl;
+        } else $this->dhlUrl = $this->dhlProdUrl;
 
     }
-
-
 
 
     /**
@@ -84,7 +81,6 @@ class DhlDeliveryService
     }
 
 
-
     /**
      * @param $object
      *
@@ -93,108 +89,117 @@ class DhlDeliveryService
     public function getAccountId($object)
     {
 
-
         $countryCode = null;
         $countryFrom = $countryFromCode = $countryFromString = null;
 
-        $weight=0;
-        $country=null;
+        $weight = 0;
+        $country = null;
 
-        if ($object instanceof  OrdersDHL || $object instanceof  OrdersDhlNoTr  ) {
-            $country            = $object->getCountry();
-            $countryFromString  = $object->getFromCountry();
-        }
-        elseif ($object instanceof  Shipment)
-            $country            = 'UNITED STATES OF AMERICA';
+        if ($object instanceof OrdersDHL || $object instanceof OrdersDhlNoTr) {
+            $country = $object->getCountry();
+            $countryFromString = $object->getFromCountry();
+        } elseif ($object instanceof Shipment)
+            $country = 'UNITED STATES OF AMERICA';
 
         // getting country from code
-        if($countryFromString) {
+        if ($countryFromString) {
             /** @var DhlContryRegionBase $countryFrom */
-            $countryFrom    = $this
+            $countryFrom = $this
                 ->getEm()
                 ->getRepository('AppBundle:DhlContryRegionBase')
-                ->getDhlCountry($countryFromString)
-            ;
+                ->getDhlCountry($countryFromString);
 
             $countryFromCode = $countryFrom ? $countryFrom->getCountyCode() : '';
         }
 
         // end getting country from code
         if (empty($this->dhlToCountry) && !empty($country)) {
-            $dhlToCountry=$this->getEm()->getRepository('AppBundle:DhlContryRegionBase')->getDhlCountry($country);
-            $this->dhlToCountry=$dhlToCountry;
-            if (!empty($dhlToCountry)){
-                $countryCode=$dhlToCountry->getCountyCode();
+            $dhlToCountry = $this->getEm()->getRepository('AppBundle:DhlContryRegionBase')->getDhlCountry($country);
+            $this->dhlToCountry = $dhlToCountry;
+            if (!empty($dhlToCountry)) {
+                $countryCode = $dhlToCountry->getCountyCode();
             }
-        }elseif(!empty($this->dhlToCountry)){
-            $countryCode=$this->dhlToCountry->getCountyCode();
+        } elseif (!empty($this->dhlToCountry)) {
+            $countryCode = $this->dhlToCountry->getCountyCode();
         }
-        $weightN=$gWeight=0;
-        if ((float)$object->getSendDetailWeight()>0) $weightN=(float)$object->getSendDetailWeight();
+        $weightN = $gWeight = 0;
+        if ((float)$object->getSendDetailWeight() > 0) $weightN = (float)$object->getSendDetailWeight();
         $gWeight = ((float)$object->getSendDetailWidth() * (float)$object->getSendDetailHeight() * (float)$object->getSendDetailLength()) / 5000;
-        $weight=max($weightN,$gWeight);
+        $weight = max($weightN, $gWeight);
 
-        if(
+        if (
             $countryFromCode == 'BY'
         ) {
             $this->accountCode = "US";
             return $this->dhlAccountUSA;
-        }
-        elseif (
+        } elseif (
             !empty($countryCode)
             &&
-            $countryCode=='US'
+            $countryCode == 'US'
             &&
-            $weight>0
-        ){
-            if ($weight<=4.5){ $this->accountCode="US"; return $this->dhlAccountUSA;}
-            elseif ($weight>4.5 && $weight<=5) { $this->accountCode="UA";return $this->dhlAccount;}
-            elseif ($weight>5 && $weight<=10){ $this->accountCode="US"; return $this->dhlAccountUSA;}
-            elseif ($weight>10 && $weight<20){ $this->accountCode="US"; return $this->dhlAccountUSA;}
-        }
-        elseif (
+            $weight > 0
+        ) {
+            if ($weight <= 4.5) {
+                $this->accountCode = "US";
+                return $this->dhlAccountUSA;
+            } elseif ($weight > 4.5 && $weight <= 5) {
+                $this->accountCode = "UA";
+                return $this->dhlAccount;
+            } elseif ($weight > 5 && $weight <= 10) {
+                $this->accountCode = "US";
+                return $this->dhlAccountUSA;
+            } elseif ($weight > 10 && $weight < 20) {
+                $this->accountCode = "US";
+                return $this->dhlAccountUSA;
+            }
+        } elseif (
             !empty($countryCode)
             &&
-            $countryCode=='CA'
+            $countryCode == 'CA'
             &&
-            $weight>0
-        ){
-            if ($weight<=1.5) { $this->accountCode="US";return $this->dhlAccountUSA;}
-            elseif ($weight>1.5 && $weight<=10) { $this->accountCode="UA";return $this->dhlAccount;}
-        }
-        elseif(
-            !empty($countryCode)
-            &&
-            in_array($countryCode, [
-                'JP','AU','BH','GI','NZ','MY','MX','SG','AE','ID','TR','AL','BD',
-                'BA','CA','IC','CN','GG','HK','IN','ID','IL','JE','KR','KW','LI',
-                'MO','MK','MY','ME','OM','PH','QA','SA','RS','ZA','LK','TW','TH','TR','VN'
-            ])
-            &&
-            $weight>0
-            &&
-            $weight<=1
-        ){
-            $this->accountCode="US";
-            return $this->dhlAccountUSA;
-        }
-        elseif(
+            $weight > 0
+        ) {
+            if ($weight <= 1.5) {
+                $this->accountCode = "US";
+                return $this->dhlAccountUSA;
+            } elseif ($weight > 1.5 && $weight <= 10) {
+                $this->accountCode = "UA";
+                return $this->dhlAccount;
+            }
+        } elseif (
             !empty($countryCode)
             &&
             in_array($countryCode, [
-                'JP','AU','BH','GI','NZ','MY','MX','SG','AE','ID','TR','AL','BD',
-                'BA','IC','CN','GG','HK','IN','ID','IL','JE','KR','KW','LI','MO',
-                'MK','MY','ME','OM','PH','QA','SA','RS','ZA','LK','TW','TH','TR','VN'
+                'JP', 'AU', 'BH', 'GI', 'NZ', 'MY', 'MX', 'SG', 'AE', 'ID', 'TR', 'AL', 'BD',
+                'BA', 'CA', 'IC', 'CN', 'GG', 'HK', 'IN', 'ID', 'IL', 'JE', 'KR', 'KW', 'LI',
+                'MO', 'MK', 'MY', 'ME', 'OM', 'PH', 'QA', 'SA', 'RS', 'ZA', 'LK', 'TW', 'TH', 'TR', 'VN'
             ])
             &&
-            $weight>0
+            $weight > 0
             &&
-            $weight<=1.5
-        ){
-            $this->accountCode="US";
+            $weight <= 1
+        ) {
+            $this->accountCode = "US";
             return $this->dhlAccountUSA;
+        } elseif (
+            !empty($countryCode)
+            &&
+            in_array($countryCode, [
+                'JP', 'AU', 'BH', 'GI', 'NZ', 'MY', 'MX', 'SG', 'AE', 'ID', 'TR', 'AL', 'BD',
+                'BA', 'IC', 'CN', 'GG', 'HK', 'IN', 'ID', 'IL', 'JE', 'KR', 'KW', 'LI', 'MO',
+                'MK', 'MY', 'ME', 'OM', 'PH', 'QA', 'SA', 'RS', 'ZA', 'LK', 'TW', 'TH', 'TR', 'VN'
+            ])
+            &&
+            $weight > 0
+            &&
+            $weight <= 1.5
+        ) {
+            $this->accountCode = "US";
+            return $this->dhlAccountUSA;
+        } else {
+            $this->accountCode = "UA";
+            return $this->dhlAccount;
         }
-        else { $this->accountCode="UA";return $this->dhlAccount;}
 
         return $this->dhlAccount;
     }
@@ -207,55 +212,53 @@ class DhlDeliveryService
      */
     public function getDHLPrice($object)
     {
-
         /* @var $object Shipment */
-        $return =false;
-        $em=$this->getEm();
+        $return = false;
+        $em = $this->getEm();
 
-        $shipSumm=0;
-        $prArr=[];
-        $declareCount=0;
-        $declareSum=0;
+        $shipSumm = 0;
+        $prArr = [];
+        $declareCount = 0;
+        $declareSum = 0;
         if (true
-        ){
+        ) {
 
-            if ($object->getProducts()){
-                foreach($object->getProducts() as $product){
-                    $declareSum=$declareSum+$product->getPrice();
+            if ($object->getProducts()) {
+                foreach ($object->getProducts() as $product) {
+                    $declareSum = $declareSum + $product->getPrice();
                     $declareCount = $declareCount + $product->getCount();
                 }
             }
         }
 
 
-
-        $erType=1;
+        $erType = 1;
 
         $xml = new \SimpleXMLElement("<?xml version=\"1.0\" encoding=\"UTF-8\"?><p:DCTRequest schemaVersion=\"2.0\" xsi:schemaLocation=\"http://www.dhl.com DCT-req.xsd\" xmlns:p=\"http://www.dhl.com\" xmlns:p1=\"http://www.dhl.com/datatypes\" xmlns:p2=\"http://www.dhl.com/DCTRequestdatatypes\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"></p:DCTRequest>");
         $GetQuote = $xml->addChild('GetQuote',
             null, "_");
 
-        $Request =$GetQuote->addChild('Request',
+        $Request = $GetQuote->addChild('Request',
             null, "_");
 
-        $ServiceHeader=$Request->addChild("ServiceHeader");
+        $ServiceHeader = $Request->addChild("ServiceHeader");
 
         $ServiceHeader->addChild("MessageTime", date("c"));
-        $ServiceHeader->addChild("MessageReference", substr("SkladUSA_dhl_to_rate_shipment_#".$object->getId()."_".time()."_".time(),0,32));
+        $ServiceHeader->addChild("MessageReference", substr("SkladUSA_dhl_to_rate_shipment_#" . $object->getId() . "_" . time() . "_" . time(), 0, 32));
         $ServiceHeader->addChild("SiteID", $this->dhlSiteId);
         $ServiceHeader->addChild("Password", $this->dhlSitePass);
-        $MetaData=$Request->addChild("MetaData");
-        $MetaData->addChild("SoftwareName","3PV");
-        $MetaData->addChild("SoftwareVersion","6.2");
+        $MetaData = $Request->addChild("MetaData");
+        $MetaData->addChild("SoftwareName", "3PV");
+        $MetaData->addChild("SoftwareVersion", "6.2");
 
 
-        $test=1;
+        $test = 0;
         $From = $GetQuote->addChild("From", null, "_");
-        if($test == 0){
+        if ($test == 0) {
             $From->addChild("CountryCode", "US");
             $From->addChild("Postalcode", $this->dhlFromZip);
-            $From->addChild("City", $this->dhlfromCity)    ;
-        }else{
+            $From->addChild("City", $this->dhlfromCity);
+        } else {
             $From->addChild("CountryCode", "US");
             $From->addChild("Postalcode", "10001");
             $From->addChild("City", "New York");
@@ -263,38 +266,38 @@ class DhlDeliveryService
 
         $this->getAccountId($object);
 
-        $BkgDetails=$GetQuote->addChild("BkgDetails", null,"_");
+        $BkgDetails = $GetQuote->addChild("BkgDetails", null, "_");
 
-        $BkgDetails->addChild("PaymentCountryCode",$this->accountCode);
-        $BkgDetails->addChild("Date",date('Y-m-d'));
-        $BkgDetails->addChild("ReadyTime",'PT10H21M');
-        $BkgDetails->addChild("ReadyTimeGMTOffset",date('O'));
-        $BkgDetails->addChild("DimensionUnit",'CM');
-        $BkgDetails->addChild("WeightUnit",'KG');
-        $Pieces=$BkgDetails->addChild("Pieces", null,"_");
+        $BkgDetails->addChild("PaymentCountryCode", $this->accountCode);
+        $BkgDetails->addChild("Date", date('Y-m-d'));
+        $BkgDetails->addChild("ReadyTime", 'PT10H21M');
+        $BkgDetails->addChild("ReadyTimeGMTOffset", date('O'));
+        $BkgDetails->addChild("DimensionUnit", 'CM');
+        $BkgDetails->addChild("WeightUnit", 'KG');
+        $Pieces = $BkgDetails->addChild("Pieces", null, "_");
 
-        $x=0;
+        $x = 1;
         do {
-            $Piece=$Pieces->addChild("Piece");
-            $Piece->addChild("PieceID",12);
+            $Piece = $Pieces->addChild("Piece");
+            $Piece->addChild("PieceID", 12);
             //$Piece->addChild("PackageType","YP");
-            if ($x==1) {
+            if ($x == 1) {
                 $Piece->addChild("Height", $object->getSendDetailHeight());
                 $Piece->addChild("Depth", $object->getSendDetailLength());
                 $Piece->addChild("Width", $object->getSendDetailWidth());
-                $Piece->addChild("Weight", number_format($object->getSendDetailWeight(), 3, '.', ''));
-            }else{
+                $Piece->addChild("Weight", number_format(($object->getSendDetailWeight() / 1000), 3, '.', ''));
+            } else {
                 $Piece->addChild("Height", 2);
                 $Piece->addChild("Depth", 3);
                 $Piece->addChild("Width", 14);
-                $Piece->addChild("Weight", 1.50);
+                $Piece->addChild("Weight", 4.50);
 
             }
-        } while ($x++<$object->getSendDetailPlaces());
-        $BkgDetails->addChild("PaymentAccountNumber",$this->getAccountId($object));
-        $BkgDetails->addChild("IsDutiable",'Y');
-        $QtdShp1=$BkgDetails->addChild("QtdShp", null,"_");
-        $QtdShp1->addChild("GlobalProductCode",'P');
+        } while ($x++ < $object->getSendDetailPlaces());
+        $BkgDetails->addChild("PaymentAccountNumber", $this->getAccountId($object));
+        $BkgDetails->addChild("IsDutiable", 'Y');
+        $QtdShp1 = $BkgDetails->addChild("QtdShp", null, "_");
+        $QtdShp1->addChild("GlobalProductCode", 'P');
         /*
         $QtdShp2=$BkgDetails->addChild("QtdShp", null,"_");
         $BkgDetails->addChild("GlobalProductCode",'Y');
@@ -302,30 +305,28 @@ class DhlDeliveryService
 
         $To = $GetQuote->addChild("To", null, "_");
 
-        if ($test==1){
+        if ($test == 1) {
 
             $To->addChild("CountryCode", "UA");
             $To->addChild("Postalcode", "01000");
             $To->addChild("City", "Kiev");
-        }else{
+        } else {
             $To->addChild("CountryCode", "UA");
             $To->addChild("Postalcode", $object->getAddresses()->getZip());
             $To->addChild("City", $object->getAddresses()->getCity());
         }
 
 
-
-
-        $Dutiable=$GetQuote->addChild("Dutiable", null,"_");
-        $Dutiable->addChild("DeclaredCurrency",'USD');
-        $Dutiable->addChild("DeclaredValue",$declareSum);
+        $Dutiable = $GetQuote->addChild("Dutiable", null, "_");
+        $Dutiable->addChild("DeclaredCurrency", 'USD');
+        $Dutiable->addChild("DeclaredValue", $declareSum);
 
         /* old code */
 
         $xml = $xml->asXML();
 
-        $xml=str_replace('xmlns="_"', "", $xml);
-        $xml=str_replace("\n", "", $xml);
+        $xml = str_replace('xmlns="_"', "", $xml);
+        $xml = str_replace("\n", "", $xml);
 
         $ch = curl_init($this->dhlUrl);
 
@@ -342,55 +343,58 @@ class DhlDeliveryService
         $result = @curl_exec($ch);
 
         $movies = new \SimpleXMLElement($result);
-        $GetQuoteResponse=$movies->GetQuoteResponse??false;
-        $BkgDetails1=($GetQuoteResponse)?$GetQuoteResponse->BkgDetails??false:false;
-        $QtdShp1=($BkgDetails1)?$BkgDetails1->QtdShp??false:false;
-        $QtdSInAdCur=($QtdShp1)?$QtdShp1->QtdSInAdCur??false:false;
+        $GetQuoteResponse = $movies->GetQuoteResponse ?? false;
+        $BkgDetails1 = ($GetQuoteResponse) ? $GetQuoteResponse->BkgDetails ?? false : false;
+        $QtdShp1 = ($BkgDetails1) ? $BkgDetails1->QtdShp ?? false : false;
+        $QtdSInAdCur = ($QtdShp1) ? $QtdShp1->QtdSInAdCur ?? false : false;
         if (
         $QtdSInAdCur
-        ){
+        ) {
 
-            foreach($QtdSInAdCur as $test){
-                if (isset($test) && isset($test->CurrencyCode) && (string)$test->CurrencyCode=='USD'){
-                    $shipSumm=(float)$test->TotalAmount;
+            foreach ($QtdSInAdCur as $test) {
+                if (isset($test) && isset($test->CurrencyCode) && (string)$test->CurrencyCode == 'EUR') {
+                    $shipSumm = (float)$test->TotalAmount;
                 }
             }
         }
 
-        $note=$GetQuoteResponse->Note??false;
-        if ($note){
-            $status=(string)$note->ActionStatus??false;
-            if ($status && $status=='Failure'){
-                $Condition=$note->Condition??false;
+        $note = $GetQuoteResponse->Note ?? false;
+        if ($note) {
+            $status = (string)$note->ActionStatus ?? false;
+            if ($status && $status == 'Failure') {
+                $Condition = $note->Condition ?? false;
                 if ($Condition->ConditionData)
-                    $this->dhlErrors=(string)$Condition->ConditionData;
+                    $this->dhlErrors = (string)$Condition->ConditionData;
             }
         }
 
-        if ($shipSumm==0 && empty($this->dhlErrors)){
+        if ($shipSumm == 0 && empty($this->dhlErrors)) {
 
-            $Response=$movies->Response??false;
-            $statusResponce=$Response->Status??false;
+            $Response = $movies->Response ?? false;
+            $statusResponce = $Response->Status ?? false;
 
-            $ActionStatus=(string)$statusResponce->ActionStatus??false;
-            if ($ActionStatus && $ActionStatus=='Error') {
-                $Condition=$statusResponce->Condition??false;
-                if ($Condition){
-                    $ConditionData=(string)$Condition->ConditionData??false;
-                    if ($ConditionData) $this->dhlErrors=(string)$Condition->ConditionData;
+            $ActionStatus = (string)$statusResponce->ActionStatus ?? false;
+            if ($ActionStatus && $ActionStatus == 'Error') {
+                $Condition = $statusResponce->Condition ?? false;
+                if ($Condition) {
+                    $ConditionData = (string)$Condition->ConditionData ?? false;
+                    if ($ConditionData) $this->dhlErrors = (string)$Condition->ConditionData;
                 }
             }
         }
-        return $shipSumm;
+
+      return  $this->markupAction($shipSumm, true);
     }
 
+    public function markupAction($shipSumm, $isVip)
+    {
+        return  ((float)$shipSumm + (($shipSumm / 100) * ($isVip)? $this->VipMarkup : $this->Markup));
 
-
-
+    }
 
 
     private function setContainer($c)
     {
-        $this->container=$c;
+        $this->container = $c;
     }
 }
