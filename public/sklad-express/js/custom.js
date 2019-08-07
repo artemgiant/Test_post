@@ -72,7 +72,6 @@ $('.selectpicker').selectpicker();
 
      }
  });
-
     $('form').on('keyup',"#order_form_sendDetailLength" +
         ",#order_form_sendDetailWidth" +
         ",#order_form_sendDetailHeight" +
@@ -86,12 +85,14 @@ $('.selectpicker').selectpicker();
         ",#order_form_sendDetailWeight"
         ,function () {
         var pattern = new RegExp('^([\\s,0-9\\.\\,]+)$'),
-            el =$(this).closest('.form-group');
+            el =$(this).closest('.form-group'),
+            massege_1 ="Введите только цифры.";
         if(!pattern.test( $(this).val())){
             if(!el.find('span.text-danger')[0]){
-                el.append('<span class="message_error text-danger">Введите только цифры.</span>');
+
+                el.append('<span class="message_error text-danger">'+massege_1 +'</span>');
             }else{
-                el.find('.text-danger').text('Введите только цифры.');
+                el.find('.text-danger').text(massege_1);
             }
             $("button:submit").addClass('disabled').attr({"disabled":true}).css({"cursor":"not-allowed"});
         }else {
@@ -101,8 +102,40 @@ $('.selectpicker').selectpicker();
             }
 
         }
-    });
+        ($(this).attr('id') == "order_form_sendDetailWeight")?test_max_weight():'';
 
+        });
+function test_max_weight(){
+        var  el =$('#order_form_sendDetailWeight').closest('.form-group'),
+            max_weight = '',
+            isVip = $('#order_form_userVip').val(),
+            now_weight = $('#order_form_sendDetailWeight').val(),
+            max_weight_VipEconom = $('#order_form_maxWeightEconomVip').val(),
+            max_weight_Econom = $('#order_form_maxWeightEconom').val(),
+            max_weight = (isVip==1)? max_weight_VipEconom : max_weight_Econom,
+            massage_2 =' Выберете тип доставки';
+        if($('#order_form_orderType option:selected').val()==1){
+            var massage_2 = "Максимально допустиме значения "+max_weight;
+        }
+        if(Number(now_weight)>=Number(max_weight)+1){
+            if(!el.find('span.text-danger')[0]){
+                el.append('<span class="message_error text-danger">'+massage_2 +'</span>');
+            }else{
+                el.find('.text-danger').text(massage_2);
+            }
+            $("button:submit").addClass('disabled').attr({"disabled":true}).css({"cursor":"not-allowed"});
+        }else {
+            if(!$('body').find('span.text-danger')[0]){
+                $("button:submit").removeClass('disabled').attr({"disabled":false}).css({"cursor":"pointer"});
+            }
+
+        }
+
+
+
+    };
+
+    // console.log($('#order_form_maxWeightEconomVip').val());
 // Модальное окно
 
 // открыть по кнопке
@@ -127,6 +160,8 @@ $('.selectpicker').selectpicker();
 
         }
     });
+
+
 
 
 

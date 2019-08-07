@@ -101,7 +101,7 @@
                                 {% if isSend is defined and isSend == 1 %}
                                     <th scope="col">{{ "trackingNumber" | trans }}</th>
                                 {% else %}
-                                    <th scope="col">{{ "trackingNumber Nova Pochta" | trans }}</th>
+                                    <th scope="col">{{ "NovaPochta" | trans }}</th>
                                 {% endif %}
                                 <th scope="col">{{ "sendDetailWeight" | trans }}</th>
                                 <th scope="col">{{ "volumeWeigth" | trans }}</th>
@@ -109,7 +109,9 @@
                                 <th scope="col">{{ "declareValue" | trans }}</th>
                                 <th scope="col">{{ "Adress" | trans }}</th>
                                 <th scope="col">{{ "Status" | trans }}</th>
-                                <th colspan="2" scope="col">{{ "Action" | trans }}</th>
+                                {% if isSend is not defined %}
+                                    <th colspan="2" scope="col">{{ "Action" | trans }}</th>
+                                {% endif %}
                             </tr>
                             </thead>
                             <tbody>
