@@ -251,11 +251,21 @@ class DhlDeliveryService
         $MetaData->addChild("SoftwareName", "3PV");
         $MetaData->addChild("SoftwareVersion", "6.2");
 
-
+        $test=1;
         $From = $GetQuote->addChild("From", null, "_");
-        $From->addChild("CountryCode", "US");
-        $From->addChild("Postalcode", $this->dhlFromZip);
-        $From->addChild("City", $this->dhlfromCity);
+        if($test == 0){
+            $From->addChild("CountryCode", "US");
+            $From->addChild("Postalcode", $this->dhlFromZip);
+            $From->addChild("City", $this->dhlfromCity)    ;
+        }else{
+            $From->addChild("CountryCode", "US");
+            $From->addChild("Postalcode", "10001");
+            $From->addChild("City", "New York");
+        }
+
+
+
+
 
         $this->getAccountId($object);
 
@@ -273,7 +283,7 @@ class DhlDeliveryService
             $Piece = $Pieces->addChild("Piece");
             $Piece->addChild("PieceID", 12);
             //$Piece->addChild("PackageType","YP");
-            if ($x == 0) {
+            if ($test == 0) {
                 $Piece->addChild("Height", $object->getSendDetailHeight());
                 $Piece->addChild("Depth", $object->getSendDetailLength());
                 $Piece->addChild("Width", $object->getSendDetailWidth());
@@ -298,7 +308,7 @@ class DhlDeliveryService
 
         $To = $GetQuote->addChild("To", null, "_");
 
-            if (!empty(($object->getAddresses()))){
+            if ($test==1){
 
                 $To->addChild("CountryCode", "UA");
                 $To->addChild("Postalcode", "01000");
