@@ -21,12 +21,13 @@ class TrackController extends CabinetController
     public function __construct()
     {}
     /**
-     * @Route("/track/{tracnum}")
+     * @Route("/track/{traknum}")
      */
-    public function trackAction(Request $request, TrackingMoreService $trackingMore,$tracnum): Response
+    public function trackAction(Request $request, TrackingMoreService $trackingMore,$traknum): Response
     {
 
-        $trNum=$tracnum;
+        $trNum=$traknum;
+
         $errors =[];
         $mess=[];
         if ($trNum)
@@ -35,8 +36,7 @@ class TrackController extends CabinetController
 
             $order = $entityManager
                 ->getRepository(Order::class)
-                ->findOneBy(['trackingNumber'=>$trNum]);
-
+                ->findOneBy(['trNum'=>$trNum]);
             if ($order){
                 /* @var $order Order */
                 $tracksArray=array(
@@ -70,7 +70,8 @@ class TrackController extends CabinetController
         return $this->render('track/index.html.twig', [
             'errors'=>implode($errors,'</br>'),
             'trNum'=> $trNum,
-            'items'=>$order,
+            'items'=>$mess,
+            'page_id'=>'post_find'
         ]);
     }
 
