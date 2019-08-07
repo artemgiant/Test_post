@@ -8,8 +8,6 @@ namespace App\Service;
  */
 class DhlDeliveryService
 {
-    private $templating;
-
 
     /* for Test */
     private $dhlSiteIdTest = "v62_zUR99NQjNx";
@@ -54,9 +52,8 @@ class DhlDeliveryService
      * */
     private $container;
 
-    public function __construct($c, $dhlSendBoxAddress = null)
+    public function __construct($dhlSendBoxAddress = null)
     {
-        $this->setContainer($c);
         if (!empty($dhlSendBoxAddress)) {
             $this->dhlFromZip = $dhlSendBoxAddress['zip'];
             $this->dhlfromCountry = $dhlSendBoxAddress['country'];
@@ -72,20 +69,6 @@ class DhlDeliveryService
     }
 
 
-    /**
-     * @return EntityManager
-     */
-    protected function getEm()
-    {
-        return $this->container;
-    }
-
-
-    /**
-     * @param $object
-     *
-     * @return mixed
-     */
     public function getAccountId($object)
     {
 
@@ -95,7 +78,7 @@ class DhlDeliveryService
         $weight = 0;
         $country = null;
 
-        if ($object instanceof OrdersDHL || $object instanceof OrdersDhlNoTr) {
+        if ($object) {
             $country = $object->getCountry();
             $countryFromString = $object->getFromCountry();
         } elseif ($object instanceof Shipment)
@@ -104,17 +87,13 @@ class DhlDeliveryService
         // getting country from code
         if ($countryFromString) {
             /** @var DhlContryRegionBase $countryFrom */
-            $countryFrom = $this
-                ->getEm()
-                ->getRepository('AppBundle:DhlContryRegionBase')
-                ->getDhlCountry($countryFromString);
-
+            $countryFrom = $this->dhlfromCountry;
             $countryFromCode = $countryFrom ? $countryFrom->getCountyCode() : '';
         }
 
         // end getting country from code
         if (empty($this->dhlToCountry) && !empty($country)) {
-            $dhlToCountry = $this->getEm()->getRepository('AppBundle:DhlContryRegionBase')->getDhlCountry($country);
+            $dhlToCountry = $object->getAddresses()->getCountry();
             $this->dhlToCountry = $dhlToCountry;
             if (!empty($dhlToCountry)) {
                 $countryCode = $dhlToCountry->getCountyCode();
@@ -204,18 +183,11 @@ class DhlDeliveryService
         return $this->dhlAccount;
     }
 
-    /**
-     *
-     * @param Shipment|OrdersDHL|OrdersDhlNoTr $object
-     *
-     * @return array
-     */
+
     public function getDHLPrice($object)
     {
         /* @var $object Shipment */
         $return = false;
-        $em = $this->getEm();
-
         $shipSumm = 0;
         $prArr = [];
         $declareCount = 0;
@@ -352,7 +324,7 @@ class DhlDeliveryService
         ) {
 
             foreach ($QtdSInAdCur as $test) {
-                if (isset($test) && isset($test->CurrencyCode) && (string)$test->CurrencyCode == 'EUR') {
+                if (isset($test) && isset($test->CurrencyCode) && (string)$test->CurrencyCode == 'USD') {
                     $shipSumm = (float)$test->TotalAmount;
                 }
             }
@@ -392,9 +364,4 @@ class DhlDeliveryService
 
     }
 
-
-    private function setContainer($c)
-    {
-        $this->container = $c;
-    }
 }

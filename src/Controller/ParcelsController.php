@@ -184,33 +184,22 @@ class ParcelsController extends CabinetController
             }
 //Express
             if($order->getOrderType()->getCode() == 'express'){
-                $entity = new Order();
-                $entityManager = $this->getDoctrine()->getManager();
-                $order2 = $this->getDoctrine()->getRepository(Order::class);
                 $order->setUser($this->user);
                 $One_order = $order;
                 $dhlSendBoxAddress =$this->my_address;
-                $Dlh = new DhlDeliveryService($entityManager,$dhlSendBoxAddress);
+                $Dlh = new DhlDeliveryService($dhlSendBoxAddress);
                 $Dlh->getAccountId($One_order);
-
-                dd( $Dlh->getDHLPrice($One_order));
-
-                $order->setUser($this->user);
-                $entityManager = $this->getDoctrine()->getManager();
-                $Dlh =new DhlDeliveryService($entityManager,$dhlSendBoxAddress);
-                $Dlh->getAccountId($order);
-
-                dd( $Dlh->getDHLPrice($order));
-
+              $FinalPrice = $Dlh->getDHLPrice($One_order);
+              dd($FinalPrice);
+                $order->setShippingCosts($FinalPrice);
             }
 
-
+            $invoice=new Invoices();
+            $invoice->setOrderId($order)
+                ->setPrice($FinalPrice);
             $order->setUser($this->user);
             $orderStatus=$entityManager->getRepository(OrderStatus::class)->findOneBy(['status'=>'new']);
             $order->setOrderStatus($orderStatus);
-            $invoice=new Invoices();
-            $invoice->setOrderId($order)
-                ->setPrice($order->getShippingCosts());
             $entityManager->persist($invoice);
             $order->addInvoice($invoice);
             $entityManager->persist($order);
