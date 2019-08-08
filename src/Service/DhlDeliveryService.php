@@ -179,7 +179,6 @@ class DhlDeliveryService
             $this->accountCode = "UA";
             return $this->dhlAccount;
         }
-
         return $this->dhlAccount;
     }
 
@@ -257,7 +256,7 @@ class DhlDeliveryService
                 $Piece->addChild("Height", $object->getSendDetailHeight());
                 $Piece->addChild("Depth", $object->getSendDetailLength());
                 $Piece->addChild("Width", $object->getSendDetailWidth());
-                $Piece->addChild("Weight", number_format(($object->getSendDetailWeight() ), 3, '.', ''));
+                $Piece->addChild("Weight", number_format(($object->getSendDetailWeight()/1000 ), 3, '.', ''));
             } else {
                 $Piece->addChild("Height", 2);
                 $Piece->addChild("Depth", 3);
@@ -357,17 +356,17 @@ class DhlDeliveryService
 //            }
 //        }
 
-      return  $this->markupAction($shipSumm, true);
+      return  $this->markupAction($shipSumm, $object->getUser()->getIsVip());
     }
 
     public function markupAction($shipSumm = null, $isVip)
     {
-        dd($shipSumm);
         if($shipSumm==null){
             return false;
         }
-        return  ((float)$shipSumm + (($shipSumm / 100) * ($isVip)? $this->VipMarkup : $this->Markup));
-
+        dump($shipSumm);
+        $markup = ($isVip)?$this->VipMarkup: $this->Markup;
+        return  ($shipSumm + ($shipSumm * ($markup / 100)));
     }
 
 }

@@ -185,11 +185,14 @@ class ParcelsController extends CabinetController
 //Express
             if($order->getOrderType()->getCode() == 'express'){
                 $order->setUser($this->user);
+                dump($order->getUser());
+
                 $One_order = $order;
                 $dhlSendBoxAddress =$this->my_address;
                 $Dlh = new DhlDeliveryService($dhlSendBoxAddress);
                 $Dlh->getAccountId($One_order);
-              $FinalPrice = $Dlh->getDHLPrice($One_order);
+                $FinalPrice = $Dlh->getDHLPrice($One_order);
+
               if(!$FinalPrice){
               $this->addFlash('errors','Вы превысили допустимые значения ');
                   return $this->redirectToRoute('post_parcels_create');
@@ -199,7 +202,7 @@ class ParcelsController extends CabinetController
 
             $invoice=new Invoices();
             $invoice->setOrderId($order)
-                ->setPrice($FinalPrice);
+                ->setPrice($order->getShippingCosts());
             $order->setUser($this->user);
             $orderStatus=$entityManager->getRepository(OrderStatus::class)->findOneBy(['status'=>'new']);
             $order->setOrderStatus($orderStatus);
