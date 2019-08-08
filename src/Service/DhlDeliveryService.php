@@ -56,7 +56,8 @@ class DhlDeliveryService
     {
         if (!empty($dhlSendBoxAddress)) {
             $this->dhlFromZip = $dhlSendBoxAddress['zip'];
-            $this->dhlfromCountry = $dhlSendBoxAddress['country'];
+            $this->dhlfromCountry = $dhlSendBoxAddress['from'];
+            $this->dhlToCountry = $dhlSendBoxAddress['to'];
             $this->dhlfromCity = $dhlSendBoxAddress['city'];
             $this->dhlfromStreet = $dhlSendBoxAddress['street'];
         }
@@ -99,7 +100,7 @@ class DhlDeliveryService
                 $countryCode = $dhlToCountry->getCountyCode();
             }
         } elseif (!empty($this->dhlToCountry)) {
-            $countryCode = $this->dhlToCountry->getCountyCode();
+            $countryCode = $this->dhlToCountry;
         }
         $weightN = $gWeight = 0;
         if ((float)$object->getSendDetailWeight() > 0) $weightN = (float)$object->getSendDetailWeight();
@@ -226,7 +227,7 @@ class DhlDeliveryService
         $test = 0;
         $From = $GetQuote->addChild("From", null, "_");
         if ($test == 0) {
-            $From->addChild("CountryCode", "US");
+            $From->addChild("CountryCode", $this->dhlfromCountry);
             $From->addChild("Postalcode", $this->dhlFromZip);
             $From->addChild("City", $this->dhlfromCity);
         } else {
@@ -282,11 +283,13 @@ class DhlDeliveryService
             $To->addChild("Postalcode", "01000");
             $To->addChild("City", "Kiev");
         } else {
-            $To->addChild("CountryCode", "UA");
+            $To->addChild("CountryCode", $this->dhlToCountry);
             $To->addChild("Postalcode", $object->getAddresses()->getZip());
             $To->addChild("City", $object->getAddresses()->getCity());
         }
-
+//        dump($From);
+//        dump($Piece);
+//        dd($To);
 
         $Dutiable = $GetQuote->addChild("Dutiable", null, "_");
         $Dutiable->addChild("DeclaredCurrency", 'USD');
@@ -323,7 +326,7 @@ class DhlDeliveryService
         ) {
 
             foreach ($QtdSInAdCur as $test) {
-                if (isset($test) && isset($test->CurrencyCode) && (string)$test->CurrencyCode == 'USD') {
+                if (isset($test) && isset($test->CurrencyCode) && (string)$test->CurrencyCode == 'UAH') {
                     $shipSumm = (float)$test->TotalAmount;
                 }
             }
@@ -356,6 +359,7 @@ class DhlDeliveryService
 //            }
 //        }
 
+//        dd($shipSumm);
       return  $this->markupAction($shipSumm, $object->getUser()->getIsVip());
     }
 
@@ -364,9 +368,8 @@ class DhlDeliveryService
         if($shipSumm==null){
             return false;
         }
-        dump($shipSumm);
         $markup = ($isVip)?$this->VipMarkup: $this->Markup;
-        return  ($shipSumm + ($shipSumm * ($markup / 100)));
+        return  round(($shipSumm + ($shipSumm * ($markup / 100))),2);
     }
 
 }

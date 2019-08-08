@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\CabinetController;
+use App\Entity\Country;
 use App\Entity\Order;
 use App\Entity\User;
 use App\Entity\Address;
@@ -183,20 +184,19 @@ class ParcelsController extends CabinetController
                 }
             }
 //Express
+
             if($order->getOrderType()->getCode() == 'express'){
                 $order->setUser($this->user);
-                dump($order->getUser());
-
+                $Country_r = $this->getDoctrine()->getRepository(Country::class);
+                list($From,$To) = $Country_r->getShortNameCountry($this->my_address['country'],$order->getAddresses()->getCountry()->getId());
                 $One_order = $order;
                 $dhlSendBoxAddress =$this->my_address;
+                $dhlSendBoxAddress['from']=$From;
+                $dhlSendBoxAddress['to']=$To;
                 $Dlh = new DhlDeliveryService($dhlSendBoxAddress);
                 $Dlh->getAccountId($One_order);
                 $FinalPrice = $Dlh->getDHLPrice($One_order);
-
-              if(!$FinalPrice){
-              $this->addFlash('errors','Вы превысили допустимые значения ');
-                  return $this->redirectToRoute('post_parcels_create');
-              }
+//                dd($FinalPrice);
                 $order->setShippingCosts($FinalPrice);
             }
 
@@ -210,7 +210,6 @@ class ParcelsController extends CabinetController
             $order->addInvoice($invoice);
             $entityManager->persist($order);
             $entityManager->flush();
-
             $this->addFlash(
                 'success',
                 $translateService->trans("Orders Added sucusfull")
