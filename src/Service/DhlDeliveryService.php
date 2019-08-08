@@ -247,17 +247,17 @@ class DhlDeliveryService
         $BkgDetails->addChild("DimensionUnit", 'CM');
         $BkgDetails->addChild("WeightUnit", 'KG');
         $Pieces = $BkgDetails->addChild("Pieces", null, "_");
-
         $x = 1;
         do {
             $Piece = $Pieces->addChild("Piece");
             $Piece->addChild("PieceID", 12);
             //$Piece->addChild("PackageType","YP");
+            $convert_kg = $object->getSendDetailWeight()*0.001;
             if ($x == 1) {
                 $Piece->addChild("Height", $object->getSendDetailHeight());
                 $Piece->addChild("Depth", $object->getSendDetailLength());
                 $Piece->addChild("Width", $object->getSendDetailWidth());
-                $Piece->addChild("Weight", number_format(($object->getSendDetailWeight()/1000 ), 3, '.', ''));
+                $Piece->addChild("Weight", number_format($convert_kg, 3, '.', ''));
             } else {
                 $Piece->addChild("Height", 2);
                 $Piece->addChild("Depth", 3);
@@ -266,6 +266,7 @@ class DhlDeliveryService
 
             }
         } while ($x++ < $object->getSendDetailPlaces());
+
         $BkgDetails->addChild("PaymentAccountNumber", $this->getAccountId($object));
         $BkgDetails->addChild("IsDutiable", 'Y');
         $QtdShp1 = $BkgDetails->addChild("QtdShp", null, "_");
@@ -287,9 +288,6 @@ class DhlDeliveryService
             $To->addChild("Postalcode", $object->getAddresses()->getZip());
             $To->addChild("City", $object->getAddresses()->getCity());
         }
-//        dump($From);
-//        dump($Piece);
-//        dd($To);
 
         $Dutiable = $GetQuote->addChild("Dutiable", null, "_");
         $Dutiable->addChild("DeclaredCurrency", 'USD');
@@ -359,7 +357,6 @@ class DhlDeliveryService
 //            }
 //        }
 
-//        dd($shipSumm);
       return  $this->markupAction($shipSumm, $object->getUser()->getIsVip());
     }
 
