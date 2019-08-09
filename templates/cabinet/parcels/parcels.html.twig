@@ -105,7 +105,7 @@
                                 {% endif %}
                                 <th scope="col">{{ "sendDetailWeight" | trans }}</th>
                                 <th scope="col">{{ "volumeWeigth" | trans }}</th>
-                                <th scope="col">{{ "shipgCost" | trans }}</th>
+                                <th scope="col" class="text-dark">{{ "shipgCost" | trans }}</th>
                                 <th scope="col">{{ "declareValue" | trans }}</th>
                                 <th scope="col">{{ "Adress" | trans }}</th>
                                 <th scope="col">{{ "Status" | trans }}</th>
@@ -126,7 +126,7 @@
                                         {% endif %}
                                         <td>{{ item.sendDetailWeight }}</td>
                                         <td>{{ item.volumeWeigth }}</td>
-                                        <td class="font-weight-bold">{{ item.shippingCosts }}</td>
+                                        <td class="font-weight-bold text-dark">{{ item.shippingCosts }}</td>
                                         <td>{{ item.declareValue }}</td>
                                         <td>
                                             {% if item.addresses.fullAddress is defined and item.addresses.fullAddress is not null %}

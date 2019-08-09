@@ -357,7 +357,7 @@ class DhlDeliveryService
 //            }
 //        }
 
-      return  $this->markupAction($shipSumm, $object->getUser()->getIsVip());
+        return  $this->markupAction($shipSumm, $object->getUser()->getIsVip());
     }
 
     public function markupAction($shipSumm = null, $isVip)
