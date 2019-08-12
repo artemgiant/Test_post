@@ -194,7 +194,7 @@ class ParcelsController extends CabinetController
                 $dhlSendBoxAddress['from']=$From;
                 $dhlSendBoxAddress['to']=$To;
                 $Dlh = new DhlDeliveryService($dhlSendBoxAddress);
-                $Dlh->getAccountId($One_order);
+//                dd( $Dlh->getAccountId($One_order));
                 $FinalPrice = $Dlh->getDHLPrice($One_order);
                 if(!$FinalPrice){
                     $this->addFlash('errors','Вы превысили допустимое значения!');
