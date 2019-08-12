@@ -23,7 +23,7 @@
         {{ form_start(SupportForm, {"action": path("parcles_support"), "method": "POST", "attr": {"id": "SupportFormEdit","class":"mb-3"}}) }}
 
         {% for message in app.flashes('modal_window') %}
-            <div type="hidden" id="modal_window" value="{{message}}"></div>
+            <div type="hidden" id="modal_window" value=""></div>
         {% endfor %}
 
 
@@ -35,7 +35,7 @@
             </div>
             <div class="card-body">
                 <div class="row py-4 justify-content-center">
-                    <div class="col-4 col-sm-4">
+                    <div class="col-12 col-sm-4">
                         <div class="form-group">
                             {{ form_label(SupportForm.Name,"Enter first name"|trans, {
                                 "label_attr": {"class": "text-muted"}
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4 col-sm-4">
+                    <div class="col-12 col-sm-4">
                         <div class="form-group">
                             {{ form_label(SupportForm.Email,"Email"|trans, {
                                 "label_attr": {"class": "text-muted"}
@@ -76,8 +76,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row py-4 justify-content-center">
-                    <div class="col-8 col-sm-8">
+                <div class="row py-2 justify-content-center">
+                    <div class="col-12 col-sm-8">
                         <div class="form-group">
                             {{ form_label(SupportForm.Message,"Message"|trans, {
                                 "label_attr": {"class": "text-muted"}
@@ -99,7 +99,7 @@
                     </div>
                 </div>
                 <div class="row py-4 justify-content-center">
-                    <div class="col-2 col-sm-2">
+                    <div class="col-12 col-sm-6 col-lg-2">
                         <div class="form-group">
                             {{ form_row(SupportForm.submit, {"label": "Send"|trans}) }}
                         </div>

@@ -5049,7 +5049,8 @@ body .jvectormap-zoomout {
   border-radius: 5px;
   text-align: center;
   position: absolute;
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   left: 50%;
   top: 32%;
   transform: translate(-50%, -50%);
@@ -5058,6 +5059,10 @@ body .jvectormap-zoomout {
   background-color: #45c2e8;
   color: #fff;
   padding-bottom: 10px;
+  min-height: 93px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #modal_window1 .close-popup {
@@ -5090,14 +5095,14 @@ body .jvectormap-zoomout {
   left: -4px;
 }
 
-@media screen and (max-width: 768px) {
+/*@media screen and (max-width: 768px) {*/
 
-  #modal_window1 .popup {
-    width: 100%;
-    height: 100vh;
-    font-size: 15px;
-  }
-}
+/*  #modal_window1 .popup {*/
+/*    width: 100%;*/
+/*    height: 100vh;*/
+/*    font-size: 15px;*/
+/*  }*/
+/*}*/
 
 
 
