@@ -287,8 +287,8 @@ class DhlDeliveryService
             $To->addChild("Postalcode", $object->getAddresses()->getZip());
             $To->addChild("City", $object->getAddresses()->getCity());
         }
-        dump($To);
-dump($Piece);
+//        dump($To);
+//dump($Piece);
         $Dutiable = $GetQuote->addChild("Dutiable", null, "_");
         $Dutiable->addChild("DeclaredCurrency", 'USD');
         $Dutiable->addChild("DeclaredValue", $declareSum);
@@ -358,8 +358,8 @@ dump($Piece);
 //            }
 //        }
         dump($shipSumm*1.15);
-dd(($shipSumm*1.55)*25.5);
-        return  $this->markupAction($shipSumm*1.15, $object->getUser()->getIsVip());
+//dd(($shipSumm*1.55)*25.5);
+        return  $this->markupAction($shipSumm, $object->getUser()->getIsVip());
     }
 
     public function markupAction($shipSumm = null, $isVip)
@@ -368,7 +368,7 @@ dd(($shipSumm*1.55)*25.5);
             return false;
         }
         $markup = ($isVip)?$this->VipMarkup: $this->Markup;
-        return  round(($shipSumm + ($shipSumm * ($markup / 100))),2);
+        return (($shipSumm*1.55)*25.5);
     }
 
 }
