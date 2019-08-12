@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\CabinetController;
+use App\Entity\Country;
 use App\Entity\Order;
 use App\Entity\User;
 use App\Entity\Address;
@@ -14,6 +15,7 @@ use App\Entity\PriceWeightEconomVip;
 use App\Entity\DeliveryPrice;
 use App\Entity\OrderProducts;
 use App\Form\SupportType;
+use App\Service\DhlDeliveryService;
 use Swift_Mailer;
 use Swift_SmtpTransport;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -159,7 +161,7 @@ class ParcelsController extends CabinetController
             list($shipCost,$volume)=$this->CalculateShipCost($order);
             $order->setShippingCosts($shipCost);
             $order->setVolumeWeigth($volume);
-
+//Econom
             if($order->getOrderType()->getCode() == 'econom'){
                 if($this->user->isVip()){
                     $weightPrice = $this->getDoctrine()
@@ -181,18 +183,37 @@ class ParcelsController extends CabinetController
                     }
                 }
             }
+//Express
 
-            $order->setUser($this->user);
-            $orderStatus=$entityManager->getRepository(OrderStatus::class)->findOneBy(['status'=>'new']);
-            $order->setOrderStatus($orderStatus);
+            if($order->getOrderType()->getCode() == 'express'){
+                $order->setUser($this->user);
+                $Country_r = $this->getDoctrine()->getRepository(Country::class);
+                list($From,$To) = $Country_r->getShortNameCountry($this->my_address['country'],$order->getAddresses()->getCountry()->getId());
+                $One_order = $order;
+                $dhlSendBoxAddress =$this->my_address;
+                $dhlSendBoxAddress['from']=$From;
+                $dhlSendBoxAddress['to']=$To;
+                $Dlh = new DhlDeliveryService($dhlSendBoxAddress);
+                $Dlh->getAccountId($One_order);
+                $FinalPrice = $Dlh->getDHLPrice($One_order);
+                if(!$FinalPrice){
+                    $this->addFlash('errors','Вы превысили допустимое значения!');
+                    return $this->redirectToRoute('post_parcels_create');
+                }
+                $order->setShippingCosts($FinalPrice);
+
+            }
+
             $invoice=new Invoices();
             $invoice->setOrderId($order)
                 ->setPrice($order->getShippingCosts());
+            $order->setUser($this->user);
+            $orderStatus=$entityManager->getRepository(OrderStatus::class)->findOneBy(['status'=>'new']);
+            $order->setOrderStatus($orderStatus);
             $entityManager->persist($invoice);
             $order->addInvoice($invoice);
             $entityManager->persist($order);
             $entityManager->flush();
-
             $this->addFlash(
                 'success',
                 $translateService->trans("Orders Added sucusfull")

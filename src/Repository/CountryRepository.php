@@ -15,4 +15,23 @@ class CountryRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Country::class);
     }
+
+    public function getShortNameCountry($From,$To)
+    {
+        $qr = $this->createQueryBuilder('o')
+            ->select('o.name, o.shortName')
+            ->andWhere('o.name = :from')
+            ->setParameter('from', $From);
+
+        $FromAndTo[] = $qr->getQuery()->getResult()[0]['shortName'];
+        $to = $this->createQueryBuilder('a')
+            ->select('a.name, a.shortName')
+            ->where('a.id = :to')
+            ->setParameter('to', $To);
+
+    $FromAndTo[] = $to->getQuery()->getResult()[0]['shortName'];
+         return $FromAndTo;
+
+    }
 }
+//$queryBuilder->andWhere('r.winner IN (:ids)')
