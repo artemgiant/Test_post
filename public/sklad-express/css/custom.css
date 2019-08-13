@@ -5,6 +5,7 @@
 
 .btn-add-products{
     font-size: 1.5rem;
+    line-height: 15px;
 }
 
 .liq-pay-button{
@@ -122,6 +123,63 @@
     transform: translateX(-50%);
 }
 
+
+.card-link-wrap{
+    text-decoration: none;
+    display: block;
+    border-radius: 4px;
+    transition: 0.25s;
+}
+
+.card-link-wrap:hover{
+    text-decoration: none;
+    box-shadow: 0 0 11px rgba(33, 33, 33, 0.34);
+}
+
+.search-track-btn{
+    width: 150px;
+}
+
+.mt-8{
+    margin-top: 8px;
+}
+
+.search-track-input{
+    height: 43px;
+}
+
+#profile_form_save{
+    width: 200px;
+}
+
+.addresses-table .btn-outline-success,
+.parcels-table .btn-outline-success{
+    width: 125px;
+}
+
+.fixered-column{
+    max-width: 125px;
+    min-width: 125px;
+}
+
+.addresses-table .btn-outline-danger{
+    width: 100px;
+}
+
+.addresses-table .btn-outline-danger,
+.btn-outline-success{
+    padding: 10px;
+}
+
+.card-link-wrap h2{
+    font-size: 1.625rem;
+}
+
+@media (min-width: 1200px){
+    .card-link-wrap{
+        max-width: 380px;
+    }
+}
 @media (max-width: 600px){
     .table{
         min-width: 600px;
@@ -133,10 +191,17 @@
     .navbar-nav.flex-row{
         max-width: 300px;
     }
+
+
 }
 
 @media (max-width: 470px){
     .profile-header{
         width: 230px;
+    }   
+
+    .search-track-btn{
+        width: 120px;
     }
 }
+
