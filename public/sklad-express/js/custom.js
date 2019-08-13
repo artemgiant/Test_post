@@ -50,10 +50,12 @@ $('.selectpicker').selectpicker();
        '#address_form_regionOblast,' +
        '#address_form_street,' +
        '#address_form_userFirstName,' +
-       '#address_form_userLastName,' +
-     'textarea:not(#support_Message,' +
-       '#order_form_comment,' +
-       '#order_form_products_0_descUa)'
+       '#address_form_userLastName' +
+        "#address_form_house," +
+       "#address_form_apartment"
+
+
+
        ,function () {
         var pattern = new RegExp('^([a-zA-Z0-9\\.\\,\\@,\\s]+)$'),
             el =$(this).closest('.form-group');
@@ -77,11 +79,8 @@ $('.selectpicker').selectpicker();
         ",#order_form_sendDetailHeight" +
         ",#order_form_products_0_price" +
         ",#order_form_products_0_count" +
-        ",#address_form_house" +
-        ",#address_form_apartment" +
         ",#address_form_zip" +
         ",#address_form_phone" +
-        ",#address_form_apartment" +
         ",#order_form_sendDetailWeight"
         ,function () {
         var pattern = new RegExp('^([\\s,0-9\\.\\,]+)$'),
