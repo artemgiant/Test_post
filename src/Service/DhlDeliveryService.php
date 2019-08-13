@@ -42,7 +42,7 @@ class DhlDeliveryService
     public $sendTo;
     public $dhlfromCountry;
     public $dhlFromZip;
-    public $CourseDollar;
+    public $CourseDollar=27;
 
     public $elType;
     /*
@@ -316,7 +316,7 @@ class DhlDeliveryService
             return false;
         }
         $markup = ($isVip)?$this->VipMarkup: $this->Markup;
-        return  round((($shipSumm + ($shipSumm * ($markup / 100)))*27),2);
+        return  round((($shipSumm + ($shipSumm * ($markup / 100)))*$this->CourseDollar),2);
     }
 
 }
