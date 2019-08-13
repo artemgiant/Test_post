@@ -5095,16 +5095,18 @@ body .jvectormap-zoomout {
   left: -4px;
 }
 
-/*@media screen and (max-width: 768px) {*/
+@media (max-width: 768px) {
+  .navbar-nav.flex-row {
+    justify-content: center;
+    width: 100%;
+  }
+  .topnavbar .dropdown.nav-item {
+    max-width: 140px;
+  }
 
-/*  #modal_window1 .popup {*/
-/*    width: 100%;*/
-/*    height: 100vh;*/
-/*    font-size: 15px;*/
-/*  }*/
-/*}*/
-
-
-
+  .navbar-nav.mr-auto.flex-row{
+    display: none;
+  }
+}
 
 

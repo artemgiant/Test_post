@@ -42,6 +42,7 @@ class DhlDeliveryService
     public $sendTo;
     public $dhlfromCountry;
     public $dhlFromZip;
+    public $CourseDollar=27;
 
     public $elType;
     /*
@@ -79,32 +80,12 @@ class DhlDeliveryService
         $weight = 0;
         $country = null;
 
-        if ($object) {
-            $country = $object->getCountry();
-            $countryFromString = $object->getFromCountry();
-        } elseif ($object instanceof Shipment)
-            $country = 'UNITED STATES OF AMERICA';
+        $countryFromCode=$this->dhlfromCountry;
+        $countryCode =$this->dhlToCountry;
 
-        // getting country from code
-        if ($countryFromString) {
-            /** @var DhlContryRegionBase $countryFrom */
-            $countryFrom = $this->dhlfromCountry;
-            $countryFromCode = $countryFrom ? $countryFrom->getCountyCode() : '';
-        }
-
-        // end getting country from code
-        if (empty($this->dhlToCountry) && !empty($country)) {
-            $dhlToCountry = $object->getAddresses()->getCountry();
-            $this->dhlToCountry = $dhlToCountry;
-            if (!empty($dhlToCountry)) {
-                $countryCode = $dhlToCountry->getCountyCode();
-            }
-        } elseif (!empty($this->dhlToCountry)) {
-            $countryCode = $this->dhlToCountry;
-        }
         $weightN = $gWeight = 0;
-        if ((float)$object->getSendDetailWeight() > 0) $weightN = (float)$object->getSendDetailWeight();
-        $gWeight = ((float)$object->getSendDetailWidth() * (float)$object->getSendDetailHeight() * (float)$object->getSendDetailLength()) / 5000;
+        if ((float)$object->getSendDetailWidth() > 0) $weightN = (float)$object->getSendDetailWidth();
+        $gWeight = ((float)$object->getSendDetailWidth() * (float) $object->getSendDetailHeight() * (float) $object->getSendDetailWidth()) / 5000;
         $weight = max($weightN, $gWeight);
 
         if (
@@ -203,7 +184,6 @@ class DhlDeliveryService
             }
         }
 
-
         $erType = 1;
 
         $xml = new \SimpleXMLElement("<?xml version=\"1.0\" encoding=\"UTF-8\"?><p:DCTRequest schemaVersion=\"2.0\" xsi:schemaLocation=\"http://www.dhl.com DCT-req.xsd\" xmlns:p=\"http://www.dhl.com\" xmlns:p1=\"http://www.dhl.com/datatypes\" xmlns:p2=\"http://www.dhl.com/DCTRequestdatatypes\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"></p:DCTRequest>");
@@ -213,10 +193,11 @@ class DhlDeliveryService
         $Request = $GetQuote->addChild('Request',
             null, "_");
 
+        $this->dhlAccount = $this->getAccountId($object);
         $ServiceHeader = $Request->addChild("ServiceHeader");
 
         $ServiceHeader->addChild("MessageTime", date("c"));
-        $ServiceHeader->addChild("MessageReference", substr("SkladUSA_dhl_to_rate_shipment_#" . $object->getId() . "_" . time() . "_" . time(), 0, 32));
+        $ServiceHeader->addChild("MessageReference", substr("SkladUSA_dhl_to_rate_shipment_#".$object->getUser()->getID()."_" . time() . "_" . time(), 0, 32));
         $ServiceHeader->addChild("SiteID", $this->dhlSiteId);
         $ServiceHeader->addChild("Password", $this->dhlSitePass);
         $MetaData = $Request->addChild("MetaData");
@@ -236,10 +217,7 @@ class DhlDeliveryService
             $From->addChild("City", "New York");
         }
 
-        $this->getAccountId($object);
-
         $BkgDetails = $GetQuote->addChild("BkgDetails", null, "_");
-
         $BkgDetails->addChild("PaymentCountryCode", $this->accountCode);
         $BkgDetails->addChild("Date", date('Y-m-d'));
         $BkgDetails->addChild("ReadyTime", 'PT10H21M');
@@ -257,7 +235,7 @@ class DhlDeliveryService
                 $Piece->addChild("Height", $object->getSendDetailHeight());
                 $Piece->addChild("Depth", $object->getSendDetailLength());
                 $Piece->addChild("Width", $object->getSendDetailWidth());
-                $Piece->addChild("Weight", number_format($convert_kg, 3, '.', ''));
+                $Piece->addChild("Weight", number_format(($object->getSendDetailWeight()*0.001), 3, '.', ''));
             } else {
                 $Piece->addChild("Height", 2);
                 $Piece->addChild("Depth", 3);
@@ -288,7 +266,6 @@ class DhlDeliveryService
             $To->addChild("Postalcode", $object->getAddresses()->getZip());
             $To->addChild("City", $object->getAddresses()->getCity());
         }
-
         $Dutiable = $GetQuote->addChild("Dutiable", null, "_");
         $Dutiable->addChild("DeclaredCurrency", 'USD');
         $Dutiable->addChild("DeclaredValue", $declareSum);
@@ -324,38 +301,11 @@ class DhlDeliveryService
         ) {
 
             foreach ($QtdSInAdCur as $test) {
-                if (isset($test) && isset($test->CurrencyCode) && (string)$test->CurrencyCode == 'UAH') {
+                if (isset($test) && isset($test->CurrencyCode) && (string)$test->CurrencyCode == 'USD') {
                     $shipSumm = (float)$test->TotalAmount;
                 }
             }
         }
-
-        $note = $GetQuoteResponse->Note ?? false;
-        if ($note) {
-            $status = (string)$note->ActionStatus ?? false;
-            if ($status && $status == 'Failure') {
-                $Condition = $note->Condition ?? false;
-                if ($Condition->ConditionData)
-                    $this->dhlErrors = (string)$Condition->ConditionData;
-            }
-        }
-
-//        if ($shipSumm==0 && empty($this->dhlErrors)){
-//
-//            $Response=$movies->GetQuoteResponse->Response??false;
-//            $statusResponce=$Response->Status??false;
-//
-//
-//
-//            $ActionStatus=(string)$statusResponce->ActionStatus??false;
-//            if ($ActionStatus && $ActionStatus=='Error') {
-//                $Condition=$statusResponce->Condition??false;
-//                if ($Condition){
-//                    $ConditionData=(string)$Condition->ConditionData??false;
-//                    if ($ConditionData) $this->dhlErrors=(string)$Condition->ConditionData;
-//                }
-//            }
-//        }
 
         return  $this->markupAction($shipSumm, $object->getUser()->getIsVip());
     }
@@ -366,7 +316,7 @@ class DhlDeliveryService
             return false;
         }
         $markup = ($isVip)?$this->VipMarkup: $this->Markup;
-        return  round(($shipSumm + ($shipSumm * ($markup / 100))),2);
+        return  round((($shipSumm + ($shipSumm * ($markup / 100)))*$this->CourseDollar),2);
     }
 
 }
