@@ -135,6 +135,12 @@
     }
 }
 
+@media (max-width: 520px){
+    .navbar-nav.flex-row{
+        max-width: 100%;
+    }
+}
+
 @media (max-width: 470px){
     .profile-header{
         width: 230px;
