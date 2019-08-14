@@ -201,7 +201,9 @@ class OrdersAdmin extends AbstractAdmin
      * @param $order
      */
     public function postUpdate($order) {
-        if($order->getOrderStatus()->getId() == 2){
+        $em = $this->getModelManager()->getEntityManager($this->getClass());
+        $original = $em->getUnitOfWork()->getOriginalEntityData($object);
+        if($order->getOrderStatus()->getId() == 2 && $original['status'] != 2){
             $service = new SkladUsaService();
             $service->sendOrderToSklad($order);
         }
