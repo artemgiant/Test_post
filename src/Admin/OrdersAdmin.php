@@ -202,7 +202,7 @@ class OrdersAdmin extends AbstractAdmin
      */
     public function postUpdate($order) {
         $em = $this->getModelManager()->getEntityManager($this->getClass());
-        $original = $em->getUnitOfWork()->getOriginalEntityData($object);
+        $original = $em->getUnitOfWork()->getOriginalEntityData($order);
         if($order->getOrderStatus()->getId() == 2 && $original['status'] != 2){
             $service = new SkladUsaService();
             $service->sendOrderToSklad($order);
