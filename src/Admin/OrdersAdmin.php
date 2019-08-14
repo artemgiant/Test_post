@@ -3,8 +3,10 @@
 namespace App\Admin;
 
 use App\Entity\OrderStatus;
+use App\Entity\OrderType;
 use App\Entity\User;
 //use Doctrine\DBAL\Types\TextType;
+use App\Service\SkladUsaService;
 use Proxies\__CG__\App\Entity\Order;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -24,7 +26,6 @@ use App\Form\InvoiceFormType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 use Symfony\Contracts\Translation\TranslatorInterface;
-
 
 class OrdersAdmin extends AbstractAdmin
 {
@@ -63,6 +64,20 @@ class OrdersAdmin extends AbstractAdmin
             ->addIdentifier('sendFromAddress')
             ->addIdentifier('comment')
             ->addIdentifier('orderStatus')
+            ->add('orderType', EntityType::class, [
+                'class' => OrderType::class,
+//                'placeholder' => 'Select type',
+                'choice_label' => 'code',
+                'choice_translation_domain' => 'messages',
+                'label' => $this->trans( "OrderType"),
+//                'required'=>true,
+//                'attr'=>[
+//                    'class'=>'form-control',
+//                    'id'=>'order_type',
+//                    'autocomplete'=>'off',
+//                ],
+            ])
+
             ->add('trNum',null,['label'=>'Трек для пользователя'])
             ->add('trackingNumber',null,['label'=>'Трекномер Новой Почты'])
             ->add('systemNum',null,['label'=>'Трек системный(Посылка едет в страну назначения)'])
@@ -122,6 +137,19 @@ class OrdersAdmin extends AbstractAdmin
         ];
         $formMapper
             ->add('user', ModelType::class, $userFieldOptions)
+            ->add('orderType', EntityType::class, [
+                'class' => OrderType::class,
+                'placeholder' => 'Select type',
+                'choice_label' => 'code',
+                'choice_translation_domain' => 'messages',
+                'label' => $this->trans( "OrderType"),
+                'required'=>true,
+                'attr'=>[
+                    'class'=>'form-control',
+                    'id'=>'order_type',
+                    'autocomplete'=>'off',
+                ],
+            ])
             ->add('orderStatus', ModelType::class, $orderStatusFieldOptions)
             ->add('addresses', ModelType::class, $addressesFieldOptions)
             ->add('trackingNumber',null,['label'=>'Трек новой почты'])
@@ -167,5 +195,17 @@ class OrdersAdmin extends AbstractAdmin
                 'attr'=>['class'=>'hide'],
                 //'label_attr'=>['class'=>'hideddd'],
                 ],['help'=>$invoicesStr]);
+    }
+
+    /**
+     * @param $order
+     */
+    public function postUpdate($order) {
+        $em = $this->getModelManager()->getEntityManager($this->getClass());
+        $original = $em->getUnitOfWork()->getOriginalEntityData($object);
+        if($order->getOrderStatus()->getId() == 2 && $original['status'] != 2){
+            $service = new SkladUsaService();
+            $service->sendOrderToSklad($order);
+        }
     }
 }

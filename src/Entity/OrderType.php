@@ -81,4 +81,16 @@ class OrderType
 
         return $this;
     }
+
+    /**
+     * return string
+     */
+    public function __toString()
+    {
+        if (!$this->getName())
+            return $this->getName();
+
+        return $this->name;
+    }
+
 }
