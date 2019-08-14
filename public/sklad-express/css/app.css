@@ -5035,7 +5035,7 @@ body .jvectormap-zoomout {
   text-transform: uppercase;
 }
 
-.overlay {
+ #modal_window1.overlay {
   position: absolute;
   width: 100%;
   height: 100vh;
@@ -5045,11 +5045,12 @@ body .jvectormap-zoomout {
   display: none;
 }
 
-.popup {
+#modal_window1 .popup {
   border-radius: 5px;
   text-align: center;
   position: absolute;
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   left: 50%;
   top: 32%;
   transform: translate(-50%, -50%);
@@ -5058,9 +5059,13 @@ body .jvectormap-zoomout {
   background-color: #45c2e8;
   color: #fff;
   padding-bottom: 10px;
+  min-height: 93px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.close-popup {
+#modal_window1 .close-popup {
   position: absolute;
   top: 3px;
   right: 3px;
@@ -5069,7 +5074,7 @@ body .jvectormap-zoomout {
   cursor: pointer;
 }
 
-.close-popup:before {
+#modal_window1 .close-popup:before {
   content: '';
   background-color: #fff;
   position: absolute;
@@ -5079,7 +5084,7 @@ body .jvectormap-zoomout {
   left: -4px;
   transform: rotate(-45deg);
 }
-.close-popup:after {
+#modal_window1 .close-popup:after {
   content: '';
   background-color: #fff;
   position: absolute;
@@ -5090,14 +5095,18 @@ body .jvectormap-zoomout {
   left: -4px;
 }
 
-@media screen and (max-width: 768px) {
-
-  .popup {
+@media (max-width: 768px) {
+  .navbar-nav.flex-row {
+    justify-content: center;
     width: 100%;
-    height: 100vh;
-    font-size: 15px;
+  }
+  .topnavbar .dropdown.nav-item {
+    max-width: 140px;
+  }
+
+  .navbar-nav.mr-auto.flex-row{
+    display: none;
   }
 }
-
 
 

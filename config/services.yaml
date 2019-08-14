@@ -56,6 +56,19 @@ services:
             - { name: sonata.admin, manager_type: orm, group: Price, label: PriceWeightEconomVip }
         public: true
 
+    admin.price_weight_ekspresss:
+        class: App\Admin\PriceWeightEkspressAdmin
+        arguments: [~, App\Entity\PriceWeightEkspress, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Price, label: PriceWeightEkspress }
+        public: true
+    admin.vip_price_weight_ekspresst:
+        class: App\Admin\VipPriceWeightEkspressAdmin
+        arguments: [~, App\Entity\VipPriceWeightEkspress, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Price, label: VipPriceWeightEkspress }
+        public: true
+
     app.admin.deliveryprice:
             class: App\Admin\DeliveryPriceAdmin
             arguments: [~, App\Entity\DeliveryPrice, ~]
@@ -85,4 +98,9 @@ services:
         calls:
             - [setMailer, ["@mailer"]]
             - [setTemplateEngine, ["@templating"]]
+
+
+
+
+
 

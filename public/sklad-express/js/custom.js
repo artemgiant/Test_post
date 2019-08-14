@@ -50,10 +50,12 @@ $('.selectpicker').selectpicker();
        '#address_form_regionOblast,' +
        '#address_form_street,' +
        '#address_form_userFirstName,' +
-       '#address_form_userLastName,' +
-     'textarea:not(#support_Message,' +
-       '#order_form_comment,' +
-       '#order_form_products_0_descUa)'
+       '#address_form_userLastName' +
+        "#address_form_house," +
+       "#address_form_apartment"
+
+
+
        ,function () {
         var pattern = new RegExp('^([a-zA-Z0-9\\.\\,\\@,\\s]+)$'),
             el =$(this).closest('.form-group');
@@ -72,26 +74,24 @@ $('.selectpicker').selectpicker();
 
      }
  });
-
     $('form').on('keyup',"#order_form_sendDetailLength" +
         ",#order_form_sendDetailWidth" +
         ",#order_form_sendDetailHeight" +
         ",#order_form_products_0_price" +
         ",#order_form_products_0_count" +
-        ",#address_form_house" +
-        ",#address_form_apartment" +
         ",#address_form_zip" +
         ",#address_form_phone" +
-        ",#address_form_apartment" +
         ",#order_form_sendDetailWeight"
         ,function () {
         var pattern = new RegExp('^([\\s,0-9\\.\\,]+)$'),
-            el =$(this).closest('.form-group');
+            el =$(this).closest('.form-group'),
+            massege_1 ="Введите только цифры.";
         if(!pattern.test( $(this).val())){
             if(!el.find('span.text-danger')[0]){
-                el.append('<span class="message_error text-danger">Введите только цифры.</span>');
+
+                el.append('<span class="message_error text-danger">'+massege_1 +'</span>');
             }else{
-                el.find('.text-danger').text('Введите только цифры.');
+                el.find('.text-danger').text(massege_1);
             }
             $("button:submit").addClass('disabled').attr({"disabled":true}).css({"cursor":"not-allowed"});
         }else {
@@ -101,7 +101,9 @@ $('.selectpicker').selectpicker();
             }
 
         }
-    });
+
+        });
+
 
 // Модальное окно
 
@@ -127,6 +129,8 @@ $('.selectpicker').selectpicker();
 
         }
     });
+
+
 
 
 
