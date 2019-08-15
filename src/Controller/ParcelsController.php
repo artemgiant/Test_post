@@ -463,7 +463,7 @@ class ParcelsController extends CabinetController
         $entityManager = $this->getDoctrine()->getManager();
         $id = $request->get('id',false);
         if ($id && (int)$id>0) {
-            $order = $entityManager->getRepository(\Proxies\__CG__\App\Entity\Order::class)->find((int)$id);
+            $order = $entityManager->getRepository(Order::class)->find((int)$id);
             if (empty($order) || $order->getUser() != $this->getUser()) {
                 throw new ServiceException('Not found');
             }
@@ -478,7 +478,6 @@ class ParcelsController extends CabinetController
             $entityManager->persist($order);
             $entityManager->flush();
         }
-
 
         $referer = $request->headers->get('referer');
         return $this->redirect($referer);

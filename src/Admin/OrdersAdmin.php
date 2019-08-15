@@ -199,7 +199,7 @@ class OrdersAdmin extends AbstractAdmin
                 //'label_attr'=>['class'=>'hideddd'],
                 ],['help'=>$invoicesStr])
             ;
-            if ($object->getOrderStatus()->getStatus() == 'paid') {
+            if (!empty($object->getOrderStatus()) && ($object->getOrderStatus()->getStatus() == 'paid')) {
                 $sendBlock = '<a class="btn btn-warning" href="'.$this->router->generate("post_sendtosklad",["id"=>$object->getId()],UrlGeneratorInterface::ABSOLUTE_URL).'">Send Order To Sklad</a>';
                 $formMapper
                     ->add('sendBlock', TextType::class,[
@@ -216,14 +216,14 @@ class OrdersAdmin extends AbstractAdmin
      * @param $order
      */
     public function postUpdate($order) {
-        $em = $this->getModelManager()->getEntityManager($this->getClass());
-        $original = $em->getUnitOfWork()->getOriginalEntityData($order);
-        $orderStatus=$original['orderStatus']??false;
-        $status=0;
-        if ($orderStatus && $orderStatus instanceof  OrderStatus) $status=$orderStatus->getId();
-        if($order->getOrderStatus()->getId() == 2 && $status != 2){
-            $service = new SkladUsaService();
-            $service->sendOrderToSklad($order);
-        }
+//        $em = $this->getModelManager()->getEntityManager($this->getClass());
+//        $original = $em->getUnitOfWork()->getOriginalEntityData($order);
+//        $orderStatus=$original['orderStatus']??false;
+//        $status=0;
+//        if ($orderStatus && $orderStatus instanceof  OrderStatus) $status=$orderStatus->getId();
+//        if($order->getOrderStatus()->getId() == 2 && $status != 2){
+//            $service = new SkladUsaService();
+//            $service->sendOrderToSklad($order);
+//        }
     }
 }
