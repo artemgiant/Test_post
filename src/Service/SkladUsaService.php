@@ -9,14 +9,27 @@ use Doctrine\ORM\EntityManager;
 class SkladUsaService
 {
 
-    protected $api_base_url = 'http://localhost:8080';
+    protected $api_base_url = 'https://test.skladusa.com';
     protected $path_econom = '/api/order_expressposhta_econom/';
     protected $path_express = '/api/order_expressposhta_express/';
-    protected $api_key = 'MjpKV3JzVHFtNFlDcFhNdmNQRnhNVXVITlR6cmoxTUw='; // w
+    protected $api_key = ''; // w
+
+    protected $userId="2";
+    protected $userToken="hpmWlVvDV5W9aoaFBEIVdOPdkAfwYA";
 //    protected $api_key = 'NTcxOm1IWkFuZzN3SVk0UXlGMjhDSG91OVU4dlFFSWlWSw=='; // EP
 //    protected $api_key = 'MjpMTFF0eHF3OUFubU4yUWJvc3hsbldHRko1MHhXWkk'; // h
 
     // Send Orders data from Expressposhta to Sklad
+
+    public function __construct()
+    {
+        $this->setApiKey();
+    }
+
+    public function setApiKey()
+    {
+        $this->api_key = base64_encode($this->userId.":".$this->userToken);
+    }
 
     public function sendOrderToSklad(Order $order){
 

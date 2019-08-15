@@ -41,7 +41,6 @@ class OrdersAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper->add('orderStatus');
-
     }
 
     public function __construct(string $code, string $class, string $baseControllerName,UrlGeneratorInterface $router)
@@ -217,9 +216,14 @@ class OrdersAdmin extends AbstractAdmin
      * @param $order
      */
     public function postUpdate($order) {
-//        if($order->getOrderStatus()->getStatus() == 'complit') {
-//            $service = new SkladUsaService();
-//            $service->sendOrderToSklad($order);
-//        }
+        $em = $this->getModelManager()->getEntityManager($this->getClass());
+        $original = $em->getUnitOfWork()->getOriginalEntityData($order);
+        $orderStatus=$original['orderStatus']??false;
+        $status=0;
+        if ($orderStatus && $orderStatus instanceof  OrderStatus) $status=$orderStatus->getId();
+        if($order->getOrderStatus()->getId() == 2 && $status != 2){
+            $service = new SkladUsaService();
+            $service->sendOrderToSklad($order);
+        }
     }
 }
