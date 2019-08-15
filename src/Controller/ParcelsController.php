@@ -471,12 +471,13 @@ class ParcelsController extends CabinetController
 
         if(!empty($order->getOrderStatus())&&($order->getOrderStatus()->getStatus() == 'paid')){
             $service = new SkladUsaService();
-            $service->sendOrderToSklad($order);
-
-            $orderStatus = $entityManager->getRepository(OrderStatus::class)->findOneBy(['status'=>'complit']);
-            $order->setOrderStatus($orderStatus);
-            $entityManager->persist($order);
-            $entityManager->flush();
+            $result = $service->sendOrderToSklad($order);
+            if(json_decode($result)->status == 'success') {
+                $orderStatus = $entityManager->getRepository(OrderStatus::class)->findOneBy(['status' => 'complit']);
+                $order->setOrderStatus($orderStatus);
+                $entityManager->persist($order);
+                $entityManager->flush();
+            }
         }
 
         $referer = $request->headers->get('referer');
