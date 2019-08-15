@@ -465,11 +465,11 @@ class ParcelsController extends CabinetController
         if ($id && (int)$id>0) {
             $order = $entityManager->getRepository(Order::class)->find((int)$id);
             if (empty($order) || $order->getUser() != $this->getUser()) {
-                throw new ServiceException('Not found');
+               // throw new ServiceException('Not found');
             }
         }
 
-        if($order->getOrderStatus()->getStatus() == 'paid'){
+        if(!empty($order->getOrderStatus())&&($order->getOrderStatus()->getStatus() == 'paid')){
             $service = new SkladUsaService();
             $service->sendOrderToSklad($order);
 
