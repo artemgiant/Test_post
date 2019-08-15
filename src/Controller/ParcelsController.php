@@ -16,6 +16,7 @@ use App\Entity\DeliveryPrice;
 use App\Entity\OrderProducts;
 use App\Form\SupportType;
 use App\Service\DhlDeliveryService;
+use App\Service\SkladUsaService;
 use Swift_Mailer;
 use Swift_SmtpTransport;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -454,74 +455,34 @@ class ParcelsController extends CabinetController
         return $this->render('cabinet/support/support_form.html.twig', $twigoption);
     }
 
+    /**
+     * @Route("/{id}/sendtosklad", name="post_sendtosklad")
+     */
+    public function parclesSendToSklad(Request $request)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $id = $request->get('id',false);
+        if ($id && (int)$id>0) {
+            $order = $entityManager->getRepository(\Proxies\__CG__\App\Entity\Order::class)->find((int)$id);
+            if (empty($order) || $order->getUser() != $this->getUser()) {
+                throw new ServiceException('Not found');
+            }
+        }
 
-//    /**
-//     * @Route("/{id}/sendtosklad", name="post_parcels_sendtosklad")
-//     */
-//    public function parclesSendToSklad(Request $request)
-//    {
-//        $entityManager = $this->getDoctrine()->getManager();
-//        $id = $request->get('id',false);
-//        if ($id && (int)$id>0){
-//            $order = $entityManager->getRepository(Order::class)->find((int)$id);
-//            if(empty($order) || $order->getUser()!=$this->getUser()){
-//                throw new ServiceException('Not found');
-//            }
-//
-//        }
-//
-//
-////            $data = new ArrayCollection();
-//////            $data->orderType = $order->getOrderType()->getCode();
-//////            $data->trackingNumber = $order->getTrackingNumber();
-////
-//////            $data->receiverName = $order->getUser()->getFirstName() . ' ' . $order->getUser()->getFirstName();
-////            $data->receiverName = $order->getAddresses()->getFullName();
-////            $data->receiverEmail = $order->getEmail();
-////            $data->receiverAddress = $order->getAddresses()->getAddress();
-////            $data->receiverCity = $order->getAddresses()->getCity();
-////            $data->receiverState = $order->getAddresses()->getRegionRayon();
-////            $data->receiverZip = $order->getAddresses()->getZip();
-////            $data->receiverCountry = $order->getAddresses()->getCountry()->getShortName();
-////            $data->productsData = [];
-////            foreach ($order->getProducts() as $product) {
-////                $data->productsData[]  = [
-////                    'descrEn' => $product->getDescEn(),
-////                    'descrUa' => $product->getDescUa(),
-////                    'count' => $product->getCount(),
-////                    'price' => $product->getPrice(),
-////                ];
-////            }
-////
-////            $data_json = json_encode($data);
-////
-////        if($order->getOrderType()->getCode() == 'econom'){
-////            $ch = curl_init();
-////            curl_setopt($ch, CURLOPT_URL, 'localhost:8080/api/order_expressposhta_econom/');
-////            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json','Authorization:MjpKV3JzVHFtNFlDcFhNdmNQRnhNVXVITlR6cmoxTUw=','Content-Length: ' . strlen($data_json)));
-////            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-////            curl_setopt($ch, CURLOPT_POSTFIELDS, $data_json);
-////            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-////            $response  = curl_exec($ch);
-////            curl_close($ch);
-////        }
-////
-////        if($order->getOrderType()->getCode() == 'express'){
-////            $ch = curl_init();
-////            curl_setopt($ch, CURLOPT_URL, 'localhost:8080/api/order_expressposhta_express/');
-////            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json','Authorization:MjpKV3JzVHFtNFlDcFhNdmNQRnhNVXVITlR6cmoxTUw=','Content-Length: ' . strlen($data_json)));
-////            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-////            curl_setopt($ch, CURLOPT_POSTFIELDS, $data_json);
-////            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-////            $response  = curl_exec($ch);
-////            curl_close($ch);
-////        }
-//
-//        $referer = $request->headers->get('referer');
-//        return $this->redirect($referer);
-//    }
+        if($order->getOrderStatus()->getStatus() == 'paid'){
+            $service = new SkladUsaService();
+            $service->sendOrderToSklad($order);
+
+            $orderStatus = $entityManager->getRepository(OrderStatus::class)->findOneBy(['status'=>'complit']);
+            $order->setOrderStatus($orderStatus);
+            $entityManager->persist($order);
+            $entityManager->flush();
+        }
 
 
+        $referer = $request->headers->get('referer');
+        return $this->redirect($referer);
+    }
 
 }
 

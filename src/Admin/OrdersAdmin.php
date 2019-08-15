@@ -32,12 +32,16 @@ class OrdersAdmin extends AbstractAdmin
     protected $baseRoutePattern = 'orders';
     protected $baseRouteName = 'orders';
     protected $router;
+
+    protected $datagridValues = ['_page' => 1, '_sort_order' => 'DESC', '_sort_by' => 'createdAt'];
+
     /**
      * @param DatagridMapper $datagridMapper
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper->add('orderStatus');
+
     }
 
     public function __construct(string $code, string $class, string $baseControllerName,UrlGeneratorInterface $router)
@@ -194,16 +198,28 @@ class OrdersAdmin extends AbstractAdmin
                 'required'=>false,
                 'attr'=>['class'=>'hide'],
                 //'label_attr'=>['class'=>'hideddd'],
-                ],['help'=>$invoicesStr]);
+                ],['help'=>$invoicesStr])
+            ;
+            if ($object->getOrderStatus()->getStatus() == 'paid') {
+                $sendBlock = '<a class="btn btn-warning" href="'.$this->router->generate("post_sendtosklad",["id"=>$object->getId()],UrlGeneratorInterface::ABSOLUTE_URL).'">Send Order To Sklad</a>';
+                $formMapper
+                    ->add('sendBlock', TextType::class,[
+                        'label'=>'Send To Sklad',
+                        'required'=>false,
+                        'mapped' => false,
+                        'attr'=>['class'=>'hide'],
+                    ],['help'=>$sendBlock])
+                ;
+            }
     }
 
     /**
      * @param $order
      */
     public function postUpdate($order) {
-        if($order->getOrderStatus()->getId() == 2){
-            $service = new SkladUsaService();
-            $service->sendOrderToSklad($order);
-        }
+//        if($order->getOrderStatus()->getStatus() == 'complit') {
+//            $service = new SkladUsaService();
+//            $service->sendOrderToSklad($order);
+//        }
     }
 }
