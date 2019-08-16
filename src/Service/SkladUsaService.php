@@ -49,6 +49,7 @@ class SkladUsaService
         $data->shippingCompanyInUsa = $order->getCompanySendInUsa();
         $data->trackingNumberInUsa = $order->getSystemNumInUsa();
         $data->comment = $order->getComment();
+        $data->address = $order->getAddresses()->getAddress();
         $data->productsData = [];
         foreach ($order->getProducts() as $product) {
             $data->productsData[]  = [
