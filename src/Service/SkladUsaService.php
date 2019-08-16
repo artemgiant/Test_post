@@ -9,15 +9,15 @@ use Doctrine\ORM\EntityManager;
 class SkladUsaService
 {
 
+//    protected $api_base_url = 'http://localhost:8080';
     protected $api_base_url = 'https://test.skladusa.com';
     protected $path_econom = '/api/order_expressposhta_econom/';
     protected $path_express = '/api/order_expressposhta_express/';
     protected $api_key = ''; // w
 
     protected $userId="2";
-    protected $userToken="hpmWlVvDV5W9aoaFBEIVdOPdkAfwYA";
-//    protected $api_key = 'NTcxOm1IWkFuZzN3SVk0UXlGMjhDSG91OVU4dlFFSWlWSw=='; // EP
-//    protected $api_key = 'MjpMTFF0eHF3OUFubU4yUWJvc3hsbldHRko1MHhXWkk'; // h
+//    protected $userToken="JWrsTqm4YCpXMvcPFxMUuHNTzrj1ML"; // for userId=2 http://localhost:8080
+    protected $userToken="hpmWlVvDV5W9aoaFBEIVdOPdkAfwYA"; // for userId=2 https://test.skladusa.com
 
     // Send Orders data from Expressposhta to Sklad
 
@@ -79,6 +79,7 @@ class SkladUsaService
         curl_setopt($curlObj, CURLOPT_CUSTOMREQUEST, 'PUT');
         curl_setopt($curlObj, CURLOPT_POSTFIELDS, $data_json);
         curl_setopt($curlObj, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curlObj,CURLOPT_SSL_VERIFYPEER, false);
 
         $response  = curl_exec($curlObj);
         curl_close($curlObj);

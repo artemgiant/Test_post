@@ -48,7 +48,7 @@ class LiqPayService
         $buttonHtml = $liqpay->cnb_form(array(
             'action'         => 'pay',
             'amount'         => $summ,
-            'currency'       => Liqpay::CURRENCY_USD,
+            'currency'       => Liqpay::CURRENCY_UAH,
             'description'    => $description,
             'order_id'       => $orderId,
             'version'        => '3',

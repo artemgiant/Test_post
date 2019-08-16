@@ -103,6 +103,7 @@
                                 {% else %}
                                     <th scope="col">{{ "NovaPochta" | trans }}</th>
                                 {% endif %}
+                                <th scope="col">{{ "OrderType" | trans }}</th>
                                 <th scope="col">{{ "sendDetailWeight" | trans }}</th>
                                 <th scope="col">{{ "volumeWeigth" | trans }}</th>
                                 <th scope="col" class="text-dark">{{ "shipgCost" | trans }}</th>
@@ -124,6 +125,7 @@
                                         {% else %}
                                             <td>{{ item.trackingNumber }}</td>
                                         {% endif %}
+                                        <td>{{ item.orderType }}</td>
                                         <td>{{ item.sendDetailWeight }}</td>
                                         <td>{{ item.volumeWeigth }}</td>
                                         <td class="font-weight-bold text-dark">{{ item.shippingCosts }}</td>
