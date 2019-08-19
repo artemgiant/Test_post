@@ -473,34 +473,34 @@ class ParcelsController extends CabinetController
         return $this->render('cabinet/support/support_form.html.twig', $twigoption);
     }
 
-    /**
-     * @Route("/{id}/sendtosklad", name="post_sendtosklad")
-     */
-    public function parclesSendToSklad(Request $request)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $id = $request->get('id',false);
-        if ($id && (int)$id>0) {
-            $order = $entityManager->getRepository(Order::class)->find((int)$id);
-            if (empty($order) || $order->getUser() != $this->getUser()) {
-               // throw new ServiceException('Not found');
-            }
-        }
-
-        if(!empty($order->getOrderStatus())&&($order->getOrderStatus()->getStatus() == 'paid')){
-            $service = new SkladUsaService();
-            $result = $service->sendOrderToSklad($order);
-            if(json_decode($result)->status == 'success') {
-                $orderStatus = $entityManager->getRepository(OrderStatus::class)->findOneBy(['status' => 'complit']);
-                $order->setOrderStatus($orderStatus);
-                $entityManager->persist($order);
-                $entityManager->flush();
-            }
-        }
-
-        $referer = $request->headers->get('referer');
-        return $this->redirect($referer);
-    }
+//    /**
+//     * @Route("/{id}/sendtosklad", name="post_sendtosklad")
+//     */
+//    public function parclesSendToSklad(Request $request)
+//    {
+//        $entityManager = $this->getDoctrine()->getManager();
+//        $id = $request->get('id',false);
+//        if ($id && (int)$id>0) {
+//            $order = $entityManager->getRepository(Order::class)->find((int)$id);
+//            if (empty($order) || $order->getUser() != $this->getUser()) {
+//               // throw new ServiceException('Not found');
+//            }
+//        }
+//
+//        if(!empty($order->getOrderStatus())&&($order->getOrderStatus()->getStatus() == 'paid')){
+//            $service = new SkladUsaService();
+//            $result = $service->sendOrderToSklad($order);
+//            if(json_decode($result)->status == 'success') {
+//                $orderStatus = $entityManager->getRepository(OrderStatus::class)->findOneBy(['status' => 'complit']);
+//                $order->setOrderStatus($orderStatus);
+//                $entityManager->persist($order);
+//                $entityManager->flush();
+//            }
+//        }
+//
+//        $referer = $request->headers->get('referer');
+//        return $this->redirect($referer);
+//    }
 
 }
 

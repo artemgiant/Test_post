@@ -41,6 +41,7 @@ class OrdersAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper->add('orderStatus');
+        $datagridMapper->add('orderType',null ,['label' => 'OrderType']);
     }
 
     public function __construct(string $code, string $class, string $baseControllerName,UrlGeneratorInterface $router)
@@ -199,31 +200,40 @@ class OrdersAdmin extends AbstractAdmin
                 //'label_attr'=>['class'=>'hideddd'],
                 ],['help'=>$invoicesStr])
             ;
-            if (!empty($object->getOrderStatus()) && ($object->getOrderStatus()->getStatus() == 'paid')) {
-                $sendBlock = '<a class="btn btn-warning" href="'.$this->router->generate("post_sendtosklad",["id"=>$object->getId()],UrlGeneratorInterface::ABSOLUTE_URL).'">Send Order To Sklad</a>';
-                $formMapper
-                    ->add('sendBlock', TextType::class,[
-                        'label'=>'Send To Sklad',
-                        'required'=>false,
-                        'mapped' => false,
-                        'attr'=>['class'=>'hide'],
-                    ],['help'=>$sendBlock])
-                ;
-            }
+//            if (!empty($object->getOrderStatus()) && ($object->getOrderStatus()->getStatus() == 'paid')) {
+//                $sendBlock = '<a class="btn btn-warning" href="'.$this->router->generate("post_sendtosklad",["id"=>$object->getId()],UrlGeneratorInterface::ABSOLUTE_URL).'">Send Order To Sklad</a>';
+//                $formMapper
+//                    ->add('sendBlock', TextType::class,[
+//                        'label'=>'Send To Sklad',
+//                        'required'=>false,
+//                        'mapped' => false,
+//                        'attr'=>['class'=>'hide'],
+//                    ],['help'=>$sendBlock])
+//                ;
+//            }
     }
 
     /**
      * @param $order
      */
-    public function postUpdate($order) {
-//        $em = $this->getModelManager()->getEntityManager($this->getClass());
-//        $original = $em->getUnitOfWork()->getOriginalEntityData($order);
-//        $orderStatus=$original['orderStatus']??false;
-//        $status=0;
-//        if ($orderStatus && $orderStatus instanceof  OrderStatus) $status=$orderStatus->getId();
-//        if($order->getOrderStatus()->getId() == 2 && $status != 2){
-//            $service = new SkladUsaService();
-//            $service->sendOrderToSklad($order);
-//        }
+    public function preUpdate($order) {
+        $entityManager = $this->getModelManager()->getEntityManager($this->getClass());
+        $currentStatus = $order->getOrderStatus();
+        if(!empty($order->getOrderStatus())&&($order->getOrderStatus()->getStatus() == 'complit')){
+            $service = new SkladUsaService();
+            $result = $service->sendOrderToSklad($order);
+            if(json_decode($result)->status == 'success') {
+                $orderStatus = $entityManager->getRepository(OrderStatus::class)->findOneBy(['status' => 'complit']);
+                $order->setOrderStatus($orderStatus);
+                $entityManager->persist($order);
+                $entityManager->flush();
+            } else {
+                $orderStatus = $entityManager->getRepository(OrderStatus::class)->findOneBy(['status' => 'paid']);
+                $order->setOrderStatus($currentStatus);
+                //$order->setOrderStatus($orderStatus);
+                $entityManager->persist($order);
+                $entityManager->flush();
+            }
+        }
     }
 }
