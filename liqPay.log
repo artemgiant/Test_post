@@ -1,7 +1,319 @@
-------START-----2019-08-15 13:56
+------START-----2019-06-19 11:56
+#RESPONSE#
+Array
+(
+    [signature] => 9CteWvZUJikdx9Pca4f+yaEHBfQ=
+    [data] => eyJhY3Rpb24iOiJwYXkiLCJwYXltZW50X2lkIjoxMDUwOTQ0MTI0LCJzdGF0dXMiOiJ3YWl0X2FjY2VwdCIsInZlcnNpb24iOjMsInR5cGUiOiJidXkiLCJwYXl0eXBlIjoiY2FyZCIsInB1YmxpY19rZXkiOiJpNTEwMjIwMjg2OTAiLCJhY3FfaWQiOjQxNDk2Mywib3JkZXJfaWQiOiJFWFBSRVNTT1JERVJfOSIsImxpcXBheV9vcmRlcl9pZCI6IkZBRjhaVTRSMTU2MDk0NTM2OTk3OTM0MyIsImRlc2NyaXB0aW9uIjoiUGF5IGJ5IEV4cHJlYWFQb2NodGEuY29tIiwic2VuZGVyX2NhcmRfbWFzazIiOiI0MTQ5NDMqMzQiLCJzZW5kZXJfY2FyZF9iYW5rIjoicGIiLCJzZW5kZXJfY2FyZF90eXBlIjoidmlzYSIsInNlbmRlcl9jYXJkX2NvdW50cnkiOjgwNCwiaXAiOiIzMS40My4xMy4yNDMiLCJhbW91bnQiOjkuMjUsImN1cnJlbmN5IjoiVVNEIiwic2VuZGVyX2NvbW1pc3Npb24iOjAuMCwicmVjZWl2ZXJfY29tbWlzc2lvbiI6MC4yNSwiYWdlbnRfY29tbWlzc2lvbiI6MC4wLCJhbW91bnRfZGViaXQiOjI0NC43MSwiYW1vdW50X2NyZWRpdCI6MjQ0LjcxLCJjb21taXNzaW9uX2RlYml0IjowLjAsImNvbW1pc3Npb25fY3JlZGl0Ijo2LjczLCJjdXJyZW5jeV9kZWJpdCI6IlVBSCIsImN1cnJlbmN5X2NyZWRpdCI6IlVBSCIsInNlbmRlcl9ib251cyI6MC4wLCJhbW91bnRfYm9udXMiOjAuMCwiYXV0aGNvZGVfZGViaXQiOiI4MjU1NTkiLCJycm5fZGViaXQiOiIwMDEyNTkzNDM0ODIiLCJtcGlfZWNpIjoiNyIsImlzXzNkcyI6ZmFsc2UsImxhbmd1YWdlIjoidWsiLCJjcmVhdGVfZGF0ZSI6MTU2MDk0NTM2OTk4OSwidHJhbnNhY3Rpb25faWQiOjEwNTA5NDQxMjR9
+)
+
+
+----------SAVE-----------Array
+(
+    [action] => pay
+    [payment_id] => 1050944124
+    [status] => wait_accept
+    [version] => 3
+    [type] => buy
+    [paytype] => card
+    [public_key] => i51022028690
+    [acq_id] => 414963
+    [order_id] => EXPRESSORDER_9
+    [liqpay_order_id] => FAF8ZU4R1560945369979343
+    [description] => Pay by ExpreaaPochta.com
+    [sender_card_mask2] => 414943*34
+    [sender_card_bank] => pb
+    [sender_card_type] => visa
+    [sender_card_country] => 804
+    [ip] => 31.43.13.243
+    [amount] => 9.25
+    [currency] => USD
+    [sender_commission] => 0
+    [receiver_commission] => 0.25
+    [agent_commission] => 0
+    [amount_debit] => 244.71
+    [amount_credit] => 244.71
+    [commission_debit] => 0
+    [commission_credit] => 6.73
+    [currency_debit] => UAH
+    [currency_credit] => UAH
+    [sender_bonus] => 0
+    [amount_bonus] => 0
+    [authcode_debit] => 825559
+    [rrn_debit] => 001259343482
+    [mpi_eci] => 7
+    [is_3ds] => 
+    [language] => uk
+    [create_date] => 1560945369989
+    [transaction_id] => 1050944124
+)
+
+
+
+
+----------END-----------
+
+
+------START-----2019-06-20 12:16
+#RESPONSE#
+Array
+(
+    [signature] => YNGMFMp7w+cCX9Z4GpIWoNI7W+k=
+    [data] => eyJhY3Rpb24iOiJwYXkiLCJwYXltZW50X2lkIjoxMDUxODU0MDQwLCJzdGF0dXMiOiJzdWNjZXNzIiwidmVyc2lvbiI6MywidHlwZSI6ImJ1eSIsInBheXR5cGUiOiJjYXJkIiwicHVibGljX2tleSI6Imk0OTc4MDk0NzAxNiIsImFjcV9pZCI6NDE0OTYzLCJvcmRlcl9pZCI6IkVYUFJFU1NPUkRFUl8xMCIsImxpcXBheV9vcmRlcl9pZCI6IjBHVDlCSjZEMTU2MTAzMjk3NzMzODY0NSIsImRlc2NyaXB0aW9uIjoiUGF5IGJ5IEV4cHJlYWFQb2NodGEuY29tIiwic2VuZGVyX2NhcmRfbWFzazIiOiI0MTQ5NDMqMzQiLCJzZW5kZXJfY2FyZF9iYW5rIjoicGIiLCJzZW5kZXJfY2FyZF90eXBlIjoidmlzYSIsInNlbmRlcl9jYXJkX2NvdW50cnkiOjgwNCwiaXAiOiIzMS40My4xMy4xODgiLCJhbW91bnQiOjkuMjUsImN1cnJlbmN5IjoiVVNEIiwic2VuZGVyX2NvbW1pc3Npb24iOjAuMCwicmVjZWl2ZXJfY29tbWlzc2lvbiI6MC4yNSwiYWdlbnRfY29tbWlzc2lvbiI6MC4wLCJhbW91bnRfZGViaXQiOjI0NC43MSwiYW1vdW50X2NyZWRpdCI6MjQ0LjcxLCJjb21taXNzaW9uX2RlYml0IjowLjAsImNvbW1pc3Npb25fY3JlZGl0Ijo2LjczLCJjdXJyZW5jeV9kZWJpdCI6IlVBSCIsImN1cnJlbmN5X2NyZWRpdCI6IlVBSCIsInNlbmRlcl9ib251cyI6MC4wLCJhbW91bnRfYm9udXMiOjAuMCwiYXV0aGNvZGVfZGViaXQiOiI5MjQ1NjEiLCJycm5fZGViaXQiOiIwMDEyNjA1MDM4NTEiLCJtcGlfZWNpIjoiNyIsImlzXzNkcyI6ZmFsc2UsImxhbmd1YWdlIjoidWsiLCJjcmVhdGVfZGF0ZSI6MTU2MTAzMjk3NzM0MywiZW5kX2RhdGUiOjE1NjEwMzI5Nzk5ODcsInRyYW5zYWN0aW9uX2lkIjoxMDUxODU0MDQwfQ==
+)
+
+
+----------SAVE-----------Array
+(
+    [action] => pay
+    [payment_id] => 1051854040
+    [status] => success
+    [version] => 3
+    [type] => buy
+    [paytype] => card
+    [public_key] => i49780947016
+    [acq_id] => 414963
+    [order_id] => EXPRESSORDER_10
+    [liqpay_order_id] => 0GT9BJ6D1561032977338645
+    [description] => Pay by ExpreaaPochta.com
+    [sender_card_mask2] => 414943*34
+    [sender_card_bank] => pb
+    [sender_card_type] => visa
+    [sender_card_country] => 804
+    [ip] => 31.43.13.188
+    [amount] => 9.25
+    [currency] => USD
+    [sender_commission] => 0
+    [receiver_commission] => 0.25
+    [agent_commission] => 0
+    [amount_debit] => 244.71
+    [amount_credit] => 244.71
+    [commission_debit] => 0
+    [commission_credit] => 6.73
+    [currency_debit] => UAH
+    [currency_credit] => UAH
+    [sender_bonus] => 0
+    [amount_bonus] => 0
+    [authcode_debit] => 924561
+    [rrn_debit] => 001260503851
+    [mpi_eci] => 7
+    [is_3ds] => 
+    [language] => uk
+    [create_date] => 1561032977343
+    [end_date] => 1561032979987
+    [transaction_id] => 1051854040
+)
+
+---------- USER ID -----------10
+
+
+
+----------END-----------
+
+
+------START-----2019-06-21 11:13
+#RESPONSE#
+Array
+(
+    [signature] => 9sNPssmnQ+mikgia2tkEuYvTPqM=
+    [data] => eyJhY3Rpb24iOiJwYXkiLCJwYXltZW50X2lkIjoxMDUyNTgzMTExLCJzdGF0dXMiOiJmYWlsdXJlIiwiZXJyX2NvZGUiOiJleHBpcmVkX3AyNCIsImVycl9kZXNjcmlwdGlvbiI6IllvdXIgcGF5bWVudCBzZXNzaW9uIGhhcyB0aW1lZCBvdXQiLCJ2ZXJzaW9uIjozLCJ0eXBlIjoiYnV5IiwicGF5dHlwZSI6InByaXZhdDI0IiwicHVibGljX2tleSI6Imk0OTc4MDk0NzAxNiIsImFjcV9pZCI6NDE0OTYzLCJvcmRlcl9pZCI6IkVYUFJFU1NPUkRFUl8xNCIsImxpcXBheV9vcmRlcl9pZCI6IlcxVllFMVRCMTU2MTExMjAyNjk3ODUxMCIsImRlc2NyaXB0aW9uIjoiUGF5IGJ5IEV4cHJlYWFQb2NodGEuY29tIiwiaXAiOiI0Ni4yMDAuMTg0LjI1NSIsImFtb3VudCI6OTIuNDgsImN1cnJlbmN5IjoiVVNEIiwic2VuZGVyX2NvbW1pc3Npb24iOjAuMCwicmVjZWl2ZXJfY29tbWlzc2lvbiI6Mi41NCwiYWdlbnRfY29tbWlzc2lvbiI6MC4wLCJhbW91bnRfZGViaXQiOjI0NDAuMSwiYW1vdW50X2NyZWRpdCI6MjQ0MC4xLCJjb21taXNzaW9uX2RlYml0IjowLjAsImNvbW1pc3Npb25fY3JlZGl0Ijo2Ny4xLCJjdXJyZW5jeV9kZWJpdCI6IlVBSCIsImN1cnJlbmN5X2NyZWRpdCI6IlVBSCIsInNlbmRlcl9ib251cyI6MC4wLCJhbW91bnRfYm9udXMiOjAuMCwibXBpX2VjaSI6IjciLCJpc18zZHMiOmZhbHNlLCJsYW5ndWFnZSI6InJ1IiwiY3JlYXRlX2RhdGUiOjE1NjExMTIwMjY5ODUsImVuZF9kYXRlIjoxNTYxMTE1NjI4MTYyLCJ0cmFuc2FjdGlvbl9pZCI6MTA1MjU4MzExMSwiY29kZSI6ImV4cGlyZWRfcDI0In0=
+)
+
+
+------START-----2019-06-21 13:11
+#RESPONSE#
+Array
+(
+    [signature] => +eqLgza5rVxVpfHUyjcFi9RTe7g=
+    [data] => eyJhY3Rpb24iOiJwYXkiLCJwYXltZW50X2lkIjoxMDUyNjgxMzkzLCJzdGF0dXMiOiJmYWlsdXJlIiwiZXJyX2NvZGUiOiI5ODY4IiwiZXJyX2Rlc2NyaXB0aW9uIjoiRXh0ZXJuYWwgZGVjbGluZSIsInZlcnNpb24iOjMsInR5cGUiOiJidXkiLCJwYXl0eXBlIjoiY2FyZCIsInB1YmxpY19rZXkiOiJpNDk3ODA5NDcwMTYiLCJhY3FfaWQiOjQxNDk2Mywib3JkZXJfaWQiOiJFWFBSRVNTT1JERVJfMTMiLCJsaXFwYXlfb3JkZXJfaWQiOiIyTldGQ1BIWjE1NjExMTkwNjE4OTM0MzkiLCJkZXNjcmlwdGlvbiI6IlBheSBieSBFeHByZWFhUG9jaHRhLmNvbSIsInNlbmRlcl9jYXJkX21hc2syIjoiNDI0MjQyKjQyIiwic2VuZGVyX2NhcmRfdHlwZSI6InZpc2EiLCJzZW5kZXJfY2FyZF9jb3VudHJ5Ijo4MjYsImlwIjoiODIuMjI5LjExMC4xOTQiLCJhbW91bnQiOjkuMjUsImN1cnJlbmN5IjoiVVNEIiwic2VuZGVyX2NvbW1pc3Npb24iOjAuMCwicmVjZWl2ZXJfY29tbWlzc2lvbiI6MC4yNSwiYWdlbnRfY29tbWlzc2lvbiI6MC4wLCJhbW91bnRfZGViaXQiOjI0NC4wNiwiYW1vdW50X2NyZWRpdCI6MjQ0LjA2LCJjb21taXNzaW9uX2RlYml0IjowLjAsImNvbW1pc3Npb25fY3JlZGl0Ijo2LjcxLCJjdXJyZW5jeV9kZWJpdCI6IlVBSCIsImN1cnJlbmN5X2NyZWRpdCI6IlVBSCIsInNlbmRlcl9ib251cyI6MC4wLCJhbW91bnRfYm9udXMiOjAuMCwibXBpX2VjaSI6IjYiLCJpc18zZHMiOmZhbHNlLCJsYW5ndWFnZSI6InJ1IiwiY3JlYXRlX2RhdGUiOjE1NjExMTkwNTg0ODUsImVuZF9kYXRlIjoxNTYxMTIyNjY4NzEyLCJ0cmFuc2FjdGlvbl9pZCI6MTA1MjY4MTM5MywiY29kZSI6Ijk4NjgifQ==
+)
+
+
+------START-----2019-06-25 20:53
+#RESPONSE#
+Array
+(
+    [signature] => 3WAcocZTFf42MHeG+nTjk9UFfZ8=
+    [data] => eyJhY3Rpb24iOiJwYXkiLCJwYXltZW50X2lkIjoxMDU1ODQxOTYyLCJzdGF0dXMiOiJzdWNjZXNzIiwidmVyc2lvbiI6MywidHlwZSI6ImJ1eSIsInBheXR5cGUiOiJjYXJkIiwicHVibGljX2tleSI6Imk0OTc4MDk0NzAxNiIsImFjcV9pZCI6NDE0OTYzLCJvcmRlcl9pZCI6IkVYUFJFU1NJTlZPSUNFXzQiLCJsaXFwYXlfb3JkZXJfaWQiOiJaOUI0NThPRzE1NjE0OTYwMTkzNjc5MzciLCJkZXNjcmlwdGlvbiI6IlBheSBieSBFeHByZWFhUG9jaHRhLmNvbSIsInNlbmRlcl9waG9uZSI6IjM4MDUwMzMwOTg0NiIsInNlbmRlcl9jYXJkX21hc2syIjoiNTE2ODc1KjQ2Iiwic2VuZGVyX2NhcmRfYmFuayI6InBiIiwic2VuZGVyX2NhcmRfdHlwZSI6Im1jIiwic2VuZGVyX2NhcmRfY291bnRyeSI6ODA0LCJpcCI6IjE1NC4xNi4zMy4xNjMiLCJhbW91bnQiOjUuMTQsImN1cnJlbmN5IjoiVVNEIiwic2VuZGVyX2NvbW1pc3Npb24iOjAuMCwicmVjZWl2ZXJfY29tbWlzc2lvbiI6MC4xNCwiYWdlbnRfY29tbWlzc2lvbiI6MC4wLCJhbW91bnRfZGViaXQiOjEzNC45MSwiYW1vdW50X2NyZWRpdCI6MTM0LjkxLCJjb21taXNzaW9uX2RlYml0IjowLjAsImNvbW1pc3Npb25fY3JlZGl0IjozLjcxLCJjdXJyZW5jeV9kZWJpdCI6IlVBSCIsImN1cnJlbmN5X2NyZWRpdCI6IlVBSCIsInNlbmRlcl9ib251cyI6MC4wLCJhbW91bnRfYm9udXMiOjAuMCwiYXV0aGNvZGVfZGViaXQiOiI3NzkzODkiLCJycm5fZGViaXQiOiIwMDEyNjU5MTA4OTQiLCJtcGlfZWNpIjoiNyIsImlzXzNkcyI6ZmFsc2UsImxhbmd1YWdlIjoicnUiLCJjcmVhdGVfZGF0ZSI6MTU2MTQ5NTY2ODkzMSwiZW5kX2RhdGUiOjE1NjE0OTYwMjIxMjgsInRyYW5zYWN0aW9uX2lkIjoxMDU1ODQxOTYyfQ==
+)
+
+
+----------SAVE-----------Array
+(
+    [action] => pay
+    [payment_id] => 1055841962
+    [status] => success
+    [version] => 3
+    [type] => buy
+    [paytype] => card
+    [public_key] => i49780947016
+    [acq_id] => 414963
+    [order_id] => EXPRESSINVOICE_4
+    [liqpay_order_id] => Z9B458OG1561496019367937
+    [description] => Pay by ExpreaaPochta.com
+    [sender_phone] => 380503309846
+    [sender_card_mask2] => 516875*46
+    [sender_card_bank] => pb
+    [sender_card_type] => mc
+    [sender_card_country] => 804
+    [ip] => 154.16.33.163
+    [amount] => 5.14
+    [currency] => USD
+    [sender_commission] => 0
+    [receiver_commission] => 0.14
+    [agent_commission] => 0
+    [amount_debit] => 134.91
+    [amount_credit] => 134.91
+    [commission_debit] => 0
+    [commission_credit] => 3.71
+    [currency_debit] => UAH
+    [currency_credit] => UAH
+    [sender_bonus] => 0
+    [amount_bonus] => 0
+    [authcode_debit] => 779389
+    [rrn_debit] => 001265910894
+    [mpi_eci] => 7
+    [is_3ds] => 
+    [language] => ru
+    [create_date] => 1561495668931
+    [end_date] => 1561496022128
+    [transaction_id] => 1055841962
+)
+
+---------- USER ID -----------4
+------START-----2019-06-26 09:19
+#RESPONSE#
+Array
+(
+    [signature] => 3WAcocZTFf42MHeG+nTjk9UFfZ8=
+    [data] => eyJhY3Rpb24iOiJwYXkiLCJwYXltZW50X2lkIjoxMDU1ODQxOTYyLCJzdGF0dXMiOiJzdWNjZXNzIiwidmVyc2lvbiI6MywidHlwZSI6ImJ1eSIsInBheXR5cGUiOiJjYXJkIiwicHVibGljX2tleSI6Imk0OTc4MDk0NzAxNiIsImFjcV9pZCI6NDE0OTYzLCJvcmRlcl9pZCI6IkVYUFJFU1NJTlZPSUNFXzQiLCJsaXFwYXlfb3JkZXJfaWQiOiJaOUI0NThPRzE1NjE0OTYwMTkzNjc5MzciLCJkZXNjcmlwdGlvbiI6IlBheSBieSBFeHByZWFhUG9jaHRhLmNvbSIsInNlbmRlcl9waG9uZSI6IjM4MDUwMzMwOTg0NiIsInNlbmRlcl9jYXJkX21hc2syIjoiNTE2ODc1KjQ2Iiwic2VuZGVyX2NhcmRfYmFuayI6InBiIiwic2VuZGVyX2NhcmRfdHlwZSI6Im1jIiwic2VuZGVyX2NhcmRfY291bnRyeSI6ODA0LCJpcCI6IjE1NC4xNi4zMy4xNjMiLCJhbW91bnQiOjUuMTQsImN1cnJlbmN5IjoiVVNEIiwic2VuZGVyX2NvbW1pc3Npb24iOjAuMCwicmVjZWl2ZXJfY29tbWlzc2lvbiI6MC4xNCwiYWdlbnRfY29tbWlzc2lvbiI6MC4wLCJhbW91bnRfZGViaXQiOjEzNC45MSwiYW1vdW50X2NyZWRpdCI6MTM0LjkxLCJjb21taXNzaW9uX2RlYml0IjowLjAsImNvbW1pc3Npb25fY3JlZGl0IjozLjcxLCJjdXJyZW5jeV9kZWJpdCI6IlVBSCIsImN1cnJlbmN5X2NyZWRpdCI6IlVBSCIsInNlbmRlcl9ib251cyI6MC4wLCJhbW91bnRfYm9udXMiOjAuMCwiYXV0aGNvZGVfZGViaXQiOiI3NzkzODkiLCJycm5fZGViaXQiOiIwMDEyNjU5MTA4OTQiLCJtcGlfZWNpIjoiNyIsImlzXzNkcyI6ZmFsc2UsImxhbmd1YWdlIjoicnUiLCJjcmVhdGVfZGF0ZSI6MTU2MTQ5NTY2ODkzMSwiZW5kX2RhdGUiOjE1NjE0OTYwMjIxMjgsInRyYW5zYWN0aW9uX2lkIjoxMDU1ODQxOTYyfQ==
+)
+
+
+----------SAVE-----------Array
+(
+    [action] => pay
+    [payment_id] => 1055841962
+    [status] => success
+    [version] => 3
+    [type] => buy
+    [paytype] => card
+    [public_key] => i49780947016
+    [acq_id] => 414963
+    [order_id] => EXPRESSINVOICE_4
+    [liqpay_order_id] => Z9B458OG1561496019367937
+    [description] => Pay by ExpreaaPochta.com
+    [sender_phone] => 380503309846
+    [sender_card_mask2] => 516875*46
+    [sender_card_bank] => pb
+    [sender_card_type] => mc
+    [sender_card_country] => 804
+    [ip] => 154.16.33.163
+    [amount] => 5.14
+    [currency] => USD
+    [sender_commission] => 0
+    [receiver_commission] => 0.14
+    [agent_commission] => 0
+    [amount_debit] => 134.91
+    [amount_credit] => 134.91
+    [commission_debit] => 0
+    [commission_credit] => 3.71
+    [currency_debit] => UAH
+    [currency_credit] => UAH
+    [sender_bonus] => 0
+    [amount_bonus] => 0
+    [authcode_debit] => 779389
+    [rrn_debit] => 001265910894
+    [mpi_eci] => 7
+    [is_3ds] => 
+    [language] => ru
+    [create_date] => 1561495668931
+    [end_date] => 1561496022128
+    [transaction_id] => 1055841962
+)
+
+
+
+
+----------END-----------
+
+
+------START-----2019-06-26 09:20
+#RESPONSE#
+Array
+(
+    [signature] => zYvVJjTXi5tY17EclvRUFfxW7iY=
+    [data] => eyJhY3Rpb24iOiJwYXkiLCJwYXltZW50X2lkIjoxMDU1ODQxMDQ3LCJzdGF0dXMiOiJmYWlsdXJlIiwiZXJyX2NvZGUiOiI5ODgyIiwiZXJyX2Rlc2NyaXB0aW9uIjoiSW52YWxpZCB0cmFuc2FjdGlvbiIsInZlcnNpb24iOjMsInR5cGUiOiJidXkiLCJwYXl0eXBlIjoiY2FyZCIsInB1YmxpY19rZXkiOiJpNDk3ODA5NDcwMTYiLCJhY3FfaWQiOjQxNDk2Mywib3JkZXJfaWQiOiJFWFBSRVNTSU5WT0lDRV8zIiwibGlxcGF5X29yZGVyX2lkIjoiODlJQkVEUVoxNTYxNDk1NTMzNjI1Nzg3IiwiZGVzY3JpcHRpb24iOiJQYXkgYnkgRXhwcmVhYVBvY2h0YS5jb20iLCJzZW5kZXJfY2FyZF9tYXNrMiI6IjU1NTA0OSo5MyIsInNlbmRlcl9jYXJkX2JhbmsiOiJXRVggQkFOSyAgICAgICAgICAgICAgICAgICAgICAiLCJzZW5kZXJfY2FyZF90eXBlIjoibWMiLCJzZW5kZXJfY2FyZF9jb3VudHJ5Ijo4NDAsImlwIjoiMTU0LjE2LjMzLjE2MyIsImFtb3VudCI6NDkuMzIsImN1cnJlbmN5IjoiVVNEIiwic2VuZGVyX2NvbW1pc3Npb24iOjAuMCwicmVjZWl2ZXJfY29tbWlzc2lvbiI6MS4zNiwiYWdlbnRfY29tbWlzc2lvbiI6MC4wLCJhbW91bnRfZGViaXQiOjEyOTQuNDksImFtb3VudF9jcmVkaXQiOjEyOTQuNDksImNvbW1pc3Npb25fZGViaXQiOjAuMCwiY29tbWlzc2lvbl9jcmVkaXQiOjM1LjYsImN1cnJlbmN5X2RlYml0IjoiVUFIIiwiY3VycmVuY3lfY3JlZGl0IjoiVUFIIiwic2VuZGVyX2JvbnVzIjowLjAsImFtb3VudF9ib251cyI6MC4wLCJtcGlfZWNpIjoiNiIsImlzXzNkcyI6ZmFsc2UsImxhbmd1YWdlIjoicnUiLCJjcmVhdGVfZGF0ZSI6MTU2MTQ5NTUyNzM3OCwiZW5kX2RhdGUiOjE1NjE1NDA4MzY3MTMsInRyYW5zYWN0aW9uX2lkIjoxMDU1ODQxMDQ3LCJjb2RlIjoiOTg4MiJ9
+)
+
+
+------START-----2019-08-16 09:27
 #RESPONSE#
 Array
 (
 )
+
+
+------START-----2019-08-16 09:28
+#RESPONSE#
+Array
+(
+)
+
+
+------START-----2019-08-16 09:30
+#RESPONSE#
+Array
+(
+    [signature] => 3WAcocZTFf42MHeG+nTjk9UFfZ8=
+    [data] => eyJhY3Rpb24iOiJwYXkiLCJwYXltZW50X2lkIjoxMDU1ODQxOTYyLCJzdGF0dXMiOiJzdWNjZXNzIiwidmVyc2lvbiI6MywidHlwZSI6ImJ1eSIsInBheXR5cGUiOiJjYXJkIiwicHVibGljX2tleSI6Imk0OTc4MDk0NzAxNiIsImFjcV9pZCI6NDE0OTYzLCJvcmRlcl9pZCI6IkVYUFJFU1NJTlZPSUNFXzQiLCJsaXFwYXlfb3JkZXJfaWQiOiJaOUI0NThPRzE1NjE0OTYwMTkzNjc5MzciLCJkZXNjcmlwdGlvbiI6IlBheSBieSBFeHByZWFhUG9jaHRhLmNvbSIsInNlbmRlcl9waG9uZSI6IjM4MDUwMzMwOTg0NiIsInNlbmRlcl9jYXJkX21hc2syIjoiNTE2ODc1KjQ2Iiwic2VuZGVyX2NhcmRfYmFuayI6InBiIiwic2VuZGVyX2NhcmRfdHlwZSI6Im1jIiwic2VuZGVyX2NhcmRfY291bnRyeSI6ODA0LCJpcCI6IjE1NC4xNi4zMy4xNjMiLCJhbW91bnQiOjUuMTQsImN1cnJlbmN5IjoiVVNEIiwic2VuZGVyX2NvbW1pc3Npb24iOjAuMCwicmVjZWl2ZXJfY29tbWlzc2lvbiI6MC4xNCwiYWdlbnRfY29tbWlzc2lvbiI6MC4wLCJhbW91bnRfZGViaXQiOjEzNC45MSwiYW1vdW50X2NyZWRpdCI6MTM0LjkxLCJjb21taXNzaW9uX2RlYml0IjowLjAsImNvbW1pc3Npb25fY3JlZGl0IjozLjcxLCJjdXJyZW5jeV9kZWJpdCI6IlVBSCIsImN1cnJlbmN5X2NyZWRpdCI6IlVBSCIsInNlbmRlcl9ib251cyI6MC4wLCJhbW91bnRfYm9udXMiOjAuMCwiYXV0aGNvZGVfZGViaXQiOiI3NzkzODkiLCJycm5fZGViaXQiOiIwMDEyNjU5MTA4OTQiLCJtcGlfZWNpIjoiNyIsImlzXzNkcyI6ZmFsc2UsImxhbmd1YWdlIjoicnUiLCJjcmVhdGVfZGF0ZSI6MTU2MTQ5NTY2ODkzMSwiZW5kX2RhdGUiOjE1NjE0OTYwMjIxMjgsInRyYW5zYWN0aW9uX2lkIjoxMDU1ODQxOTYyfQ==
+)
+
+
+----------SAVE-----------Array
+(
+    [action] => pay
+    [payment_id] => 1055841962
+    [status] => success
+    [version] => 3
+    [type] => buy
+    [paytype] => card
+    [public_key] => i49780947016
+    [acq_id] => 414963
+    [order_id] => EXPRESSINVOICE_4
+    [liqpay_order_id] => Z9B458OG1561496019367937
+    [description] => Pay by ExpreaaPochta.com
+    [sender_phone] => 380503309846
+    [sender_card_mask2] => 516875*46
+    [sender_card_bank] => pb
+    [sender_card_type] => mc
+    [sender_card_country] => 804
+    [ip] => 154.16.33.163
+    [amount] => 5.14
+    [currency] => USD
+    [sender_commission] => 0
+    [receiver_commission] => 0.14
+    [agent_commission] => 0
+    [amount_debit] => 134.91
+    [amount_credit] => 134.91
+    [commission_debit] => 0
+    [commission_credit] => 3.71
+    [currency_debit] => UAH
+    [currency_credit] => UAH
+    [sender_bonus] => 0
+    [amount_bonus] => 0
+    [authcode_debit] => 779389
+    [rrn_debit] => 001265910894
+    [mpi_eci] => 7
+    [is_3ds] => 
+    [language] => ru
+    [create_date] => 1561495668931
+    [end_date] => 1561496022128
+    [transaction_id] => 1055841962
+)
+
+
+
+
+----------END-----------
 
 
