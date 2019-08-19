@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7ecac9fd-3794-435a-9190-193823a05041" name="Default Changelist" comment="Merge remote-tracking branch 'origin/artemgiant' into sergey&#10;&#10;# Conflicts:&#10;#&#9;config/packages/security.yaml&#10;#&#9;public/sklad-express/js/custom.js&#10;#&#9;src/Controller/CabinetController.php&#10;#&#9;src/Controller/ParcelsController.php&#10;#&#9;src/Controller/ProfileController.php&#10;#&#9;src/Controller/SecurityController.php&#10;#&#9;templates/base.html.twig&#10;#&#9;templates/base_operation.html.twig&#10;#&#9;templates/cabinet/addresses/addresses.html.twig&#10;#&#9;templates/cabinet/addresses/edit_form_of_address.html.twig&#10;#&#9;templates/cabinet/addresses/editform.html.twig&#10;#&#9;templates/cabinet/addresses/modalAddress.html.twig&#10;#&#9;templates/cabinet/cabinet_layout.html.twig&#10;#&#9;templates/cabinet/dashboard/dashboard.html.twig&#10;#&#9;templates/cabinet/menu.html.twig&#10;#&#9;templates/cabinet/parcels/editform.html.twig&#10;#&#9;templates/cabinet/parcels/parcels.html.twig&#10;#&#9;templates/cabinet/profile/edit_form.html.twig&#10;#&#9;templates/cabinet/profile/profile.html.twig&#10;#&#9;templates/cabinet/sidebar.html.twig&#10;#&#9;templates/system/product-order-theme.html.twig&#10;#&#9;translations/messages.ua.yml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ParcelsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ParcelsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/SkladUsaService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/SkladUsaService.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,18 +12,113 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="971131575">
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="php" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="PHP" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="782">
+              <caret line="46" column="71" selection-start-line="46" selection-start-column="71" selection-end-line="46" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Admin/OrdersAdmin.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="212" column="5" lean-forward="true" selection-start-line="212" selection-start-column="5" selection-end-line="212" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Service/SkladUsaService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="215">
+              <caret line="19" column="13" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/ParcelsController.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Service/LiqPayService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="57" column="8" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entity/OrderType.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Form/SupportType.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="782">
+              <caret line="51" selection-start-line="51" selection-end-line="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Form/ProfileFormType.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/packages/security.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1037">
+              <caret line="61" column="20" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/SecurityController.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -154,8 +247,80 @@
       <path value="$PROJECT_DIR$/vendor/jdorn/sql-formatter" />
     </include_path>
   </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="45" />
+    <option name="y" value="138" />
+    <option name="width" value="1346" />
+    <option name="height" value="566" />
+  </component>
   <component name="ProjectId" id="1OivMxXYhhs7h8XACUQuckAdEpZ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="post" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="post" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="templates" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="post" type="b2602c69:ProjectViewProjectNode" />
+              <item name="post" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="post" type="b2602c69:ProjectViewProjectNode" />
+              <item name="post" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="post" type="b2602c69:ProjectViewProjectNode" />
+              <item name="post" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="post" type="b2602c69:ProjectViewProjectNode" />
+              <item name="post" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="post" type="b2602c69:ProjectViewProjectNode" />
+              <item name="post" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="post" type="b2602c69:ProjectViewProjectNode" />
+              <item name="post" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="post" type="b2602c69:ProjectViewProjectNode" />
+              <item name="post" type="462c0819:PsiDirectoryNode" />
+              <item name="translations" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -218,6 +383,34 @@
     <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="524000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29425114" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="9" visible="true" weight="0.39770868" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3289689" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -227,7 +420,12 @@
         <entry key="1">
           <value>
             <State>
-              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
@@ -252,6 +450,12 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
@@ -267,5 +471,38 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Merge remote-tracking branch 'origin/artemgiant' into sergey&#10;&#10;# Conflicts:&#10;#&#9;config/packages/security.yaml&#10;#&#9;public/sklad-express/js/custom.js&#10;#&#9;src/Controller/CabinetController.php&#10;#&#9;src/Controller/ParcelsController.php&#10;#&#9;src/Controller/ProfileController.php&#10;#&#9;src/Controller/SecurityController.php&#10;#&#9;templates/base.html.twig&#10;#&#9;templates/base_operation.html.twig&#10;#&#9;templates/cabinet/addresses/addresses.html.twig&#10;#&#9;templates/cabinet/addresses/edit_form_of_address.html.twig&#10;#&#9;templates/cabinet/addresses/editform.html.twig&#10;#&#9;templates/cabinet/addresses/modalAddress.html.twig&#10;#&#9;templates/cabinet/cabinet_layout.html.twig&#10;#&#9;templates/cabinet/dashboard/dashboard.html.twig&#10;#&#9;templates/cabinet/menu.html.twig&#10;#&#9;templates/cabinet/parcels/editform.html.twig&#10;#&#9;templates/cabinet/parcels/parcels.html.twig&#10;#&#9;templates/cabinet/profile/edit_form.html.twig&#10;#&#9;templates/cabinet/profile/profile.html.twig&#10;#&#9;templates/cabinet/sidebar.html.twig&#10;#&#9;templates/system/product-order-theme.html.twig&#10;#&#9;translations/messages.ua.yml" />
     <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/artemgiant' into sergey&#10;&#10;# Conflicts:&#10;#&#9;config/packages/security.yaml&#10;#&#9;public/sklad-express/js/custom.js&#10;#&#9;src/Controller/CabinetController.php&#10;#&#9;src/Controller/ParcelsController.php&#10;#&#9;src/Controller/ProfileController.php&#10;#&#9;src/Controller/SecurityController.php&#10;#&#9;templates/base.html.twig&#10;#&#9;templates/base_operation.html.twig&#10;#&#9;templates/cabinet/addresses/addresses.html.twig&#10;#&#9;templates/cabinet/addresses/edit_form_of_address.html.twig&#10;#&#9;templates/cabinet/addresses/editform.html.twig&#10;#&#9;templates/cabinet/addresses/modalAddress.html.twig&#10;#&#9;templates/cabinet/cabinet_layout.html.twig&#10;#&#9;templates/cabinet/dashboard/dashboard.html.twig&#10;#&#9;templates/cabinet/menu.html.twig&#10;#&#9;templates/cabinet/parcels/editform.html.twig&#10;#&#9;templates/cabinet/parcels/parcels.html.twig&#10;#&#9;templates/cabinet/profile/edit_form.html.twig&#10;#&#9;templates/cabinet/profile/profile.html.twig&#10;#&#9;templates/cabinet/sidebar.html.twig&#10;#&#9;templates/system/product-order-theme.html.twig&#10;#&#9;translations/messages.ua.yml" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Admin/OrdersAdmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="212" column="5" lean-forward="true" selection-start-line="212" selection-start-column="5" selection-end-line="212" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Service/SkladUsaService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8517">
+          <caret line="501" column="25" selection-start-line="501" selection-start-column="25" selection-end-line="501" selection-end-column="25" />
+          <folding>
+            <element signature="e#30#62#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Service/LiqPayService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="57" column="8" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
