@@ -52,9 +52,9 @@ class LiqPayService
             'description'    => $description,
             'order_id'       => $orderId,
             'version'        => '3',
-            'result_url'     => 'https://expressposhta.com/payment/result',
-            'server_url'     => 'https://expressposhta.com/payment/check'
-           // 'sandbox'        => '1',
+            'result_url'     => 'https://system.expressposhta.com/payment/result',
+            'server_url'     => 'https://system.expressposhta.com/payment/check',
+            'sandbox'        => '1',
         ));
 
         return $buttonHtml;
@@ -70,6 +70,7 @@ class LiqPayService
         error_log('#RESPONSE#' . PHP_EOL, 3, LOG_LIQPAY);
         error_log(print_r($post, true) . PHP_EOL, 3, LOG_LIQPAY);
         $raw_post_data = file_get_contents('php://input');
+
         $raw_post_array = json_decode($raw_post_data, true);
 
         error_log(print_r($raw_post_array, true) . PHP_EOL, 3, LOG_LIQPAY);
