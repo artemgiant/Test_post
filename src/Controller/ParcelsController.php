@@ -143,15 +143,13 @@ class ParcelsController extends CabinetController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $declareValue=0;
-            if ($order->getProducts()){
-                foreach ($order->getProducts() as $product){
-
-                    if (empty($product->getDescEn())){
+            if ($order->getProducts()) {
+                foreach ($order->getProducts() as $product) {
+                    if (empty($product->getDescEn())) {
                         $order->removeProduct($product);
                         $entityManager->remove($product);
                         $entityManager->persist($order);
-                    }
-                    else {
+                    } else {
                         $product->setOrderId($order);
                         $entityManager->persist($product);
                         $declareValue=$declareValue+$product->getCount()*$product->getPrice();
@@ -163,9 +161,10 @@ class ParcelsController extends CabinetController
             list($shipCost,$volume)=$this->CalculateShipCost($order);
             $order->setShippingCosts($shipCost);
             $order->setVolumeWeigth($volume);
-//Econom
-            if($order->getOrderType()->getCode() == 'econom'){
-                if($this->user->isVip()){
+
+//Calculate shipping costs for ECONOM type . Use price-weight data.
+            if($order->getOrderType()->getCode() == 'econom') {
+                if($this->user->isVip()) {
                     $weightPrice = $this->getDoctrine()
                         ->getRepository(PriceWeightEconomVip::class)
                         ->findPriceByWeight((float)$orderForm['sendDetailWeight']);
@@ -174,7 +173,7 @@ class ParcelsController extends CabinetController
                     } else {
                         $order->setShippingCosts(null);
                     }
-                }else {
+                } else {
                     $weightPrice = $this->getDoctrine()
                         ->getRepository(PriceWeightEconom::class)
                         ->findPriceByWeight((float)$orderForm['sendDetailWeight']);
@@ -185,9 +184,9 @@ class ParcelsController extends CabinetController
                     }
                 }
             }
-//Express
 
-            if($order->getOrderType()->getCode() == 'express'){
+//Calculate shipping costs for EXPRESS type . Use Dhl service .
+            if($order->getOrderType()->getCode() == 'express') {
                 $order->setUser($this->user);
                 $Country_r = $this->getDoctrine()->getRepository(Country::class);
                 list($From,$To) = $Country_r->getShortNameCountry($this->my_address['country'],$order->getAddresses()->getCountry()->getId());
@@ -203,7 +202,6 @@ class ParcelsController extends CabinetController
                     return $this->redirectToRoute('post_parcels_create');
                 }
                 $order->setShippingCosts($FinalPrice);
-
             }
 
             $invoice=new Invoices();
@@ -291,26 +289,27 @@ class ParcelsController extends CabinetController
             if ($order->getProducts()){
                 foreach ($order->getProducts() as $product){
 
-                    if (empty($product->getDescEn())){
+                    if (empty($product->getDescEn())) {
                         $order->removeProduct($product);
                         $entityManager->remove($product);
                         $entityManager->persist($order);
-                    }
-                    else {
+                    } else {
                         $product->setOrderId($order);
                         $entityManager->persist($product);
                         $declareValue=$declareValue+$product->getCount()*$product->getPrice();
                     }
                 }
             }
+
             unset($product);
             $order->setDeclareValue($declareValue);
             list($shipCost,$volume)=$this->CalculateShipCost($order);
             $order->setShippingCosts($shipCost);
             $order->setVolumeWeigth($volume);
 
-            if($order->getOrderType()->getCode() == 'econom'){
-                if($this->user->isVip()){
+//Calculate shipping costs for ECONOM type . Use price-weight data.
+            if($order->getOrderType()->getCode() == 'econom') {
+                if($this->user->isVip()) {
                     $weightPrice = $this->getDoctrine()
                         ->getRepository(PriceWeightEconomVip::class)
                         ->findPriceByWeight((float)$orderForm['sendDetailWeight']);
@@ -329,6 +328,25 @@ class ParcelsController extends CabinetController
                         $order->setShippingCosts(null);
                     }
                 }
+            }
+
+//Calculate shipping costs for EXPRESS type . Use Dhl service .
+            if($order->getOrderType()->getCode() == 'express') {
+                $order->setUser($this->user);
+                $Country_r = $this->getDoctrine()->getRepository(Country::class);
+                list($From,$To) = $Country_r->getShortNameCountry($this->my_address['country'],$order->getAddresses()->getCountry()->getId());
+                $One_order = $order;
+                $dhlSendBoxAddress =$this->my_address;
+                $dhlSendBoxAddress['from']=$From;
+                $dhlSendBoxAddress['to']=$To;
+                $Dlh = new DhlDeliveryService($dhlSendBoxAddress);
+//                dd( $Dlh->getAccountId($One_order));
+                $FinalPrice = $Dlh->getDHLPrice($One_order);
+                if(!$FinalPrice){
+                    $this->addFlash('errors','Вы превысили допустимое значения!');
+                    return $this->redirectToRoute('post_parcels_create');
+                }
+                $order->setShippingCosts($FinalPrice);
             }
 
             foreach ($originalProducts as $product) {
