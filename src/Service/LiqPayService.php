@@ -52,8 +52,8 @@ class LiqPayService
             'description'    => $description,
             'order_id'       => $orderId,
             'version'        => '3',
-            'result_url'     => 'https://expressposhta.com/payment/result',
-            'server_url'     => 'https://expressposhta.com/payment/check',
+            'result_url'     => 'https://system.expressposhta.com/payment/result',
+            'server_url'     => 'https://system.expressposhta.com/payment/check',
             'sandbox'        => '1',
         ));
 
