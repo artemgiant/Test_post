@@ -54,7 +54,7 @@ class LiqPayService
             'version'        => '3',
             'result_url'     => 'https://system.expressposhta.com/payment/result',
             'server_url'     => 'https://system.expressposhta.com/payment/check',
-            'sandbox'        => '1',
+           // 'sandbox'        => '1',
         ));
 
         return $buttonHtml;
