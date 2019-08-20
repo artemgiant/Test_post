@@ -10,7 +10,7 @@ class SkladUsaService
 {
 
 //    protected $api_base_url = 'http://localhost:8080';
-    protected $api_base_url = 'https://test.skladusa.com';
+    protected $api_base_url = 'https://system.skladusa.com';
     protected $path_econom = '/api/order_expressposhta_econom/';
     protected $path_express = '/api/order_expressposhta_express/';
     protected $api_key = ''; // w
