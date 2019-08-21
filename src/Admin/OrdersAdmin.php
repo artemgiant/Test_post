@@ -34,7 +34,16 @@ class OrdersAdmin extends AbstractAdmin
     protected $router;
 
     protected $datagridValues = ['_page' => 1, '_sort_order' => 'DESC', '_sort_by' => 'createdAt'];
+    const  CARRIER_CODES = [
+        'Select company'                                => null,
+        'DHL'                                           => 'dhl',
+        'FedEx'                                         => 'fedex',
+        'USPS'                                          => 'usps',
+        'Parcel Priority with Delcon (14 - 21) days'    => 'apc',
+        'UPS'                                           => 'ups',
 
+        //            'Нова Пошта'                                    => 'nova-poshta',
+        ];
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -129,16 +138,7 @@ class OrdersAdmin extends AbstractAdmin
         $userFieldOptions = [];
         $orderStatusFieldOptions = [];
         $addressesFieldOptions = [];
-        $carrierCodes = [
-            'Select company'                                => null,
-            'DHL'                                           => 'dhl',
-            'FedEx'                                         => 'fedex',
-            'USPS'                                          => 'usps',
-            'Parcel Priority with Delcon (14 - 21) days'    => 'apc',
-            'UPS'                                           => 'ups',
 
-//            'Нова Пошта'                                    => 'nova-poshta',
-        ];
         $formMapper
             ->add('user', ModelType::class, $userFieldOptions)
             ->add('orderType', EntityType::class, [
@@ -159,13 +159,13 @@ class OrdersAdmin extends AbstractAdmin
             ->add('trackingNumber',null,['label'=>'Трек новой почты'])
             ->add('trNum',null,['label'=>'Трек для пользователя','disabled'=>true,'required'=>false])
             ->add('companySendToUsa', ChoiceType::class, [
-                        'choices'  => $carrierCodes,
+                        'choices'  => $this::CARRIER_CODES,
                         'label'=>'Компания доставки(Посылка едет в страну назначения)'
                  ]
             )
             ->add('systemNum',null,['label'=>'Трек системный(Тот что меняет админ)','required'=>false])
             ->add('companySendInUsa', ChoiceType::class, [
-                    'choices'  => $carrierCodes,
+                    'choices'  => $this::CARRIER_CODES,
                     'label'=>'Компания доставки(Посылка едет к аддресу назначения)'
                 ]
             )
@@ -219,9 +219,10 @@ class OrdersAdmin extends AbstractAdmin
     public function preUpdate($order) {
         $entityManager = $this->getModelManager()->getEntityManager($this->getClass());
         $currentStatus = $order->getOrderStatus();
-        if(!empty($order->getOrderStatus())&&($order->getOrderStatus()->getStatus() == 'complit')){
+        if(!empty($order->getOrderStatus())&&($order->getOrderStatus()->getStatus() == 'formed')){
             $service = new SkladUsaService();
             $result = $service->sendOrderToSklad($order);
+            /*
             if(json_decode($result)->status == 'success') {
                 $orderStatus = $entityManager->getRepository(OrderStatus::class)->findOneBy(['status' => 'complit']);
                 $order->setOrderStatus($orderStatus);
@@ -234,6 +235,7 @@ class OrdersAdmin extends AbstractAdmin
                 $entityManager->persist($order);
                 $entityManager->flush();
             }
+        */
         }
     }
 }
