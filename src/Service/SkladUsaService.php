@@ -17,7 +17,7 @@ class SkladUsaService
 
     protected $userId="2";
 //    protected $userToken="JWrsTqm4YCpXMvcPFxMUuHNTzrj1ML"; // for userId=2 http://localhost:8080
-    protected $userToken="hpmWlVvDV5W9aoaFBEIVdOPdkAfwYA"; // for userId=2 https://test.skladusa.com
+    protected $userToken="Xubo5iNGuEeRiw4PSedfkdpH2ZyZYs"; // for userId=2 https://test.skladusa.com
 
     // Send Orders data from Expressposhta to Sklad
 
