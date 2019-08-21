@@ -195,20 +195,7 @@ class OrdersAdmin extends AbstractAdmin
             ->add('zip')
             ->add('towarehouse')
             ->add('quantity')
-            ->add('product', CollectionType::class,
-                array(
-                    'type' => new OrderProductsFormType([
-                        'orderId' => $this->getSubject()->getId()
-                    ]),
-                    'allow_add' => true,
-                    'allow_delete' => true,
-                    'by_reference' => false,
-                    'label' => 'Add product',
-                    'options' => array(
-                        'label' => false
-                    )
-                )
-            )
+            
             ->add('invoicesStr', TextType::class,[
                 'label'=>'Invoices',
                 'required'=>false,
@@ -247,7 +234,7 @@ class OrdersAdmin extends AbstractAdmin
                 $entityManager->flush();
               */
             } else {
-                $this->getRequest()->getSession()->getFlashBag()->add("error", "Заказ не отправлен на склад");
+                $this->getRequest()->getSession()->getFlashBag()->add("error", "Заказ не отправлен на склад. Возникла ошибка");
                 /*
                 $orderStatus = $entityManager->getRepository(OrderStatus::class)->findOneBy(['status' => 'paid']);
                 $order->setOrderStatus($currentStatus);
