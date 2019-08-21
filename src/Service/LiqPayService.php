@@ -108,14 +108,14 @@ class LiqPayService
         error_log("----------END-----------", 3, LOG_LIQPAY);
         error_log("\n\n\n", 3, LOG_LIQPAY);
 
-        return 'sucess';
+        return 'sucсess';
     }
 
     private function storePaymentData($data) {
         error_log("----------SAVE-----------", 3, LOG_LIQPAY);
         error_log(print_r($data, true) . PHP_EOL, 3, LOG_LIQPAY);
         /* @var TransactionLiqPay $trLiqPay */
-        $trLiqPay =$this->getEm()->getRepository(TransactionLiqPay::class)->findBy(['number'=>$data['order_id']]);
+        $trLiqPay =$this->getEm()->getRepository(TransactionLiqPay::class)->findOneBy(['number'=>$data['order_id']]);
 
         if (empty($trLiqPay)) {
             $trLiqPay = new TransactionLiqPay();
@@ -124,9 +124,9 @@ class LiqPayService
             $amount=$data['amount']??0;
             $receiverCommission=$data['receiver_commission']??0;
             $trLiqPay->setSum($amount-$receiverCommission);
-           if (isset($data['sender_first_name'])) $trLiqPay->setFirstName($data['sender_first_name']);
-           if (isset($data['sender_last_name'])) $trLiqPay->setLastName($data['sender_last_name']);
-           if (isset($data['sender_phone'])) $trLiqPay->setPhoneNumber($data['sender_phone']);
+            if (isset($data['sender_first_name'])) $trLiqPay->setFirstName($data['sender_first_name']);
+            if (isset($data['sender_last_name'])) $trLiqPay->setLastName($data['sender_last_name']);
+            if (isset($data['sender_phone'])) $trLiqPay->setPhoneNumber($data['sender_phone']);
             $trLiqPay->setLiqpayOrderId($data['liqpay_order_id']);
             $trLiqPay->setStatus($data['status']);
             $trLiqPay->setLiqpayInfo(json_encode($data));
@@ -143,18 +143,31 @@ class LiqPayService
                     error_log("---------- USER ID -----------", 3, LOG_LIQPAY);
                     error_log($orderId . PHP_EOL, 3, LOG_LIQPAY);
                     /* @var $order Order */
-                    $invoice=$this->getEm()->getRepository(Invoices::class)->find($orderId);
+                    $invoice = $this->getEm()->getRepository(Invoices::class)->find($orderId);
                     /* @var $invoice Invoices */
-                    $order=($invoice && $invoice->getOrderId())?$invoice->getOrderId():false;
-                    if ($order){
+                    $order = ($invoice && $invoice->getOrderId())?$invoice->getOrderId():false;
+
+                    if ($order) {
                         $trLiqPay->setUser($order->getUser());
-                        $orderStatus=$this->getEm()->getRepository(OrderStatus::class)->findOneBy(['status'=>'paid']);
-                        $order->setOrderStatus($orderStatus);
-                        $order->setTransaction($trLiqPay);
-                        $order->setTrNum("EP".($trLiqPay->getId()+57354658)."UA");
-                        $trLiqPay->setOrder($order);
-                        $this->getEm()->persist($order);
+                        $trLiqPay->setInvoice($invoice);
                         $invoice->setIsPaid(true);
+// TODO: Add setTrNum() getTrNum() to Invoice entity.
+//                        $invoice->setTrNum("EP".($trLiqPay->getId()+57354658)."UA"); // this method is not implemented for invoices yet. uncomment when ready.
+                        $this->getEm()->persist($trLiqPay);
+                        $this->getEm()->flush();
+
+                        $orderInvoices = $this->getEm()->getRepository(Invoices::class)->findBy(['orderId'=>$order->getId()]);
+                        $orderStatus = $this->getEm()->getRepository(OrderStatus::class)->findOneBy(['status'=>'paid']);
+                        foreach ($orderInvoices as $orderInvoice) {
+                            if (!$orderInvoice->isPaid()) {
+                                $orderStatus = $this->getEm()->getRepository(OrderStatus::class)->findOneBy(['status'=>'new']);
+                            }
+                        }
+                        $order->setOrderStatus($orderStatus);
+                        if (is_null($order->getTrNum())||(trim($order->getTrNum()) == '')) {
+                            $order->setTrNum("EP".($trLiqPay->getId()+57354658)."UA"); // this number supposed to be attached to the paid invoice
+                        }
+                        $this->getEm()->persist($order);
                     }
                 }
             }

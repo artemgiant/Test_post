@@ -175,6 +175,51 @@
     font-size: 1.625rem;
 }
 
+.sidebar-nav > li > span:hover {
+    text-decoration: none;
+    outline: none;
+    color: #23b7e5;
+}
+
+.sidebar .sidebar-nav > li > span {
+    animation: fadeInLeft .5s;
+}
+
+.sidebar-nav > li > span {
+    position: relative;
+    display: block;
+    padding: 12px 24px;
+    color: #515253;
+    letter-spacing: .025em;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.sidebar-nav > li > span em{
+    display: inline-block;
+    width: 1.8em;
+}
+.sidebar > .sidebar-nav > li > span > span{
+    animation: fadeIn 1s;
+}
+.sidebar .sidebar-nav > li > span {
+    animation: fadeInLeft .5s;
+}
+.aside-collapsed .sidebar > .sidebar-nav > li > span > span{
+    display: none !important;
+}
+
+.aside-collapsed .sidebar > .sidebar-nav > li > span > em{
+    font-size: 1.6em;
+    width: auto;
+}
+
+.aside-collapsed .sidebar > .sidebar-nav > li > span{
+    text-indent: -3px;
+    padding: 20px 0;
+    text-align: center;
+}
+
 @media (min-width: 1200px){
     .card-link-wrap{
         max-width: 380px;
