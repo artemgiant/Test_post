@@ -203,7 +203,7 @@ class OrdersAdmin extends AbstractAdmin
                     'allow_add' => true,
                     'allow_delete' => true,
                     'by_reference' => false,
-                    'label' => $this->tt->translate('Add product'),
+                    'label' => 'Add product',
                     'options' => array(
                         'label' => false
                     )
