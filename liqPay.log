@@ -5,3 +5,45 @@ Array
 )
 
 
+----------SAVE-----------Array
+(
+    [action] => pay
+    [payment_id] => 1055841962
+    [status] => success
+    [version] => 3
+    [type] => buy
+    [paytype] => card
+    [public_key] => i49780947016
+    [acq_id] => 414963
+    [order_id] => EXPRESSINVOICE_4
+    [liqpay_order_id] => Z9B458OG1561496019367937
+    [description] => Pay by ExpreaaPochta.com
+    [sender_phone] => 380503309846
+    [sender_card_mask2] => 516875*46
+    [sender_card_bank] => pb
+    [sender_card_type] => mc
+    [sender_card_country] => 804
+    [ip] => 154.16.33.163
+    [amount] => 5.14
+    [currency] => USD
+    [sender_commission] => 0
+    [receiver_commission] => 0.14
+    [agent_commission] => 0
+    [amount_debit] => 134.91
+    [amount_credit] => 134.91
+    [commission_debit] => 0
+    [commission_credit] => 3.71
+    [currency_debit] => UAH
+    [currency_credit] => UAH
+    [sender_bonus] => 0
+    [amount_bonus] => 0
+    [authcode_debit] => 779389
+    [rrn_debit] => 001265910894
+    [mpi_eci] => 7
+    [is_3ds] => 
+    [language] => ru
+    [create_date] => 1561495668931
+    [end_date] => 1561496022128
+    [transaction_id] => 1055841962
+)
+

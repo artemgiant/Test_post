@@ -1,7 +1,7 @@
 Sklad Express: Sklad Express
 Footer brand: Footer brand
 Footer text: Footer text
-Add Address: Додати адреса
+Add Address: Додати адресу
 User Name: Ім'я користувача
 Country: Країна
 Adress: Адреса
@@ -11,8 +11,8 @@ Main Navigation:
 Profile: Профіль
 Parcels: Посилки
 Addresses: Адреси
-Addresses List: Список адрес
-Addresses Create: Додати адреса
+Addresses List: Перелік адрес
+Addresses Create: Додати адресу
 Contact: Контакт
 Edit profile: Редагувати профіль
 Contact Information: Контактна інформація
@@ -53,7 +53,7 @@ Save: Зберегти
 Hello: Привіт
 Cabinet: Кабінет
 Add: Додати
-Percles: посилку
+Percles: відправлення
 Send_d: Звернутись
 Select type : Обрати
 Support: В пiдтримку
@@ -65,7 +65,7 @@ Title form suport parcels: Зворотній зв'язок
 Choise delivery method: Вибрати спосіб доставки
 Addresses Edit: Редагування адреси
 Address Create: Додати адреса
-Region: Штат/Провінція
+Region: Область
 Region Oblast: Область
 Enter region: Введіть область
 District: Район
@@ -103,6 +103,7 @@ Parcels Create: Створити
 trackingNumber: Трек номер
 shipDate: Дата відвантаження
 products: Продукти
+Content: Вміст
 addresses: Адреси
 sendDetailWeight: Вага (грам)
 sendDetailLength: Довжина
@@ -126,7 +127,7 @@ Tracking Number: Трек номер
 shipgCost: Вартість доставки
 Edit Order: Редагувати
 descEn: Опис англійською
-descUa: Опис на українській
+descUa: Опис українською
 price: Вартість
 count: Кількість
 Remove product: Видалити

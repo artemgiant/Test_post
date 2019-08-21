@@ -184,28 +184,6 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    {{ form_label(profileForm.regionOblast,"ZIP"|trans, {
-                                        "label_attr": {"class": "text-muted"}
-                                    }) }}
-                                    <div class="input-group with-focus">
-                                        {% if profileForm.zip.vars.errors|length %}
-                                            {{ form_widget(profileForm.zip, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
-                                        {% else %}
-                                            {{ form_widget(profileForm.zip) }}
-                                        {% endif %}
-                                        <div class="input-group-append">
-                             <span class="input-group-text text-muted bg-transparent border-left-0">
-                                 <em class="fa fa-user"></em>
-                             </span>
-                                        </div>
-                                        <div class="invalid-feedback">{{ form_errors(profileForm.zip) }}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row py-4 justify-content-center">
-                            <div class="col-lg-3">
-                                <div class="form-group">
                                     {{ form_label(profileForm.city,"City"|trans, {
                                         "label_attr": {"class": "text-muted"}
                                     }) }}
@@ -221,6 +199,28 @@
                              </span>
                                         </div>
                                         <div class="invalid-feedback">{{ form_errors(profileForm.city) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row py-4 justify-content-center">
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    {{ form_label(profileForm.regionOblast,"ZIP"|trans, {
+                                        "label_attr": {"class": "text-muted"}
+                                    }) }}
+                                    <div class="input-group with-focus">
+                                        {% if profileForm.zip.vars.errors|length %}
+                                            {{ form_widget(profileForm.zip, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                        {% else %}
+                                            {{ form_widget(profileForm.zip) }}
+                                        {% endif %}
+                                        <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                        </div>
+                                        <div class="invalid-feedback">{{ form_errors(profileForm.zip) }}</div>
                                     </div>
                                 </div>
                             </div>

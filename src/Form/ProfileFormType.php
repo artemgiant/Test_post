@@ -110,15 +110,17 @@ class ProfileFormType extends AbstractType
                 'class' => Country::class,
                 'attr'=>[
                     'class'=>'form-control border-right-0',
-                    'id'=>'country',
-//                        'placeholder'=>'Country',
-                    'autocomplete'=>'off'],
+//                    'id'=>'country',
+//                    'placeholder'=>'Country',
+                    'autocomplete'=>'off',
+                ],
+//                'data' => 215,
                 'choice_label' => 'name',
             ])
             ->add('regionOblast',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
-                    'id'=>'country',
+//                    'id'=>'country',
                     'placeholder'=>'Enter region',
                     'autocomplete'=>'off'],
                 'label'=>'regionOblast',
@@ -137,7 +139,7 @@ class ProfileFormType extends AbstractType
             ->add('city',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
-                    'id'=>'country',
+//                    'id'=>'country',
                     'placeholder'=>'Enter city',
                     'autocomplete'=>'off'],
                 'label'=>'city',
@@ -146,7 +148,7 @@ class ProfileFormType extends AbstractType
             ->add('zip',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
-                    'id'=>'country',
+//                    'id'=>'country',
                     'placeholder'=>'Enter ZIP',
                     'autocomplete'=>'off'],
                 'label'=>'zip',
