@@ -150,7 +150,7 @@
                                                                     {{ liqPayForm | raw }}
                                                                 </div>
                                                                 {% if invoice.comment is not empty %}
-                                                                    <p>invoice.comment</p>
+                                                                    <p>{{ invoice.comment }}</p>
                                                                 {% endif %}
                                                                 <input type="button" id="" class="payment-btn btn btn-outline-success liq-pay-button-change" value="{{ "Pay" | trans }}" />
                                                             {% endif %}
@@ -159,7 +159,7 @@
                                                     {% endif %}
 
                                                 {% elseif page_title != 'Send Parcels List' %}
-                                                    <input type="button" id="" class="payment-btn btn btn-outline-success liq-pay-button-change disabled" value="{{ "Pay" | trans }}" />
+                                                    <input type="button" id="" class="payment-btn btn btn-outline-success liq-pay-button-change disabled" value="{{ "Paid" | trans }}" />
                                                 {% endif %}
                                             </td>
                                         {% endif %}
