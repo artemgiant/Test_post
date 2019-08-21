@@ -57,7 +57,7 @@ Percles: відправлення
 Send_d: Звернутись
 Select type : Обрати
 Support: В пiдтримку
-Tack comment: Коментaрiй заказа
+Track comment: Коментaрiй заказа
 Remember Me: Запам'ятати мене
 Error. Please fill all fields: Помилка. Заповніть, будь ласка, всі поля
 Data about the address delivery: Дані про адресу доставки
@@ -92,8 +92,8 @@ Receivers second name: По батькові отримувача
 Enter second name: Введіть батькові
 Receivers phone: Телефон отримувача
 Enter receivers phone: Введіть номер телефону
-Alias ​​of address: Коротка назва адреси
-Alias ​​Of Address: Коротка назва адреси
+Alias of address: Коротка назва адреси
+Alias Of Address: Коротка назва адреси
 My address: Особистий адреса
 Enter alias of address: Введіть коротку назву адреси
 New Parcerls List: Нові відправлення
@@ -132,7 +132,6 @@ price: Вартість
 count: Кількість
 Remove product: Видалити
 copyRigtht: Expressposhta 2019. All Rights Reserved.
-
 Status: Статус
 Users: Користувачі
 User: Користувач
@@ -174,7 +173,7 @@ Payment List: Список оплат
 Nomer scheta: Номер рахунку
 Sposob oplaty: Спосіб оплати
 Sum: Сума
-str .: вулиця
+str.: вулиця
 Address List: Список адрес
 Address Edit: Редагувати адресу
 Payments: Оплати
@@ -204,18 +203,16 @@ Description: Назва адреси
 EditAddress: Змінити
 DeleteAddress: Видалити
 Confirmed: Підтверджено
-Alias of address: Назвіть цю адресу для адресної книги
-Alias Of Address: Назвіть цю адресу для адресної книги
-Not Confirmed: Чи не підтверджений
+Not Confirmed: Не підтверджено
 No Parcels: Немає відправлень
 No Payments: Немає платежів
 New Parcels List: Нові відправлення
 Orders Update sucusfull: Дані посилки оновлені
 Orders Added sucusfull: Посилка додана
-Loading ...: Завантаження ...
+Loading...: Завантаження ...
 Close: Закрити
 Save changes: Зберегти
-Order Edit: Редагувати відправлення
+Order Edit: Редагування відправлення
 No parcel: Список відправлень порожній
 Your password should be at least 6 characters: Ваш пароль повинен містити не менше 6 символів
 Action: Дія
@@ -224,13 +221,13 @@ Ukrainian: Українська
 Russian: Русский
 Track the departure: Відстежити відправлення
 Track down: Відстежити
-Message : Ваше повідомнення
-Subject : Тема повідомнення
+Message: Ваше повідомнення
+Subject: Тема повідомнення
 OrderType: Тип доставки
 PriceWeightEconom: Прайс Економ-Вага
 PriceWeightEconomVip: VIP Прайс Економ-Вага
-VipPriceWeightEkspress: VIP Прайс Експрес-Вага
 PriceWeightEkspress: Прайс Експрес-Вага
+VipPriceWeightEkspress: VIP Прайс Експрес-Вага
 Send: Відправити
 econom: Економ
 express: Експрес
