@@ -5,6 +5,8 @@ namespace App\Admin;
 use App\Entity\OrderStatus;
 use App\Entity\OrderType;
 use App\Entity\User;
+
+use App\Form\OrderProductsFormType;
 //use Doctrine\DBAL\Types\TextType;
 use App\Service\SkladUsaService;
 use Proxies\__CG__\App\Entity\Order;
@@ -193,6 +195,20 @@ class OrdersAdmin extends AbstractAdmin
             ->add('zip')
             ->add('towarehouse')
             ->add('quantity')
+            ->add('product', CollectionType::class,
+                array(
+                    'type' => new OrderProductsFormType([
+                        'orderId' => $this->getSubject()->getId()
+                    ]),
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'by_reference' => false,
+                    'label' => $this->tt->translate('Add product'),
+                    'options' => array(
+                        'label' => false
+                    )
+                )
+            )
             ->add('invoicesStr', TextType::class,[
                 'label'=>'Invoices',
                 'required'=>false,
@@ -222,20 +238,25 @@ class OrdersAdmin extends AbstractAdmin
         if(!empty($order->getOrderStatus())&&($order->getOrderStatus()->getStatus() == 'formed')){
             $service = new SkladUsaService();
             $result = $service->sendOrderToSklad($order);
-            /*
+
             if(json_decode($result)->status == 'success') {
-                $orderStatus = $entityManager->getRepository(OrderStatus::class)->findOneBy(['status' => 'complit']);
+                $this->getRequest()->getSession()->getFlashBag()->add("success", "Заказ отправлен на склад");
+              /*  $orderStatus = $entityManager->getRepository(OrderStatus::class)->findOneBy(['status' => 'complit']);
                 $order->setOrderStatus($orderStatus);
                 $entityManager->persist($order);
                 $entityManager->flush();
+              */
             } else {
+                $this->getRequest()->getSession()->getFlashBag()->add("error", "Заказ не отправлен на склад");
+                /*
                 $orderStatus = $entityManager->getRepository(OrderStatus::class)->findOneBy(['status' => 'paid']);
                 $order->setOrderStatus($currentStatus);
                 //$order->setOrderStatus($orderStatus);
                 $entityManager->persist($order);
                 $entityManager->flush();
+                */
             }
-        */
+
         }
     }
 }
