@@ -108,14 +108,14 @@ class LiqPayService
         error_log("----------END-----------", 3, LOG_LIQPAY);
         error_log("\n\n\n", 3, LOG_LIQPAY);
 
-        return 'sucess';
+        return 'sucсess';
     }
 
     private function storePaymentData($data) {
         error_log("----------SAVE-----------", 3, LOG_LIQPAY);
         error_log(print_r($data, true) . PHP_EOL, 3, LOG_LIQPAY);
         /* @var TransactionLiqPay $trLiqPay */
-        $trLiqPay =$this->getEm()->getRepository(TransactionLiqPay::class)->findBy(['number'=>$data['order_id']]);
+        $trLiqPay =$this->getEm()->getRepository(TransactionLiqPay::class)->findOneBy(['number'=>$data['order_id']]);
 
         if (empty($trLiqPay)) {
             $trLiqPay = new TransactionLiqPay();
@@ -164,8 +164,9 @@ class LiqPayService
                             }
                         }
                         $order->setOrderStatus($orderStatus);
-//                        $order->setTransaction($trLiqPay);
-                        $order->setTrNum("EP".($trLiqPay->getId()+57354658)."UA"); // this number supposed to be attached to the paid invoice
+                        if (is_null($order->getTrNum())||(trim($order->getTrNum()) == '')) {
+                            $order->setTrNum("EP".($trLiqPay->getId()+57354658)."UA"); // this number supposed to be attached to the paid invoice
+                        }
                         $this->getEm()->persist($order);
                     }
                 }
