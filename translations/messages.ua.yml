@@ -9,7 +9,7 @@ Edit Address: Редагувати адресу
 Dashboard: Головна
 Main Navigation:
 Profile: Профіль
-Parcels: Посилки
+Parcels: Відправлення
 Addresses: Адреси
 Addresses List: Перелік адрес
 Addresses Create: Додати адресу
@@ -96,7 +96,7 @@ Alias ​​of address: Коротка назва адреси
 Alias ​​Of Address: Коротка назва адреси
 My address: Особистий адреса
 Enter alias of address: Введіть коротку назву адреси
-New Parcerls List: Нові посилки
+New Parcerls List: Нові відправлення
 Send Parcerls List: Відправлені
 Send Parcels List: Відправлені
 Parcels Create: Створити
@@ -140,8 +140,8 @@ Cost: Вартість
 Weight: Вага
 DeliveryPrice: Прайс на доставку
 OrderStatus: Все права защищены.
-Order: Посилки
-Orders: Посилки
+Order: Відправлення
+Orders: Відправлення
 Last Login: Останній вхіда
 Is Suspended: Неактивний
 Suspended: Неактивний
@@ -187,7 +187,7 @@ New Orders: Нові
 Sent Orders: Відправлені
 Late Payments: Останні платежі
 Not pay yet: Немає платежів
-No order: Немає посилок
+No order: Немає відправлень
 TN: ТН
 Type and hit enter ...: Введіть і натисніть Enter ...
 Pay: Оплатити
@@ -207,20 +207,20 @@ Confirmed: Підтверджено
 Alias of address: Назвіть цю адресу для адресної книги
 Alias Of Address: Назвіть цю адресу для адресної книги
 Not Confirmed: Чи не підтверджений
-No Parcels: Немає посилок
+No Parcels: Немає відправлень
 No Payments: Немає платежів
-New Parcels List: Нові посилки
+New Parcels List: Нові відправлення
 Orders Update sucusfull: Дані посилки оновлені
 Orders Added sucusfull: Посилка додана
 Loading ...: Завантаження ...
 Close: Закрити
 Save changes: Зберегти
-Order Edit: Зміна посилки
+Order Edit: Редагувати відправлення
 No parcel: Список відправлень порожній
 Your password should be at least 6 characters: Ваш пароль повинен містити не менше 6 символів
 Action: Дія
 nopaid: Чекає оплати
-Ukrainian: Український
+Ukrainian: Українська
 Russian: Русский
 Track the departure: Відстежити відправлення
 Track down: Відстежити
