@@ -18,8 +18,12 @@ use Symfony\Component\Validator\Constraints\File;
 
 class ProfileFormType extends AbstractType
 {
+    private $UserCountry;
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $this->UserCountry = ($options['data']->country)?:null;
+
         $builder
             ->add('avatarFile', FileType::class,[
                 'required'=>false,
@@ -38,10 +42,10 @@ class ProfileFormType extends AbstractType
             ])
             ->add('firstName',null,[
                 'attr'=>[
-                        'class'=>'form-control border-right-0',
-                        'id'=>'firs_name',
-                        'placeholder'=>'',
-                        'autocomplete'=>'off'],
+                    'class'=>'form-control border-right-0',
+                    'id'=>'firs_name',
+                    'placeholder'=>'',
+                    'autocomplete'=>'off'],
                 'label'=>'firs_name',
                 'required'=>true,
                 'constraints' => [
@@ -110,13 +114,13 @@ class ProfileFormType extends AbstractType
             ->add('country', EntityType::class, [
                 'class' => Country::class,
                 'choice_attr' => function(country $category, $key, $value) {
-                $selected = false;
-                     if($category->getName()=="Ukraine"){
-                         $selected = true;
-                     };
+                    $selected = false;
+                    if($category->getName()=="Ukraine" && $this->UserCountry == null){
+                        $selected = true;
+                    };
                     return [
                         'class'=>'form-control border-right-0 '.$selected,
-                    'selected'=>$selected,
+                        'selected'=>$selected,
                         'autocomplete'=>'off',
                     ];
                 },
