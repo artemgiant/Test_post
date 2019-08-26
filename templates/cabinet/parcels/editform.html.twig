@@ -305,6 +305,35 @@
 
              $('#addAddressForm .modal-body').load('{{ path("ajax_post_address_create") }}',function(result){
                  $('#addAddressForm').modal({show:true});
+                 $('form').on('keyup','#address_form_ajax_city'
+                     + ',#address_form_ajax_street'
+                     + ',#address_form_ajax_house'
+                     + ',#address_form_ajax_regionOblast'
+                     + ',#address_form_ajax_zip'
+                     + ',#address_form_ajax_apartment'
+                     + ',#address_form_ajax_userFirstName'
+                     + ',#address_form_ajax_userLastName'
+                     + ',#address_form_ajax_phone'
+                     + ',#address_form_ajax_aliasOfAddress'
+
+                     ,function () {
+                         var pattern = new RegExp('^([a-zA-Z0-9\\.\\,\\@,\\s]+)$'),
+                             el =$(this).closest('.form-group');
+                         if(!pattern.test( $(this).val())){
+                             if(!el.find('span.text-danger')[0]){
+                                 el.append('<span class="message_error text-danger">Пишите только на латыни.</span>');
+                             }else{
+                                 el.find('.text-danger').text('Пишите только на латыни.');
+                             }
+                             $("button#saveaddress").addClass('disabled').attr({"disabled":true}).css({"cursor":"not-allowed"});
+                         }else {
+                             el.find('span.text-danger').remove();
+                             if(!$('body').find('span.text-danger')[0]){
+                                 $("button#saveaddress").removeClass('disabled').attr({"disabled":false}).css({"cursor":"pointer"});
+                             }
+
+                         }
+                     });
              });
              $('#addAddressForm').modal({show:true});
              console.log($('#addAddressForm .modal-body'));return false;
