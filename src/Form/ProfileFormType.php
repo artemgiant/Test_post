@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -108,14 +109,17 @@ class ProfileFormType extends AbstractType
             ])
             ->add('country', EntityType::class, [
                 'class' => Country::class,
-                'attr'=>[
-                    'class'=>'form-control border-right-0',
-//                    'id'=>'country',
-//                    'placeholder'=>'Country',
-                    'autocomplete'=>'off',
-                ],
-//                'data' => 215,
-                'choice_label' => 'name',
+                'choice_attr' => function(country $category, $key, $value) {
+                $selected = false;
+                     if($category->getName()=="Ukraine"){
+                         $selected = true;
+                     };
+                    return [
+                        'class'=>'form-control border-right-0 '.$selected,
+                    'selected'=>$selected,
+                        'autocomplete'=>'off',
+                    ];
+                },
             ])
             ->add('regionOblast',null,[
                 'attr'=>[
