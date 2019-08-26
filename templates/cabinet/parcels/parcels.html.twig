@@ -135,7 +135,7 @@
                                                 {{ item.addresses.fullAddress }}
                                             {% endif %}
                                         </td>
-                                        <td>{{ item.orderStatus }}</td>
+                                        <td>{{  item.orderStatus.status | trans }}</td>
                                         {% if page_title != 'Send Parcels List' %}
                                             <td>
                                                 {% if item.orderStatus is empty or item.orderStatus.status == 'new'%}
