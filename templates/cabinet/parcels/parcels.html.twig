@@ -125,7 +125,7 @@
                                         {% else %}
                                             <td>{{ item.trackingNumber }}</td>
                                         {% endif %}
-                                        <td>{{ item.orderType }}</td>
+                                        <td>{{ item.orderType|trans }}</td>
                                         <td>{{ item.sendDetailWeight }}</td>
                                         <td>{{ item.volumeWeigth }}</td>
                                         <td class="font-weight-bold text-dark">{{ item.shippingCosts }}</td>
@@ -135,7 +135,7 @@
                                                 {{ item.addresses.fullAddress }}
                                             {% endif %}
                                         </td>
-                                        <td>{{ item.orderStatus }}</td>
+                                        <td>{{  item.orderStatus.status | trans }}</td>
                                         {% if page_title != 'Send Parcels List' %}
                                             <td>
                                                 {% if item.orderStatus is empty or item.orderStatus.status == 'new'%}
