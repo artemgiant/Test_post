@@ -87,8 +87,8 @@ class OrderType
      */
     public function __toString()
     {
-        if (!$this->getCode())
-            return $this->getCode();
+        if (!$this->getName())
+            return $this->getName();
 
         return $this->name;
     }
