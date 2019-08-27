@@ -126,7 +126,11 @@
                                         {% else %}
                                             <td>{{ item.trackingNumber }}</td>
                                         {% endif %}
-                                        <td>{{ item.orderType.code|trans }}</td>
+                                        <td>
+                                        {% if item.orderType is not empty and item.orderType.code is defined  %}
+                                            {{ item.orderType.code|trans }}
+                                        {% endif %}
+                                        </td>
                                         <td>{{ item.sendDetailWeight }}</td>
                                         <td>{{ item.volumeWeigth }}</td>
                                         <td class="font-weight-bold text-dark">{{ item.shippingCosts }}</td>
