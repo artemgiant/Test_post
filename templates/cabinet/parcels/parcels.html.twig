@@ -118,10 +118,7 @@
                             <tbody>
                             {% if items is defined and items is iterable %}
                                 {% for item in items %}
-                                    {% if item.orderStatus is not  defined or  item.orderStatus.status is not  defined  %}
-                                        {# Заглушка для статуса иногда ошибка была #}
-                                        {% set item.orderStatus.status=1 %}
-                                    {% endif %}
+
                                     <tr class="text-center">
                                         <td>{{ item.getCreatedAtStr }}</td>
                                         {% if isSend is defined and isSend == 1 %}
@@ -139,13 +136,18 @@
                                                 {{ item.addresses.fullAddress }}
                                             {% endif %}
                                         </td>
-                                        <td>{{  item.orderStatus.status | trans }}</td>
+                                        <td>
+
+                                            {% if item.orderStatus is  defined and item.orderStatus is not empty and  item.orderStatus.status is  defined  and  item.orderStatus.status is not empty %}
+                                                {{  item.orderStatus.status | trans }}
+                                            {% endif %}
+                                        </td>
                                         {% if page_title != 'Send Parcels List' %}
                                             <td>
-                                                {% if item.orderStatus is empty or item.orderStatus.status == 'new'%}
+                                                {% if item.orderStatus is empty or (item.orderStatus.status is  defined  and  item.orderStatus.status is not empty and item.orderStatus.status == 'new')%}
                                                     <a  href="{{ path("post_parcels_edit",{"id":item.id}) }}" class="btn btn-outline-success btn-edit-parcel ">{{ "Edit Order" | trans }}</a>
                                                 {% endif %}
-                                                {% if item.orderStatus is empty or item.orderStatus.status == 'new'%}
+                                                {% if item.orderStatus is empty or or (item.orderStatus.status is  defined  and  item.orderStatus.status is not empty and item.orderStatus.status == 'new')%}
                                                     {% if item.invoices is not empty %}
                                                         {% for invoice in item.invoices if invoice.isPaid == false %}
                                                             {% if invoice.price > 0 %}
