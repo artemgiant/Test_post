@@ -28,9 +28,10 @@ class MyFacebookAuthenticator extends SocialAuthenticator
     }
 
     public function supports(Request $request)
-
     {
+
         if( $request->attributes->get('_route') === 'connect_facebook_check'){
+
             dd($request);
 
         }
@@ -56,9 +57,7 @@ class MyFacebookAuthenticator extends SocialAuthenticator
         /** @var FacebookUser $facebookUser */
         $facebookUser = $this->getFacebookClient()
             ->fetchUserFromToken($credentials);
-
         $email = $facebookUser->getEmail();
-
         // 1) have they logged in with Facebook before? Easy!
         $existingUser = $this->em->getRepository(User::class)
             ->findOneBy(['facebookId' => $facebookUser->getId()]);

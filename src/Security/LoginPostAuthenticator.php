@@ -40,7 +40,7 @@ class LoginPostAuthenticator extends AbstractFormLoginAuthenticator implements A
         FormFactoryInterface $formFactory,
         RouterInterface $router,
         UserPasswordEncoderInterface $passwordEncoder
-    ) {
+    ){
         $this->formFactory = $formFactory;
         $this->router = $router;
         $this->passwordEncoder = $passwordEncoder;

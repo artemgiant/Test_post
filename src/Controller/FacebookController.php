@@ -51,8 +51,8 @@ class FacebookController extends Controller
 
             // do something with all this new power!
             // e.g. $name = $user->getFirstName();
-                        return $this->redirectToRoute('post_dashboard');
-//            var_dump($user); die;
+//                        return $this->redirectToRoute('post_dashboard');
+            var_dump($user); die;
             // ...
         } catch (IdentityProviderException $e) {
             // something went wrong!
