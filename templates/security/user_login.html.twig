@@ -19,6 +19,8 @@
                     {% endfor %}
                 {% endfor %}
                <form class="mb-3"  action="{{ path("user_login") }}" method="post" role="form" id="loginForm" novalidate>
+                   <a href="{{ path('connect_facebook_start') }}">Facebook sign in</a>
+
                    {{ form_row(form._token) }}
                   <div class="form-group">
                      <div class="input-group with-focus">

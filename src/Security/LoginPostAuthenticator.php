@@ -48,11 +48,12 @@ class LoginPostAuthenticator extends AbstractFormLoginAuthenticator implements A
 
     public function supports(Request $request): bool
     {
-        if (strpos($request->getPathInfo(),'/post/login')===false || $request->getMethod() != 'POST') {
-
+        if (strpos($request->getPathInfo(),'/post/login')===false ||
+            $request->getMethod() != 'POST' ||
+            $request->attributes->get('_route')!== 'connect_facebook_check') {
             return false;
         }
-
+    dd('1');
         return true;
     }
 
