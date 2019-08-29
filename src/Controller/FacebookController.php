@@ -1,12 +1,26 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Form\LoginForm;
+use App\Repository\UserRepository;
+use App\Security\FormLoginAuthenticator;
+use App\Security\LoginPostAuthenticator;
+use App\Security\MyFacebookAuthenticator;
+use Doctrine\ORM\EntityManagerInterface;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 class FacebookController extends Controller
 {
@@ -33,9 +47,9 @@ class FacebookController extends Controller
      * because this is the "redirect_route" you configured
      * in config/packages/knpu_oauth2_client.yaml
      *
-     * @Route("/connect/facebook/check", name="connect_facebook_check")
+     * @Route("post/connect/facebook/check", name="connect_facebook_check")
      */
-    public function connectCheckAction(Request $request, ClientRegistry $clientRegistry): Response
+    public function connectCheckAction(Request $request, ClientRegistry $clientRegistry)
     {
         // ** if you want to *authenticate* the user, then
         // leave this method blank and create a Guard authenticator
@@ -47,17 +61,21 @@ class FacebookController extends Controller
         try {
             // the exact class depends on which provider you're using
             /** @var \League\OAuth2\Client\Provider\FacebookUser $user */
-            $user = $client->fetchUser();
+            $userFacebook = $client->fetchUser();
 
-            // do something with all this new power!
-            // e.g. $name = $user->getFirstName();
-                        return $this->redirectToRoute('post_dashboard');
-//            var_dump($user); die;
-            // ...
+
         } catch (IdentityProviderException $e) {
             // something went wrong!
             // probably you should return the reason to the user
             var_dump($e->getMessage()); die;
         }
+
+
     }
+
+
+
+
+
+
 }
