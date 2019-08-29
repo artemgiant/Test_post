@@ -48,12 +48,11 @@ class LoginPostAuthenticator extends AbstractFormLoginAuthenticator implements A
 
     public function supports(Request $request): bool
     {
-        if (strpos($request->getPathInfo(),'/post/login')===false ||
-            $request->getMethod() != 'POST' ||
-            $request->attributes->get('_route')!== 'connect_facebook_check') {
+        if (strpos($request->getPathInfo(),'/post/login')===false || $request->getMethod() != 'POST') {
+
             return false;
         }
-    dd('1');
+
         return true;
     }
 
@@ -79,6 +78,7 @@ class LoginPostAuthenticator extends AbstractFormLoginAuthenticator implements A
 
     public function checkCredentials($credentials, UserInterface $user): bool
     {
+
         if (!$this->passwordEncoder->isPasswordValid($user, $credentials['password'])) {
             return false;
         }
