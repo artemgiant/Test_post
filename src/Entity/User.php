@@ -479,6 +479,11 @@ class User implements UserInterface, \Serializable
      */
     private $isVip;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $FacebookId;
+
 
 
     /**
@@ -514,6 +519,18 @@ class User implements UserInterface, \Serializable
     public function isVip(): ?bool
     {
         return $this->isVip;
+    }
+
+    public function getFacebookId(): ?int
+    {
+        return $this->FacebookId;
+    }
+
+    public function setFacebookId(?int $FacebookId): self
+    {
+        $this->FacebookId = $FacebookId;
+
+        return $this;
     }
 
 }
