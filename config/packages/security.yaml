@@ -34,6 +34,7 @@ security:
             guard:
                 authenticators:
                 - App\Security\LoginAuthenticator
+
         main:
             #anonymous: ~
             pattern:            /post(.*)
@@ -50,6 +51,8 @@ security:
             guard:
                 authenticators:
                 - App\Security\LoginPostAuthenticator
+                - App\Security\MyFacebookAuthenticator
+                entry_point: App\Security\LoginPostAuthenticator
         #main:
             #anonymous: ~      
     access_control:

@@ -40,7 +40,7 @@ class LoginPostAuthenticator extends AbstractFormLoginAuthenticator implements A
         FormFactoryInterface $formFactory,
         RouterInterface $router,
         UserPasswordEncoderInterface $passwordEncoder
-    ) {
+    ){
         $this->formFactory = $formFactory;
         $this->router = $router;
         $this->passwordEncoder = $passwordEncoder;
@@ -78,6 +78,7 @@ class LoginPostAuthenticator extends AbstractFormLoginAuthenticator implements A
 
     public function checkCredentials($credentials, UserInterface $user): bool
     {
+
         if (!$this->passwordEncoder->isPasswordValid($user, $credentials['password'])) {
             return false;
         }
