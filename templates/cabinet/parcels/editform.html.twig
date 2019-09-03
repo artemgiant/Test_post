@@ -319,11 +319,15 @@
                      ,function () {
                          var pattern = new RegExp('^([a-zA-Z0-9\\.\\,\\@,\\s]+)$'),
                              el =$(this).closest('.form-group');
+                         var massege_1 ="Пишите только на латыни.";
+                         if($('button[data-id=select_language]').attr('title')[0] == 'У'){
+                             massege_1 ="Пишіть тільки на латині.";
+                         }
                          if(!pattern.test( $(this).val())){
                              if(!el.find('span.text-danger')[0]){
-                                 el.append('<span class="message_error text-danger">Пишите только на латыни.</span>');
+                                 el.append('<span class="message_error text-danger">'+massege_1+'</span>');
                              }else{
-                                 el.find('.text-danger').text('Пишите только на латыни.');
+                                 el.find('.text-danger').text(massege_1);
                              }
                              $("button#saveaddress").addClass('disabled').attr({"disabled":true}).css({"cursor":"not-allowed"});
                          }else {
