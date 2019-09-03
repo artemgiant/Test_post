@@ -64,13 +64,19 @@ class MyFacebookAuthenticator extends SocialAuthenticator
         }
 
         // 2) do we have a matching user by email?
-        $user = $this->em->getRepository(User::class)
-            ->findOneBy(['email' => $email]);
+        if (empty($email)) {
+            $user = $this->em->getRepository(User::class)
+                ->findOneBy(['facebookId' => $facebookUser->getId()]);
+        }
+        else{
+            $user = $this->em->getRepository(User::class)
+                ->findOneBy(['email' => $email]);
+        }
         // 3) Maybe you just want to "register" them by creating
         // a User object
         if(empty($user)){
             $user = new User();
-            $user->setEmail($facebookUser->getEmail());
+            if (!empty($email)) $user->setEmail($facebookUser->getEmail());
             $user->setFirstName($facebookUser->getFirstName());
             $user->setLastName($facebookUser->getLastName());
             $avatar=$this->saveFBAvatar($facebookUser->getPictureUrl(),$facebookUser->getId());
