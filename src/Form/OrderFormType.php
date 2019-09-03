@@ -144,7 +144,7 @@ class OrderFormType extends AbstractType
                'query_builder' => function(AddressRepository $repo) use ($user) {
                    return $repo->getAdressListQuery($user);
                },
-                'choice_label' => 'fullName',
+                'choice_label' => 'aliasOfAddress',
                 'label'        => 'addresses',
                 'expanded'     => false,
                 'multiple'     => false,
