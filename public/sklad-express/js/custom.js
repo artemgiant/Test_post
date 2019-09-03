@@ -45,7 +45,8 @@ $(document).ready(function() {
 //    });
 
 $('.selectpicker').selectpicker();
-    // console.log($('input#order_form_trackingNumber,#order_form_products_0_price')[0]);
+    // console.log($('button[data-id=select_language]').attr('title')[0]);
+
    $('form').on('keyup','input#address_form_city,' +
        '#address_form_regionOblast,' +
        '#address_form_street,' +
@@ -59,11 +60,16 @@ $('.selectpicker').selectpicker();
        ,function () {
         var pattern = new RegExp('^([a-zA-Z0-9\\.\\,\\@,\\s]+)$'),
             el =$(this).closest('.form-group');
+
+        var message ="Форма поддерживает только латинские символы";
+           if($('button[data-id=select_language]').attr('title')[0] == 'У'){
+               message ="Форма пiдтримує‎ тiльки латинськi символи";
+           }
         if(!pattern.test( $(this).val())){
             if(!el.find('span.text-danger')[0]){
-                el.append('<span class="message_error text-danger">В форме нельзя писать кириллицей, только латынь</span>');
+                el.append('<span class="message_error text-danger">'+message+'</span>');
             }else{
-                el.find('.text-danger').text(' В форме нельзя писать кириллицей, только латынь');
+                el.find('.text-danger').text(message);
             }
             $("button:submit").addClass('disabled').attr({"disabled":true}).css({"cursor":"not-allowed"});
         }else {
@@ -86,6 +92,9 @@ $('.selectpicker').selectpicker();
         var pattern = new RegExp('^([\\s,0-9\\.\\,]+)$'),
             el =$(this).closest('.form-group'),
             massege_1 ="Введите только цифры.";
+            if($('button[data-id=select_language]').attr('title')[0] == 'У'){
+                massege_1 ="Введіть лише цифри.";
+            }
         if(!pattern.test( $(this).val())){
             if(!el.find('span.text-danger')[0]){
 

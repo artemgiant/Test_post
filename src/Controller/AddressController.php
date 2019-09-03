@@ -195,7 +195,7 @@ class AddressController extends CabinetController
             $data=[];
             if ($adressList){
                 foreach($adressList as $address){
-                    $data[$address->getId()]=$address->getFullName();
+                    $data[$address->getId()]=$address->getAliasOfAddress();
                 }
             }
             return new JsonResponse($data);
