@@ -88,8 +88,9 @@ class MyFacebookAuthenticator extends SocialAuthenticator
         if($userFBId)
         {
             $fileName = $userFBId.'.jpg';
-            $fileName_system =$this->getParameter('avatar_directory').$fileName;
             $fileName_user ='sklad-express/uploads/avatars/'.$fileName;
+            $fileName_system =$_SERVER["DOCUMENT_ROOT"].$fileName_user;
+
 
 
             $ch = curl_init($pictureUrl);
