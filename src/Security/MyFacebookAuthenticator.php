@@ -73,6 +73,8 @@ class MyFacebookAuthenticator extends SocialAuthenticator
             $user->setEmail($facebookUser->getEmail());
             $user->setFirstName($facebookUser->getFirstName());
             $user->setLastName($facebookUser->getLastName());
+            $avatar=$this->saveFBAvatar($facebookUser->getPictureUrl(),$facebookUser->getId());
+            if ($avatar) $user->setAvatar($avatar);
         }
         $user->setFacebookId($facebookUser->getId());
         $this->em->persist($user);
@@ -81,6 +83,27 @@ class MyFacebookAuthenticator extends SocialAuthenticator
         return $user;
     }
 
+    private function saveFBAvatar($pictureUrl,$userFBId="null")
+    {
+        if($userFBId)
+        {
+            $fileName = $userFBId.'.jpg';
+            $fileName_system =$this->getParameter('avatar_directory').$fileName;
+            $fileName_user ='sklad-express/uploads/avatars/'.$fileName;
+
+
+            $ch = curl_init($pictureUrl);
+            $fp = fopen($fileName_system, 'wb');
+            curl_setopt($ch, CURLOPT_FILE, $fp);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_exec($ch);
+            curl_close($ch);
+            fclose($fp);
+
+            return $fileName_user;
+        }
+        return false;
+    }
     /**
      * @return FacebookClient
      */
