@@ -66,7 +66,7 @@ class MyFacebookAuthenticator extends SocialAuthenticator
         // 2) do we have a matching user by email?
         if (empty($email)) {
             $user = $this->em->getRepository(User::class)
-                ->findOneBy(['facebookId' => $facebookUser->getId()]);
+                ->findOneBy(['FacebookId' => $facebookUser->getId()]);
         }
         else{
             $user = $this->em->getRepository(User::class)
