@@ -77,6 +77,7 @@ class MyFacebookAuthenticator extends SocialAuthenticator
         if(empty($user)){
             $user = new User();
             if (!empty($email)) $user->setEmail($facebookUser->getEmail());
+            else $user->setEmail($facebookUser->getId()."@FromFacebook.com");
             $user->setFirstName($facebookUser->getFirstName());
             $user->setLastName($facebookUser->getLastName());
             $avatar=$this->saveFBAvatar($facebookUser->getPictureUrl(),$facebookUser->getId());
