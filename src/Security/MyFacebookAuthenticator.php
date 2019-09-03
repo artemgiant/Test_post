@@ -89,7 +89,7 @@ class MyFacebookAuthenticator extends SocialAuthenticator
         {
             $fileName = $userFBId.'.jpg';
             $fileName_user ='sklad-express/uploads/avatars/'.$fileName;
-            $fileName_system =$_SERVER["DOCUMENT_ROOT"].$fileName_user;
+            $fileName_system =$_SERVER["DOCUMENT_ROOT"].'/'.$fileName_user;
 
 
 
