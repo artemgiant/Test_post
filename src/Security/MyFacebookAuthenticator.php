@@ -24,6 +24,7 @@ class MyFacebookAuthenticator extends SocialAuthenticator
 
     public function __construct(ClientRegistry $clientRegistry, EntityManagerInterface $em, RouterInterface $router)
     {
+
         $this->clientRegistry = $clientRegistry;
         $this->em = $em;
         $this->router = $router;
@@ -37,6 +38,7 @@ class MyFacebookAuthenticator extends SocialAuthenticator
 
     public function getCredentials(Request $request)
     {
+
         // this method is only called if supports() returns true
 
         // For Symfony lower than 3.4 the supports method need to be called manually here:
@@ -54,30 +56,33 @@ class MyFacebookAuthenticator extends SocialAuthenticator
 
         $facebookUser = $this->getFacebookClient()
             ->fetchUserFromToken($credentials);
-        dump($facebookUser);
         $email = $facebookUser->getEmail();
         // 1) have they logged in with Facebook before? Easy!
         $existingUser = $this->em->getRepository(User::class)
             ->findOneBy(['FacebookId' => $facebookUser->getId()]);
-        if ($existingUser) {
-            return $existingUser;
-        }
+
+//        if ($existingUser) {
+//
+//            return $existingUser;
+//        }
 
         // 2) do we have a matching user by email?
         $user = $this->em->getRepository(User::class)
             ->findOneBy(['email' => $email]);
         // 3) Maybe you just want to "register" them by creating
         // a User object
-        if(empty($user)){
+//        dd($facebookUser);
+        if(empty($user)) {
             $user = new User();
+        }
             $user->setEmail($facebookUser->getEmail());
             $user->setFirstName($facebookUser->getFirstName());
             $user->setLastName($facebookUser->getLastName());
-        }
+            $user->setAvatar($facebookUser->getPictureUrl());
+
         $user->setFacebookId($facebookUser->getId());
         $this->em->persist($user);
         $this->em->flush();
-
         return $user;
     }
 
