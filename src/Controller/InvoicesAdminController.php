@@ -20,11 +20,18 @@ class InvoicesAdminController extends CRUDController
 {
     public function addInvoiceAction(Request $request)
     {
-        $invoice=new Invoices();
         $entityManager = $this->getDoctrine()->getManager();
         $order_id=$request->get('order',false);
+
         if ($order_id){
             $order= $entityManager->getRepository(Order::class)->find((int)$order_id);
+            $invoiceOpen=$entityManager->getRepository(Invoices::class)->findOneBy(
+                [
+                    'orderId'=>$order,
+                    'isPaid'=>false
+                ]
+            );
+            $invoice=$invoiceOpen??new Invoices();
             if ($order) $invoice->order=$order->getId();
         }
         $form = $this->createForm(InvoiceFormType::class, $invoice);
@@ -35,9 +42,18 @@ class InvoicesAdminController extends CRUDController
                 $order= $entityManager->getRepository(Order::class)->find((int)$invoice->order);
                 /* @var Order $order*/
                 if ($order) {
+                    $shipCost=0;
                     $invoice->setOrderId($order);
-                    $orderStatus=$entityManager->getRepository(OrderStatus::class)->findOneBy(['status'=>'new']);
+                    $orderStatus=$entityManager->getRepository(OrderStatus::class)->findOneBy(['status'=>'getnewinvoice']);
                     $order->setOrderStatus($orderStatus);
+                    if ($order->getInvoices()){
+                        foreach($order->getInvoices() as $invoiceItem){
+                            /** @var Invoices $invoiceItem */
+                            $shipCost=$shipCost + $invoiceItem->getPrice();
+                        }
+                    }
+                    $order->setShippingCosts($shipCost);
+
                 }
             }
 
