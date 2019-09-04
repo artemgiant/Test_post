@@ -111,6 +111,7 @@
                                 <th scope="col">{{ "Adress" | trans }}</th>
                                 <th scope="col">{{ "Status" | trans }}</th>
                                 {% if isSend is not defined %}
+                                    <th scope="col">{{ "Status" | trans }}</th>
                                     <th colspan="2" scope="col">{{ "Action" | trans }}</th>
                                 {% endif %}
                             </tr>
@@ -140,12 +141,13 @@
                                                 {{ item.addresses.fullAddress }}
                                             {% endif %}
                                         </td>
-                                        <td>
-
-                                            {% if item.orderStatus is  defined and item.orderStatus is not empty and  item.orderStatus.status is  defined  and  item.orderStatus.status is not empty %}
-                                            {{  item.orderStatus.status | trans }}
-                                            {% endif %}
-                                        </td>
+                                        {% if isSend is not defined %}
+                                            <td>
+                                                {% if item.orderStatus is  defined and item.orderStatus is not empty and  item.orderStatus.status is  defined  and  item.orderStatus.status is not empty %}
+                                                {{  item.orderStatus.status | trans }}
+                                                {% endif %}
+                                            </td>
+                                        {% endif %}
                                         {% if page_title != 'Send Parcels List' %}
                                             <td>
                                                 {% if item.orderStatus is empty or (item.orderStatus.status is  defined  and  item.orderStatus.status is not empty and item.orderStatus.status == 'new')%}
