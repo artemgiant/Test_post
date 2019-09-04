@@ -164,8 +164,8 @@
                                                                 {% endif %}
                                                                 {% if item.orderStatus is not  empty and  item.orderStatus.status == 'getnewinvoice' %}
                                                                     <br>
-                                                                    <p class="badge badge-success">{{ 'Sum Paid' }}: {{ item.shippingCosts - invoice.price}} &#8372;</p>
-                                                                    <p class="badge badge-danger">{{ 'Need Paid' }}: {{ invoice.price }} &#8372;</p>
+                                                                    <p class="badge badge-success">{{ 'Sum Paid' | trans }}: {{ item.shippingCosts - invoice.price}} &#8372;</p>
+                                                                    <p class="badge badge-danger">{{ 'Need Paid' | trans}}: {{ invoice.price }} &#8372;</p>
                                                                 {% endif %}
                                                                 <input type="button" id="" class="payment-btn btn btn-outline-success liq-pay-button-change" value="{{ "Pay" | trans }}" />
                                                             {% endif %}
