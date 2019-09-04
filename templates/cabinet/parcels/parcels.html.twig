@@ -143,7 +143,7 @@
                                         <td>
 
                                             {% if item.orderStatus is  defined and item.orderStatus is not empty and  item.orderStatus.status is  defined  and  item.orderStatus.status is not empty %}
-                                                {{  item.orderStatus.status | trans }}
+                                            {{  item.orderStatus.status | trans }}
                                             {% endif %}
                                         </td>
                                         {% if page_title != 'Send Parcels List' %}
@@ -151,7 +151,7 @@
                                                 {% if item.orderStatus is empty or (item.orderStatus.status is  defined  and  item.orderStatus.status is not empty and item.orderStatus.status == 'new')%}
                                                     <a  href="{{ path("post_parcels_edit",{"id":item.id}) }}" class="btn btn-outline-success btn-edit-parcel ">{{ "Edit Order" | trans }}</a>
                                                 {% endif %}
-                                                {% if item.orderStatus is empty or (item.orderStatus.status is  defined  and  item.orderStatus.status is not empty and (item.orderStatus.status == 'new' or item.orderStatus.status == 'getnewinvoice')%}
+                                                {% if item.orderStatus is empty or (item.orderStatus.status is  defined  and  item.orderStatus.status is not empty and (item.orderStatus.status == 'new' or item.orderStatus.status == 'getnewinvoice'))%}
                                                     {% if item.invoices is not empty %}
                                                         {% for invoice in item.invoices if invoice.isPaid == false %}
                                                             {% if invoice.price > 0 %}
@@ -161,6 +161,11 @@
                                                                 </div>
                                                                 {% if invoice.comment is not empty %}
                                                                     <p>{{ invoice.comment }}</p>
+                                                                {% endif %}
+                                                                {% if item.orderStatus.status == 'getnewinvoice' %}
+                                                                    <br>
+                                                                    <p class="badge badge-success">{{ 'Sum Paid' }}: {{ item.shippingCosts - invoice.price}} &#8372;</p>
+                                                                    <p class="badge badge-danger">{{ 'Need Paid' }}: {{ invoice.price }} &#8372;</p>
                                                                 {% endif %}
                                                                 <input type="button" id="" class="payment-btn btn btn-outline-success liq-pay-button-change" value="{{ "Pay" | trans }}" />
                                                             {% endif %}

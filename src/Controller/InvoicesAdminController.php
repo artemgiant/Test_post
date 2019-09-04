@@ -32,6 +32,14 @@ class InvoicesAdminController extends CRUDController
                 ]
             );
             $invoice=$invoiceOpen??new Invoices();
+            if ($invoiceOpen){
+                $invoice=$invoiceOpen;
+                $newInvoice=false;
+            }
+            else {
+                $newInvoice=true;
+                $invoice=new Invoices();
+            }
             if ($order) $invoice->order=$order->getId();
         }
         $form = $this->createForm(InvoiceFormType::class, $invoice);
@@ -51,6 +59,9 @@ class InvoicesAdminController extends CRUDController
                             /** @var Invoices $invoiceItem */
                             $shipCost=$shipCost + $invoiceItem->getPrice();
                         }
+                    }
+                    if ($newInvoice){
+                        $shipCost=$shipCost + $newInvoice;
                     }
                     $order->setShippingCosts($shipCost);
 

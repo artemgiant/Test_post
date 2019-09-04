@@ -158,11 +158,11 @@ class LiqPayService
 
                         $orderInvoices = $this->getEm()->getRepository(Invoices::class)->findBy(['orderId'=>$order->getId()]);
                         $orderStatus = $this->getEm()->getRepository(OrderStatus::class)->findOneBy(['status'=>'paid']);
-                        foreach ($orderInvoices as $orderInvoice) {
-                            if (!$orderInvoice->isPaid()) {
-                                $orderStatus = $this->getEm()->getRepository(OrderStatus::class)->findOneBy(['status'=>'new']);
-                            }
-                        }
+                       // foreach ($orderInvoices as $orderInvoice) {
+                       //     if (!$orderInvoice->isPaid()) {
+                        //        $orderStatus = $this->getEm()->getRepository(OrderStatus::class)->findOneBy(['status'=>'new']);
+                      //      }
+                     //   }
                         $order->setOrderStatus($orderStatus);
                         if (is_null($order->getTrNum())||(trim($order->getTrNum()) == '')) {
                             $order->setTrNum("EP".($trLiqPay->getId()+57354658)."UA"); // this number supposed to be attached to the paid invoice
