@@ -162,7 +162,7 @@
                                                                 {% if invoice.comment is not empty %}
                                                                     <p>{{ invoice.comment }}</p>
                                                                 {% endif %}
-                                                                {% if item.orderStatus.status == 'getnewinvoice' %}
+                                                                {% if item.orderStatus is not  empty and  item.orderStatus.status == 'getnewinvoice' %}
                                                                     <br>
                                                                     <p class="badge badge-success">{{ 'Sum Paid' }}: {{ item.shippingCosts - invoice.price}} &#8372;</p>
                                                                     <p class="badge badge-danger">{{ 'Need Paid' }}: {{ invoice.price }} &#8372;</p>
