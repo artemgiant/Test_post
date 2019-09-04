@@ -27,10 +27,9 @@ class OrderRepository extends ServiceEntityRepository
         $qr = $this->createQueryBuilder('o')
             ->leftJoin('o.orderStatus', 's')
             ->where('o.user = :user_id')
-            ->andWhere('o.orderStatus IS NULL or (o.orderStatus IS NOT NULL and (s.status = :status or s.status = :status1))')
+            ->andWhere('o.orderStatus IS NULL or (o.orderStatus IS NOT NULL and (s.status in (:status)))')
             ->setParameter('user_id', $user_id)
-            ->setParameter('status', 'new')
-            ->setParameter('status1', 'paid')
+            ->setParameter('status', ['new','paid','getnewinvoice'])
             ->orderBy('o.createdAt','DESC')
         ;
         if ($maxResult>0)
