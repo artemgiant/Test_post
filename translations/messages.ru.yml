@@ -236,6 +236,8 @@ Econom: Эконом
 Express: Экспрес
 Facebook sign in: Войти через Facebook
 Addresses Add : Добавить адрес
-Sum Paid: Оплочено
+Sum Paid: Оплачено
 Need Paid: Нужно доплатить
 getnewinvoice: Не оплачено. Выставлен дополнительный инвойс
+LiqPay Sucesss: Оплата прошла успешно
+paid: Оплачен - ждет отправки
