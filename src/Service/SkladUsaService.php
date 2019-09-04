@@ -43,11 +43,11 @@ class SkladUsaService
         $data->receiverState = $order->getAddresses()->getRegionOblast();
         $data->receiverZip = $order->getAddresses()->getZip();
         $data->receiverCountry = $order->getAddresses()->getCountry()->getShortName();
-        $data->trackingNumber = $order->getTrackingNumber();
-        $data->shippingCompanyToUsa = $order->getCompanySendToUsa();
-        $data->trackingNumberToUsa = $order->getSystemNum();
-        $data->shippingCompanyInUsa = $order->getCompanySendInUsa();
-        $data->trackingNumberInUsa = $order->getSystemNumInUsa();
+        //$data->trackingNumber = $order->getTrackingNumber();
+        //$data->shippingCompanyToUsa = $order->getCompanySendToUsa();
+        //$data->trackingNumberToUsa = $order->getSystemNum();
+       // $data->shippingCompanyInUsa = $order->getCompanySendInUsa();
+        //$data->trackingNumberInUsa = $order->getSystemNumInUsa();
         $data->comment = $order->getComment();
         $data->address = $order->getAddresses()->getAddress();
         $data->productsData = [];

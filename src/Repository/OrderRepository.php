@@ -29,7 +29,7 @@ class OrderRepository extends ServiceEntityRepository
             ->where('o.user = :user_id')
             ->andWhere('o.orderStatus IS NULL or (o.orderStatus IS NOT NULL and (s.status in (:status)))')
             ->setParameter('user_id', $user_id)
-            ->setParameter('status', ['new','paid','getnewinvoice'])
+            ->setParameter('status', ['new','paid','getnewinvoice','formed'])
             ->orderBy('o.createdAt','DESC')
         ;
         if ($maxResult>0)
