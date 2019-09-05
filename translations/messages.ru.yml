@@ -106,13 +106,13 @@ products: Продукты
 Content: Содержимое
 addresses: Адреса
 sendDetailWeight: Вес (грамм)
-sendDetailLength: Длина
+sendDetailLength: Длина (см)
 sendDetailLength placeholder: Длина
-sendDetailWidth: Ширина
+sendDetailWidth: Ширина (см)
 sendDetailWidth placeholder: Ширина
-sendDetailHeight: Высота
+sendDetailHeight: Высота (см)
 sendDetailHeight placeholder: Высота
-shippingCosts: Стоимость
+shippingCosts: Пересылка (стоимость пересылки)
 volumeWeigth: Объем
 Volume Weigth: Объем
 declareValue: Объявленная стоимость
@@ -124,11 +124,12 @@ Create Date: Дата добавления
 trackingNumber Nova Pochta: ТН|Нова почта
 NovaPochta: Новая почта
 Tracking Number: Трек номер
+NovaPochta track number: Входящий трек номер
 shipgCost: Стоимость доставки
 Edit Order: Редактировать
 descEn: Описание на английском
 descUa: Описание на украинском
-price: Стоимость
+price: Заявленная стоимость ($)
 count: Количество
 Remove product: Удалить
 copyRigtht: Expressposhta 2019. All Rights Reserved
