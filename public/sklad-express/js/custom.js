@@ -139,76 +139,108 @@ $(document).ready(function() {
         }
     });
 
-    $('form').on('keyup',"#order_form_sendDetailLength" +
-        ",#order_form_sendDetailWidth" +
-        ",#order_form_sendDetailHeight" +
-        ",#order_form_products_0_price" +
-        ",#order_form_products_0_count" +
-        ",#order_form_sendDetailWeight"
-        ,function () {
-
-        if(/[a-z!@#$%^&*()_+]+/.test($(this).val())){
-            console.log('error');
-            return false;
-        }
-
-            var resReturn=0,
-               volume=0,
-                weight=($('#order_form_sendDetailWeight').val())?$('#order_form_sendDetailWeight').val():'1',
-               s1=($('#order_form_sendDetailWidth').val())?$('#order_form_sendDetailWidth').val():'1',
-               s2=($('#order_form_sendDetailHeight').val())?$('#order_form_sendDetailHeight').val():'1',
-               s3=($('#order_form_sendDetailLength').val())?$('#order_form_sendDetailLength').val():'1';
-                volume= (s1*s2*s3/5000).toFixed(3);
-               var resW=(Number(weight)>Number(volume))?weight:volume;
-
-
-            var WithCost = 0;
-    if(!$('#order_form_userVip').val()) {
-        if (weight <= 100) {
-            WithCost = 250;
-        }
-        if (weight <= 200 && weight >= 100) {
-            WithCost = 300;
-        }
-        if (weight < 300 && weight >= 200) {
-            WithCost = 350;
-        }
-        if (weight < 450 && weight >= 300) {
-            WithCost = 400;
-        }
-        if (weight < 1000 && weight >= 450) {
-            WithCost = 700;
-        }
-        if (weight < 1000 && weight >= 700) {
-            WithCost = 700;
-        }
-        if (weight < 1500 && weight >= 1000) {
-            WithCost = 1000;
-        }
-        if (weight < 4000 && weight >= 1500) {
-            WithCost = 6000;
-        }
-    }else {
-        if (weight <= 100) {
-            WithCost = 200;
-        }
-        if (weight <= 200 && weight >= 100) {
-            WithCost = 250;
-        }
-        if (weight <= 300 && weight >= 200) {
-            WithCost = 250;
-        }
-        if (weight <= 4000 && weight >= 100) {
-            WithCost = 5000;
-        }
-    }
-
-        $('#order_form_shippingCosts').val(WithCost);
-        $('#order_form_volumeWeigth').val(volume);
-        $('#order_form_declareValue').val($('#order_form_products_0_price').val());
-
-    });
-
+    // $('form').on('keyup',"#order_form_sendDetailLength" +
+    //     ",#order_form_sendDetailWidth" +
+    //     ",#order_form_sendDetailHeight" +
+    //     ",#order_form_products_0_price" +
+    //     ",#order_form_products_0_count" +
+    //     ",#order_form_sendDetailWeight"
+    //     ,function () {
+    //
+    //     if(/[a-z!@#$%^&*()_+]+/.test($(this).val())){
+    //         console.log('error');
+    //         return false;
+    //     }
+    //
+    //         var resReturn=0,
+    //            volume=0,
+    //             weight=($('#order_form_sendDetailWeight').val())?$('#order_form_sendDetailWeight').val():'1',
+    //            s1=($('#order_form_sendDetailWidth').val())?$('#order_form_sendDetailWidth').val():'1',
+    //            s2=($('#order_form_sendDetailHeight').val())?$('#order_form_sendDetailHeight').val():'1',
+    //            s3=($('#order_form_sendDetailLength').val())?$('#order_form_sendDetailLength').val():'1';
+    //             volume= (s1*s2*s3/5000).toFixed(3);
+    //            var resW=(Number(weight)>Number(volume))?weight:volume;
+    //
+    //
+    //         var WithCost = 0;
+    // if(!$('#order_form_userVip').val()) {
+    //     if (weight <= 100) {
+    //         WithCost = 250;
+    //     }
+    //     if (weight <= 200 && weight >= 100) {
+    //         WithCost = 300;
+    //     }
+    //     if (weight < 300 && weight >= 200) {
+    //         WithCost = 350;
+    //     }
+    //     if (weight < 450 && weight >= 300) {
+    //         WithCost = 400;
+    //     }
+    //     if (weight < 1000 && weight >= 450) {
+    //         WithCost = 700;
+    //     }
+    //     if (weight < 1000 && weight >= 700) {
+    //         WithCost = 700;
+    //     }
+    //     if (weight < 1500 && weight >= 1000) {
+    //         WithCost = 1000;
+    //     }
+    //     if (weight < 4000 && weight >= 1500) {
+    //         WithCost = 6000;
+    //     }
+    // }else {
+    //     if (weight <= 100) {
+    //         WithCost = 200;
+    //     }
+    //     if (weight <= 200 && weight >= 100) {
+    //         WithCost = 250;
+    //     }
+    //     if (weight <= 300 && weight >= 200) {
+    //         WithCost = 250;
+    //     }
+    //     if (weight <= 4000 && weight >= 100) {
+    //         WithCost = 5000;
+    //     }
+    //     $.ajax({
+    //         url: 'post/parcels/ajax/dhl/price',
+    //         type: 'post',
+    //         // data: {info:info},
+    //         dataType: 'array',
+    //         // beforeSend: function() {
+    //         //     $('#sendajax').button('loading');
+    //         // },
+    //         // complete: function() {
+    //         //     $('#sendajax').button('reset');
+    //         // },
+    //         success: function(res) {
+    //            console.log(res);
+    //         },
+    //         error: function(xhr, ajaxOptions, thrownError) {
+    //             alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+    //         }
+    //     });
+    // }
+    //
+    //
+    //         var message = "Для розрахунку вартості оберить тип доставки \"Економ\" ";
+    //         if($('button[data-id=select_language]').attr('title')[0] == 'Р'){
+    //             message ="Для расчета стоимости выберите тип доставки \"Эконом\"";
+    //         }
+    //        if($('#order_form_orderType option:selected').val() == 1){
+    //            message = WithCost;
+    //        };
+    //         if($('#order_form_orderType option:selected').val() == 2){
+    //             message = "Экспресс доставки автоматично розрахувати неможливо.";
+    //             if($('button[data-id=select_language]').attr('title')[0] == 'Р'){
+    //                 message ="Экспресс доставки автоматически рассчитать невозможно.";
+    //             }
+    //         };
+    //
+    //         $('#order_form_shippingCosts').val(message);
+    //     $('#order_form_volumeWeigth').val(volume);
+    //     $('#order_form_declareValue').val($('#order_form_products_0_price').val());
+    //
+    // });
 
 });
 
