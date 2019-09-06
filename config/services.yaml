@@ -12,7 +12,6 @@ services:
         autowire: true
         autoconfigure: true
         public: false
-
     App\:
         resource: '../src/*'
         exclude: '../src/{Entity,Admin,Resources}'
@@ -21,25 +20,30 @@ services:
         class: App\Admin\UserAdmin
         arguments: [~, App\Entity\User, ~]
         tags:
-        - { name: sonata.admin, manager_type: orm, group: admin, label: Users }
+        - { name: sonata.admin, manager_type: orm, group: Admin, label: Users }
 
     app.admin.orders:
         class: App\Admin\OrdersAdmin
         arguments: [~, App\Entity\Order, ~]
         tags:
-        - { name: sonata.admin, manager_type: orm, group: admin, label: Orders }
+        - { name: sonata.admin, manager_type: orm, group: Admin, label: Orders }
+    app.admin.orders2:
+        class: App\Admin\Orders2Admin
+        arguments: [~, App\Entity\Order, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Admin, label: OrdersPraid }
 
     app.admin.orderstatus:
         class: App\Admin\OrderStatusAdmin
         arguments: [~, App\Entity\OrderStatus, ~]
         tags:
-        - { name: sonata.admin, manager_type: orm, group: admin, label: OrderStatus }
+        - { name: sonata.admin, manager_type: orm, group: Settings, label: OrderStatus }
 
     admin.order_type:
         class: App\Admin\OrderTypeAdmin
         arguments: [~, App\Entity\OrderType, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: OrderType }
+            - { name: sonata.admin, manager_type: orm, group: Settings, label: OrderType }
         public: true
 
     admin.price_weight_econom:
@@ -73,25 +77,25 @@ services:
             class: App\Admin\DeliveryPriceAdmin
             arguments: [~, App\Entity\DeliveryPrice, ~]
             tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: DeliveryPrice }
+            - { name: sonata.admin, manager_type: orm, group: Settings, label: DeliveryPrice }
 
     app.admin.addresses:
         class: App\Admin\AddressesAdmin
         arguments: [~, App\Entity\Address, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Addresses }
+            - { name: sonata.admin, manager_type: orm, group: Admin, label: Addresses }
 
     app.admin.payments:
         class: App\Admin\PaymentsAdmin
         arguments: [~, App\Entity\TransactionLiqPay, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Payments }
+            - { name: sonata.admin, manager_type: orm, group: Admin, label: Payments }
 
     app.admin.invoices:
         class: App\Admin\InvoicesAdmin
         arguments: [~, App\Entity\Invoices,App\Controller\InvoicesAdminController]
         tags:
-        - { name: sonata.admin, manager_type: orm, group: admin, label: Invoices }
+        - { name: sonata.admin, manager_type: orm, group: Admin, label: Invoices }
 
     email_service:
         class: App\Service\SendMailService

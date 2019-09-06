@@ -139,7 +139,12 @@ User: Користувач
 Cost: Вартість
 Weight: Вага
 DeliveryPrice: Прайс на доставку
-OrderStatus: Все права защищены.
+Settings: Налаштування
+Price: Цiна
+Invoices: Доплати
+OrdersPraid: Оплачені замовлення
+isVip : VIP
+OrderStatus: Статусы
 Order: Відправлення
 Orders: Відправлення
 Last Login: Останній вхіда

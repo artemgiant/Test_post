@@ -29,7 +29,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class OrdersAdmin extends AbstractAdmin
+class Orders2Admin extends AbstractAdmin
 {
     protected $baseRoutePattern = 'orders';
     protected $baseRouteName = 'orders';
@@ -45,7 +45,7 @@ class OrdersAdmin extends AbstractAdmin
         'UPS'                                           => 'ups',
 
         //            'Нова Пошта'                                    => 'nova-poshta',
-        ];
+    ];
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -117,9 +117,9 @@ class OrdersAdmin extends AbstractAdmin
 
         if (!empty($object->getInvoices())){
             $invoicesStr='<table class="table"><thead>'.
-            '<th>'.$this->trans( "Price").'</th>'.
-            '<th>'.$this->trans( "Comment").'</th>'.
-            '<th>'.$this->trans( "Status").'</th>'.
+                '<th>'.$this->trans( "Price").'</th>'.
+                '<th>'.$this->trans( "Comment").'</th>'.
+                '<th>'.$this->trans( "Status").'</th>'.
                 '</thead><tbody>';
             foreach ($object->getInvoices() as $invoice){
                 /* @var \App\Entity\Invoices $invoice */
@@ -128,13 +128,13 @@ class OrdersAdmin extends AbstractAdmin
                     :
                     '<span class="label label-danger">'.$this->trans( "nopaid").'</span>';
                 $invoicesStr .='<tr>'.
-                        '<td>'.$invoice->getPrice().'</td>'.
-                        '<td>'.$invoice->getComment().'</td>'.
-                        '<td>'.$invoiceStatus.'</td>'.
-                        '</tr>';
+                    '<td>'.$invoice->getPrice().'</td>'.
+                    '<td>'.$invoice->getComment().'</td>'.
+                    '<td>'.$invoiceStatus.'</td>'.
+                    '</tr>';
             }
             $invoicesStr .='</tbody></table>'.
-            '<a class="btn btn-info" href="'.$this->router->generate("invoices_add-invoice",["order"=>$object->getId()],UrlGeneratorInterface::ABSOLUTE_URL).'">'.$this->trans("Add Invoice").'</a>';
+                '<a class="btn btn-info" href="'.$this->router->generate("invoices_add-invoice",["order"=>$object->getId()],UrlGeneratorInterface::ABSOLUTE_URL).'">'.$this->trans("Add Invoice").'</a>';
         }
 
         $userFieldOptions = [];
@@ -161,9 +161,9 @@ class OrdersAdmin extends AbstractAdmin
             ->add('trackingNumber',null,['label'=>'Трек новой почты'])
             ->add('trNum',null,['label'=>'Трек для пользователя','disabled'=>true,'required'=>false])
             ->add('companySendToUsa', ChoiceType::class, [
-                        'choices'  => $this::CARRIER_CODES,
-                        'label'=>'Компания доставки(Посылка едет в страну назначения)'
-                 ]
+                    'choices'  => $this::CARRIER_CODES,
+                    'label'=>'Компания доставки(Посылка едет в страну назначения)'
+                ]
             )
             ->add('systemNum',null,['label'=>'Трек системный(Тот что меняет админ)','required'=>false])
             ->add('companySendInUsa', ChoiceType::class, [
@@ -195,14 +195,14 @@ class OrdersAdmin extends AbstractAdmin
             ->add('zip')
             ->add('towarehouse')
             ->add('quantity')
-            
+
             ->add('invoicesStr', TextType::class,[
                 'label'=>'Invoices',
                 'required'=>false,
                 'attr'=>['class'=>'hide'],
                 //'label_attr'=>['class'=>'hideddd'],
-                ],['help'=>$invoicesStr])
-            ;
+            ],['help'=>$invoicesStr])
+        ;
 //            if (!empty($object->getOrderStatus()) && ($object->getOrderStatus()->getStatus() == 'paid')) {
 //                $sendBlock = '<a class="btn btn-warning" href="'.$this->router->generate("post_sendtosklad",["id"=>$object->getId()],UrlGeneratorInterface::ABSOLUTE_URL).'">Send Order To Sklad</a>';
 //                $formMapper
@@ -228,11 +228,11 @@ class OrdersAdmin extends AbstractAdmin
 
             if(json_decode($result)->status == 'success') {
                 $this->getRequest()->getSession()->getFlashBag()->add("success", "Заказ отправлен на склад");
-              /*  $orderStatus = $entityManager->getRepository(OrderStatus::class)->findOneBy(['status' => 'complit']);
-                $order->setOrderStatus($orderStatus);
-                $entityManager->persist($order);
-                $entityManager->flush();
-              */
+                /*  $orderStatus = $entityManager->getRepository(OrderStatus::class)->findOneBy(['status' => 'complit']);
+                  $order->setOrderStatus($orderStatus);
+                  $entityManager->persist($order);
+                  $entityManager->flush();
+                */
             } else {
                 $this->getRequest()->getSession()->getFlashBag()->add("error", "Заказ не отправлен на склад. Возникла ошибка");
                 /*
