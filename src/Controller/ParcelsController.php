@@ -518,30 +518,49 @@ class ParcelsController extends CabinetController
         $order = new Order();
         $this->getUser();
         $this->getTemplateData();
-        $Adress = $Adress_r->find($request->query->get('id_adress'));
-         $From =$Country_r->findOneBy(['name'=>$this->my_address['country']]);
-         $To = $Country_r->findOneBy(['id'=>$Adress->getCountry()->getId()]);
+                $Adress = $Adress_r->find($request->query->get('id_adress'));
+                $From = $Country_r->findOneBy(['name' => $this->my_address['country']]);
+                $To = $Country_r->findOneBy(['id' => $Adress->getCountry()->getId()]);
+                $From = $From->getShortName();
+                $To = $To->getShortName();
+                $dhlSendBoxAddress = $this->my_address;
+                $dhlSendBoxAddress['from'] = $From;
+                $dhlSendBoxAddress['to'] = $To;
+                $order->setSendDetailHeight($request->query->get('Height'));
+                $order->setSendDetailLength($request->query->get('Length'));
+                $order->setSendDetailWeight($request->query->get('Weight'));
+                $order->setSendDetailWidth($request->query->get('Width'));
+                $order->setUser($this->getUser());
+                $order->setAddresses($Adress);
 
-        $From = $From->getShortName();
-        $To = $To->getShortName();
-        $dhlSendBoxAddress = $this->my_address;
-        $dhlSendBoxAddress['from']=$From;
-        $dhlSendBoxAddress['to']=$To;
-        $Dlh = new DhlDeliveryService($dhlSendBoxAddress);
-//                dd( $Dlh->getAccountId($One_order));
-        $order->setSendDetailHeight($request->query->get('Height'));
-        $order->setSendDetailLength($request->query->get('Length'));
-        $order->setSendDetailWeight($request->query->get('Weight'));
-        $order->setSendDetailWidth($request->query->get('Width'));
-        $order->setUser($this->getUser());
-        $order->setAddresses($Adress);
-        $One_order = $order;
-
-        $FinalPrice = $Dlh->getDHLPrice($One_order);
-
-        return new JsonResponse($FinalPrice);
+        if(!empty($request->query->get('Express'))){
+            $Dlh = new DhlDeliveryService($dhlSendBoxAddress);
+            $One_order = $order;
+            $FinalPrice = $Dlh->getDHLPrice($One_order);
+            return new JsonResponse($FinalPrice);
+        }
+                $weightPrice = 0;
+                if($request->query->get('Vip')) {
+                    $weightPrice = $this->getDoctrine()
+                        ->getRepository(PriceWeightEconomVip::class)
+                        ->findPriceByWeight((float)$request->query->get('Weight'));
+                    if (!$weightPrice) {
+                        $weightPrice->setPrice('-');
+                    }
+                } else {
+                    $weightPrice = $this->getDoctrine()
+                        ->getRepository(PriceWeightEconom::class)
+                        ->findPriceByWeight((float)$request->query->get('Weight'));
+                    if (!$weightPrice) {
+                        $weightPrice->setPrice('-');
+                    }
+                }
+        return new JsonResponse($weightPrice->getPrice());
     }
         return new JsonResponse('error');}
+
+
+
 
 
 }
