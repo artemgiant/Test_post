@@ -276,6 +276,7 @@
              </div>
          </div>
      </div>
+     <div class="preloaderR"  ><img  src="{{ asset("img/ring.svg") }}"></div>
  {% endblock %}
  {% block javascripts %}
      <script src="{{ asset("sklad-express/js/jquery.collection.js") }}"></script>
@@ -285,6 +286,7 @@
         autoclose: true,
         language: 'ru'
      });
+
 
 
 
@@ -391,6 +393,114 @@
              })
          });
          #}
+         // var keyUpTimeOut;
+         // $('#order_form_sendDetailWeight').on('keyup', function () {
+         //     clearTimeout(keyUpTimeOut);
+         //     keyUpTimeOut = setTimeout(function () {
+         //         console.log('sdfaf!!!!!!!!!!');
+         //         $('.preloaderR').fadeIn(300);
+         //     }, 1000);
+         // });
+
+         $('#order_form_orderType , #order_form_addresses').change(function () {
+                check();
+         });
+
+         $('form').on('keyup',"#order_form_sendDetailLength" +
+             ",#order_form_sendDetailWidth" +
+             ",#order_form_sendDetailHeight" +
+             ",#order_form_products_0_price" +
+             ",#order_form_products_0_count" +
+             ",#order_form_sendDetailWeight" +
+             ",#order_form_addresses"
+             ,function () {
+                 check()
+             });
+         var keyUpTimeOut;
+         function check() {
+                 var resReturn=0,
+                     volume=0,
+                     price = $('#order_form_shippingCosts').val(),
+                     status = $('#order_form_orderType option:selected').val(),
+                     weight=($('#order_form_sendDetailWeight').val())?$('#order_form_sendDetailWeight').val():'0',
+                     s1=($('#order_form_sendDetailWidth').val())?$('#order_form_sendDetailWidth').val():'0',
+                     s2=($('#order_form_sendDetailHeight').val())?$('#order_form_sendDetailHeight').val():'0',
+                     s3=($('#order_form_sendDetailLength').val())?$('#order_form_sendDetailLength').val():'0';
+                 volume= (s1*s2*s3/5000).toFixed(3);
+                 var resW=(Number(weight)>Number(volume))?weight:volume,
+                        Vip = $('#order_form_userVip').val();
+                    if(
+                        (weight == 0) ||
+                        (s1==0) ||
+                        (s2==0) ||
+
+                        (s3==0) ){
+                        console.log(status);
+                        console.log(s1);
+                        console.log(s2);
+                        console.log(s3);
+                        console.log('err!');
+                        return false;
+                    }
+             if(status==0){
+                 var message = "Для розрахунку вартості оберить тип доставки \"Тип доставки\" ";
+                 if($('button[data-id=select_language]').attr('title')[0] == 'Р'){
+                     message ="Для расчета стоимости выберите  \"Тип доставки\"";
+                     $('#order_form_shippingCosts').val(message);
+                 }
+                 return false;
+             }
+                     $('#order_form_volumeWeigth').val(volume);
+                     $('#order_form_declareValue').val($('#order_form_products_0_price').val());
+                     var Express = 0;
+                     if($('#order_form_orderType option:selected').val() == 2) {
+                         Express = 1;
+                     }
+
+
+                        $.ajax({
+                            url: '{{ path("dhl_price") }}',
+                            type: 'get',
+                            // dataType:'json',
+                            data: {
+                                'id_adress': $('#order_form_addresses option:selected', '').val(),
+                                'Height': s2,
+                                'Length': s3,
+                                'Width': s1,
+                                'Weight': weight,
+                                'Express': Express,
+                                'Vip': Vip,
+                            },
+                            beforeSend: function () {
+                                if(Express){
+                                $('.preloaderR').fadeIn(300);}
+                            },
+                            success: function (res) {
+                                console.log(res);
+                                if(Express){
+                                $('.preloaderR').fadeOut('slow');}
+
+                                if (res == false) {
+                                    $('#order_form_shippingCosts').val('-');
+                                    return true;
+                                }
+                                $('#order_form_shippingCosts').val(res);
+                                return true;
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                if(Express){
+                                    $('.preloaderR').fadeOut('slow');}
+                                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                                $('#order_form_shippingCosts').val('-');
+
+                            }
+                        });
+
+
+
+             };
+
      });
 </script>
+
  {% endblock %}
