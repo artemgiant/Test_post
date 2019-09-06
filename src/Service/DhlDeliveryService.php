@@ -270,6 +270,7 @@ class DhlDeliveryService
         $Dutiable->addChild("DeclaredCurrency", 'USD');
         $Dutiable->addChild("DeclaredValue", $declareSum);
 
+
         /* old code */
 
         $xml = $xml->asXML();
