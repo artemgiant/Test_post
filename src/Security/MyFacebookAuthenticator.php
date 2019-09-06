@@ -24,6 +24,7 @@ class MyFacebookAuthenticator extends SocialAuthenticator
 
     public function __construct(ClientRegistry $clientRegistry, EntityManagerInterface $em, RouterInterface $router)
     {
+
         $this->clientRegistry = $clientRegistry;
         $this->em = $em;
         $this->router = $router;
@@ -37,6 +38,7 @@ class MyFacebookAuthenticator extends SocialAuthenticator
 
     public function getCredentials(Request $request)
     {
+
         // this method is only called if supports() returns true
 
         // For Symfony lower than 3.4 the supports method need to be called manually here:
@@ -54,7 +56,6 @@ class MyFacebookAuthenticator extends SocialAuthenticator
 
         $facebookUser = $this->getFacebookClient()
             ->fetchUserFromToken($credentials);
-        dump($facebookUser);
         $email = $facebookUser->getEmail();
         // 1) have they logged in with Facebook before? Easy!
         $existingUser = $this->em->getRepository(User::class)

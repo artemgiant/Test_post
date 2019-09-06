@@ -140,7 +140,9 @@
                                         </td>
                                         <td>{{ order.shippingCosts }}</td>
                                         <td>{{ order.declareValue }}</td>
-                                        <td>{{ order.addresses.fullAddress }}</td>
+                                        {% if  order.addresses.fullAddress is defined %}
+                                        <td>{{  order.addresses.fullAddress }}</td>
+                                        {% endif %}
                                     </tr>
                                 {% endfor %}
                             {% else %}
