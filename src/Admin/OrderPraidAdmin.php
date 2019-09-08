@@ -17,7 +17,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-final class TestAdmin extends AbstractAdmin
+final class OrderPraidAdmin extends AbstractAdmin
 {
 //    protected $baseRoutePattern = 'orders';
 //    protected $baseRouteName = 'orders';

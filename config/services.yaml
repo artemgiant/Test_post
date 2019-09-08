@@ -104,7 +104,7 @@ services:
             - [setTemplateEngine, ["@templating"]]
 
     admin.test:
-        class: App\Admin\TestAdmin
+        class: App\Admin\OrderPraidAdmin
         arguments: [~, App\Entity\Order, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Admin, label: OrdersPraid }
