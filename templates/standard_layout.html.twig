@@ -46,3 +46,6 @@
         }
     </style>
 {% endblock %}
+ {% block side_bar_nav %}
+     {{ knp_menu_render('sonata_admin_sidebar', {template: get_global_template('knp_menu_template')}) }}
+ {% endblock side_bar_nav %}

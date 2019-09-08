@@ -42,99 +42,12 @@ final class OrderPraidAdmin extends AbstractAdmin
         $datagridMapper->add('orderStatus');
         $datagridMapper->add('orderType',null ,['label' => 'OrderType']);
     }
-//    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
-//    {
-//
-//        $datagridMapper
-//            ->add('id')
-//            ->add('trackingNumber')
-//            ->add('volumeWeigth')
-//            ->add('declareValue')
-//            ->add('sendFromAddress')
-//            ->add('sendFromIndex')
-//            ->add('sendFromCity')
-//            ->add('sendFromPhone')
-//            ->add('sendFromEmail')
-//            ->add('sendDetailPlaces')
-//            ->add('sendDetailWeight')
-//            ->add('sendDetailLength')
-//            ->add('sendDetailWidth')
-//            ->add('sendDetailHeight')
-//            ->add('comment')
-//            ->add('email')
-//            ->add('address')
-//            ->add('shippingCosts')
-//            ->add('deliveryStatus')
-//            ->add('shipDate')
-//            ->add('createdAt')
-//            ->add('countryCode')
-//            ->add('country')
-//            ->add('fromCountry')
-//            ->add('city')
-//            ->add('zip')
-//            ->add('towarehouse')
-//            ->add('quantity')
-//            ->add('trNum')
-//            ->add('companySendToUsa')
-//            ->add('systemNum')
-//            ->add('companySendInUsa')
-//            ->add('systemNumInUsa')
-//            ->add('accountCountry')
-//            ->add('adminCreate')
-//            ;
-//    }
     public function __construct(string $code, string $class, string $baseControllerName,UrlGeneratorInterface $router)
     {
         parent::__construct($code, $class, $baseControllerName);
         $this->router=$router;
 
     }
-//    protected function configureListFields(ListMapper $listMapper): void
-//    {
-//        $listMapper
-//            ->add('id')
-//            ->add('trackingNumber')
-//            ->add('volumeWeigth')
-//            ->add('declareValue')
-//            ->add('sendFromAddress')
-//            ->add('sendFromIndex')
-//            ->add('sendFromCity')
-//            ->add('sendFromPhone')
-//            ->add('sendFromEmail')
-//            ->add('sendDetailPlaces')
-//            ->add('sendDetailWeight')
-//            ->add('sendDetailLength')
-//            ->add('sendDetailWidth')
-//            ->add('sendDetailHeight')
-//            ->add('comment')
-//            ->add('email')
-//            ->add('address')
-//            ->add('shippingCosts')
-//            ->add('deliveryStatus')
-//            ->add('shipDate')
-//            ->add('createdAt')
-//            ->add('countryCode')
-//            ->add('country')
-//            ->add('fromCountry')
-//            ->add('city')
-//            ->add('zip')
-//            ->add('towarehouse')
-//            ->add('quantity')
-//            ->add('trNum')
-//            ->add('companySendToUsa')
-//            ->add('systemNum')
-//            ->add('companySendInUsa')
-//            ->add('systemNumInUsa')
-//            ->add('accountCountry')
-//            ->add('adminCreate')
-//            ->add('_action', null, [
-//                'actions' => [
-//                    'show' => [],
-//                    'edit' => [],
-//                    'delete' => [],
-//                ],
-//            ]);
-//    }
     /**
      * @param ListMapper $listMapper
      */
@@ -192,46 +105,6 @@ final class OrderPraidAdmin extends AbstractAdmin
     }
 
 
-//    protected function configureFormFields(FormMapper $formMapper): void
-//    {
-//        $formMapper
-//            ->add('id')
-//            ->add('trackingNumber')
-//            ->add('volumeWeigth')
-//            ->add('declareValue')
-//            ->add('sendFromAddress')
-//            ->add('sendFromIndex')
-//            ->add('sendFromCity')
-//            ->add('sendFromPhone')
-//            ->add('sendFromEmail')
-//            ->add('sendDetailPlaces')
-//            ->add('sendDetailWeight')
-//            ->add('sendDetailLength')
-//            ->add('sendDetailWidth')
-//            ->add('sendDetailHeight')
-//            ->add('comment')
-//            ->add('email')
-//            ->add('address')
-//            ->add('shippingCosts')
-//            ->add('deliveryStatus')
-//            ->add('shipDate')
-//            ->add('createdAt')
-//            ->add('countryCode')
-//            ->add('country')
-//            ->add('fromCountry')
-//            ->add('city')
-//            ->add('zip')
-//            ->add('towarehouse')
-//            ->add('quantity')
-//            ->add('trNum')
-//            ->add('companySendToUsa')
-//            ->add('systemNum')
-//            ->add('companySendInUsa')
-//            ->add('systemNumInUsa')
-//            ->add('accountCountry')
-//            ->add('adminCreate')
-//            ;
-//    }
     /**
      * @param FormMapper $formMapper
      */
