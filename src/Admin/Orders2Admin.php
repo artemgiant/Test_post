@@ -62,11 +62,24 @@ class Orders2Admin extends AbstractAdmin
 
     }
 
+    public function createQuery($context = 'list')
+    {
+        $query = parent::createQuery($context);
+        $query->andWhere(
+            $query->expr()->eq($query->getRootAliases()[0] . '.orderStatus', ':t')
+        );
+        $query->setParameter('t', '2');
+//        dd($query);
+        return $query;
+    }
+
+
     /**
      * @param ListMapper $listMapper
      */
     protected function configureListFields(ListMapper $listMapper): void
     {
+
         $listMapper->addIdentifier('id')
             ->add('user', null, [], EntityType::class, [
                 'class' => User::class,
