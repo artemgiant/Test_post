@@ -1,38 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Admin;
 
-use App\Entity\OrderStatus;
+use App\Entity\Order;
 use App\Entity\OrderType;
-use App\Entity\User;
-
-use App\Form\OrderProductsFormType;
-//use Doctrine\DBAL\Types\TextType;
-use App\Service\SkladUsaService;
-use Proxies\__CG__\App\Entity\Order;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Form\Type\ModelType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Show\ShowMapper;
 
-use Sonata\AdminBundle\Form\Type\ModelType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Sonata\AdminBundle\Form\Type\AdminType;
-
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use App\Form\InvoiceFormType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-
-use Symfony\Contracts\Translation\TranslatorInterface;
-
-class OrdersAdmin extends AbstractAdmin
+final class OrderPraidAdmin extends AbstractAdmin
 {
-    protected $baseRoutePattern = 'orders';
-    protected $baseRouteName = 'orders';
+//    protected $baseRoutePattern = 'orders';
+//    protected $baseRouteName = 'orders';
     protected $router;
 
     protected $datagridValues = ['_page' => 1, '_sort_order' => 'DESC', '_sort_by' => 'createdAt'];
@@ -45,7 +33,7 @@ class OrdersAdmin extends AbstractAdmin
         'UPS'                                           => 'ups',
 
         //            'Нова Пошта'                                    => 'nova-poshta',
-        ];
+    ];
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -54,26 +42,12 @@ class OrdersAdmin extends AbstractAdmin
         $datagridMapper->add('orderStatus');
         $datagridMapper->add('orderType',null ,['label' => 'OrderType']);
     }
-
     public function __construct(string $code, string $class, string $baseControllerName,UrlGeneratorInterface $router)
     {
         parent::__construct($code, $class, $baseControllerName);
         $this->router=$router;
 
     }
-
-    public function createQuery($context = 'list')
-    {
-        $query = parent::createQuery($context);
-        $query->andWhere(
-            $query->expr()->eq($query->getRootAliases()[0] . '.orderStatus', ':t')
-        );
-        $query->setParameter('t', '1');
-//        dd($query);
-        return $query;
-    }
-
-
     /**
      * @param ListMapper $listMapper
      */
@@ -119,6 +93,18 @@ class OrdersAdmin extends AbstractAdmin
         ;;
     }
 
+    public function createQuery($context = 'list')
+    {
+        $query = parent::createQuery($context);
+        $query->andWhere(
+            $query->expr()->eq($query->getRootAliases()[0] . '.orderStatus', ':t')
+        );
+        $query->setParameter('t', '2');
+//        dd($query);
+        return $query;
+    }
+
+
     /**
      * @param FormMapper $formMapper
      */
@@ -130,9 +116,9 @@ class OrdersAdmin extends AbstractAdmin
 
         if (!empty($object->getInvoices())){
             $invoicesStr='<table class="table"><thead>'.
-            '<th>'.$this->trans( "Price").'</th>'.
-            '<th>'.$this->trans( "Comment").'</th>'.
-            '<th>'.$this->trans( "Status").'</th>'.
+                '<th>'.$this->trans( "Price").'</th>'.
+                '<th>'.$this->trans( "Comment").'</th>'.
+                '<th>'.$this->trans( "Status").'</th>'.
                 '</thead><tbody>';
             foreach ($object->getInvoices() as $invoice){
                 /* @var \App\Entity\Invoices $invoice */
@@ -141,13 +127,13 @@ class OrdersAdmin extends AbstractAdmin
                     :
                     '<span class="label label-danger">'.$this->trans( "nopaid").'</span>';
                 $invoicesStr .='<tr>'.
-                        '<td>'.$invoice->getPrice().'</td>'.
-                        '<td>'.$invoice->getComment().'</td>'.
-                        '<td>'.$invoiceStatus.'</td>'.
-                        '</tr>';
+                    '<td>'.$invoice->getPrice().'</td>'.
+                    '<td>'.$invoice->getComment().'</td>'.
+                    '<td>'.$invoiceStatus.'</td>'.
+                    '</tr>';
             }
             $invoicesStr .='</tbody></table>'.
-            '<a class="btn btn-info" href="'.$this->router->generate("invoices_add-invoice",["order"=>$object->getId()],UrlGeneratorInterface::ABSOLUTE_URL).'">'.$this->trans("Add Invoice").'</a>';
+                '<a class="btn btn-info" href="'.$this->router->generate("invoices_add-invoice",["order"=>$object->getId()],UrlGeneratorInterface::ABSOLUTE_URL).'">'.$this->trans("Add Invoice").'</a>';
         }
 
         $userFieldOptions = [];
@@ -174,9 +160,9 @@ class OrdersAdmin extends AbstractAdmin
             ->add('trackingNumber',null,['label'=>'Трек новой почты'])
             ->add('trNum',null,['label'=>'Трек для пользователя','disabled'=>true,'required'=>false])
             ->add('companySendToUsa', ChoiceType::class, [
-                        'choices'  => $this::CARRIER_CODES,
-                        'label'=>'Компания доставки(Посылка едет в страну назначения)'
-                 ]
+                    'choices'  => $this::CARRIER_CODES,
+                    'label'=>'Компания доставки(Посылка едет в страну назначения)'
+                ]
             )
             ->add('systemNum',null,['label'=>'Трек системный(Тот что меняет админ)','required'=>false])
             ->add('companySendInUsa', ChoiceType::class, [
@@ -208,14 +194,14 @@ class OrdersAdmin extends AbstractAdmin
             ->add('zip')
             ->add('towarehouse')
             ->add('quantity')
-            
+
             ->add('invoicesStr', TextType::class,[
                 'label'=>'Invoices',
                 'required'=>false,
                 'attr'=>['class'=>'hide'],
                 //'label_attr'=>['class'=>'hideddd'],
-                ],['help'=>$invoicesStr])
-            ;
+            ],['help'=>$invoicesStr])
+        ;
 //            if (!empty($object->getOrderStatus()) && ($object->getOrderStatus()->getStatus() == 'paid')) {
 //                $sendBlock = '<a class="btn btn-warning" href="'.$this->router->generate("post_sendtosklad",["id"=>$object->getId()],UrlGeneratorInterface::ABSOLUTE_URL).'">Send Order To Sklad</a>';
 //                $formMapper
@@ -241,11 +227,11 @@ class OrdersAdmin extends AbstractAdmin
 
             if(json_decode($result)->status == 'success') {
                 $this->getRequest()->getSession()->getFlashBag()->add("success", "Заказ отправлен на склад");
-              /*  $orderStatus = $entityManager->getRepository(OrderStatus::class)->findOneBy(['status' => 'complit']);
-                $order->setOrderStatus($orderStatus);
-                $entityManager->persist($order);
-                $entityManager->flush();
-              */
+                /*  $orderStatus = $entityManager->getRepository(OrderStatus::class)->findOneBy(['status' => 'complit']);
+                  $order->setOrderStatus($orderStatus);
+                  $entityManager->persist($order);
+                  $entityManager->flush();
+                */
             } else {
                 $this->getRequest()->getSession()->getFlashBag()->add("error", "Заказ не отправлен на склад. Возникла ошибка");
                 /*
@@ -258,5 +244,45 @@ class OrdersAdmin extends AbstractAdmin
             }
 
         }
+    }
+    protected function configureShowFields(ShowMapper $showMapper): void
+    {
+        $showMapper
+            ->add('id')
+            ->add('trackingNumber')
+            ->add('volumeWeigth')
+            ->add('declareValue')
+            ->add('sendFromAddress')
+            ->add('sendFromIndex')
+            ->add('sendFromCity')
+            ->add('sendFromPhone')
+            ->add('sendFromEmail')
+            ->add('sendDetailPlaces')
+            ->add('sendDetailWeight')
+            ->add('sendDetailLength')
+            ->add('sendDetailWidth')
+            ->add('sendDetailHeight')
+            ->add('comment')
+            ->add('email')
+            ->add('address')
+            ->add('shippingCosts')
+            ->add('deliveryStatus')
+            ->add('shipDate')
+            ->add('createdAt')
+            ->add('countryCode')
+            ->add('country')
+            ->add('fromCountry')
+            ->add('city')
+            ->add('zip')
+            ->add('towarehouse')
+            ->add('quantity')
+            ->add('trNum')
+            ->add('companySendToUsa')
+            ->add('systemNum')
+            ->add('companySendInUsa')
+            ->add('systemNumInUsa')
+            ->add('accountCountry')
+            ->add('adminCreate')
+            ;
     }
 }
