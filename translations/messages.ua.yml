@@ -94,7 +94,7 @@ Receivers phone: Телефон отримувача
 Enter receivers phone: Введіть номер телефону
 Alias of address: Коротка назва адреси
 Alias Of Address: Коротка назва адреси
-My address: Особистий адреса
+My address: Особиста адреса
 Enter alias of address: Введіть коротку назву адреси
 New Parcerls List: Нові відправлення
 Send Parcerls List: Відправлені
@@ -144,10 +144,20 @@ Price: Цiна
 Invoices: Доплати
 OrdersPraid: Оплачені замовлення
 isVip : VIP
+Phone Number: Номер телефону
+Created At : Дата ствоворення
+Number : Номер
+Code: Код
+Name: Назва
+Price Weight : Вага
+Max Weight : Вага
+Order Id : Id змовленння
+Is Paid : Сплачено
 OrderStatus: Статусы
 Order: Відправлення
-Orders: Відправлення
-Last Login: Останній вхіда
+Add Invoice : Добавить доплату
+Orders: Замовлення
+Last Login: Останній вхід
 Is Suspended: Неактивний
 Suspended: Неактивний
 Plain Password: Пароль

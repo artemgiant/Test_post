@@ -27,11 +27,7 @@ services:
         arguments: [~, App\Entity\Order, ~]
         tags:
         - { name: sonata.admin, manager_type: orm, group: Admin, label: Orders }
-#    app.admin.ordersewr2:
-#        class: App\Admin\Orders2Admin
-#        arguments: [~, App\Entity\Test, ~]
-#        tags:
-#            - { name: sonata.admin, manager_type: orm, group: Price, label: OrdersPraid }
+
 
     app.admin.orderstatus:
         class: App\Admin\OrderStatusAdmin
@@ -95,7 +91,7 @@ services:
         class: App\Admin\InvoicesAdmin
         arguments: [~, App\Entity\Invoices,App\Controller\InvoicesAdminController]
         tags:
-        - { name: sonata.admin, manager_type: orm, group: Admin, label: Invoices }
+        - { name: sonata.admin, manager_type: orm, group: Admin, label: Invoices}
 
     email_service:
         class: App\Service\SendMailService
