@@ -1,10 +1,44 @@
 sonata_admin:
-    title: 'Sonata Admin'
+    title: 'System.expressposhta.admin'
     dashboard:
         blocks:
             - { type: sonata.admin.block.admin_list, position: left }
+        groups:
+            app.admin.group.content:
+                keep_open:       true
+                label:           Адміністрування
+                label_catalogue: SonataMediaBundle
+                icon:            ' <i class="fa fa-user-o"></i> '
+                items:
+                    - app.admin.orders
+                    - admin.test
+                    - app.admin.payments
+                    - app.admin.invoices
+                    - app.admin.user
+                    - app.admin.addresses
+            app.admin.group.order:
+                keep_open:       true
+                label:           Налаштування
+#                label_catalogue: SonataMediaBundle
+                icon:            ' <i class="fa fa-cogs"></i> '
+                items:
+                    - app.admin.orderstatus
+                    - admin.order_type
+                    - app.admin.deliveryprice
+            app.admin.group.price:
+                keep_open:       true
+                label:           Ціни
+                #                label_catalogue: SonataMediaBundle
+                icon:            ' <i class="fa fa-handshake-o"></i> '
+                items:
+                    - admin.vip_price_weight_ekspresst
+                    - admin.price_weight_ekspresss
+                    - admin.price_weight_econom_vip
+                    - admin.price_weight_econom
+
     templates:
         layout: 'standard_layout.html.twig'
+
 
 sonata_block:
     blocks:

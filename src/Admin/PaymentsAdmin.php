@@ -56,7 +56,7 @@ class PaymentsAdmin extends AbstractAdmin
             ->add('firstName')
             ->add('lastName')
             ->add('phoneNumber')
-            ->add('liqpayInfo')
+//            ->add('liqpayInfo')
             ->add('createdAt');
     }
 

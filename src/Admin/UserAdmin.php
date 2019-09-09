@@ -27,7 +27,7 @@ class UserAdmin extends AbstractAdmin
         $listMapper->addIdentifier('email')
             ->add('lastLogin')
             ->add('isSuspended')
-            ->add('isVip')
+            ->add('isVip',null,['label' => 'isVip'])
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
