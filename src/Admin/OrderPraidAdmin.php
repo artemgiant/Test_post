@@ -96,11 +96,13 @@ final class OrderPraidAdmin extends AbstractAdmin
     public function createQuery($context = 'list')
     {
         $query = parent::createQuery($context);
-        $query->andWhere(
-            $query->expr()->eq($query->getRootAliases()[0] . '.orderStatus', ':t')
-        );
-        $query->setParameter('t', '2');
-//        dd($query);
+//        $query->andWhere(
+//            $query->expr()->eq($query->getRootAliases()[0] . '.orderStatus', ':t')
+//
+//        );
+        $query->andWhere($query->getRootAliases()[0].'.orderStatus'.' > :identifier');
+
+        $query->setParameter('identifier', '1');
         return $query;
     }
 
