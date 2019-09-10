@@ -45,7 +45,6 @@ class InvoicesAdmin extends AbstractAdmin
             ->add('orderId', null, ['admin_code' => 'app.admin.orders'], EntityType::class, [
                 'class' => Order::class,
                 'choice_label' => 'name',
-                'admin_code'    => 'app.admin.orders'
             ])
             ->addIdentifier('price')
             ->addIdentifier('comment')
@@ -54,7 +53,6 @@ class InvoicesAdmin extends AbstractAdmin
                 'actions' => array(
                     'edit' => array(),
                     'delete' => array(),
-                    'admin_code'    => 'app.admin.orders'
                 )
             ))
         ;;
@@ -71,6 +69,6 @@ class InvoicesAdmin extends AbstractAdmin
             ->add('orderId', ModelType::class, $userFieldOptions,['admin_code'    => 'app.admin.orders'])
             ->add('price',null,['label'=>'price'],['admin_code'    => 'app.admin.orders'])
             ->add('comment',null,['label'=>'comment'],['admin_code'    => 'app.admin.orders'])
-            ->add('isPaid',null,null,['admin_code'    => 'app.admin.orders']);
+            ->add('isPaid');
     }
 }
