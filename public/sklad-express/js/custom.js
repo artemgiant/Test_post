@@ -92,6 +92,7 @@ $(document).ready(function() {
             var pattern = new RegExp('^([\\s,0-9\\.\\,]+)$'),
                 el =$(this).closest('.form-group'),
                 massege_1 ="Введите только цифры.";
+
             if($('button[data-id=select_language]').attr('title')[0] == 'У'){
                 massege_1 ="Введіть лише цифри.";
             }
