@@ -91,7 +91,7 @@ services:
         class: App\Admin\InvoicesAdmin
         arguments: [~, App\Entity\Invoices,App\Controller\InvoicesAdminController]
         tags:
-        - { name: sonata.admin, manager_type: orm, group: Admin, label: Invoices}
+        - { name: sonata.admin, manager_type: orm, group: Admin, label: Invoices }
 
     email_service:
         class: App\Service\SendMailService
