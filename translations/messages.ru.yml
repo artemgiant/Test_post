@@ -52,7 +52,7 @@ Save avatar: Сохранить
 Save: Сохранить
 Hello: Привет
 Cabinet: Кабинет
-Add: Добавить
+Add: Создать
 Percles: посылку
 Send_d: Обратиться
 Select type : Выбрать
@@ -65,7 +65,7 @@ Title form suport parcels: Обратная связь
 Choise delivery method: Выбрать способ доставки
 Addresses Edit: Редактирование адреса
 Address Create: Добавить адрес
-Region: Область
+Region: Штат
 Region Oblast: Область
 Enter region: Введите область
 District: Район
@@ -119,7 +119,7 @@ declareValue: Объявленная стоимость
 Declare Value: Объявленная стоимость
 comment: Комментарий
 Add product: +
-Add order: Добавить
+Add order: Создать отправления
 Create Date: Дата добавления
 trackingNumber Nova Pochta: ТН|Нова почта
 NovaPochta: Новая почта

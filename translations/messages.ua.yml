@@ -52,7 +52,7 @@ Save avatar: Зберегти
 Save: Зберегти
 Hello: Привіт
 Cabinet: Кабінет
-Add: Додати
+Add: Створити
 Percles: відправлення
 Send_d: Звернутись
 Select type : Обрати
@@ -65,7 +65,7 @@ Title form suport parcels: Зворотній зв'язок
 Choise delivery method: Вибрати спосіб доставки
 Addresses Edit: Редагування адреси
 Address Create: Додати адреса
-Region: Область
+Region: Штат
 Region Oblast: Область
 Enter region: Введіть область
 District: Район
@@ -119,7 +119,7 @@ declareValue: Оголошена вартість
 Declare Value: Оголошена вартість
 comment: Коментар
 Add product: +
-Add order: Додати
+Add order: Створити відправлення
 Create Date: Дата створення
 trackingNumber Nova Pochta: ТН | Нова пошта
 NovaPochta: Нова пошта
