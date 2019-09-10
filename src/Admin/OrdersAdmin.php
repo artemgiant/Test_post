@@ -51,7 +51,7 @@ class OrdersAdmin extends AbstractAdmin
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
-//        $datagridMapper->add('orderStatus');
+        $datagridMapper->add('orderStatus');
         $datagridMapper->add('orderType',null ,['label' => 'OrderType']);
     }
 
@@ -65,11 +65,13 @@ class OrdersAdmin extends AbstractAdmin
     public function createQuery($context = 'list')
     {
         $query = parent::createQuery($context);
-        $query->andWhere(
-            $query->expr()->eq($query->getRootAliases()[0] . '.orderStatus', ':t')
-        );
-        $query->setParameter('t', '1');
-//        dd($query);
+//        $query->andWhere(
+//            $query->expr()->eq($query->getRootAliases()[0] . '.orderStatus', ':t')
+//
+//        );
+        $query->andWhere($query->getRootAliases()[0].'.orderStatus'.' < :identifier');
+
+        $query->setParameter('identifier', '4');
         return $query;
     }
 

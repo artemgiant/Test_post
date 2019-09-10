@@ -102,7 +102,7 @@ final class OrderPraidAdmin extends AbstractAdmin
 //        );
         $query->andWhere($query->getRootAliases()[0].'.orderStatus'.' > :identifier');
 
-        $query->setParameter('identifier', '1');
+        $query->setParameter('identifier', '3');
         return $query;
     }
 
