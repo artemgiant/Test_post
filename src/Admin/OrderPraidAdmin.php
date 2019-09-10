@@ -19,8 +19,8 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 final class OrderPraidAdmin extends AbstractAdmin
 {
-//    protected $baseRoutePattern = 'orders';
-//    protected $baseRouteName = 'orders';
+    protected $baseRoutePattern = 'admin.test';
+    protected $baseRouteName = 'admin.test';
     protected $router;
 
     protected $datagridValues = ['_page' => 1, '_sort_order' => 'DESC', '_sort_by' => 'createdAt'];
