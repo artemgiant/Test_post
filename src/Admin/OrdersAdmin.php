@@ -51,7 +51,7 @@ class OrdersAdmin extends AbstractAdmin
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
-        $datagridMapper->add('orderStatus');
+//        $datagridMapper->add('orderStatus');
         $datagridMapper->add('orderType',null ,['label' => 'OrderType']);
     }
 
