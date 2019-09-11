@@ -50,6 +50,19 @@ class SkladUsaService
         //$data->trackingNumberInUsa = $order->getSystemNumInUsa();
         $data->comment = $order->getComment();
         $data->address = $order->getAddresses()->getAddress();
+        if($order->getOrderType()->getCode() == 'econom'){
+            list($lbWeight,$ozWeight)=$this->getWeightInLb($order->getSendDetailWeight());
+            $data->weightLb=$lbWeight??0;
+            $data->weightOz=$ozWeight??0;
+        }
+        if($order->getOrderType()->getCode() == 'express'){
+            $data->weightkg=$this->getWeightInKg($order->getSendDetailWeight());
+        }
+
+        $data->length=$order->getSendDetailLength();
+        $data->width=$order->getSendDetailWidth();
+        $data->height=$order->getSendDetailHeight();
+
         $data->productsData = [];
         foreach ($order->getProducts() as $product) {
             $data->productsData[]  = [
@@ -90,4 +103,18 @@ class SkladUsaService
 
     }
 
+
+    public function getWeightInKg($weigth)
+    {
+        return $weigth/1000;
+    }
+
+    public function getWeightInLb($weigth)
+    {
+        $ozFullWeight=floor($weigth * 0.035274);
+        $lbWeight=floor($ozFullWeight /16);
+        $ozWeight= $ozFullWeight-$lbWeight*16;
+
+        return [$lbWeight,$ozWeight];
+    }
 }

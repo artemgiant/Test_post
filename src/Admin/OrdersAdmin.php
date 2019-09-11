@@ -65,11 +65,13 @@ class OrdersAdmin extends AbstractAdmin
     public function createQuery($context = 'list')
     {
         $query = parent::createQuery($context);
-        $query->andWhere(
-            $query->expr()->eq($query->getRootAliases()[0] . '.orderStatus', ':t')
-        );
-        $query->setParameter('t', '1');
-//        dd($query);
+//        $query->andWhere(
+//            $query->expr()->eq($query->getRootAliases()[0] . '.orderStatus', ':t')
+//
+//        );
+        $query->andWhere($query->getRootAliases()[0].'.orderStatus'.' < :identifier');
+
+        $query->setParameter('identifier', '4');
         return $query;
     }
 
@@ -89,7 +91,7 @@ class OrdersAdmin extends AbstractAdmin
                 'class' => OrderStatus::class,
                 'choice_label' => 'order_status',
             ])
-            ->addIdentifier('sendFromAddress')
+//            ->addIdentifier('sendFromAddress')
             ->addIdentifier('comment')
             ->addIdentifier('orderStatus')
             ->add('orderType', EntityType::class, [
@@ -199,7 +201,8 @@ class OrdersAdmin extends AbstractAdmin
             ->add('sendDetailHeight')
             ->add('comment')
             ->add('email')
-            ->add('address')
+            ->add('shipDate')
+//            ->add('address')
             ->add('shippingCosts')
             ->add('deliveryStatus')
 //            ->add('country')
