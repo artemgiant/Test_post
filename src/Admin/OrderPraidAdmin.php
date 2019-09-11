@@ -63,7 +63,7 @@ final class OrderPraidAdmin extends AbstractAdmin
                 'class' => OrderStatus::class,
                 'choice_label' => 'order_status',
             ])
-            ->addIdentifier('sendFromAddress')
+//            ->addIdentifier('sendFromAddress')
             ->addIdentifier('comment')
             ->addIdentifier('orderStatus')
             ->add('orderType', EntityType::class, [
