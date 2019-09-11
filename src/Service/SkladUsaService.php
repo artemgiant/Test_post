@@ -56,9 +56,9 @@ class SkladUsaService
             list($lbWeight,$ozWeight)=$this->getWeightInLb($order->getSendDetailWeight());
             $data->weightLb=$lbWeight??0;
             $data->weightOz=$ozWeight??0;
-            $data->length=$order->getSendDetailLength();
-            $data->width=$order->getSendDetailWidth();
-            $data->height=$order->getSendDetailHeight();
+            $data->size1=$order->getSendDetailLength();
+            $data->size2=$order->getSendDetailWidth();
+            $data->size3=$order->getSendDetailHeight();
         }
         if($order->getOrderType()->getCode() == 'express'){
             $data->sendDetailWeight=$this->getWeightInKg($order->getSendDetailWeight());
