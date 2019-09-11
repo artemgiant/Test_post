@@ -56,14 +56,18 @@ class SkladUsaService
             list($lbWeight,$ozWeight)=$this->getWeightInLb($order->getSendDetailWeight());
             $data->weightLb=$lbWeight??0;
             $data->weightOz=$ozWeight??0;
+            $data->length=$order->getSendDetailLength();
+            $data->width=$order->getSendDetailWidth();
+            $data->height=$order->getSendDetailHeight();
         }
         if($order->getOrderType()->getCode() == 'express'){
-            $data->weightkg=$this->getWeightInKg($order->getSendDetailWeight());
+            $data->sendDetailWeight=$this->getWeightInKg($order->getSendDetailWeight());
+            $data->sendDetailLength=$order->getSendDetailLength();
+            $data->sendDetailWidth=$order->getSendDetailWidth();
+            $data->sendDetailHeight=$order->getSendDetailHeight();
         }
 
-        $data->length=$order->getSendDetailLength();
-        $data->width=$order->getSendDetailWidth();
-        $data->height=$order->getSendDetailHeight();
+
 
         $data->productsData = [];
         foreach ($order->getProducts() as $product) {
