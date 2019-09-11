@@ -6,6 +6,8 @@ use App\Entity\Order;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 
+define("LOG_SKLADUSA", getcwd() . "/../errors-sklad-usa.log");
+
 class SkladUsaService
 {
 
@@ -98,7 +100,10 @@ class SkladUsaService
         $response  = curl_exec($curlObj);
         curl_close($curlObj);
         unset($curlObj);
-
+        if(json_decode($response)->status != 'success') {
+            error_log('------START-----' . date('Y-m-d H:i') . PHP_EOL, 3, LOG_SKLADUSA);
+            error_log('------response-----' . $response . PHP_EOL, 3, LOG_SKLADUSA);
+        }
         return $response;
 
     }
