@@ -42,7 +42,7 @@ class InvoicesAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper->addIdentifier('id')
-            ->add('orderId', null, [], EntityType::class, [
+            ->add('orderId', null, ['admin_code' => 'app.admin.orders'], EntityType::class, [
                 'class' => Order::class,
                 'choice_label' => 'name',
             ])
@@ -52,7 +52,7 @@ class InvoicesAdmin extends AbstractAdmin
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
-                    'delete' => array()
+                    'delete' => array(),
                 )
             ))
         ;;
@@ -66,9 +66,9 @@ class InvoicesAdmin extends AbstractAdmin
         $userFieldOptions = [];
 
         $formMapper
-            ->add('orderId', ModelType::class, $userFieldOptions)
-            ->add('price',null,['label'=>'price'])
-            ->add('comment',null,['label'=>'comment'])
+            ->add('orderId', ModelType::class, $userFieldOptions,['admin_code'    => 'app.admin.orders'])
+            ->add('price',null,['label'=>'price'],['admin_code'    => 'app.admin.orders'])
+            ->add('comment',null,['label'=>'comment'],['admin_code'    => 'app.admin.orders'])
             ->add('isPaid');
     }
 }

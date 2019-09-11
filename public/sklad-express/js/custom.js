@@ -89,7 +89,7 @@ $(document).ready(function() {
         ",#address_form_phone" +
         ",#order_form_sendDetailWeight"
         ,function () {
-            var pattern = new RegExp('^([\\s,0-9\\.\\,]+)$'),
+            var pattern = new RegExp('^([\\s,0-9+\\.\\,]+)$'),
                 el =$(this).closest('.form-group'),
                 massege_1 ="Введите только цифры.";
 

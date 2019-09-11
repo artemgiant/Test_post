@@ -19,8 +19,8 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 final class OrderPraidAdmin extends AbstractAdmin
 {
-//    protected $baseRoutePattern = 'orders';
-//    protected $baseRouteName = 'orders';
+    protected $baseRoutePattern = 'admin.test';
+    protected $baseRouteName = 'admin.test';
     protected $router;
 
     protected $datagridValues = ['_page' => 1, '_sort_order' => 'DESC', '_sort_by' => 'createdAt'];
@@ -63,7 +63,7 @@ final class OrderPraidAdmin extends AbstractAdmin
                 'class' => OrderStatus::class,
                 'choice_label' => 'order_status',
             ])
-            ->addIdentifier('sendFromAddress')
+//            ->addIdentifier('sendFromAddress')
             ->addIdentifier('comment')
             ->addIdentifier('orderStatus')
             ->add('orderType', EntityType::class, [
@@ -102,7 +102,7 @@ final class OrderPraidAdmin extends AbstractAdmin
 //        );
         $query->andWhere($query->getRootAliases()[0].'.orderStatus'.' > :identifier');
 
-        $query->setParameter('identifier', '1');
+        $query->setParameter('identifier', '3');
         return $query;
     }
 
@@ -175,27 +175,29 @@ final class OrderPraidAdmin extends AbstractAdmin
             ->add('systemNumInUsa',null,['label'=>'Трек системный(Посылка едет к аддресу назначения)','required'=>false])
             ->add('volumeWeigth')
             ->add('declareValue')
-            ->add('sendFromAddress')
-            ->add('sendFromIndex')
-            ->add('sendFromCity')
-            ->add('sendFromPhone')
-            ->add('sendFromEmail')
-            ->add('sendDetailPlaces')
+//            ->add('sendFromAddress')
+//            ->add('sendFromIndex')
+//            ->add('sendFromCity')
+//            ->add('sendFromPhone')
+//            ->add('sendFromEmail')
+//            ->add('sendDetailPlaces')
             ->add('sendDetailWeight')
             ->add('sendDetailLength')
             ->add('sendDetailWidth')
             ->add('sendDetailHeight')
             ->add('comment')
             ->add('email')
-            ->add('address')
+            ->add('shipDate')
+
+            //            ->add('address')
             ->add('shippingCosts')
             ->add('deliveryStatus')
-            ->add('country')
-            ->add('fromCountry')
-            ->add('city')
-            ->add('zip')
-            ->add('towarehouse')
-            ->add('quantity')
+//            ->add('country')
+//            ->add('fromCountry')
+//            ->add('city')
+//            ->add('zip')
+//            ->add('towarehouse')
+//            ->add('quantity')
 
             ->add('invoicesStr', TextType::class,[
                 'label'=>'Invoices',
