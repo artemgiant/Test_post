@@ -450,10 +450,18 @@
                  }
                  return false;
              }
-           var  vip = $('#order_form_userVip').val(),
-                 max_weight = (vip == 1)?$('#order_form_maxWeightEconomVip').val():$('#order_form_maxWeightEconom').val();
-             if($('#order_form_sendDetailWeight').val()>max_weight && $('#order_form_orderType option:selected').val() == 1){
+           // var  vip = $('#order_form_userVip').val(),
+           //       max_weight = (vip == 1)?$('#order_form_maxWeightEconomVip').val():$('#order_form_maxWeightEconom').val();
+           //   if($('#order_form_sendDetailWeight').val()>max_weight && $('#order_form_orderType option:selected').val() == 1){
+           //       $('#order_form_sendDetailWeight').val(max_weight);
+           //   }
+             var  vip = $('#order_form_userVip').val(),
+                 max_weight = parseInt((vip == 1)?$('#order_form_maxWeightEconomVip').val():$('#order_form_maxWeightEconom').val());
+             if(parseInt($('#order_form_sendDetailWeight').val()) > max_weight && $('#order_form_orderType option:selected').val() == 1){
+
                  $('#order_form_sendDetailWeight').val(max_weight);
+                 $('#order_form_shippingCosts').val(max_weight);
+
              }
                      $('#order_form_volumeWeigth').val(volume);
                      $('#order_form_declareValue').val($('#order_form_products_0_price').val());
