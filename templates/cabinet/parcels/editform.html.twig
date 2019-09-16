@@ -476,11 +476,14 @@
 
              let priceVal=0;
              $( "[data-name=\'price\']" ).each(function( index ) {
-                 console.log( index + ": " + $( this ).text() );
-                 let pPrice=$('#order_form_products_0_price').val();
-                 let pCount=$('#order_form_products_0_price').val();
+
+                 let pPrice=parseFloat($('#order_form_products_'+index+'_price').val());
+                 let pCount=parseFloat($('#order_form_products_'+index+'_count').val());
+
                  priceVal=priceVal+pPrice*pCount;
+               // console.log( index + ": " + pPrice + "="+pCount );
              });
+
                      $('#order_form_declareValue').val(parseFloat(priceVal).toFixed(2));
 
                      var Express = 0;
