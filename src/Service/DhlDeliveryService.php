@@ -3,8 +3,11 @@
 namespace App\Service;
 
 
+use App\Entity\Order;
+
+define("LOG_FILE1", getcwd() . "/../dhl.log");
 /**
- * Class SMSSendService
+ * Class DhlDeliveryService
  */
 class DhlDeliveryService
 {
@@ -32,7 +35,7 @@ class DhlDeliveryService
     //    private $dhlSendBox=true;
 
     private $dhlUrl;
-    private $logged = false;
+    private $logged = true;
     private $VipMarkup = 20;
     private $Markup = 40;
 
@@ -73,7 +76,7 @@ class DhlDeliveryService
 
     public function getAccountId($object)
     {
-
+        /** @var  $object  Order */
         $countryCode = null;
         $countryFrom = $countryFromCode = $countryFromString = null;
 
@@ -167,7 +170,7 @@ class DhlDeliveryService
 
     public function getDHLPrice($object)
     {
-        /* @var $object Shipment */
+        /** @var  $object  Order */
         $return = false;
         $shipSumm = 0;
         $prArr = [];
@@ -293,6 +296,7 @@ class DhlDeliveryService
         $result = @curl_exec($ch);
 
         $movies = new \SimpleXMLElement($result);
+        if ($this->logged===true) error_log($result." | ". PHP_EOL, 3, LOG_FILE1);
         $GetQuoteResponse = $movies->GetQuoteResponse ?? false;
         $BkgDetails1 = ($GetQuoteResponse) ? $GetQuoteResponse->BkgDetails ?? false : false;
         $QtdShp1 = ($BkgDetails1) ? $BkgDetails1->QtdShp ?? false : false;
