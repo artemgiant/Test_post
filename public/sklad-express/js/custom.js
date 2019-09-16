@@ -47,18 +47,17 @@ $(document).ready(function() {
     $('.selectpicker').selectpicker();
     // console.log($('button[data-id=select_language]').attr('title')[0]);
 
+    //"#address_form_apartment"
     $('form').on('keyup','input#address_form_city,' +
         '#address_form_regionOblast,' +
         '#address_form_street,' +
         '#address_form_userFirstName,' +
-        '#address_form_userLastName' +
-        "#address_form_house," +
-        "#address_form_apartment"
-
+        '#address_form_userLastName,' +
+        "#address_form_house"
 
 
         ,function () {
-            var pattern = new RegExp('^([a-zA-Z0-9\\.\\,\\@,\\s]+)$'),
+            var pattern = new RegExp('^([a-zA-Z0-9\\.\\,\\@,\\s\-\/]+)$'),
                 el =$(this).closest('.form-group');
 
             var message ="Форма поддерживает только латинские символы";

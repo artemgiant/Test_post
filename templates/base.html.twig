@@ -31,7 +31,9 @@
         <script src="{{ asset("sklad-express/vendor/modernizr/modernizr.custom.js") }}"></script>
         <script src="{{ asset("sklad-express/vendor/js-storage/js.storage.js") }}"></script>
         <script src="{{ asset("sklad-express/vendor/i18next/i18next.js") }}"></script>
+ {#
         <script src="{{ asset("sklad-express/vendor/i18next-xhr-backend/i18nextXHRBackend.js") }}"></script>
+#}
         <script src="{{ asset("sklad-express/vendor/jquery/dist/jquery.js") }}"></script>
         <script src="{{ asset("sklad-express/vendor/popper.js/dist/umd/popper.js") }}"></script>
         <script src="{{ asset("sklad-express/vendor/bootstrap/dist/js/bootstrap.js") }}"></script>
@@ -43,7 +45,9 @@
         {% else %}
             <script src="{{ asset("sklad-express/js/parsleyi18n/ua.js") }}"></script>
         {% endif %}
+        {#
         <script src="{{ asset("sklad-express/js/app.js") }}"></script>
+        #}
         <script src="{{ asset("sklad-express/js/custom.js?ver={{ date().timestamp }}") }}"></script>
         {% block javascripts %}{% endblock %}
     </body>

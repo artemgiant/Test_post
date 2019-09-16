@@ -409,8 +409,9 @@
          $('form').on('keyup',"#order_form_sendDetailLength" +
              ",#order_form_sendDetailWidth" +
              ",#order_form_sendDetailHeight" +
-             ",#order_form_products_0_price" +
-             ",#order_form_products_0_count" +
+             ",[data-name=\'price\']"+
+             ",[data-name=\'count\']"+
+             ",#order_form_declareValue" +
              ",#order_form_sendDetailWeight" +
              ",#order_form_addresses"
              ,function () {
@@ -472,7 +473,16 @@
              el.find('.message_error').remove();
 
                      $('#order_form_volumeWeigth').val(volume);
-                     $('#order_form_declareValue').val($('#order_form_products_0_price').val());
+
+             let priceVal=0;
+             $( "[data-name=\'price\']" ).each(function( index ) {
+                 console.log( index + ": " + $( this ).text() );
+                 let pPrice=$('#order_form_products_0_price').val();
+                 let pCount=$('#order_form_products_0_price').val();
+                 priceVal=priceVal+pPrice*pCount;
+             });
+                     $('#order_form_declareValue').val(parseFloat(priceVal).toFixed(2));
+
                      var Express = 0;
                      if($('#order_form_orderType option:selected').val() == 2) {
                          Express = 1;
