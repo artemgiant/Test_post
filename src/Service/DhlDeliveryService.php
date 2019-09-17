@@ -44,10 +44,10 @@ class DhlDeliveryService
     public $dhlErrors;
     public $sendTo;
 
-    public $dhlfromCountry='US';
-    public $dhlFromZip="55430";
-    public $dhlfromCity="Minneapolis";
-    public $dhlfromStreet="2233 49th Ave North Suite 180";
+    public $dhlfromCountry='UA';
+    public $dhlFromZip="02225";
+    public $dhlfromCity="Kyiv";
+    public $dhlfromStreet="Honore de Balzac Street, 42/20";
 
     public $CourseDollar=27;
 
