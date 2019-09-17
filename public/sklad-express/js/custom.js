@@ -242,5 +242,18 @@ $(document).ready(function() {
     //
     // });
 
+    $(document).on('keypress',
+        '#order_form_sendDetailWeight, ' +
+        '#order_form_sendDetailLength, ' +
+        '#order_form_sendDetailWidth, ' +
+        '#order_form_sendDetailHeight, ' +
+        '.order_form_product_count, ' +
+        '.order_form_product_price',
+        function(event) {
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+
 });
 

@@ -312,24 +312,19 @@
                      + ',#address_form_ajax_house'
                      + ',#address_form_ajax_regionOblast'
                      + ',#address_form_ajax_zip'
-                     + ',#address_form_ajax_apartment'
+                     // + ',#address_form_ajax_apartment'
                      + ',#address_form_ajax_userFirstName'
                      + ',#address_form_ajax_userLastName'
                      + ',#address_form_ajax_phone'
                      + ',#address_form_ajax_aliasOfAddress'
 
                      ,function () {
-                         var pattern = new RegExp('^([a-zA-Z0-9+\\.\\,\\@,\\s]+)$'),
+                         var pattern = new RegExp('^([a-zA-Z0-9+\\.\\,\\-\\@,\\s]+)$'),
                              el =$(this).closest('.form-group');
-                         var massege_1 ="Пишите только на латыни.";
-                         if($('button[data-id=select_language]').attr('title')[0] == 'У'){
-                             massege_1 ="Пишіть тільки на латині.";
-                         }
+
                          if(!pattern.test( $(this).val())){
                              if(!el.find('span.text-danger')[0]){
-                                 el.append('<span class="message_error text-danger">'+massege_1+'</span>');
-                             }else{
-                                 el.find('.text-danger').text(massege_1);
+                                 el.append('<span class="message_error text-danger">{{ "Write latin only" | trans }}</span>');
                              }
                              $("button#saveaddress").addClass('disabled').attr({"disabled":true}).css({"cursor":"not-allowed"});
                          }else {
@@ -514,11 +509,14 @@
                                 if(Express){
                                 $('.preloaderR').fadeOut('slow');}
 
+                                el = $('#order_form_shippingCosts').closest('.form-group');
                                 if (res == false) {
                                     $('#order_form_shippingCosts').val('-');
+                                    el.append('<span class="message_error text-danger">{{ "Insufficient data for calculation" | trans }}</span>');
                                     return true;
                                 }
                                 $('#order_form_shippingCosts').val(res);
+                                el.find('span.text-danger').remove();
                                 return true;
                             },
                             error: function (xhr, ajaxOptions, thrownError) {
