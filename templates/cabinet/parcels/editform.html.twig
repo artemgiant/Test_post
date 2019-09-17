@@ -514,11 +514,14 @@
                                 if(Express){
                                 $('.preloaderR').fadeOut('slow');}
 
+                                el = $('#order_form_shippingCosts').closest('.form-group');
                                 if (res == false) {
                                     $('#order_form_shippingCosts').val('-');
+                                    el.append('<span class="message_error text-danger">{{ "Insufficient data for calculation" | trans }}</span>');
                                     return true;
                                 }
                                 $('#order_form_shippingCosts').val(res);
+                                el.find('span.text-danger').remove();
                                 return true;
                             },
                             error: function (xhr, ajaxOptions, thrownError) {

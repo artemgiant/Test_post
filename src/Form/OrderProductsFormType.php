@@ -48,7 +48,7 @@ class OrderProductsFormType extends AbstractType
             ])
             ->add('price', null, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control order_form_product_price',
                     'data-name'   => 'price',
 //                    'placeholder' => 'price',
                     'autocomplete' => 'off'],
@@ -57,7 +57,7 @@ class OrderProductsFormType extends AbstractType
             ])
             ->add('count', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control order_form_product_count',
                     'data-name'   => 'count',
 //                    'placeholder' => 'count_short',
                     'autocomplete' => 'off'],
