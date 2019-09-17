@@ -165,7 +165,7 @@ class LiqPayService
                      //   }
                         $order->setOrderStatus($orderStatus);
                         if (is_null($order->getTrNum())||(trim($order->getTrNum()) == '')) {
-                            $order->setTrNum("EP".($trLiqPay->getId()+57354658)."UA"); // this number supposed to be attached to the paid invoice
+                            $order->setTrNum("EP".($order->getId()+57354658)."UA"); // this number supposed to be attached to the paid invoice
                         }
                         $this->getEm()->persist($order);
                     }

@@ -43,8 +43,12 @@ class DhlDeliveryService
     public $dhlToCountry;
     public $dhlErrors;
     public $sendTo;
-    public $dhlfromCountry;
-    public $dhlFromZip;
+
+    public $dhlfromCountry='US';
+    public $dhlFromZip="55430";
+    public $dhlfromCity="Minneapolis";
+    public $dhlfromStreet="2233 49th Ave North Suite 180";
+
     public $CourseDollar=27;
 
     public $elType;
@@ -59,11 +63,11 @@ class DhlDeliveryService
     public function __construct($dhlSendBoxAddress = null)
     {
         if (!empty($dhlSendBoxAddress)) {
-            $this->dhlFromZip = $dhlSendBoxAddress['zip'];
-            $this->dhlfromCountry = $dhlSendBoxAddress['from'];
+           // $this->dhlFromZip = $dhlSendBoxAddress['zip'];
+           // $this->dhlfromCountry = $dhlSendBoxAddress['from'];
             $this->dhlToCountry = $dhlSendBoxAddress['to'];
-            $this->dhlfromCity = $dhlSendBoxAddress['city'];
-            $this->dhlfromStreet = $dhlSendBoxAddress['street'];
+           // $this->dhlfromCity = $dhlSendBoxAddress['city'];
+           // $this->dhlfromStreet = $dhlSendBoxAddress['street'];
         }
         if ($this->dhlSendBox) {
             $this->dhlSiteId = $this->dhlSiteIdTest;
