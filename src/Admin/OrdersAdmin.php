@@ -236,9 +236,14 @@ class OrdersAdmin extends AbstractAdmin
      * @param $order
      */
     public function preUpdate($order) {
+        /** @var  Order $order */
         $entityManager = $this->getModelManager()->getEntityManager($this->getClass());
         $currentStatus = $order->getOrderStatus();
         if(!empty($order->getOrderStatus())&&($order->getOrderStatus()->getStatus() == 'formed')){
+
+            if (empty($order->getTrNum())){
+                $order->setTrNum("EP".($order->getId()+57354658)."UA");
+            }
             $service = new SkladUsaService();
             $result = $service->sendOrderToSklad($order);
 

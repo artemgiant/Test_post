@@ -79,5 +79,7 @@
 
     {{ form_end(registrationForm) }}
      <a class="btn btn-block btn-secondary" href="{{url("user_login")}}">{{"Signup"|trans}}</a>
+        <br>
+     <a href="{{ path('connect_facebook_start') }}" class="sign-in-facebook">{{"Facebook sign in"|trans}}</a>
     </div>
 {% endblock %}
