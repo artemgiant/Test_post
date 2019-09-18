@@ -523,7 +523,8 @@ class ParcelsController extends CabinetController
                 $To = $Country_r->findOneBy(['id' => $Adress->getCountry()->getId()]);
                 //$From = $From->getShortName();
                 //$To = $To->getShortName();
-                $dhlSendBoxAddress = $this->my_address;
+                //$dhlSendBoxAddress = $this->my_address;
+                $dhlSendBoxAddress = [];
                // $dhlSendBoxAddress['from'] = $From;
                 $dhlSendBoxAddress['to'] = $To->getShortName();
                 $order->setSendDetailHeight($request->query->get('Height'));
