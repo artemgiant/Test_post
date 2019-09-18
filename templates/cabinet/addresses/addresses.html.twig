@@ -32,9 +32,7 @@
                                                 {% for item in items %}
                                                  <tr class="text-center">
                                                      <td>
-                                                         {{ item.userFirstName}} {{ item.userLastName }}
-                                                         <br>
-                                                         {{ item.country}}, {{ item.city }}
+                                                         {{ item.aliasOfAddress}}
                                                      </td>
                                                      <td>
                                                          {% if  item.street %}
