@@ -300,6 +300,7 @@ class DhlDeliveryService
         $result = @curl_exec($ch);
 
         $movies = new \SimpleXMLElement($result);
+        /* 18.09.2019 */
         if ($this->logged===true) error_log($xml." | ". PHP_EOL, 3, LOG_FILE1);
         if ($this->logged===true) error_log($result." | ". PHP_EOL, 3, LOG_FILE1);
         $GetQuoteResponse = $movies->GetQuoteResponse ?? false;
