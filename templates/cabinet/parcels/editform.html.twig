@@ -512,7 +512,14 @@
                                 el = $('#order_form_shippingCosts').closest('.form-group');
                                 if (res == false) {
                                     $('#order_form_shippingCosts').val('-');
-                                    el.append('<span class="message_error text-danger">{{ "Insufficient data for calculation" | trans }}</span>');
+
+                                    if(!el.find('span.text-danger')[0]){
+
+                                        el.append('<span class="message_error text-danger">{{ "Insufficient data for calculation" | trans }}</span>');
+                                    }else{
+                                        el.find('.text-danger').text('{{ "Insufficient data for calculation" | trans }}');
+                                    }
+
                                     return true;
                                 }
                                 $('#order_form_shippingCosts').val(res);
