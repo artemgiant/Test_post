@@ -191,7 +191,8 @@ class ParcelsController extends CabinetController
                 $Country_r = $this->getDoctrine()->getRepository(Country::class);
                 list($From,$To) = $Country_r->getShortNameCountry($this->my_address['country'],$order->getAddresses()->getCountry()->getId());
                 $One_order = $order;
-                $dhlSendBoxAddress = $this->my_address;
+               // $dhlSendBoxAddress = $this->my_address;
+                $dhlSendBoxAddress = [];
                 $dhlSendBoxAddress['from']=$From;
                 $dhlSendBoxAddress['to']=$To;
                 $Dlh = new DhlDeliveryService($dhlSendBoxAddress);
@@ -336,12 +337,14 @@ class ParcelsController extends CabinetController
                 $Country_r = $this->getDoctrine()->getRepository(Country::class);
                 list($From,$To) = $Country_r->getShortNameCountry($this->my_address['country'],$order->getAddresses()->getCountry()->getId());
                 $One_order = $order;
-                $dhlSendBoxAddress =$this->my_address;
+                //$dhlSendBoxAddress =$this->my_address;
+                $dhlSendBoxAddress =[];
                 $dhlSendBoxAddress['from']=$From;
                 $dhlSendBoxAddress['to']=$To;
                 $Dlh = new DhlDeliveryService($dhlSendBoxAddress);
 //                dd( $Dlh->getAccountId($One_order));
                 $FinalPrice = $Dlh->getDHLPrice($One_order);
+
                 if(!$FinalPrice){
                     $this->addFlash('errors','Вы превысили допустимое значения!');
                     return $this->redirectToRoute('post_parcels_create');
