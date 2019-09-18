@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="{{ asset("sklad-express/css/bootstrap.css") }}" id="bscss" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
         <link rel="stylesheet" href="{{ asset("sklad-express/css/app.css?ver=1") }}" id="maincss" />
-        <link rel="stylesheet" href="{{ asset("sklad-express/css/custom.css?ver={{ date().timestamp }}") }}"/>
+        <link rel="stylesheet" href="{{ asset("sklad-express/css/custom.css") }}"?ver={{ date().timestamp }}/>
 
         {% block stylesheets %}{% endblock %}
     </head>
@@ -48,7 +48,7 @@
         {#
         <script src="{{ asset("sklad-express/js/app.js") }}"></script>
         #}
-        <script src="{{ asset("sklad-express/js/custom.js?ver={{ date().timestamp }}") }}"></script>
+        <script src="{{ asset("sklad-express/js/custom.js") }}"?ver={{ date().timestamp }}></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
