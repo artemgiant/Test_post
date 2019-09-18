@@ -300,6 +300,7 @@ class DhlDeliveryService
         $result = @curl_exec($ch);
 
         $movies = new \SimpleXMLElement($result);
+        if ($this->logged===true) error_log($xml." | ". PHP_EOL, 3, LOG_FILE1);
         if ($this->logged===true) error_log($result." | ". PHP_EOL, 3, LOG_FILE1);
         $GetQuoteResponse = $movies->GetQuoteResponse ?? false;
         $BkgDetails1 = ($GetQuoteResponse) ? $GetQuoteResponse->BkgDetails ?? false : false;
