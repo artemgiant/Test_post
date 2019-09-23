@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-17T12:21:37.426+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190917122137_7837_de560e85-fc79-4232-870f-6d19619aa89a -->
+ | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-17T12:21:46.042+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190917122145_96ab_95775080-da72-4014-b140-291c19fb167e -->
+ | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-17T12:22:37.814+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190917122237_42d7_4e264272-3266-4bcb-a361-2622846d0c74 -->
+ | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-17T12:23:44.482+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190917122344_96ab_5d869a81-6976-4eb8-9c31-7e4ab5cc4e96 -->
+ | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-17T12:27:57.829+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190917122757_96ab_fa44042f-7958-476e-8b70-274d411357cc -->
+ | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-17T12:28:04.111+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190917122803_42d7_57e8123a-6f1e-48ec-8c54-ee4804543749 -->
+ | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-17T12:28:08.532+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190917122808_7837_7b39621a-e744-4dcf-b394-f8b021aa2b84 -->
+ | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-17T12:28:12.441+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190917122812_42d7_7c34a7a9-53d6-4574-bba6-54881c738158 -->
+ | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-17T12:28:21.017+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190917122820_42d7_ee0fbbbf-f98d-406a-8184-4d1a1808577f -->
+ | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-17T12:28:27.911+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190917122827_f701_0cfeb47d-e7b5-4cbe-b001-f72dbfc49562 -->
+ | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-17T12:28:33.330+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190917122833_42d7_6e511937-d355-4a1a-bb5d-25063ea96356 -->
+ | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-17T12:32:15.873+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190917123215_42d7_abab3091-6cf1-4e86-84bc-6682755b4e15 -->
+ | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-17T12:37:09.639+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190917123709_7837_e5fde90e-cc90-4c31-8750-bd486292d9de -->
+ | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-17T12:38:39.081+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190917123838_96ab_8dcb93e4-ddb5-43ee-8236-f900958b1d42 -->
+ | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-17T12:41:52.388+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190917124152_96ab_0ffa46cc-8094-4b1e-8dc2-13b4b1e436da -->
+ | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-17T15:16:28.511+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190917151628_7837_22e6b4f3-fe3e-4d7c-aa3d-376ff6313efc -->
+ | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-18T14:29:15.978+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190918142915_f701_147cb4c5-82a9-4758-901a-f6ec82f3e655 -->
+ | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-18T14:29:22.735+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190918142922_96ab_6290ad75-c244-4a3a-b478-05c6383ee086 -->
+ | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-18T14:29:28.704+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190918142928_f701_efcc8860-1dd7-40c8-8075-833ebe42ca16 -->
+ | 
+<?xml version="1.0" encoding="UTF-8"?><p:DCTRequest xmlns:p="http://www.dhl.com" xmlns:p1="http://www.dhl.com/datatypes" xmlns:p2="http://www.dhl.com/DCTRequestdatatypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="2.0" xsi:schemaLocation="http://www.dhl.com DCT-req.xsd"><GetQuote ><Request><ServiceHeader><MessageTime>2019-09-18T12:37:49+00:00</MessageTime><MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference><SiteID>v62_efrQQrWbM0</SiteID><Password>OvVIpOwqgZ</Password></ServiceHeader><MetaData><SoftwareName>3PV</SoftwareName><SoftwareVersion>6.2</SoftwareVersion></MetaData></Request><From><CountryCode>UA</CountryCode><Postalcode>02225</Postalcode><City>Kyiv</City></From><BkgDetails><PaymentCountryCode>US</PaymentCountryCode><Date>2019-09-18</Date><ReadyTime>PT10H21M</ReadyTime><ReadyTimeGMTOffset>+0000</ReadyTimeGMTOffset><DimensionUnit>CM</DimensionUnit><WeightUnit>KG</WeightUnit><Pieces><Piece><PieceID>12</PieceID><Height>1</Height><Depth>1</Depth><Width>1</Width><Weight>0.005</Weight></Piece></Pieces><PaymentAccountNumber>965305675</PaymentAccountNumber><IsDutiable>Y</IsDutiable><QtdShp><GlobalProductCode>P</GlobalProductCode></QtdShp></BkgDetails><To><CountryCode>AL</CountryCode><Postalcode>23546</Postalcode><City>AlboCity</City></To><Dutiable><DeclaredCurrency>USD</DeclaredCurrency><DeclaredValue>0</DeclaredValue></Dutiable></GetQuote></p:DCTRequest> | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-18T14:37:51.204+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190918143751_f701_d7ac69b2-492d-421c-9d39-f79615e5662a -->
+ | 
+<?xml version="1.0" encoding="UTF-8"?><p:DCTRequest xmlns:p="http://www.dhl.com" xmlns:p1="http://www.dhl.com/datatypes" xmlns:p2="http://www.dhl.com/DCTRequestdatatypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="2.0" xsi:schemaLocation="http://www.dhl.com DCT-req.xsd"><GetQuote ><Request><ServiceHeader><MessageTime>2019-09-18T12:37:56+00:00</MessageTime><MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference><SiteID>v62_efrQQrWbM0</SiteID><Password>OvVIpOwqgZ</Password></ServiceHeader><MetaData><SoftwareName>3PV</SoftwareName><SoftwareVersion>6.2</SoftwareVersion></MetaData></Request><From><CountryCode>UA</CountryCode><Postalcode>02225</Postalcode><City>Kyiv</City></From><BkgDetails><PaymentCountryCode>US</PaymentCountryCode><Date>2019-09-18</Date><ReadyTime>PT10H21M</ReadyTime><ReadyTimeGMTOffset>+0000</ReadyTimeGMTOffset><DimensionUnit>CM</DimensionUnit><WeightUnit>KG</WeightUnit><Pieces><Piece><PieceID>12</PieceID><Height>1</Height><Depth>1</Depth><Width>1</Width><Weight>0.005</Weight></Piece></Pieces><PaymentAccountNumber>965305675</PaymentAccountNumber><IsDutiable>Y</IsDutiable><QtdShp><GlobalProductCode>P</GlobalProductCode></QtdShp></BkgDetails><To><CountryCode>AL</CountryCode><Postalcode>23546</Postalcode><City>AlboCity</City></To><Dutiable><DeclaredCurrency>USD</DeclaredCurrency><DeclaredValue>0</DeclaredValue></Dutiable></GetQuote></p:DCTRequest> | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-18T14:37:56.958+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190918143756_42d7_55f26208-53b0-4b62-874a-9ee784e19b16 -->
+ | 
+<?xml version="1.0" encoding="UTF-8"?><p:DCTRequest xmlns:p="http://www.dhl.com" xmlns:p1="http://www.dhl.com/datatypes" xmlns:p2="http://www.dhl.com/DCTRequestdatatypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="2.0" xsi:schemaLocation="http://www.dhl.com DCT-req.xsd"><GetQuote ><Request><ServiceHeader><MessageTime>2019-09-18T12:38:01+00:00</MessageTime><MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference><SiteID>v62_efrQQrWbM0</SiteID><Password>OvVIpOwqgZ</Password></ServiceHeader><MetaData><SoftwareName>3PV</SoftwareName><SoftwareVersion>6.2</SoftwareVersion></MetaData></Request><From><CountryCode>UA</CountryCode><Postalcode>02225</Postalcode><City>Kyiv</City></From><BkgDetails><PaymentCountryCode>US</PaymentCountryCode><Date>2019-09-18</Date><ReadyTime>PT10H21M</ReadyTime><ReadyTimeGMTOffset>+0000</ReadyTimeGMTOffset><DimensionUnit>CM</DimensionUnit><WeightUnit>KG</WeightUnit><Pieces><Piece><PieceID>12</PieceID><Height>1</Height><Depth>1</Depth><Width>1</Width><Weight>0.005</Weight></Piece></Pieces><PaymentAccountNumber>965305675</PaymentAccountNumber><IsDutiable>Y</IsDutiable><QtdShp><GlobalProductCode>P</GlobalProductCode></QtdShp></BkgDetails><To><CountryCode>AL</CountryCode><Postalcode>23546</Postalcode><City>AlboCity</City></To><Dutiable><DeclaredCurrency>USD</DeclaredCurrency><DeclaredValue>0</DeclaredValue></Dutiable></GetQuote></p:DCTRequest> | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-18T14:38:01.288+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190918143801_7837_43a93aed-97a2-47af-a622-f602775bb69b -->
+ | 
+<?xml version="1.0" encoding="UTF-8"?><p:DCTRequest xmlns:p="http://www.dhl.com" xmlns:p1="http://www.dhl.com/datatypes" xmlns:p2="http://www.dhl.com/DCTRequestdatatypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="2.0" xsi:schemaLocation="http://www.dhl.com DCT-req.xsd"><GetQuote ><Request><ServiceHeader><MessageTime>2019-09-18T12:38:10+00:00</MessageTime><MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference><SiteID>v62_efrQQrWbM0</SiteID><Password>OvVIpOwqgZ</Password></ServiceHeader><MetaData><SoftwareName>3PV</SoftwareName><SoftwareVersion>6.2</SoftwareVersion></MetaData></Request><From><CountryCode>UA</CountryCode><Postalcode>02225</Postalcode><City>Kyiv</City></From><BkgDetails><PaymentCountryCode>US</PaymentCountryCode><Date>2019-09-18</Date><ReadyTime>PT10H21M</ReadyTime><ReadyTimeGMTOffset>+0000</ReadyTimeGMTOffset><DimensionUnit>CM</DimensionUnit><WeightUnit>KG</WeightUnit><Pieces><Piece><PieceID>12</PieceID><Height>1</Height><Depth>1</Depth><Width>1</Width><Weight>0.005</Weight></Piece></Pieces><PaymentAccountNumber>965305675</PaymentAccountNumber><IsDutiable>Y</IsDutiable><QtdShp><GlobalProductCode>P</GlobalProductCode></QtdShp></BkgDetails><To><CountryCode>AL</CountryCode><Postalcode>23546</Postalcode><City>AlboCity</City></To><Dutiable><DeclaredCurrency>USD</DeclaredCurrency><DeclaredValue>0</DeclaredValue></Dutiable></GetQuote></p:DCTRequest> | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-18T14:38:10.742+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190918143810_f701_73f686e4-db3a-4bdf-bd1a-05945bdf095b -->
+ | 
+<?xml version="1.0" encoding="UTF-8"?><p:DCTRequest xmlns:p="http://www.dhl.com" xmlns:p1="http://www.dhl.com/datatypes" xmlns:p2="http://www.dhl.com/DCTRequestdatatypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="2.0" xsi:schemaLocation="http://www.dhl.com DCT-req.xsd"><GetQuote ><Request><ServiceHeader><MessageTime>2019-09-18T12:38:14+00:00</MessageTime><MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference><SiteID>v62_efrQQrWbM0</SiteID><Password>OvVIpOwqgZ</Password></ServiceHeader><MetaData><SoftwareName>3PV</SoftwareName><SoftwareVersion>6.2</SoftwareVersion></MetaData></Request><From><CountryCode>UA</CountryCode><Postalcode>02225</Postalcode><City>Kyiv</City></From><BkgDetails><PaymentCountryCode>US</PaymentCountryCode><Date>2019-09-18</Date><ReadyTime>PT10H21M</ReadyTime><ReadyTimeGMTOffset>+0000</ReadyTimeGMTOffset><DimensionUnit>CM</DimensionUnit><WeightUnit>KG</WeightUnit><Pieces><Piece><PieceID>12</PieceID><Height>1</Height><Depth>1</Depth><Width>1</Width><Weight>0.005</Weight></Piece></Pieces><PaymentAccountNumber>965305675</PaymentAccountNumber><IsDutiable>Y</IsDutiable><QtdShp><GlobalProductCode>P</GlobalProductCode></QtdShp></BkgDetails><To><CountryCode>AL</CountryCode><Postalcode>23546</Postalcode><City>AlboCity</City></To><Dutiable><DeclaredCurrency>USD</DeclaredCurrency><DeclaredValue>0</DeclaredValue></Dutiable></GetQuote></p:DCTRequest> | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-18T14:38:14.620+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190918143814_7837_dd9966db-e25a-4560-b7b4-ab45bdebea89 -->
+ | 
+<?xml version="1.0" encoding="UTF-8"?><p:DCTRequest xmlns:p="http://www.dhl.com" xmlns:p1="http://www.dhl.com/datatypes" xmlns:p2="http://www.dhl.com/DCTRequestdatatypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="2.0" xsi:schemaLocation="http://www.dhl.com DCT-req.xsd"><GetQuote ><Request><ServiceHeader><MessageTime>2019-09-18T12:38:33+00:00</MessageTime><MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference><SiteID>v62_efrQQrWbM0</SiteID><Password>OvVIpOwqgZ</Password></ServiceHeader><MetaData><SoftwareName>3PV</SoftwareName><SoftwareVersion>6.2</SoftwareVersion></MetaData></Request><From><CountryCode>UA</CountryCode><Postalcode>02225</Postalcode><City>Kyiv</City></From><BkgDetails><PaymentCountryCode>US</PaymentCountryCode><Date>2019-09-18</Date><ReadyTime>PT10H21M</ReadyTime><ReadyTimeGMTOffset>+0000</ReadyTimeGMTOffset><DimensionUnit>CM</DimensionUnit><WeightUnit>KG</WeightUnit><Pieces><Piece><PieceID>12</PieceID><Height>1</Height><Depth>1</Depth><Width>1</Width><Weight>0.001</Weight></Piece></Pieces><PaymentAccountNumber>965305675</PaymentAccountNumber><IsDutiable>Y</IsDutiable><QtdShp><GlobalProductCode>P</GlobalProductCode></QtdShp></BkgDetails><To><CountryCode>AL</CountryCode><Postalcode>23546</Postalcode><City>AlboCity</City></To><Dutiable><DeclaredCurrency>USD</DeclaredCurrency><DeclaredValue>0</DeclaredValue></Dutiable></GetQuote></p:DCTRequest> | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-09-18T14:38:34.226+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420505</ConditionCode>
+                <ConditionData>The destination location is invalid. Please check the data.</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190918143834_42d7_dc0093c2-0466-4a5e-85e8-861392aebdc8 -->
+ | 
