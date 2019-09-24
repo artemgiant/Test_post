@@ -89,7 +89,14 @@ class GoogleTransitController extends AbstractController
 
                 $key = base64_decode($key);
 
-                $temp_file = tempnam(sys_get_temp_dir(), 'TMP_');
+//                $temp_file = tempnam(sys_get_temp_dir(), 'TMP_');
+
+                $tmp_dir = '../var/cache/tmp/';
+
+                if (!file_exists($tmp_dir)) {
+                    mkdir($tmp_dir, 0777);
+                }
+                $temp_file = tempnam($tmp_dir, 'TMP_');
                 file_put_contents($temp_file, $key);
 
                 $analytics = $this->initializeAnalytics($temp_file);
