@@ -167,7 +167,7 @@ class GoogleTransitController extends AbstractController
                     'ga:' . $ga_view_id,
                     Carbon::now()->subDays($period)->format('Y-m-d'),
                     'yesterday',
-                    'ga:sessions,ga:users,ga:newUsers,ga:pageviews,ga:sessionDuration,ga:exits', ['dimensions' => 'ga:source,ga:medium', 'sort'=>'-ga:sessions'],
+                    'ga:sessions,ga:users,ga:newUsers,ga:pageviews,ga:sessionDuration,ga:exits', ['dimensions' => 'ga:source,ga:medium', 'sort'=>'-ga:sessions', 'max-results' => 25],
                 );
 
                 $visitors_labels = [];
