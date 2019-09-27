@@ -101,6 +101,9 @@ class GoogleTransitController extends AbstractController
 
                 $analytics = $this->initializeAnalytics($temp_file);
 
+                // https://developers.google.com/analytics/devguides/reporting/core/v3/common-queries
+                // https://ga-dev-tools.appspot.com/dimensions-metrics-explorer/#
+
                 //Daily Active Users
                 $dau_1_day =  $analytics->data_ga->get(
                     'ga:' . $ga_view_id,
@@ -167,7 +170,63 @@ class GoogleTransitController extends AbstractController
                     'ga:' . $ga_view_id,
                     Carbon::now()->subDays($period)->format('Y-m-d'),
                     'yesterday',
-                    'ga:sessions,ga:users,ga:newUsers,ga:pageviews,ga:sessionDuration,ga:exits', ['dimensions' => 'ga:source,ga:medium', 'sort'=>'-ga:sessions'],
+                    'ga:sessions,ga:users,ga:newUsers,ga:pageviews,ga:sessionDuration,ga:exits', ['dimensions' => 'ga:source,ga:medium', 'sort'=>'-ga:sessions', 'max-results' => 25],
+                );
+
+                //Referals
+                $referals = $analytics->data_ga->get(
+                    'ga:' . $ga_view_id,
+                    Carbon::now()->subDays($period)->format('Y-m-d'),
+                    'yesterday',
+                    'ga:pageviews,ga:sessionDuration,ga:exits', ['dimensions' => 'ga:source', 'sort'=>'-ga:pageviews', 'filters' => 'ga:medium==referral', 'max-results' => 25],
+                );
+
+                //Targets
+                $targets = $analytics->data_ga->get(
+                    'ga:' . $ga_view_id,
+                    Carbon::now()->subDays($period)->format('Y-m-d'),
+                    'yesterday',
+                    'ga:entrances,ga:bounces', ['dimensions' => 'ga:landingPagePath', 'sort'=>'-ga:entrances', 'max-results' => 25],
+                );
+
+                //PopularContent
+                $popular_content = $analytics->data_ga->get(
+                    'ga:' . $ga_view_id,
+                    Carbon::now()->subDays($period)->format('Y-m-d'),
+                    'yesterday',
+                    'ga:pageviews,ga:uniquePageviews,ga:timeOnPage,ga:bounces,ga:entrances,ga:exits', ['dimensions' => 'ga:pagePath', 'sort'=>'-ga:pageviews', 'max-results' => 25],
+                );
+
+                //Ecommerce
+                $ecommerce = $analytics->data_ga->get(
+                    'ga:' . $ga_view_id,
+                    Carbon::now()->subDays($period)->format('Y-m-d'),
+                    'yesterday',
+                    'ga:sessions,ga:transactionRevenue,ga:transactions,ga:uniquePurchases', ['dimensions' => 'ga:source,ga:medium', 'sort'=>'-ga:sessions', 'max-results' => 25],
+                );
+
+                //Goals
+                $goals = $analytics->data_ga->get(
+                    'ga:' . $ga_view_id,
+                    Carbon::now()->subDays($period)->format('Y-m-d'),
+                    'yesterday',
+                    'ga:sessions,ga:goal1Starts,ga:goal1Completions,ga:goal1Value,ga:goalStartsAll,ga:goalCompletionsAll,ga:goalValueAll', ['dimensions' => 'ga:source,ga:medium', 'sort'=>'-ga:goalCompletionsAll', 'max-results' => 25],
+                );
+
+                //Social
+                $social = $analytics->data_ga->get(
+                    'ga:' . $ga_view_id,
+                    Carbon::now()->subDays($period)->format('Y-m-d'),
+                    'yesterday',
+                    'ga:socialInteractions,ga:uniqueSocialInteractions', ['dimensions' => 'ga:socialInteractionNetwork', 'sort'=>'-ga:socialInteractions', 'max-results' => 25],
+                );
+
+                //Adwords
+                $adwords = $analytics->data_ga->get(
+                    'ga:' . $ga_view_id,
+                    Carbon::now()->subDays($period)->format('Y-m-d'),
+                    'yesterday',
+                    'ga:adClicks', ['dimensions' => 'ga:adGroup'],
                 );
 
                 $visitors_labels = [];
@@ -217,11 +276,18 @@ class GoogleTransitController extends AbstractController
 
                 $dataset['user_types'] = $user_types['rows'];
                 $dataset['traffic_sources'] = $traffic_sources['rows'];
+                $dataset['referals'] = $referals['rows'];
+                $dataset['targets'] = $targets['rows'];
+                $dataset['popular_content'] = $popular_content['rows'];
+                $dataset['ecommerce'] = $targets['rows'];
+                $dataset['goals'] = $goals['rows'];
+                $dataset['social'] = $social['rows'];
+                $dataset['adwords'] = $adwords['rows'];
 
                 $response = new Response();
                 $response->setContent(json_encode($dataset));
-                $error_response->setStatusCode('200');
-                $error_response->headers->set('Content-Type', 'text/plain');
+                $response->setStatusCode('200');
+                $response->headers->set('Content-Type', 'text/plain');
 
                 unlink($temp_file);
                 return $response;
@@ -244,6 +310,11 @@ class GoogleTransitController extends AbstractController
                 $dataset['top_browser_data'] = [];
                 $dataset['user_types'] = [];
                 $dataset['traffic_sources'] = [];
+                $dataset['referals'] = [];
+                $dataset['targets'] = [];
+                $dataset['ecommerce'] = [];
+                $dataset['audience'] = [];
+
 
                 $error_response->setContent(json_encode($dataset));
 //                $error_response->setContent( $e->getMessage());
