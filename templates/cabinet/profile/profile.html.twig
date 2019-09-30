@@ -52,6 +52,24 @@
                 <div class="row py-4 justify-content-center">
                     <div class="col-12 col-sm-10">
                         <div class="form-group">
+                            {{ form_label(profileForm.lastName,"Last name"|trans, {
+                                "label_attr": {"class": "text-muted"}
+                            }) }}
+                            <div class="input-group with-focus">
+                                {% if profileForm.lastName.vars.errors|length %}
+                                    {{ form_widget(profileForm.lastName, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                {% else %}
+                                    {{ form_widget(profileForm.lastName) }}
+                                {% endif %}
+                                <div class="input-group-append">
+                             <span class="input-group-text text-muted bg-transparent border-left-0">
+                                 <em class="fa fa-user"></em>
+                             </span>
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(profileForm.lastName) }}</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             {{ form_label(profileForm.firstName,"First name"|trans, {
                                 "label_attr": {"class": "text-muted"}
                             }) }}
@@ -85,24 +103,6 @@
                              </span>
                                 </div>
                                 <div class="invalid-feedback">{{ form_errors(profileForm.secondName) }}</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{ form_label(profileForm.lastName,"Last name"|trans, {
-                                "label_attr": {"class": "text-muted"}
-                            }) }}
-                            <div class="input-group with-focus">
-                                {% if profileForm.lastName.vars.errors|length %}
-                                    {{ form_widget(profileForm.lastName, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
-                                {% else %}
-                                    {{ form_widget(profileForm.lastName) }}
-                                {% endif %}
-                                <div class="input-group-append">
-                             <span class="input-group-text text-muted bg-transparent border-left-0">
-                                 <em class="fa fa-user"></em>
-                             </span>
-                                </div>
-                                <div class="invalid-feedback">{{ form_errors(profileForm.lastName) }}</div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -164,7 +164,7 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    {{ form_label(profileForm.regionOblast,"Region"|trans, {
+                                    {{ form_label(profileForm.regionOblast,"Region Oblast"|trans, {
                                         "label_attr": {"class": "text-muted"}
                                     }) }}
                                     <div class="input-group with-focus">

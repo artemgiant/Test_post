@@ -18,6 +18,7 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Form\Type\ModelType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Sonata\AdminBundle\Form\Type\AdminType;
 
@@ -201,7 +202,10 @@ class OrdersAdmin extends AbstractAdmin
             ->add('sendDetailHeight')
             ->add('comment')
             ->add('email')
-            ->add('shipDate')
+//            ->add('shipDate',)
+            ->add('shipDate', DateType::class, [
+                'widget' => 'choice',
+            ])
 //            ->add('address')
             ->add('shippingCosts')
             ->add('deliveryStatus')
