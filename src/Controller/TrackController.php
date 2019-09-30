@@ -39,14 +39,20 @@ class TrackController extends CabinetController
                 ->findOneBy(['trNum'=>$trNum]);
             if ($order){
                 /* @var $order Order */
+                $companyToUSA=$this->getCompanyNameByTrNum($order->getSystemNum());
+                $companyInUSA=$this->getCompanyNameByTrNum($order->getSystemNumInUsa());
                 $tracksArray=array(
                     'nova-poshta'=>$order->getTrackingNumber(),
-                    "tousa_".$order->getCompanySendToUsa() =>$order->getSystemNum(),
-                    "inusa_".$order->getCompanySendInUsa() =>$order->getSystemNumInUsa()
+                    "tousa_".$companyToUSA =>$order->getSystemNum(),
+                    "inusa_".$companyInUSA =>$order->getSystemNumInUsa()
                 );
                 foreach($tracksArray as $carier=>$trackNum) {
                     if (empty($trackNum)) {
                         $mess[$carier] = [];
+                        continue;
+                    }
+                    if (empty($carier)) {
+                        $mess[] = [];
                         continue;
                     }
                     $carierCode=str_replace(["tousa_","inusa_"],'',$carier);
@@ -73,6 +79,25 @@ class TrackController extends CabinetController
             'items'=>$mess,
             'page_id'=>'post_find'
         ]);
+    }
+
+    public function getCompanyNameByTrNum($trNum){
+
+        $curier='';
+        if(preg_match("/^[0-9]{22}$/", trim($trNum)) && strlen (trim($trNum))==22) {
+            $curier="usps";
+        }
+        elseif(preg_match("/^[0-9]{10}$/", trim($trNum)) && strlen (trim($trNum))==10) {
+            $curier="dhl";
+        }
+        elseif(preg_match("/^[0-9]{13}$/", trim($trNum)) && strlen (trim($trNum))==13) {
+            $curier="apc";
+        }
+        elseif(preg_match("/^[0-9]{12}$/", trim($trNum)) && strlen (trim($trNum))==12) {
+            $curier="fedex";
+        }
+
+      return $curier;
     }
 
 }
