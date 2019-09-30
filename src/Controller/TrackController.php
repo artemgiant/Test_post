@@ -96,6 +96,9 @@ class TrackController extends CabinetController
         elseif(preg_match("/^[0-9]{12}$/", trim($trNum)) && strlen (trim($trNum))==12) {
             $curier="fedex";
         }
+        elseif (strlen (trim($trNum))==18) {
+            $curier="ups";
+        }
 
       return $curier;
     }

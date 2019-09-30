@@ -268,7 +268,7 @@ class Address
 
 
 
-        return implode(", ",$address);
+        return implode(" ",$address);
     }
 
     /**
