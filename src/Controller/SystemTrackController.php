@@ -31,7 +31,7 @@ class SystemTrackController extends AbstractController
         $Order->setOrderStatus($orderStatus);
             $companyTmp=$request->request->get('company',false);
 
-            $company = ($companyTmp && in_array(OrdersAdmin::CARRIER_CODES))?$companyTmp:'usps';
+            $company = ($companyTmp && in_array($companyTmp,OrdersAdmin::CARRIER_CODES))?$companyTmp:'usps';
             $Order->setCompanySendToUsa($company);
         $entityManager->persist($Order);
         $entityManager->flush();

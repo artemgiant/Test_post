@@ -257,7 +257,18 @@ class Address
      */
     public function getAddress(): ?string
     {
-        return $this->street.' str.,'.$this->apartment.'ap.';
+        //return $this->street.' str.,'.$this->apartment.'ap.';
+        $address = [];
+        if (!empty($this->street))
+            $address[]=$this->street;
+        if (!empty($this->house))
+            $address[]=$this->house;
+        if (!empty($this->apartment))
+            $address[]=$this->apartment;
+
+
+
+        return implode(", ",$address);
     }
 
     /**
