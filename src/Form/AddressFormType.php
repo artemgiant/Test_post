@@ -65,30 +65,30 @@ class AddressFormType extends AbstractType
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'street',
-                    'placeholder'=>'Enter street',
+                    'placeholder'=>'Enter adress',
                     'autocomplete'=>'off'],
-                'label'=>'street',
+                'label'=>'adress',
                 'required'=>true
             ])
-            ->add('house',null,[
-                'attr'=>[
-                    'class'=>'form-control border-right-0',
-                    'id'=>'zip',
-                    'placeholder'=>'Enter number house',
-                    'autocomplete'=>'off'],
-                'label'=>'house',
-                'required'=>true
-            ])
-            ->add('apartment',null,[
-                'attr'=>[
-                    'class'=>'form-control border-right-0',
-                    'id'=>'zip',
-                    'placeholder'=>'Enter number apartment',
-                    'autocomplete'=>'off'],
-                'label'=>'house',
-                'required'=>false,
-                'empty_data'=> ' ',
-            ])
+//            ->add('house',null,[
+//                'attr'=>[
+//                    'class'=>'form-control border-right-0',
+//                    'id'=>'zip',
+//                    'placeholder'=>'Enter number house',
+//                    'autocomplete'=>'off'],
+//                'label'=>'house',
+//                'required'=>true
+//            ])
+//            ->add('apartment',null,[
+//                'attr'=>[
+//                    'class'=>'form-control border-right-0',
+//                    'id'=>'zip',
+//                    'placeholder'=>'Enter number apartment',
+//                    'autocomplete'=>'off'],
+//                'label'=>'house',
+//                'required'=>false,
+//                'empty_data'=> ' ',
+//            ])
             ->add('userFirstName',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
