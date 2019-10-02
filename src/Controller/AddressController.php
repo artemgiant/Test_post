@@ -62,7 +62,6 @@ class AddressController extends CabinetController
         $address = new Address();
         $form = $this->createForm(AddressFormType::class, $address);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
 

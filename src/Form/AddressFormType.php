@@ -61,7 +61,7 @@ class AddressFormType extends AbstractType
                 'label'=>'zip',
                 'required'=>true
             ])
-            ->add('street',null,[
+            ->add('address',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'street',

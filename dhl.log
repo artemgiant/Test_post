@@ -654,3 +654,30 @@
         </Note>
     </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20190918143834_42d7_dc0093c2-0466-4a5e-85e8-861392aebdc8 -->
  | 
+<?xml version="1.0" encoding="UTF-8"?><p:DCTRequest xmlns:p="http://www.dhl.com" xmlns:p1="http://www.dhl.com/datatypes" xmlns:p2="http://www.dhl.com/DCTRequestdatatypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="2.0" xsi:schemaLocation="http://www.dhl.com DCT-req.xsd"><GetQuote ><Request><ServiceHeader><MessageTime>2019-10-02T16:09:12+03:00</MessageTime><MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference><SiteID>v62_efrQQrWbM0</SiteID><Password>OvVIpOwqgZ</Password></ServiceHeader><MetaData><SoftwareName>3PV</SoftwareName><SoftwareVersion>6.2</SoftwareVersion></MetaData></Request><From><CountryCode>UA</CountryCode><Postalcode>02225</Postalcode><City>Kyiv</City></From><BkgDetails><PaymentCountryCode>UA</PaymentCountryCode><Date>2019-10-02</Date><ReadyTime>PT10H21M</ReadyTime><ReadyTimeGMTOffset>+0300</ReadyTimeGMTOffset><DimensionUnit>CM</DimensionUnit><WeightUnit>KG</WeightUnit><Pieces><Piece><PieceID>12</PieceID><Height>234</Height><Depth>234</Depth><Width>234</Width><Weight>0.234</Weight></Piece></Pieces><PaymentAccountNumber>381113146</PaymentAccountNumber><IsDutiable>Y</IsDutiable><QtdShp><GlobalProductCode>P</GlobalProductCode></QtdShp></BkgDetails><To><CountryCode>US</CountryCode><Postalcode>asdf</Postalcode><City>adsf</City></To><Dutiable><DeclaredCurrency>USD</DeclaredCurrency><DeclaredValue>0</DeclaredValue></Dutiable></GetQuote></p:DCTRequest> | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-10-02T15:09:14.150+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#3</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <Note>
+            <ActionStatus>Failure</ActionStatus>
+            <Condition>
+                <ConditionCode>420506</ConditionCode>
+                <ConditionData>Postcode not found. Expected formats: &lt;country specific post code format&gt;</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>420000</ConditionCode>
+                <ConditionData>Data error</ConditionData>
+            </Condition>
+            <Condition>
+                <ConditionCode>220001</ConditionCode>
+                <ConditionData>Failure - request</ConditionData>
+            </Condition>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20191002150913_7837_2d13850e-ab6b-4cbf-a33b-8f3d77ebab88 -->
+ | 

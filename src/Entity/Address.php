@@ -95,30 +95,30 @@ class Address
      */
     private $zip;
 
-    /**
-     * @var string
-     *
-     * @Assert\NotBlank
-     *
-     * @ORM\Column(name="street", type="string")
-     */
-    private $street;
+//    /**
+//     * @var string
+//     *
+//     * @Assert\NotBlank
+//     *
+//     * @ORM\Column(name="street", type="string")
+//     */
+//    private $street;
 
-    /**
-     * @var string
-     *
-     * @Assert\NotBlank
-     *
-     * @ORM\Column(name="house", type="string")
-     */
-    private $house;
+//    /**
+//     * @var string
+//     *
+//     * @Assert\NotBlank
+//     *
+//     * @ORM\Column(name="house", type="string")
+//     */
+//    private $house;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="apartment", type="string", nullable=true)
-     */
-    private $apartment;
+//    /**
+//     * @var string
+//     *
+//     * @ORM\Column(name="apartment", type="string", nullable=true)
+//     */
+//    private $apartment;
 
     /**
      * @var string
@@ -257,21 +257,22 @@ class Address
      */
     public function getAddress(): ?string
     {
-        return $this->street.' str.,'.$this->apartment.'ap.';
+//        return $this->street.' str.,'.$this->apartment.'ap.';
+        return $this->address;
     }
 
     /**
      * @return Address
      */
-    public function setAddress(): Address
+    public function setAddress($address): Address
     {
-        $address = '';
-        if ($this->street)
-            $address.=$this->street.' str.';
-        if ($this->house)
-            $address.=', '.$this->house;
-        if ($this->apartment)
-            $address.=', ap. '.$this->apartment;
+//        $address = '';
+//        if ($this->street)
+//            $address.=$this->street.' str.';
+//        if ($this->house)
+//            $address.=', '.$this->house;
+//        if ($this->apartment)
+//            $address.=', ap. '.$this->apartment;
 
         $this->address = $address;
 
@@ -353,42 +354,42 @@ class Address
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getStreet(): ?string
-    {
-        return $this->street;
-    }
+//    /**
+//     * @return string
+//     */
+//    public function getStreet(): ?string
+//    {
+//        return $this->street;
+//    }
+//
+//    /**
+//     * @param string $street
+//     * @return Address
+//     */
+//    public function setStreet(string $street): Address
+//    {
+//        $this->street = $street;
+//        return $this;
+//    }
 
-    /**
-     * @param string $street
-     * @return Address
-     */
-    public function setStreet(string $street): Address
-    {
-        $this->street = $street;
-        return $this;
-    }
 
-
-    /**
-     * @return string
-     */
-    public function getHouse(): ?string
-    {
-        return $this->house;
-    }
-
-    /**
-     * @param string $house
-     * @return Address
-     */
-    public function setHouse(string $house): Address
-    {
-        $this->house = $house;
-        return $this;
-    }
+//    /**
+//     * @return string
+//     */
+//    public function getHouse(): ?string
+//    {
+//        return $this->house;
+//    }
+//
+//    /**
+//     * @param string $house
+//     * @return Address
+//     */
+//    public function setHouse(string $house): Address
+//    {
+//        $this->house = $house;
+//        return $this;
+//    }
 
     /**
      * @return string
@@ -462,23 +463,23 @@ class Address
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getApartment(): ?string
-    {
-        return $this->apartment;
-    }
-
-    /**
-     * @param string $apartment
-     * @return Address
-     */
-    public function setApartment(string $apartment): Address
-    {
-        $this->apartment = $apartment;
-        return $this;
-    }
+//    /**
+//     * @return string
+//     */
+//    public function getApartment(): ?string
+//    {
+//        return $this->apartment;
+//    }
+//
+//    /**
+//     * @param string $apartment
+//     * @return Address
+//     */
+//    public function setApartment(string $apartment): Address
+//    {
+//        $this->apartment = $apartment;
+//        return $this;
+//    }
 
     /**
      * @return string

@@ -35,18 +35,18 @@
                                                          {{ item.aliasOfAddress}}
                                                      </td>
                                                      <td>
-                                                         {% if  item.street %}
-                                                             {{ item.street }}  St.,
+                                                         {% if  item.address %}
+                                                             {{ item.address }}
                                                          {% endif %}
-                                                         {% if  item.house %}
-                                                             h.{{ item.house }},
-                                                         {% endif %}
-                                                         {% if  item.apartment %}
-                                                             Apt. {{ item.apartment }},
-                                                         {% endif %}
-                                                         {% if  item.zip %}
-                                                             {{ item.zip }}
-                                                         {% endif %}
+{#                                                         {% if  item.house %}#}
+{#                                                             h.{{ item.house }},#}
+{#                                                         {% endif %}#}
+{#                                                         {% if  item.apartment %}#}
+{#                                                             Apt. {{ item.apartment }},#}
+{#                                                         {% endif %}#}
+{#                                                         {% if  item.zip %}#}
+{#                                                             {{ item.zip }}#}
+{#                                                         {% endif %}#}
                                                      </td>
                                                      <td>{{ item.userFirstName}} {{ item.userLastName }}</td>
                                                      <td>{{ item.phone }}</td>

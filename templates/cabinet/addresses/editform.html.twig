@@ -114,21 +114,21 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            {{ form_label(addressForm.street,"Address"|trans, {
+                            {{ form_label(addressForm.address,"Address"|trans, {
                                 "label_attr": {"class": "text-muted"}
                             }) }}
                             <div class="input-group with-focus">
-                                {% if addressForm.street.vars.errors|length %}
-                                    {{ form_widget(addressForm.street, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                {% if addressForm.address.vars.errors|length %}
+                                    {{ form_widget(addressForm.address, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
                                 {% else %}
-                                    {{ form_widget(addressForm.street) }}
+                                    {{ form_widget(addressForm.address) }}
                                 {% endif %}
                                 <div class="input-group-append">
                              <span class="input-group-text text-muted bg-transparent border-left-0">
                                  <em class="fa fa-user"></em>
                              </span>
                                 </div>
-                                <div class="invalid-feedback">{{ form_errors(addressForm.street) }}</div>
+                                <div class="invalid-feedback">{{ form_errors(addressForm.address) }}</div>
                             </div>
                         </div>
                     </div>
