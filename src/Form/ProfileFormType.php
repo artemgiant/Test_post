@@ -134,16 +134,7 @@ class ProfileFormType extends AbstractType
                 'label'=>'regionOblast',
                 'required'=>true
             ])
-//            ->add('regionRayon',null,[
-//                'attr'=>[
-//                    'class'=>'form-control border-right-0',
-//                    'id'=>'country',
-//                    'placeholder'=>'Enter district',
-//                    'autocomplete'=>'off'],
-//                'label'=>'regionRayon',
-//                'required'=>false,
-//                'empty_data'=> ' ',
-//            ])
+
             ->add('city',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
@@ -162,33 +153,14 @@ class ProfileFormType extends AbstractType
                 'label'=>'zip',
                 'required'=>true
             ])
-            ->add('street',null,[
+            ->add('adress',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'street',
-                    'placeholder'=>'Enter street',
+                    'placeholder'=>'Enter adress',
                     'autocomplete'=>'off'],
-                'label'=>'street',
+                'label'=>'adress',
                 'required'=>true
-            ])
-            ->add('house',null,[
-                'attr'=>[
-                    'class'=>'form-control border-right-0',
-                    'id'=>'zip',
-                    'placeholder'=>'Enter number house',
-                    'autocomplete'=>'off'],
-                'label'=>'house',
-                'required'=>true
-            ])
-            ->add('apartment',null,[
-                'attr'=>[
-                    'class'=>'form-control border-right-0',
-                    'id'=>'apartment',
-                    'placeholder'=>'Enter number apartment',
-                    'autocomplete'=>'off'],
-                'label'=>'apartment',
-                'required'=>false,
-                'empty_data'=> ' ',
             ])
             ->add('save_avatar', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-block btn-primary mt-3 mx-auto d-block'],

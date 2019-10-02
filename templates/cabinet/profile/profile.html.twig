@@ -204,7 +204,7 @@
                             </div>
                         </div>
                         <div class="row py-4 justify-content-center">
-                            <div class="col-lg-3">
+                            <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ form_label(profileForm.regionOblast,"ZIP"|trans, {
                                         "label_attr": {"class": "text-muted"}
@@ -224,63 +224,23 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-6">
                                 <div class="form-group">
-                                    {{ form_label(profileForm.street,"Street"|trans, {
+                                    {{ form_label(profileForm.adress,"Address"|trans, {
                                         "label_attr": {"class": "text-muted"}
                                     }) }}
                                     <div class="input-group with-focus">
-                                        {% if profileForm.street.vars.errors|length %}
-                                            {{ form_widget(profileForm.street, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
+                                        {% if profileForm.adress.vars.errors|length %}
+                                            {{ form_widget(profileForm.adress, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
                                         {% else %}
-                                            {{ form_widget(profileForm.street) }}
+                                            {{ form_widget(profileForm.adress) }}
                                         {% endif %}
                                         <div class="input-group-append">
                              <span class="input-group-text text-muted bg-transparent border-left-0">
                                  <em class="fa fa-user"></em>
                              </span>
                                         </div>
-                                        <div class="invalid-feedback">{{ form_errors(profileForm.street) }}</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="form-group">
-                                    {{ form_label(profileForm.house,"Number of house"|trans, {
-                                        "label_attr": {"class": "text-muted"}
-                                    }) }}
-                                    <div class="input-group with-focus">
-                                        {% if profileForm.house.vars.errors|length %}
-                                            {{ form_widget(profileForm.house, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
-                                        {% else %}
-                                            {{ form_widget(profileForm.house) }}
-                                        {% endif %}
-                                        <div class="input-group-append">
-                             <span class="input-group-text text-muted bg-transparent border-left-0">
-                                 <em class="fa fa-user"></em>
-                             </span>
-                                        </div>
-                                        <div class="invalid-feedback">{{ form_errors(profileForm.house) }}</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="form-group">
-                                    {{ form_label(profileForm.apartment,"Number of apartment"|trans, {
-                                        "label_attr": {"class": "text-muted"}
-                                    }) }}
-                                    <div class="input-group with-focus">
-                                        {% if profileForm.apartment.vars.errors|length %}
-                                            {{ form_widget(profileForm.apartment, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
-                                        {% else %}
-                                            {{ form_widget(profileForm.apartment) }}
-                                        {% endif %}
-                                        <div class="input-group-append">
-                             <span class="input-group-text text-muted bg-transparent border-left-0">
-                                 <em class="fa fa-user"></em>
-                             </span>
-                                        </div>
-                                        <div class="invalid-feedback">{{ form_errors(profileForm.apartment) }}</div>
+                                        <div class="invalid-feedback">{{ form_errors(profileForm.adress) }}</div>
                                     </div>
                                 </div>
                             </div>
