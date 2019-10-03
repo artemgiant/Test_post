@@ -61,33 +61,14 @@ class AddressSenderFormType extends AbstractType
                 'label'=>'zip',
                 'required'=>true
             ])
-            ->add('street',null,[
+            ->add('address',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
                     'id'=>'street',
-                    'placeholder'=>'Enter street',
+                    'placeholder'=>'Enter address',
                     'autocomplete'=>'off'],
-                'label'=>'street',
+                'label'=>'address',
                 'required'=>true
-            ])
-            ->add('house',null,[
-                'attr'=>[
-                    'class'=>'form-control border-right-0',
-                    'id'=>'zip',
-                    'placeholder'=>'Enter number house',
-                    'autocomplete'=>'off'],
-                'label'=>'house',
-                'required'=>true
-            ])
-            ->add('apartment',null,[
-                'attr'=>[
-                    'class'=>'form-control border-right-0',
-                    'id'=>'apartment',
-                    'placeholder'=>'Enter number apartment',
-                    'autocomplete'=>'off'],
-                'label'=>'apartment',
-                'required'=>false,
-                'empty_data'=>' '
             ])
             ->add('userFirstName',null,[
                 'attr'=>[

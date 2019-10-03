@@ -70,7 +70,7 @@ class AddressesAdmin extends AbstractAdmin
             ->add('city')
             ->add('regionOblast')
             ->add('regionRayon')
-            ->add('street')
+            ->add('address')
             ->add('userFirstName')
             ->add('userSecondName')
             ->add('userLastName')

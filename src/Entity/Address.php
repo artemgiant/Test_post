@@ -552,6 +552,6 @@ class Address
      */
     public function __toString(): string
     {
-        return trim($this->street.' '.$this->house.' '.$this->apartment.' '.$this->city.' '.$this->zip.' '.$this->regionOblast.' '.$this->regionRayon);
+        return trim($this->address.' '.$this->city.' '.$this->zip.' '.$this->regionOblast.' '.$this->regionRayon);
     }
 }
