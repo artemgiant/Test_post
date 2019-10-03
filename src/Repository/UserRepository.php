@@ -38,7 +38,7 @@ class UserRepository extends ServiceEntityRepository
     public function getMyAddress($user_id)
     {
         $qr = $this->createQueryBuilder('u')
-            ->select('a.id', 'u.firstName', 'u.lastName', 'a.zip', 'c.name as country', 'a.city','a.adress')
+            ->select('a.id', 'u.firstName', 'u.lastName', 'a.zip', 'c.name as country', 'a.city','a.address')
             ->join('u.addresses', 'a')
             ->join('a.country', 'c')
             ->where('u.id = :user_id AND a.isMyAddress = 1')

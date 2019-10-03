@@ -68,7 +68,6 @@ class FindController extends CabinetController
             }
         }
 
-
         return $this->render('cabinet/find/index.html.twig', [
             'user' => $this->user,
             'errors'=>implode($errors,'</br>'),

@@ -43,10 +43,10 @@ class CabinetController extends AbstractController
 
     public function getMyAddress($user_id)
     {
+
         $result = $this->getDoctrine()
             ->getRepository(User::class)
             ->getMyAddress($user_id);
-
         if (!$result)
             return ' ';
         $result['address'] = '';
