@@ -43,20 +43,20 @@ class CabinetController extends AbstractController
 
     public function getMyAddress($user_id)
     {
+
         $result = $this->getDoctrine()
             ->getRepository(User::class)
             ->getMyAddress($user_id);
-
         if (!$result)
             return ' ';
         $result['address'] = '';
 
-        if ($result['street'])
-            $result['address'].= 'ул. '.$result['street'];
-        if ($result['house'])
-            $result['address'].= ', д. '.$result['house'];
-        if ($result['apartment'])
-            $result['address'].= ', кв. '.$result['apartment'];
+//        if ($result['street'])
+//            $result['address'].= 'ул. '.$result['street'];
+//        if ($result['house'])
+//            $result['address'].= ', д. '.$result['house'];
+//        if ($result['apartment'])
+//            $result['address'].= ', кв. '.$result['apartment'];
 
         return $result;
     }

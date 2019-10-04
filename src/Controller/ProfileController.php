@@ -44,10 +44,9 @@ class ProfileController extends CabinetController
             $user->regionRayon=$userAdress->getRegionRayon();
             $user->city=$userAdress->getCity();
             $user->zip= $userAdress->getZip();
-            $user->street=$userAdress->getStreet();
-            $user->house= $userAdress->getHouse();
-            $user->apartment=$userAdress->getApartment();
+            $user->adress = $userAdress->getAddress();
         }
+
         $form = $this->createForm(ProfileFormType::class, $this->user);
         $form->handleRequest($request);
 
@@ -78,9 +77,8 @@ class ProfileController extends CabinetController
                 ->setRegionRayon($userData->regionRayon)
                 ->setCity($userData->city)
                 ->setZip($userData->zip)
-                ->setStreet($userData->street)
-                ->setHouse($userData->house)
-                ->setApartment($userData->apartment)
+                ->setAddress($userData->adress);
+                $userAdress
                 ->setUserFirstName($userData->getFirstName())
                 ->setUserLastName($userData->getLastName())
                 ->setUserSecondName($userData->getSecondName())

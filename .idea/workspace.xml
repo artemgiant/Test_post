@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91a85653-892f-47c4-a97b-7078f0bf1d44" name="Default Changelist" comment="Правки">
+    <list default="true" id="7ecac9fd-3794-435a-9190-193823a05041" name="Default Changelist" comment="fix send">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Admin/InvoicesAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin/InvoicesAdmin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Admin/OrderPraidAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin/OrderPraidAdmin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dhl.log" beforeDir="false" afterPath="$PROJECT_DIR$/dhl.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AddressController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AddressController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CabinetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CabinetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ParcelsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ParcelsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Address.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Address.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/AddressFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/AddressFormType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/cabinet/addresses/addresses.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cabinet/addresses/addresses.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/cabinet/addresses/editform.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cabinet/addresses/editform.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/cabinet/addresses/modalAddress.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cabinet/addresses/modalAddress.html.twig" afterDir="false" />
     </list>
-    <list id="4ab66892-cb2a-4693-93c3-d83899f4cb28" name="1 part success" comment="" />
-    <list id="f470e423-89ba-4faa-aaa4-56d3f5f7a59f" name="Auth work" comment="" />
-    <list id="1b88e834-6b85-4e79-8377-b94da244af6a" name="data send" comment="" />
-    <list id="2af2bd25-1bcc-44f6-94bc-a272bc19cb6d" name="Facebook auth ready" comment="" />
-    <list id="dc60f876-6618-45e9-8ba7-c7432563dd65" name="Facebook works" comment="" />
-    <list id="97f63bda-6840-48ff-a2d6-57fe0a6fb47c" name="Facebook works clear" comment="" />
-    <list id="3def7c0a-b64f-487d-b00b-7abe3bfaffed" name="fix facebook" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -457,7 +457,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/Controller/ParcelsController.php</url>
-          <line>414</line>
+          <line>413</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -467,7 +467,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/Controller/ParcelsController.php</url>
-          <line>160</line>
+          <line>159</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

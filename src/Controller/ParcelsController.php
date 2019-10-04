@@ -54,7 +54,6 @@ class ParcelsController extends CabinetController
         $orders = $entityManager
             ->getRepository(Order::class)
             ->getNewOrders($this->user->getId());
-
         $ordersList = $paginator->paginate(
             $orders,
             $request->query->getInt('page', 1),

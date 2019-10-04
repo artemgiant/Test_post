@@ -464,15 +464,13 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      */
-    public $street;
+    public $adress;
 
     /**
      * @var string
      *
      */
 
-    public $house;
-    public  $apartment;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
