@@ -531,4 +531,12 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
+    /**
+     *
+     * @return string
+     */
+    public function getFullName(): string
+    {
+        return trim($this->firstName.' '.$this->lastName.' '.$this->secondName);
+    }
 }

@@ -38,7 +38,8 @@ class SkladUsaService
         $data = new ArrayCollection();
 
         $data->epOrderId = $order->getId();
-        $data->receiverName = $order->getAddresses()->getFullName();
+        //$data->receiverName = $order->getAddresses()->getFullName();
+        $data->receiverName = $order->getUser()->getFullName();
         $data->receiverEmail = $order->getUser()->getEmail();
         $data->receiverAddress = $order->getAddresses()->getAddress();
         $data->receiverCity = $order->getAddresses()->getCity();
