@@ -105,3 +105,8 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Admin, label: OrdersPraid }
         public: true
+
+    expressAuthorize:
+            class: App\Service\AuthorizeDotNetService
+            calls:
+                - [setContainer, ["@service_container"]]
