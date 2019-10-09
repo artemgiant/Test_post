@@ -161,6 +161,10 @@
                                                                 <div class="liq-pay-button">
                                                                     {{ liqPayForm | raw }}
                                                                 </div>
+                                                                {% set authorizeToken=authorizeservice.getTokenToForm(invoice.price,invoice.id) %}
+                                                                <div class="authorize-button">
+                                                                    <input type="text" id="inputtoken{{invoice.id }}" value="{{ authorizeToken }}"/>
+                                                                </div>
                                                                 {% if invoice.comment is not empty %}
                                                                     <p>{{ invoice.comment }}</p>
                                                                 {% endif %}
@@ -170,6 +174,7 @@
                                                                     <p class="badge badge-danger">{{ 'Need Paid' | trans}}: {{ invoice.price }} &#8372;</p>
                                                                 {% endif %}
                                                                 <input type="button" id="" class="payment-btn btn btn-outline-success liq-pay-button-change" value="{{ "Pay" | trans }}" />
+                                                                <input type="button" id="" class="btn btn-outline-success authorize-button-change" onclick="AuthorizeNetPopup.openPopup({{invoice.id }})" value="{{ "Pay authorize" | trans }}" />
                                                             {% endif %}
 
                                                         {% endfor %}
@@ -182,6 +187,7 @@
                                         {% endif %}
                                     </tr>
                                 {% endfor %}
+                                {% include 'authorize_dot_net/popupOuter.html.twig' %}
                             {% else %}
                                 <tr>
                                     <td colspan="3">{{ "No parcel" | trans}}</td>

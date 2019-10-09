@@ -30,7 +30,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
 use App\Service\LiqPayService;
-
+use App\Service\AuthorizeDotNetService;
 
 //use Swift_Message;
 /**
@@ -43,7 +43,7 @@ class ParcelsController extends CabinetController
      * new orders list
      * @Route("/", name="post_parcels")
      */
-    public function parcelsAction(Request $request, PaginatorInterface $paginator, LiqPayService $liqPay ): Response
+    public function parcelsAction(Request $request, PaginatorInterface $paginator, LiqPayService $liqPay ,AuthorizeDotNetService $authorizeservice): Response
     {
         $this->getTemplateData();
         $this->optionToTemplate['page_id']='post_parcels';

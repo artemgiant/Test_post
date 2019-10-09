@@ -63,6 +63,12 @@ class Invoices
     private $isPaid = false;
 
     /**
+     * @var string
+     * @ORM\Column(name="form_token", type="string", length=4096, nullable=true)
+     */
+    public $formToken;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -192,4 +198,22 @@ class Invoices
     }
 
     public $order;
+
+    /**
+     * @return string
+     */
+    public function getFormToken()
+    {
+        return $this->formToken;
+    }
+
+    /**
+     * @param string $formToken
+     * @return $this
+     */
+    public function setFormToken($formToken)
+    {
+        $this->formToken = $formToken;
+        return $this;
+    }
 }

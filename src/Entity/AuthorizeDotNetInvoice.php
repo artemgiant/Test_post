@@ -77,12 +77,6 @@ class AuthorizeDotNetInvoice
     public $payPalLink;
 
     /**
-     * @var Listing
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Listing", mappedBy="authorizeDotNetInvoice")
-     */
-    public $listing;
-
-    /**
      * @var boolean
      * @ORM\Column(name="is_no_comission", type="boolean", nullable=true)
      */
@@ -263,24 +257,6 @@ class AuthorizeDotNetInvoice
      */
     public function preUpdate() {
         $this->updatedAt = new \DateTime();
-    }
-
-    /**
-     * @return Listing
-     */
-    public function getListing()
-    {
-        return $this->listing;
-    }
-
-    /**
-     * @param Listing $listing
-     * @return $this
-     */
-    public function setListing($listing)
-    {
-        $this->listing = $listing;
-        return $this;
     }
 
     /**

@@ -4,13 +4,19 @@ namespace  App\Service;
 
 use App\Entity\AuthorizeDotNetInvoice;
 use App\Entity\Invoices;
+use App\Entity\TransactionAutorize;
 use App\Entity\User;
 use Doctrine\ORM\EntityManager;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+
+use Doctrine\ORM\EntityManagerInterface;
+use Twig\Environment;
 define("AUTHORIZE_ERROR_LOG", getcwd() . "/../authorizeErrors.log");
 
 class AuthorizeDotNetService
@@ -21,11 +27,16 @@ class AuthorizeDotNetService
     private $requestStack;
 
     private $auth;
+    private $user;
 
     private $transaction;
     private $settings;
     private $baseUrl;
     private $refId;
+        /** @var EntityManagerInterface $em */
+    private $em;
+    private $route;
+    private $twig;
 
     private $id     = '6Zu4b25V4';
     //private $key    = '6QQJ346P98feERc3';
@@ -67,19 +78,17 @@ class AuthorizeDotNetService
      * AuthorizeDotNetService constructor.
      * @param RequestStack $requestStack
      */
-    public function __construct( RequestStack $requestStack)
+    public function __construct( EntityManagerInterface $em,RequestStack $requestStack,TokenStorageInterface $tokenStorage,UrlGeneratorInterface $router,Environment $twig)
     {
         $this->requestStack = $requestStack;
+        $this->em = $em;
+        $this->route=$router;
+        $this->twig = $twig;
 
         $this->setAuth($this->id, $this->key);
-
+        $this->user = ($tokenStorage->getToken())?$tokenStorage->getToken()->getUser():null;
         $request = $this->baseUrl = $this->requestStack->getCurrentRequest();
         $this->setBaseUrlFromRequest($request);
-    }
-
-    public function setContainer (ContainerInterface $container)
-    {
-        $this->container = $container;
     }
 
     /**
@@ -171,9 +180,9 @@ class AuthorizeDotNetService
                     "settingName" => "hostedPaymentReturnOptions",
                     "settingValue" => json_encode([
                         "showReceipt"   => false,
-                        "url"           => $this->baseUrl . $this->container->get('router')->generate('sonata_admin_dashboard'),
+                        "url"           => $this->baseUrl . $this->route->generate('post_dashboard'),
                         "urlText"       => "Continue",
-                        "cancelUrl"     => $this->baseUrl . $this->container->get('router')->generate('sonata_admin_dashboard'),
+                        "cancelUrl"     => $this->baseUrl . $this->route->generate('post_dashboard'),
                         "cancelUrlText" => "Cancel"
                     ])
     			],
@@ -211,7 +220,7 @@ class AuthorizeDotNetService
                 ],
                 [
                     "settingName" => "hostedPaymentIFrameCommunicatorUrl",
-                    "settingValue" => "{\"url\": \"{$this->baseUrl}{$this->container->get('router')->generate('auth_iframe_communicator')}\"}"
+                    "settingValue" => "{\"url\": \"{$this->baseUrl}{$this->route->generate('auth_iframe_communicator')}\"}"
 //                    "settingValue" => "{\"url\": \"{$this->baseUrl}{$this->container->get('router')->generate('auth_inner_popup')}\"}"
                 ]
            ]
@@ -394,70 +403,6 @@ class AuthorizeDotNetService
         return $this->sendRequest('getTransactionDetailsRequest', $data);
     }
 
-    public function processWebHookCallback($response) {
-
-        $response = $this->decode($response);
-
-        $this->pre($response);
-
-        if( !isset($response['eventType']) )
-            throw new \InvalidArgumentException('eventType is empty');
-
-        $eventType = $response['eventType'];
-
-        $baseString = 'net.authorize.';
-
-        switch(true) {
-            case strpos($eventType, $baseString . 'customer.subscription') !== false :
-                $method = 'processCustomerWebHookCallback';
-                break;
-            case strpos($eventType, $baseString . 'customer') !== false :
-                $method = 'processCustomerSubscriptionWebHookCallback';
-                break;
-//            case strpos($eventType, $baseString . 'payment.capture.created') !== false : // prod
-//            case strpos($eventType, $baseString . 'payment.authcapture.created') !== false : //test
-            case strpos($eventType, $baseString . 'payment') !== false : //test
-                $method = 'processPaymentWebHookCallback';
-                break;
-            default:
-                throw new \InvalidArgumentException('eventType is not known');
-        }
-
-        return $this->$method($response);
-    }
-
-    /**
-     * Process already decoded payment response
-     *
-     * @param $response
-     * @return mixed
-     */
-    public function processPaymentWebHookCallback($response) {
-        $log_file = getcwd() . "/../auhtorizeDotNet.log";
-        if( !isset($response['payload']) )
-            throw new \InvalidArgumentException('payload is empty');
-
-        if( !isset($response['payload']['responseCode']) )
-            throw new \InvalidArgumentException('responseCode is empty');
-
-        if( !isset($response['payload']['id']) )
-            throw new \InvalidArgumentException('id is empty');
-
-
-        if( $response['payload']['responseCode'] != 1 && $response['payload']['responseCode'] != 4 )
-            return false;
-
-        $transactionResponse = $this->getTransactionDetails($response['payload']['id']);
-        error_log(print_r($transactionResponse,true) . PHP_EOL, 3, $log_file);
-        $this->pre($transactionResponse);
-
-        $shopfy=$this->isShopfy($transactionResponse);
-
-        if( !isset($transactionResponse['transrefId']) || $shopfy ) // external transaction
-            $this->processExternalTransaction($transactionResponse);
-        else
-            $this->processInternalTransaction($transactionResponse);
-    }
 
     /**
      * @param $response
@@ -495,107 +440,80 @@ class AuthorizeDotNetService
         return $this;
     }
 
-    public function isShopfy($transactionResponse)
-    {
-        $shopfy=false;
-        $transaction=$transactionResponse['transaction']??false;
-        if ($transaction){
-            $solution=$transaction['solution']??false;
-            if ($solution){
-                $solutionname=$solution['name']??false;
-                if ($solutionname && $solutionname=='Shopify'){
-                    $shopfy=true;
+
+
+
+
+    public function storePaymentData() {
+        $raw_post_data = file_get_contents('php://input');
+
+        $data = json_decode($raw_post_data, true);
+        error_log("----------SAVE-----------", 3, AUTHORIZE_ERROR_LOG);
+        error_log(print_r($data, true) . PHP_EOL, 3, AUTHORIZE_ERROR_LOG);
+        /* @var TransactionAutorize $trAutorize */
+        $trAutorize =$this->getEm()->getRepository(TransactionAutorize::class)->findOneBy(['number'=>$data['order_id']]);
+
+        if (empty($trAutorize)) {
+            /** @var TransactionAutorize $trAutorize */
+            $trAutorize = new TransactionAutorize();
+            $trAutorize->setCreatedAt(new \DateTime());
+            $trAutorize->setNumber($data['transaction']['transId']);
+            $amount=$data['transaction']['authAmount']??0;
+            $receiverCommission=$data['receiver_commission']??0;
+            $trAutorize->setSum($amount-$receiverCommission);
+            $billTo = $data['transaction']['billTo'];
+
+
+            $trAutorize
+                ->setFirstName($billTo['firstName'] ?? '')
+                ->setLastName($billTo['lastName'] ?? '')
+                ->setPhoneNumber($billTo['phoneNumber'] ?? '')
+           ;
+            $trAutorize->setLiqpayOrderId('');
+            $trAutorize->setStatus('success');
+            $trAutorize->setLiqpayInfo(json_encode($data));
+            $this->getEm()->persist($trAutorize);
+            $this->getEm()->flush([$trAutorize]);
+            $arrTmp = explode("_", $data['transrefId']);
+            $userTmp=null;
+
+            if ($arrTmp[0] == 'EXPRESSINVOICE' && count($arrTmp) >= 2) {
+
+                if (isset($arrTmp[1]) && !empty($arrTmp[1])) {
+                    $orderId = (int)$arrTmp[1];
+
+                    error_log("---------- USER ID -----------", 3, AUTHORIZE_ERROR_LOG);
+                    error_log($orderId . PHP_EOL, 3, AUTHORIZE_ERROR_LOG);
+                    /* @var $order Order */
+                    $invoice = $this->getEm()->getRepository(Invoices::class)->find($orderId);
+                    /* @var $invoice Invoices */
+                    $order = ($invoice && $invoice->getOrderId())?$invoice->getOrderId():false;
+
+                    if ($order) {
+                        $trAutorize->setUser($order->getUser());
+                        $trAutorize->setInvoice($invoice);
+                        $invoice->setIsPaid(true);
+//                        $invoice->setTrNum("EP".($trLiqPay->getId()+57354658)."UA"); // this method is not implemented for invoices yet. uncomment when ready.
+                        $this->getEm()->persist($trAutorize);
+                        $this->getEm()->flush();
+
+                        $orderInvoices = $this->getEm()->getRepository(Invoices::class)->findBy(['orderId'=>$order->getId()]);
+                        $orderStatus = $this->getEm()->getRepository(OrderStatus::class)->findOneBy(['status'=>'paid']);
+                        // foreach ($orderInvoices as $orderInvoice) {
+                        //     if (!$orderInvoice->isPaid()) {
+                        //        $orderStatus = $this->getEm()->getRepository(OrderStatus::class)->findOneBy(['status'=>'new']);
+                        //      }
+                        //   }
+                        $order->setOrderStatus($orderStatus);
+                        if (is_null($order->getTrNum())||(trim($order->getTrNum()) == '')) {
+                            $order->setTrNum("EP".($order->getId()+57354658)."UA"); // this number supposed to be attached to the paid invoice
+                        }
+                        $this->getEm()->persist($order);
+                    }
                 }
             }
-        }
-        return $shopfy;
-    }
-
-    /**
-     * @param $transactionResponse
-     */
-    protected function processExternalTransaction($transactionResponse) {
-
-        /** @var EntityManager $em */
-        $em = $this->container->get('doctrine')->getManager();
-
-        if( !isset($transactionResponse['transaction']) )
-            throw new \InvalidArgumentException('transaction is empty');
-
-        if( !isset($transactionResponse['transaction']['order']) )
-            throw new \InvalidArgumentException('order is empty');
-
-
-        if( !isset($transactionResponse['transaction']['order']['invoiceNumber']) )
-            throw new \InvalidArgumentException('invoiceNumber is empty');
-
-        $user=null;
-        $lot=false;
-        $shopfy=$this->isShopfy($transactionResponse);
-
-        if ($shopfy===false) {
-            if (strpos($transactionResponse['transaction']['order']['invoiceNumber'], self::DELIMITER) === false)
-                throw new \InvalidArgumentException('no delimiter found');
-
-            list($partnerCode, $orderId) = explode(self::DELIMITER, $transactionResponse['transaction']['order']['invoiceNumber']);
-
-
-
-            $user = $em->getRepository('AppBundle:User')->findOneBy([
-                'partnerCode' => $partnerCode
-            ]);
-
-            if (!$user) {
-                throw new \LogicException('user not found by partner code');
-            }
-        }else{
-           $lot=$this->getShopfyLot($transactionResponse);
-           if ($lot) $user=$lot->getUser();
-        }
-
-        $oldTransaction = $this->getTransactionByNumber($transactionResponse['transaction']['transId'] ?? '');
-
-        $transaction = $oldTransaction ?? new Transaction();
-        $transaction
-            ->setTransactionDate($transactionResponse['transaction']['submitTimeUTC'] ?? '')
-            ->setTrackingNumber('')
-            ->setNumber($transactionResponse['transaction']['transId'] ?? '')
-            ->setUser($user)
-            ->setName('Authorize External')
-            ->setTotalSum($transactionResponse['transaction']['authAmount'])
-            ->setInterimSum($transactionResponse['transaction']['authAmount'])
-            ->setType(Transaction::TYPE_AUTHORIZE_DOT_NET)
-            ->setPaymentStatus(Transaction::PAYMENT_STATUS_PENDING)
-            ->setCustomerIp($transactionResponse['transaction']['customerIP'] ?? '')
-            ->setAddressVerificationStatus($transactionResponse['transaction']['AVSResponse'] ?? '')
-            ->setCardCodeStatus($transactionResponse['transaction']['cardCodeResponse'] ?? '')
-            ->setFraudAction($transactionResponse['transaction']['FDSFilterAction'] ?? '')
-            ->setFraudFilters(implode(', ', array_map(function($item) {
-                return $item['name'];
-            }, $transactionResponse['transaction']['FDSFilters'] ?? [])))
-        ;
-
-        if ($shopfy)
-            $transaction->setInvoiceNumber($transactionResponse['transaction']['order']['invoiceNumber']);
-        if ($lot) $transaction->setLot($lot);
-
-        $this->processBillToDataToTransactionFromResponse($transaction, $transactionResponse);
-
-        if( isset($transactionResponse['transaction']['customer']) )
-            $transaction->setPayedUserEmail($transactionResponse['transaction']['customer']['email'] ?? '');
-
-        $em->persist($transaction);
-
-        $em->flush();
-
-        // $transactionResponse['transaction']['responseCode']
-        // 1 - success
-        // 4 - fraud
-        $transactionResponseCode = $transactionResponse['transaction']['responseCode'] ?? 0;
-
-        $transferMoney = ($transactionResponseCode == 1);
-        if ($user){
-            $this->processTransactionCommissionsAndUserBalance($transaction, null, $transferMoney);
+            $this->getEm()->persist($trAutorize);
+            $this->getEm()->flush();
         }
     }
 
@@ -606,10 +524,10 @@ class AuthorizeDotNetService
 
         $invoiceId = $transactionResponse['transrefId'];
 
-        $em = $this->container->get('doctrine')->getManager();
+
 
         /** @var AuthorizeDotNetInvoice $invoice */
-        $invoice = $em->getRepository('AppBundle:AuthorizeDotNetInvoice')->find($invoiceId);
+        $invoice = $this->em->getRepository('AppBundle:AuthorizeDotNetInvoice')->find($invoiceId);
 
         if( !$invoice ) {
             throw new \LogicException('invoice not found');
@@ -618,7 +536,7 @@ class AuthorizeDotNetService
         $invoice->setIsPayed(true);
 
 
-        $em->persist($invoice);
+        $this->em->persist($invoice);
 
         $oldTransaction = $this->getTransactionByNumber($transactionResponse['transaction']['transId'] ?? '');
 
@@ -644,7 +562,7 @@ class AuthorizeDotNetService
 
         if($listing = $invoice->getListing()) {
             $listing->setStatus(true);
-            $em->persist($listing);
+            $this->em->persist($listing);
             $transaction
                 ->setListing($listing)
             ;
@@ -655,9 +573,9 @@ class AuthorizeDotNetService
         if( isset($transactionResponse['transaction']['customer']) )
             $transaction->setPayedUserEmail($transactionResponse['transaction']['customer']['email'] ?? '');
 
-        $em->persist($transaction);
+        $this->em->persist($transaction);
 
-        $em->flush();
+        $this->em->flush();
 
         // $transactionResponse['transaction']['responseCode']
         // 1 - success
@@ -669,18 +587,6 @@ class AuthorizeDotNetService
         $this->processTransactionCommissionsAndUserBalance($transaction, $invoice, $transferMoney);
     }
 
-    public function getShopfyLot($transactionResponse){
-        /** @var EntityManager $em */
-        $em = $this->container->get('doctrine')->getManager();
-        $transaction=$transactionResponse['transaction']??false;
-        $order=$transaction?($transaction['order']??false):false;
-        $invoiceNumber=$order?($order['invoiceNumber']??false):false;
-        if ($invoiceNumber)
-        $lot = $em->getRepository(Lot::class)
-            ->getLotByNumber($transactionResponse['transaction']['order']['invoiceNumber']);
-
-        return $lot??false;
-    }
     /**
      * @param Listing $listing
      * @return AuthorizeDotNetInvoice
@@ -858,9 +764,8 @@ class AuthorizeDotNetService
 
     public function getDonateInvoice() {
 
-        $em = $this->container->get('doctrine')->getManager();
 
-        $user = $em->getRepository('AppBundle:User')->findOneBy([
+        $user = $this->em->getRepository('AppBundle:User')->findOneBy([
             'username' => 'donate@skladusa.com'
         ]);
 
@@ -869,7 +774,7 @@ class AuthorizeDotNetService
         }
 
         /** @var AuthorizeDotNetInvoice $donateInvoice */
-        $donateInvoice = $em->getRepository('AppBundle:AuthorizeDotNetInvoice')->findOneBy([
+        $donateInvoice = $this->em->getRepository('AppBundle:AuthorizeDotNetInvoice')->findOneBy([
             'user' => $user
         ]);
 
@@ -885,9 +790,7 @@ class AuthorizeDotNetService
      */
     public function processTransactionCommissionsAndUserBalance($transaction, $invoice = null, $transferMoney = false) {
 
-        $em = $this->container->get('doctrine')->getManager();
 
-        $balanceService = $this->container->get('app.balance');
 
         $user = $transaction->getUser();
 
@@ -924,7 +827,7 @@ class AuthorizeDotNetService
             } else { // add standard commission and bonuses
 
                 /**  @var Settings $settings */
-                $settings = $em->getRepository('AppBundle:Settings')->find(1);
+                $settings = $this->em->getRepository('AppBundle:Settings')->find(1);
 
                 $interestRate = $settings->getPersentToSystem(); // commission to system
 
@@ -971,10 +874,10 @@ class AuthorizeDotNetService
             $transaction->setPaymentStatus(Transaction::PAYMENT_STATUS_COMPLETED);
         }
 
-        $em->persist($transaction);
-        $em->persist($user);
+        $this->em->persist($transaction);
+        $this->em->persist($user);
 
-        $em->flush();
+        $this->em->flush();
     }
 
     private function isUsa($country) {
@@ -1020,37 +923,107 @@ class AuthorizeDotNetService
         return $oldTransaction;
     }
 
-    public function makeAuthorizeDotNetInvoice($amount, $title, $user,$noComission=false) {
-        $invoice = new AuthorizeDotNetInvoice();
+    public function makeAuthorizeDotNetInvoice($amount, $title,$invoiceId, $user,$noComission=false) {
 
-        $invoice
-            ->setAmount($amount)
-            ->setTitle($title)
-            ->setUser($user)
-            ->setIsNoComission($noComission)
-        ;
+        /** @var Invoices $invoice */
+        $invoice=$this->em->getRepository(Invoices::class)
+            ->find($invoiceId);
+       if ($invoice ) {
 
-        $em = $this->container->get('doctrine')->getManager();
+           /** @var AuthorizeDotNetService $authDotNetService */
+           $token = $this
+               ->setTransaction($invoice->getPrice())
+               ->setInvoiceId('EXPRESSINVOICE_' . $invoiceId)
+               ->setPaymentSettings()
+               ->getToken();
 
-        $em->persist($invoice);
+           $invoice->setFormToken($token);
 
-        $em->flush();
+           $this->em->persist($invoice);
 
-        /** @var AuthorizeDotNetService $authDotNetService */
-        $token = $this
-            ->setTransaction($invoice->getAmount())
-            ->setInvoiceId($invoice->getId())
-            ->setPaymentSettings()
-            ->getToken()
-        ;
+           $this->em->flush();
 
-        $invoice->setFormToken($token);
-
-        $em->persist($invoice);
-
-        $em->flush();
-
-        return $invoice;
+           return $invoice;
+       }
+       elseif (!empty($invoice) && !empty( $invoice->getFormToken())) {
+           return $invoice;
+       }
+       else return null;
     }
+
+    /**
+     * @param  $summ float
+     * @param  $orderId string
+     * @return mixed
+     */
+    public function getPaymentForm($summ,$orderId) {
+
+        try {
+
+            if(
+                !$summ
+            ) {
+                throw new \Exception('Not valid data');
+            }
+
+            $title = "Expressposhta  pay from user #".$this->user->getId();
+
+
+            $invoice = $this->makeAuthorizeDotNetInvoice($summ, $title,$orderId, null,true);
+
+            $token =($invoice)?$invoice->getFormToken():null;
+
+            $view = $this->twig->render('authorize_dot_net/popupOuter.html.twig', [
+//                'buttonTitle'   => 'Pay!',
+                'orderId'      =>$orderId,
+                'token'         => $token
+            ]);
+
+
+
+        } catch (\Exception $e) {
+            $view = $e->getMessage();
+        }
+
+        return $view;
+    }
+
+    /**
+     * @param  $summ float
+     * @param  $orderId string
+     * @return mixed
+     */
+    public function getTokenToForm($summ,$orderId) {
+        $token=null;
+        try {
+
+            if(
+            !$summ
+            ) {
+                throw new \Exception('Not valid data');
+            }
+
+            $title = "Expressposhta  pay from user #".$this->user->getId();
+
+
+            $invoice = $this->makeAuthorizeDotNetInvoice($summ, $title,$orderId, null,true);
+
+            $token =($invoice)?$invoice->getFormToken():null;
+
+        } catch (\Exception $e) {
+            $token = $e->getMessage();
+        }
+
+        return $token;
+    }
+
+    /**
+     * @return EntityManager
+     */
+    protected function getEm()
+    {
+        return $this->em;
+    }
+
 }
 ?>
