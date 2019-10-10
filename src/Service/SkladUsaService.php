@@ -53,6 +53,7 @@ class SkladUsaService
         //$data->trackingNumberInUsa = $order->getSystemNumInUsa();
         $data->comment = $order->getComment();
         $data->address = $order->getAddresses()->getAddress();
+
         if($order->getOrderType()->getCode() == 'econom'){
             list($lbWeight,$ozWeight)=$this->getWeightInLb($order->getSendDetailWeight());
             $data->weightLb=$lbWeight??0;
@@ -68,7 +69,7 @@ class SkladUsaService
             $data->sendDetailHeight=$order->getSendDetailHeight();
         }
 
-
+        $data->orderType=$order->getOrderType()->getCode();
 
         $data->productsData = [];
         foreach ($order->getProducts() as $product) {
