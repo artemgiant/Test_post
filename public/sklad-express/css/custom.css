@@ -8,7 +8,8 @@
     line-height: 15px;
 }
 
-.liq-pay-button{
+.liq-pay-button,
+.authorize-button {
     visibility: hidden;
     height: 0px;
     width: 0px;

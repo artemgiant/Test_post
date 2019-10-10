@@ -23,4 +23,5 @@ return [
     Knp\Bundle\PaginatorBundle\KnpPaginatorBundle::class => ['all' => true],
     JMS\I18nRoutingBundle\JMSI18nRoutingBundle::class => ['all' => true],
     KnpU\OAuth2ClientBundle\KnpUOAuth2ClientBundle::class => ['all' => true],
+    jonasarts\Bundle\TCPDFBundle\TCPDFBundle::class => ['all' => true],
 ];

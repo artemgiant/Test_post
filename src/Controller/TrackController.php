@@ -25,11 +25,21 @@ class TrackController extends CabinetController
      */
     public function trackAction(Request $request, TrackingMoreService $trackingMore,$traknum): Response
     {
-
+$crierLink=[
+    'usps'=>"https://tools.usps.com/go/TrackConfirmAction?qtc_tLabels1=#num#",
+    'dhl'=>"https://www.dhl.com/en/express/tracking.html?AWB=#num#&brand=DHL",
+    //"apc"=>,
+    "fedex"=>"https://www.fedex.com/apps/fedextrack/?action=track&trackingnumber=#num#&cntry_code=us&locale=en_US",
+  //  "ups"=>,
+];
         $trNum=$traknum;
 
         $errors =[];
         $mess=[];
+        $urltousa="";
+        $trNumtousa="";
+        $urlinusa="";
+        $trNuminusa="";
         if ($trNum)
         {
             $entityManager = $this->getDoctrine()->getManager();
@@ -46,6 +56,8 @@ class TrackController extends CabinetController
                     "tousa_".$companyToUSA =>$order->getSystemNum(),
                     "inusa_".$companyInUSA =>$order->getSystemNumInUsa()
                 );
+
+
                 foreach($tracksArray as $carier=>$trackNum) {
                     if (empty($trackNum)) {
                         $mess[$carier] = [];
@@ -56,6 +68,16 @@ class TrackController extends CabinetController
                         continue;
                     }
                     $carierCode=str_replace(["tousa_","inusa_"],'',$carier);
+                    if (strpos($carier,"tousa_")!==false){
+                        $urltousa=($crierLink[$carierCode])?str_replace('#num#',$trackNum,$crierLink[$carierCode]):'';
+                        $trNumtousa=$trackNum;
+
+                    }
+                    if (strpos($carier,"inusa_")!==false){
+                        $urlinusa=($crierLink[$carierCode])?str_replace('#num#',$trackNum,$crierLink[$carierCode]):'';
+                        $trNuminusa=$trackNum;
+
+                    }
                     $info=$trackingMore->getSingleTrackingResult($carierCode,$trackNum,'ru');
                     $infoData=$info['data']??false;
                     if ($infoData && $infoDatatrack=$infoData["origin_info"]??false){
@@ -77,7 +99,11 @@ class TrackController extends CabinetController
             'errors'=>implode($errors,'</br>'),
             'trNum'=> $trNum,
             'items'=>$mess,
-            'page_id'=>'post_find'
+            'page_id'=>'post_find',
+            'urltousa'=>$urltousa,
+            'trNumtousa'=>$trNumtousa,
+            'urlinusa'=>$urlinusa,
+            'trNuminusa'=>$trNuminusa
         ]);
     }
 
