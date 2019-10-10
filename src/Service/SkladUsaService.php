@@ -18,8 +18,8 @@ class SkladUsaService
     protected $api_key = ''; // w
 
     protected $userId="2";
-//    protected $userToken="JWrsTqm4YCpXMvcPFxMUuHNTzrj1ML"; // for userId=2 http://localhost:8080
-    protected $userToken="Xubo5iNGuEeRiw4PSedfkdpH2ZyZYs"; // for userId=2 https://test.skladusa.com
+
+    protected $userToken="V9dVKudU11vbFbpsRYaDnbhTiEwIbt"; // for userId=30
 
     // Send Orders data from Expressposhta to Sklad
 
@@ -87,12 +87,14 @@ class SkladUsaService
             'Content-Length: ' . strlen($data_json)
         );
         $requestUrl = '';
+        /*
         if($order->getOrderType()->getCode() == 'econom'){
             $requestUrl = $this->api_base_url.$this->path_econom;
         }
+        */
         if($order->getOrderType()->getCode() == 'express'){
             $requestUrl = $this->api_base_url.$this->path_express;
-        }
+        }else $requestUrl = $this->api_base_url.$this->path_econom;
 
         $curlObj = curl_init();
         curl_setopt($curlObj, CURLOPT_URL,$requestUrl);

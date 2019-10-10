@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * OrderType
@@ -34,6 +37,11 @@ class OrderType
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PriceForDeliveryType", mappedBy="ordertype", cascade={"persist", "remove"})
+     */
+    private $pricetype;
 
     /**
      * @return int
@@ -80,6 +88,52 @@ class OrderType
         $this->name = $name;
 
         return $this;
+    }
+
+    public function __construct()
+    {
+        $this->pricetype = new ArrayCollection();
+    }
+
+
+    /**
+     * Add invoices
+     *
+     * @param PriceForDeliveryType $invoice
+     * @return OrderType
+     */
+    public function addPricetype(PriceForDeliveryType $invoice=null)
+    {
+        if ( !$invoice->getOrderId() instanceof PriceForDeliveryType ) {
+            $invoice->setOrderId($this);
+        }
+
+        if( !$this->pricetype->contains($invoice))
+        {
+            $this->pricetype->add($invoice);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove invoice
+     *
+     * @param PriceForDeliveryType $invoice
+     */
+    public function removePricetype(PriceForDeliveryType $invoice)
+    {
+        if ($invoice instanceof PriceForDeliveryType)
+            $this->pricetype->removeElement($invoice);
+    }
+
+    /**
+     * Get invoices
+     *
+     * @return Collection
+     */
+    public function getPricetype()
+    {
+        return $this->pricetype;
     }
 
     /**

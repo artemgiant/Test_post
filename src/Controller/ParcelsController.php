@@ -12,11 +12,13 @@ use App\Entity\OrderStatus;
 use App\Entity\OrderType;
 use App\Entity\PriceWeightEconom;
 use App\Entity\PriceWeightEconomVip;
+use App\Entity\PriceForDeliveryType;
 use App\Entity\DeliveryPrice;
 use App\Entity\OrderProducts;
 use App\Form\SupportType;
 use App\Service\DhlDeliveryService;
 use App\Service\SkladUsaService;
+use Doctrine\ORM\EntityManager;
 use Swift_Mailer;
 use Swift_SmtpTransport;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -510,10 +512,13 @@ class ParcelsController extends CabinetController
      */
     public function ajaxDhlPrice(Request $request)
     {
+
             if(!empty($request->query->get('Height'))
             && !empty($request->query->get('Length'))
             && !empty($request->query->get('Weight'))
             && !empty($request->query->get('Width'))){
+/** @var EntityManager $entityManager */
+                $entityManager = $this->getDoctrine()->getManager();
 
         $Country_r = $this->getDoctrine()->getRepository(Country::class);
         $Adress_r = $this->getDoctrine()->getRepository(Address::class);
@@ -536,6 +541,13 @@ class ParcelsController extends CabinetController
                 $order->setUser($this->getUser());
                 $order->setAddresses($Adress);
 
+                $deliveryType=$request->query->get('deliveryType',false);
+                if ($deliveryType){
+                    /** @var OrderType $deliveryType */
+                    $deliveryType=$entityManager->getRepository(OrderType::class)->find($deliveryType);
+                    $typeId=$deliveryType->getId();
+                    $pricetype=$deliveryType->getPricetype();
+                }
         if(!empty($request->query->get('Express'))){
             $Dlh = new DhlDeliveryService($dhlSendBoxAddress);
             $One_order = $order;
@@ -544,21 +556,33 @@ class ParcelsController extends CabinetController
         }
                 $weightPrice = 0;
                 if($request->query->get('Vip')) {
-                    $weightPrice = $this->getDoctrine()
-                        ->getRepository(PriceWeightEconomVip::class)
-                        ->findPriceByWeight((float)$request->query->get('Weight'));
-                    if (!$weightPrice) {
-                        $weightPrice->setPrice('-');
+                    if ($typeId==1) {
+                        $weightPriceEl = $this->getDoctrine()
+                            ->getRepository(PriceWeightEconomVip::class)
+                            ->findPriceByWeight((float)$request->query->get('Weight'));
+                    }else{
+                        $weightPriceEl = $this->getDoctrine()
+                            ->getRepository(PriceForDeliveryType::class)
+                            ->findPriceByWeight((float)$request->query->get('Weight'),true);
                     }
+                    if (!$weightPriceEl) {
+                        $weightPrice='-';
+                    }else $weightPrice=$weightPriceEl->getPrice();
                 } else {
-                    $weightPrice = $this->getDoctrine()
-                        ->getRepository(PriceWeightEconom::class)
-                        ->findPriceByWeight((float)$request->query->get('Weight'));
-                    if (!$weightPrice) {
-                        $weightPrice->setPrice('-');
+                    if ($typeId==1) {
+                        $weightPriceEl = $this->getDoctrine()
+                            ->getRepository(PriceWeightEconom::class)
+                            ->findPriceByWeight((float)$request->query->get('Weight'));
+                    }else{
+                        $weightPriceEl = $this->getDoctrine()
+                            ->getRepository(PriceForDeliveryType::class)
+                            ->findPriceByWeight((float)$request->query->get('Weight'));
                     }
+                    if (!$weightPriceEl) {
+                        $weightPrice='-';
+                    }else $weightPrice=$weightPriceEl->getPrice();
                 }
-        return new JsonResponse($weightPrice->getPrice());
+        return new JsonResponse($weightPrice);
     }
         return new JsonResponse('error');}
 

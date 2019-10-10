@@ -485,7 +485,7 @@
                      if($('#order_form_orderType option:selected').val() == 2) {
                          Express = 1;
                      }
-
+                     var deliveryType=$('#order_form_orderType option:selected').val();
 
                         $.ajax({
                             url: '{{ path("dhl_price") }}',
@@ -499,6 +499,7 @@
                                 'Weight': weight,
                                 'Express': Express,
                                 'Vip': Vip,
+                                'deliveryType':deliveryType
                             },
                             beforeSend: function () {
                                 if(Express){

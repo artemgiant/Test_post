@@ -182,6 +182,7 @@
 
                                                 {% elseif page_title != 'Send Parcels List' %}
                                                     <input type="button" id="" class="payment-btn btn btn-outline-success liq-pay-button-change disabled" value="{{ "Paid" | trans }}" />
+                                                    <a target="_blank" href="{{ url("generate_pdf_label",{"id":item.id}) }}" class="download-btn btn btn-outline-success " >{{ "Download Label" | trans }}</a>
                                                 {% endif %}
                                             </td>
                                         {% endif %}

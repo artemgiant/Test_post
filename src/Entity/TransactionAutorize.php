@@ -13,7 +13,7 @@ use App\Entity\Address;
 use App\Entity\Invoices;
 
 /**
- * @ORM\Table(name="transaction_liq_pay")
+ * @ORM\Table(name="transaction_authorize")
  * @ORM\Entity(repositoryClass="App\Repository\TransactionLiqPayRepository")
  * @ORM\HasLifecycleCallbacks()
  */

@@ -299,7 +299,7 @@ class AuthorizeDotNetService
      */
     private function setBaseUrlFromRequest($request = null) {
         if(!$request) {
-            $this->baseUrl = $this->container->getParameter('base_url');
+            $this->baseUrl ='https://system.expressposhta.com';
         } else {
             $s = $request->server->get('SERVER_NAME') ? 's' : '';
             $this->baseUrl = 'http' . $s . '://' . $request->server->get('SERVER_NAME');
