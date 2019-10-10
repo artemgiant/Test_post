@@ -172,7 +172,7 @@ class DefaultController extends CabinetController
                     'module_height' => 1 // height of a single module in points
                 );
 
-            $pdf->write2DBarcode('https://www.system.expressposhta.com/track/'.$trNum, 'QRCODE,H', 100, 10, 50, 50, $style, 'N');
+          //  $pdf->write2DBarcode('https://www.system.expressposhta.com/track/'.$trNum, 'QRCODE,H', 100, 10, 50, 50, $style, 'N');
             $pdf->Image(getcwd() . '/img/logo.png', 15, 10);
 if (empty($order->getUser())) die("No user");
             // set some text to print

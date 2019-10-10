@@ -186,7 +186,7 @@ Towarehouse: Склад
 Quantity: Кількість
 Save success: Зміни успішно збережені
 post_profile_from_address: Адреса відправника
-Payment: Оплати
+Payment: Оплатити LiqPay
 Payment List: Список оплат
 Nomer scheta: Номер рахунку
 Sposob oplaty: Спосіб оплати
@@ -265,5 +265,5 @@ formed: Формується
 PriceForType: Прайс на другие типы доставки
 Track your package1: Track your package
 Track your package2: Track your package
-Download Label: Download Label
-Pay authorize: Pay authorize
+Download Label: Завантажити лейбу
+Pay authorize: Оплатити картою

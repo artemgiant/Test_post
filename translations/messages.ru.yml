@@ -192,7 +192,7 @@ Not pay yet: Нет платежей
 No order: Нет посылок
 TN: ТН
 Type and hit enter ...: Введите и нажмите ввод ...
-Pay: Оплатить
+Pay: Оплатить LiqPay
 Paid: Оплачено
 count_short: К-во
 Cancel: Отмена
@@ -254,5 +254,5 @@ formed: Формируется
 PriceForType: Прайс на другие типы доставки
 Track your package1: Track your package
 Track your package2: Track your package
-Download Label: Download Label
-Pay authorize: Pay authorize
+Download Label: Скачать лейбу
+Pay authorize: Оплатить картой
