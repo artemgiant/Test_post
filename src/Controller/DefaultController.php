@@ -174,7 +174,7 @@ class DefaultController extends CabinetController
 
             $pdf->write2DBarcode('https://www.system.expressposhta.com/track/'.$trNum, 'QRCODE,H', 100, 10, 50, 50, $style, 'N');
             $pdf->Image(getcwd() . '/img/logo.png', 15, 10);
-
+if (empty($order->getUser())) die;
             // set some text to print
                 $shipperName=$order->getUser()->getFullName();
                 $shipperPhone=$order->getUser()->getPhone();
