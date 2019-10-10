@@ -178,10 +178,6 @@ if (empty($order->getUser())) die;
             // set some text to print
                 $shipperName=$order->getUser()->getFullName();
                 $shipperPhone=$order->getUser()->getPhone();
-            $shipper = <<<EOD
-  Shipper :                   Contact:
-  $shipperName                $shipperPhone    
-EOD;
 
 
 
@@ -198,6 +194,7 @@ EOD;
 
             /** @var Address $address */
             $address=$order->getAddresses();
+         if (empty($address)) die;
             $rName=$address->getFullName();
             $rPhone=$address->getPhone();
             $rAdress=$address->getAddress();
