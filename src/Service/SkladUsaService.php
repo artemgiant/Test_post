@@ -17,7 +17,7 @@ class SkladUsaService
     protected $path_express = '/api/order_expressposhta_express/';
     protected $api_key = ''; // w
 
-    protected $userId="2";
+    protected $userId="30";
 
     protected $userToken="V9dVKudU11vbFbpsRYaDnbhTiEwIbt"; // for userId=30
 
