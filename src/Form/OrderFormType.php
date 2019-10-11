@@ -71,8 +71,8 @@ class OrderFormType extends AbstractType
             ->add('orderType', EntityType::class, [
                 'class' => OrderType::class,
                 'placeholder' => 'Select type',
-                'choice_label' => 'code',
-                'choice_translation_domain' => 'messages',
+                'choice_label' => 'name',
+               // 'choice_translation_domain' => 'messages',
                 'required'=>true,
                 'attr'=>[
                     'class'=>'form-control',

@@ -4,6 +4,8 @@ namespace App\Service;
 
 
 use App\Entity\Order;
+use App\Entity\Settings;
+use Doctrine\ORM\EntityManagerInterface;
 
 define("LOG_FILE1", getcwd() . "/../dhl.log");
 /**
@@ -59,8 +61,10 @@ class DhlDeliveryService
      *
      * */
     private $container;
+    /** @var EntityManagerInterface  $em*/
+    private $em;
 
-    public function __construct($dhlSendBoxAddress = null)
+    public function __construct($dhlSendBoxAddress = null,EntityManagerInterface $em)
     {
         if (!empty($dhlSendBoxAddress)) {
            // $this->dhlFromZip = $dhlSendBoxAddress['zip'];
@@ -74,7 +78,7 @@ class DhlDeliveryService
             $this->dhlSitePass = $this->dhlSitePassTest;
             $this->dhlUrl = $this->dhlTestUrl;
         } else $this->dhlUrl = $this->dhlProdUrl;
-
+        $this->em = $em;
     }
 
 
@@ -323,10 +327,15 @@ class DhlDeliveryService
 
     public function markupAction($shipSumm = null, $isVip)
     {
+
         if($shipSumm==null){
             return false;
         }
-        $markup = ($isVip)?$this->VipMarkup: $this->Markup;
+
+        $settingsMarkup=$this->em->getRepository(Settings::class)->getDHLMarkup();
+        $markupNorm=$settingsMarkup['DHLMarkup']??40;
+        $vipMarkup=$settingsMarkup['DHLMarkupForVip']??20;
+        $markup = ($isVip)?$vipMarkup: $markupNorm;
         //return  round((($shipSumm + ($shipSumm * ($markup / 100)))*$this->CourseDollar),2);
         return  round((($shipSumm + ($shipSumm * ($markup / 100)))),2);
     }

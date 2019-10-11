@@ -112,3 +112,10 @@ services:
         tags:
         - { name: sonata.admin, manager_type: orm, group: Admin, label: PriceForType }
         public: true
+
+    admin.settings:
+            class: App\Admin\SettingsAdmin
+            arguments: [~, App\Entity\Settings, ~]
+            tags:
+            - { name: sonata.admin, manager_type: orm, group: Admin, label: SettingsAdmin }
+            public: true

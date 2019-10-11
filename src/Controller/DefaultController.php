@@ -17,7 +17,7 @@ use App\Service\LiqPayService;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 use App\Controller\CabinetController;
-
+use App\Service\DhlDeliveryService;
 
 class DefaultController extends CabinetController
 {
@@ -245,6 +245,15 @@ if (empty($order->getUser())) die("No user");
             $pdf->Output('example_002.pdf', 'I');
             }
         }
+    }
+
+    /**
+     * This is a regular Controller action.
+     *
+     * @Route("/test" )
+     */
+    public function test(Request $request,DhlDeliveryService $service){
+        $service->markupAction(10,false);
     }
 }
 
