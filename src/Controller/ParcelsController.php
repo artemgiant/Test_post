@@ -196,7 +196,7 @@ class ParcelsController extends CabinetController
                 $dhlSendBoxAddress = [];
                 $dhlSendBoxAddress['from']=$From;
                 $dhlSendBoxAddress['to']=$To;
-                $Dlh = new DhlDeliveryService($dhlSendBoxAddress);
+                $Dlh = new DhlDeliveryService($dhlSendBoxAddress,$entityManager);
 //                dd( $Dlh->getAccountId($One_order));
                 $FinalPrice = $Dlh->getDHLPrice($One_order);
                 if(!$FinalPrice){
@@ -342,7 +342,7 @@ class ParcelsController extends CabinetController
                 $dhlSendBoxAddress =[];
                 $dhlSendBoxAddress['from']=$From;
                 $dhlSendBoxAddress['to']=$To;
-                $Dlh = new DhlDeliveryService($dhlSendBoxAddress);
+                $Dlh = new DhlDeliveryService($dhlSendBoxAddress,$entityManager);
 //                dd( $Dlh->getAccountId($One_order));
                 $FinalPrice = $Dlh->getDHLPrice($One_order);
 
@@ -549,7 +549,7 @@ class ParcelsController extends CabinetController
                     $pricetype=$deliveryType->getPricetype();
                 }
         if(!empty($request->query->get('Express'))){
-            $Dlh = new DhlDeliveryService($dhlSendBoxAddress);
+            $Dlh = new DhlDeliveryService($dhlSendBoxAddress,$entityManager);
             $One_order = $order;
             $FinalPrice = $Dlh->getDHLPrice($One_order);
             return new JsonResponse($FinalPrice);
