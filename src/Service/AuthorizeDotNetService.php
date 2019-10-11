@@ -2,9 +2,8 @@
 
 namespace  App\Service;
 
-use App\Entity\AuthorizeDotNetInvoice;
 use App\Entity\Invoices;
-use App\Entity\TransactionAutorize;
+use App\Entity\TransactionLiqPay;
 use App\Entity\User;
 use Doctrine\ORM\EntityManager;
 
@@ -419,7 +418,7 @@ class AuthorizeDotNetService
     }
 
     /**
-     * @param AuthorizeDotNetInvoice $invoice
+     * @param Invoices $invoice
      * @return $this
      */
 
@@ -450,12 +449,12 @@ class AuthorizeDotNetService
         $data = json_decode($raw_post_data, true);
         error_log("----------SAVE-----------", 3, AUTHORIZE_ERROR_LOG);
         error_log(print_r($data, true) . PHP_EOL, 3, AUTHORIZE_ERROR_LOG);
-        /* @var TransactionAutorize $trAutorize */
-        $trAutorize =$this->getEm()->getRepository(TransactionAutorize::class)->findOneBy(['number'=>$data['order_id']]);
+        /* @var TransactionLiqPay $trAutorize */
+        $trAutorize =$this->getEm()->getRepository(TransactionLiqPay::class)->findOneBy(['number'=>$data['order_id']]);
 
         if (empty($trAutorize)) {
-            /** @var TransactionAutorize $trAutorize */
-            $trAutorize = new TransactionAutorize();
+            /** @var TransactionLiqPay $trAutorize */
+            $trAutorize = new TransactionLiqPay();
             $trAutorize->setCreatedAt(new \DateTime());
             $trAutorize->setNumber($data['transaction']['transId']);
             $amount=$data['transaction']['authAmount']??0;
