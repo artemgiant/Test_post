@@ -454,7 +454,8 @@
              var  vip = $('#order_form_userVip').val(),
                  max_weight = parseInt((vip == 1)?$('#order_form_maxWeightEconomVip').val():$('#order_form_maxWeightEconom').val());
              var  el =$('#order_form_sendDetailWeight').closest('.form-group');
-             if(parseInt($('#order_form_sendDetailWeight').val()) > max_weight && $('#order_form_orderType option:selected').val() == 1){
+
+             if(parseInt($('#order_form_sendDetailWeight').val()) > max_weight && $('#order_form_orderType option:selected').val() != 2){
                  console.log(el[0]);
                  var massege_1="Максимальный вес "+max_weight+"г.";
                  if($('button[data-id=select_language]').attr('title')[0] == 'У'){
