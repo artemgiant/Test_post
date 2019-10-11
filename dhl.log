@@ -681,3 +681,619 @@
         </Note>
     </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20191002150913_7837_2d13850e-ab6b-4cbf-a33b-8f3d77ebab88 -->
  | 
+<?xml version="1.0" encoding="UTF-8"?><p:DCTRequest xmlns:p="http://www.dhl.com" xmlns:p1="http://www.dhl.com/datatypes" xmlns:p2="http://www.dhl.com/DCTRequestdatatypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="2.0" xsi:schemaLocation="http://www.dhl.com DCT-req.xsd"><GetQuote ><Request><ServiceHeader><MessageTime>2019-10-11T17:41:37+02:00</MessageTime><MessageReference>SkladUSA_dhl_to_rate_shipment_#5</MessageReference><SiteID>v62_efrQQrWbM0</SiteID><Password>OvVIpOwqgZ</Password></ServiceHeader><MetaData><SoftwareName>3PV</SoftwareName><SoftwareVersion>6.2</SoftwareVersion></MetaData></Request><From><CountryCode>UA</CountryCode><Postalcode>02225</Postalcode><City>Kyiv</City></From><BkgDetails><PaymentCountryCode>US</PaymentCountryCode><Date>2019-10-11</Date><ReadyTime>PT10H21M</ReadyTime><ReadyTimeGMTOffset>+0200</ReadyTimeGMTOffset><DimensionUnit>CM</DimensionUnit><WeightUnit>KG</WeightUnit><Pieces><Piece><PieceID>12</PieceID><Height>12</Height><Depth>12</Depth><Width>12</Width><Weight>0.001</Weight></Piece></Pieces><PaymentAccountNumber>965305675</PaymentAccountNumber><IsDutiable>Y</IsDutiable><QtdShp><GlobalProductCode>P</GlobalProductCode></QtdShp></BkgDetails><To><CountryCode>US</CountryCode><Postalcode>99501</Postalcode><City>Huntsville</City></To><Dutiable><DeclaredCurrency>USD</DeclaredCurrency><DeclaredValue>0</DeclaredValue></Dutiable></GetQuote></p:DCTRequest> | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-10-11T17:41:33.585+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#5</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <BkgDetails>
+            <QtdShp>
+                <OriginServiceArea>
+                    <FacilityCode>IEV</FacilityCode>
+                    <ServiceAreaCode>IEV</ServiceAreaCode>
+                </OriginServiceArea>
+                <DestinationServiceArea>
+                    <FacilityCode>ANC</FacilityCode>
+                    <ServiceAreaCode>ANC</ServiceAreaCode>
+                </DestinationServiceArea>
+                <GlobalProductCode>P</GlobalProductCode>
+                <LocalProductCode>P</LocalProductCode>
+                <ProductShortName>EXPRESS WORLDWIDE</ProductShortName>
+                <LocalProductName>EXPRESS WORLDWIDE NONDOC</LocalProductName>
+                <NetworkTypeCode>TD</NetworkTypeCode>
+                <POfferedCustAgreement>N</POfferedCustAgreement>
+                <TransInd>Y</TransInd>
+                <PickupDate>2019-10-11</PickupDate>
+                <PickupCutoffTime>PT15H</PickupCutoffTime>
+                <BookingTime>PT13H</BookingTime>
+                <CurrencyCode>USD</CurrencyCode>
+                <ExchangeRate>0.916338</ExchangeRate>
+                <WeightCharge>19.000</WeightCharge>
+                <WeightChargeTax>0.000</WeightChargeTax>
+                <TotalTransitDays>4</TotalTransitDays>
+                <PickupPostalLocAddDays>0</PickupPostalLocAddDays>
+                <DeliveryPostalLocAddDays>0</DeliveryPostalLocAddDays>
+                <PickupNonDHLCourierCode> </PickupNonDHLCourierCode>
+                <DeliveryNonDHLCourierCode> </DeliveryNonDHLCourierCode>
+                <DeliveryDate>
+                    <DeliveryType>QDDC</DeliveryType>
+                    <DlvyDateTime>2019-10-15 11:59:00</DlvyDateTime>
+                    <DeliveryDateTimeOffset>+00:00</DeliveryDateTimeOffset>
+                </DeliveryDate>
+                <DeliveryTime>PT23H59M</DeliveryTime>
+                <DimensionalWeight>0.346</DimensionalWeight>
+                <WeightUnit>KG</WeightUnit>
+                <PickupDayOfWeekNum>5</PickupDayOfWeekNum>
+                <DestinationDayOfWeekNum>2</DestinationDayOfWeekNum>
+                <QuotedWeight>0.500</QuotedWeight>
+                <QuotedWeightUOM>KG</QuotedWeightUOM>
+                <QtdShpExChrg>
+                    <SpecialServiceType>FF</SpecialServiceType>
+                    <LocalServiceType>FF</LocalServiceType>
+                    <GlobalServiceName>FUEL SURCHARGE</GlobalServiceName>
+                    <LocalServiceTypeName>FUEL SURCHARGE</LocalServiceTypeName>
+                    <SOfferedCustAgreement>N</SOfferedCustAgreement>
+                    <ChargeCodeType>SCH</ChargeCodeType>
+                    <CurrencyCode>USD</CurrencyCode>
+                    <ChargeValue>1.710</ChargeValue>
+                    <QtdSExtrChrgInAdCur>
+                        <ChargeValue>1.710</ChargeValue>
+                        <CurrencyCode>USD</CurrencyCode>
+                        <CurrencyRoleTypeCode>BILLC</CurrencyRoleTypeCode>
+                    </QtdSExtrChrgInAdCur>
+                    <QtdSExtrChrgInAdCur>
+                        <ChargeValue>1.710</ChargeValue>
+                        <CurrencyCode>USD</CurrencyCode>
+                        <CurrencyRoleTypeCode>PULCL</CurrencyRoleTypeCode>
+                    </QtdSExtrChrgInAdCur>
+                    <QtdSExtrChrgInAdCur>
+                        <ChargeValue>1.570</ChargeValue>
+                        <ChargeTaxRate>0.000</ChargeTaxRate>
+                        <CurrencyCode>EUR</CurrencyCode>
+                        <CurrencyRoleTypeCode>BASEC</CurrencyRoleTypeCode>
+                    </QtdSExtrChrgInAdCur>
+                </QtdShpExChrg>
+                <PricingDate>2019-10-11</PricingDate>
+                <ShippingCharge>20.710</ShippingCharge>
+                <TotalTaxAmount>0.000</TotalTaxAmount>
+                <QtdSInAdCur>
+                    <CurrencyCode>USD</CurrencyCode>
+                    <CurrencyRoleTypeCode>BILLC</CurrencyRoleTypeCode>
+                    <WeightCharge>19.000</WeightCharge>
+                    <TotalAmount>20.710</TotalAmount>
+                    <TotalTaxAmount>0.000</TotalTaxAmount>
+                    <WeightChargeTax>0.000</WeightChargeTax>
+                </QtdSInAdCur>
+                <QtdSInAdCur>
+                    <CurrencyCode>USD</CurrencyCode>
+                    <CurrencyRoleTypeCode>PULCL</CurrencyRoleTypeCode>
+                    <WeightCharge>19.000</WeightCharge>
+                    <TotalAmount>20.710</TotalAmount>
+                    <TotalTaxAmount>0.000</TotalTaxAmount>
+                    <WeightChargeTax>0.000</WeightChargeTax>
+                </QtdSInAdCur>
+                <QtdSInAdCur>
+                    <ExchangeRate>0.916338</ExchangeRate>
+                    <CurrencyCode>EUR</CurrencyCode>
+                    <CurrencyRoleTypeCode>BASEC</CurrencyRoleTypeCode>
+                    <WeightCharge>17.410</WeightCharge>
+                    <TotalAmount>18.980</TotalAmount>
+                    <TotalTaxAmount>0.000</TotalTaxAmount>
+                    <WeightChargeTax>0.000</WeightChargeTax>
+                </QtdSInAdCur>
+                <PickupWindowEarliestTime>09:00:00</PickupWindowEarliestTime>
+                <PickupWindowLatestTime>19:00:00</PickupWindowLatestTime>
+                <BookingCutoffOffset>PT2H</BookingCutoffOffset>
+            </QtdShp>
+        </BkgDetails>
+        <Srvs>
+            <Srv>
+                <GlobalProductCode>P</GlobalProductCode>
+                <MrkSrv>
+                    <LocalProductCode>P</LocalProductCode>
+                    <ProductShortName>EXPRESS WORLDWIDE</ProductShortName>
+                    <LocalProductName>EXPRESS WORLDWIDE NONDOC</LocalProductName>
+                    <ProductDesc>EXPRESS WORLDWIDE NONDOC</ProductDesc>
+                    <NetworkTypeCode>TD</NetworkTypeCode>
+                    <POfferedCustAgreement>N</POfferedCustAgreement>
+                    <TransInd>Y</TransInd>
+                    <LocalProductCtryCd>US</LocalProductCtryCd>
+                    <GlobalServiceType>P</GlobalServiceType>
+                    <LocalServiceName>EXPRESS WORLDWIDE NONDOC</LocalServiceName>
+                </MrkSrv>
+                <MrkSrv>
+                    <LocalProductCode>P</LocalProductCode>
+                    <ProductShortName>EXPRESS WORLDWIDE</ProductShortName>
+                    <LocalProductName>EXPRESS WORLDWIDE NONDOC</LocalProductName>
+                    <ProductDesc>EXPRESS WORLDWIDE NONDOC</ProductDesc>
+                    <NetworkTypeCode>TD</NetworkTypeCode>
+                    <POfferedCustAgreement>N</POfferedCustAgreement>
+                    <TransInd>Y</TransInd>
+                    <LocalProductCtryCd>UA</LocalProductCtryCd>
+                    <GlobalServiceType>P</GlobalServiceType>
+                    <LocalServiceName>EXPRESS WORLDWIDE NONDOC</LocalServiceName>
+                </MrkSrv>
+                <MrkSrv>
+                    <LocalServiceType>FF</LocalServiceType>
+                    <GlobalServiceName>FUEL SURCHARGE</GlobalServiceName>
+                    <LocalServiceTypeName>FUEL SURCHARGE</LocalServiceTypeName>
+                    <SOfferedCustAgreement>N</SOfferedCustAgreement>
+                    <ChargeCodeType>SCH</ChargeCodeType>
+                    <MrkSrvInd>N</MrkSrvInd>
+                    <GlobalServiceType>FF</GlobalServiceType>
+                    <LocalServiceName>FUEL SURCHARGE</LocalServiceName>
+                </MrkSrv>
+            </Srv>
+        </Srvs>
+        <Note>
+            <ActionStatus>Success</ActionStatus>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20191011174133_96ab_584db2ef-1314-4888-804d-3f7f57d47ac7 -->
+ | 
+<?xml version="1.0" encoding="UTF-8"?><p:DCTRequest xmlns:p="http://www.dhl.com" xmlns:p1="http://www.dhl.com/datatypes" xmlns:p2="http://www.dhl.com/DCTRequestdatatypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="2.0" xsi:schemaLocation="http://www.dhl.com DCT-req.xsd"><GetQuote ><Request><ServiceHeader><MessageTime>2019-10-11T17:41:40+02:00</MessageTime><MessageReference>SkladUSA_dhl_to_rate_shipment_#5</MessageReference><SiteID>v62_efrQQrWbM0</SiteID><Password>OvVIpOwqgZ</Password></ServiceHeader><MetaData><SoftwareName>3PV</SoftwareName><SoftwareVersion>6.2</SoftwareVersion></MetaData></Request><From><CountryCode>UA</CountryCode><Postalcode>02225</Postalcode><City>Kyiv</City></From><BkgDetails><PaymentCountryCode>US</PaymentCountryCode><Date>2019-10-11</Date><ReadyTime>PT10H21M</ReadyTime><ReadyTimeGMTOffset>+0200</ReadyTimeGMTOffset><DimensionUnit>CM</DimensionUnit><WeightUnit>KG</WeightUnit><Pieces><Piece><PieceID>12</PieceID><Height>12</Height><Depth>12</Depth><Width>12</Width><Weight>0.122</Weight></Piece></Pieces><PaymentAccountNumber>965305675</PaymentAccountNumber><IsDutiable>Y</IsDutiable><QtdShp><GlobalProductCode>P</GlobalProductCode></QtdShp></BkgDetails><To><CountryCode>US</CountryCode><Postalcode>99501</Postalcode><City>Huntsville</City></To><Dutiable><DeclaredCurrency>USD</DeclaredCurrency><DeclaredValue>0</DeclaredValue></Dutiable></GetQuote></p:DCTRequest> | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-10-11T17:41:36.133+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#5</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <BkgDetails>
+            <QtdShp>
+                <OriginServiceArea>
+                    <FacilityCode>IEV</FacilityCode>
+                    <ServiceAreaCode>IEV</ServiceAreaCode>
+                </OriginServiceArea>
+                <DestinationServiceArea>
+                    <FacilityCode>ANC</FacilityCode>
+                    <ServiceAreaCode>ANC</ServiceAreaCode>
+                </DestinationServiceArea>
+                <GlobalProductCode>P</GlobalProductCode>
+                <LocalProductCode>P</LocalProductCode>
+                <ProductShortName>EXPRESS WORLDWIDE</ProductShortName>
+                <LocalProductName>EXPRESS WORLDWIDE NONDOC</LocalProductName>
+                <NetworkTypeCode>TD</NetworkTypeCode>
+                <POfferedCustAgreement>N</POfferedCustAgreement>
+                <TransInd>Y</TransInd>
+                <PickupDate>2019-10-11</PickupDate>
+                <PickupCutoffTime>PT15H</PickupCutoffTime>
+                <BookingTime>PT13H</BookingTime>
+                <CurrencyCode>USD</CurrencyCode>
+                <ExchangeRate>0.916338</ExchangeRate>
+                <WeightCharge>19.000</WeightCharge>
+                <WeightChargeTax>0.000</WeightChargeTax>
+                <TotalTransitDays>4</TotalTransitDays>
+                <PickupPostalLocAddDays>0</PickupPostalLocAddDays>
+                <DeliveryPostalLocAddDays>0</DeliveryPostalLocAddDays>
+                <PickupNonDHLCourierCode> </PickupNonDHLCourierCode>
+                <DeliveryNonDHLCourierCode> </DeliveryNonDHLCourierCode>
+                <DeliveryDate>
+                    <DeliveryType>QDDC</DeliveryType>
+                    <DlvyDateTime>2019-10-15 11:59:00</DlvyDateTime>
+                    <DeliveryDateTimeOffset>+00:00</DeliveryDateTimeOffset>
+                </DeliveryDate>
+                <DeliveryTime>PT23H59M</DeliveryTime>
+                <DimensionalWeight>0.346</DimensionalWeight>
+                <WeightUnit>KG</WeightUnit>
+                <PickupDayOfWeekNum>5</PickupDayOfWeekNum>
+                <DestinationDayOfWeekNum>2</DestinationDayOfWeekNum>
+                <QuotedWeight>0.500</QuotedWeight>
+                <QuotedWeightUOM>KG</QuotedWeightUOM>
+                <QtdShpExChrg>
+                    <SpecialServiceType>FF</SpecialServiceType>
+                    <LocalServiceType>FF</LocalServiceType>
+                    <GlobalServiceName>FUEL SURCHARGE</GlobalServiceName>
+                    <LocalServiceTypeName>FUEL SURCHARGE</LocalServiceTypeName>
+                    <SOfferedCustAgreement>N</SOfferedCustAgreement>
+                    <ChargeCodeType>SCH</ChargeCodeType>
+                    <CurrencyCode>USD</CurrencyCode>
+                    <ChargeValue>1.710</ChargeValue>
+                    <QtdSExtrChrgInAdCur>
+                        <ChargeValue>1.710</ChargeValue>
+                        <CurrencyCode>USD</CurrencyCode>
+                        <CurrencyRoleTypeCode>BILLC</CurrencyRoleTypeCode>
+                    </QtdSExtrChrgInAdCur>
+                    <QtdSExtrChrgInAdCur>
+                        <ChargeValue>1.710</ChargeValue>
+                        <CurrencyCode>USD</CurrencyCode>
+                        <CurrencyRoleTypeCode>PULCL</CurrencyRoleTypeCode>
+                    </QtdSExtrChrgInAdCur>
+                    <QtdSExtrChrgInAdCur>
+                        <ChargeValue>1.570</ChargeValue>
+                        <ChargeTaxRate>0.000</ChargeTaxRate>
+                        <CurrencyCode>EUR</CurrencyCode>
+                        <CurrencyRoleTypeCode>BASEC</CurrencyRoleTypeCode>
+                    </QtdSExtrChrgInAdCur>
+                </QtdShpExChrg>
+                <PricingDate>2019-10-11</PricingDate>
+                <ShippingCharge>20.710</ShippingCharge>
+                <TotalTaxAmount>0.000</TotalTaxAmount>
+                <QtdSInAdCur>
+                    <CurrencyCode>USD</CurrencyCode>
+                    <CurrencyRoleTypeCode>BILLC</CurrencyRoleTypeCode>
+                    <WeightCharge>19.000</WeightCharge>
+                    <TotalAmount>20.710</TotalAmount>
+                    <TotalTaxAmount>0.000</TotalTaxAmount>
+                    <WeightChargeTax>0.000</WeightChargeTax>
+                </QtdSInAdCur>
+                <QtdSInAdCur>
+                    <CurrencyCode>USD</CurrencyCode>
+                    <CurrencyRoleTypeCode>PULCL</CurrencyRoleTypeCode>
+                    <WeightCharge>19.000</WeightCharge>
+                    <TotalAmount>20.710</TotalAmount>
+                    <TotalTaxAmount>0.000</TotalTaxAmount>
+                    <WeightChargeTax>0.000</WeightChargeTax>
+                </QtdSInAdCur>
+                <QtdSInAdCur>
+                    <ExchangeRate>0.916338</ExchangeRate>
+                    <CurrencyCode>EUR</CurrencyCode>
+                    <CurrencyRoleTypeCode>BASEC</CurrencyRoleTypeCode>
+                    <WeightCharge>17.410</WeightCharge>
+                    <TotalAmount>18.980</TotalAmount>
+                    <TotalTaxAmount>0.000</TotalTaxAmount>
+                    <WeightChargeTax>0.000</WeightChargeTax>
+                </QtdSInAdCur>
+                <PickupWindowEarliestTime>09:00:00</PickupWindowEarliestTime>
+                <PickupWindowLatestTime>19:00:00</PickupWindowLatestTime>
+                <BookingCutoffOffset>PT2H</BookingCutoffOffset>
+            </QtdShp>
+        </BkgDetails>
+        <Srvs>
+            <Srv>
+                <GlobalProductCode>P</GlobalProductCode>
+                <MrkSrv>
+                    <LocalProductCode>P</LocalProductCode>
+                    <ProductShortName>EXPRESS WORLDWIDE</ProductShortName>
+                    <LocalProductName>EXPRESS WORLDWIDE NONDOC</LocalProductName>
+                    <ProductDesc>EXPRESS WORLDWIDE NONDOC</ProductDesc>
+                    <NetworkTypeCode>TD</NetworkTypeCode>
+                    <POfferedCustAgreement>N</POfferedCustAgreement>
+                    <TransInd>Y</TransInd>
+                    <LocalProductCtryCd>US</LocalProductCtryCd>
+                    <GlobalServiceType>P</GlobalServiceType>
+                    <LocalServiceName>EXPRESS WORLDWIDE NONDOC</LocalServiceName>
+                </MrkSrv>
+                <MrkSrv>
+                    <LocalProductCode>P</LocalProductCode>
+                    <ProductShortName>EXPRESS WORLDWIDE</ProductShortName>
+                    <LocalProductName>EXPRESS WORLDWIDE NONDOC</LocalProductName>
+                    <ProductDesc>EXPRESS WORLDWIDE NONDOC</ProductDesc>
+                    <NetworkTypeCode>TD</NetworkTypeCode>
+                    <POfferedCustAgreement>N</POfferedCustAgreement>
+                    <TransInd>Y</TransInd>
+                    <LocalProductCtryCd>UA</LocalProductCtryCd>
+                    <GlobalServiceType>P</GlobalServiceType>
+                    <LocalServiceName>EXPRESS WORLDWIDE NONDOC</LocalServiceName>
+                </MrkSrv>
+                <MrkSrv>
+                    <LocalServiceType>FF</LocalServiceType>
+                    <GlobalServiceName>FUEL SURCHARGE</GlobalServiceName>
+                    <LocalServiceTypeName>FUEL SURCHARGE</LocalServiceTypeName>
+                    <SOfferedCustAgreement>N</SOfferedCustAgreement>
+                    <ChargeCodeType>SCH</ChargeCodeType>
+                    <MrkSrvInd>N</MrkSrvInd>
+                    <GlobalServiceType>FF</GlobalServiceType>
+                    <LocalServiceName>FUEL SURCHARGE</LocalServiceName>
+                </MrkSrv>
+            </Srv>
+        </Srvs>
+        <Note>
+            <ActionStatus>Success</ActionStatus>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20191011174135_7837_dfc3add6-34d5-41b4-ac18-6fbf2e3207cc -->
+ | 
+<?xml version="1.0" encoding="UTF-8"?><p:DCTRequest xmlns:p="http://www.dhl.com" xmlns:p1="http://www.dhl.com/datatypes" xmlns:p2="http://www.dhl.com/DCTRequestdatatypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="2.0" xsi:schemaLocation="http://www.dhl.com DCT-req.xsd"><GetQuote ><Request><ServiceHeader><MessageTime>2019-10-11T17:41:42+02:00</MessageTime><MessageReference>SkladUSA_dhl_to_rate_shipment_#5</MessageReference><SiteID>v62_efrQQrWbM0</SiteID><Password>OvVIpOwqgZ</Password></ServiceHeader><MetaData><SoftwareName>3PV</SoftwareName><SoftwareVersion>6.2</SoftwareVersion></MetaData></Request><From><CountryCode>UA</CountryCode><Postalcode>02225</Postalcode><City>Kyiv</City></From><BkgDetails><PaymentCountryCode>US</PaymentCountryCode><Date>2019-10-11</Date><ReadyTime>PT10H21M</ReadyTime><ReadyTimeGMTOffset>+0200</ReadyTimeGMTOffset><DimensionUnit>CM</DimensionUnit><WeightUnit>KG</WeightUnit><Pieces><Piece><PieceID>12</PieceID><Height>12</Height><Depth>12</Depth><Width>12</Width><Weight>0.012</Weight></Piece></Pieces><PaymentAccountNumber>965305675</PaymentAccountNumber><IsDutiable>Y</IsDutiable><QtdShp><GlobalProductCode>P</GlobalProductCode></QtdShp></BkgDetails><To><CountryCode>US</CountryCode><Postalcode>99501</Postalcode><City>Huntsville</City></To><Dutiable><DeclaredCurrency>USD</DeclaredCurrency><DeclaredValue>0</DeclaredValue></Dutiable></GetQuote></p:DCTRequest> | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-10-11T17:41:38.402+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#5</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <BkgDetails>
+            <QtdShp>
+                <OriginServiceArea>
+                    <FacilityCode>IEV</FacilityCode>
+                    <ServiceAreaCode>IEV</ServiceAreaCode>
+                </OriginServiceArea>
+                <DestinationServiceArea>
+                    <FacilityCode>ANC</FacilityCode>
+                    <ServiceAreaCode>ANC</ServiceAreaCode>
+                </DestinationServiceArea>
+                <GlobalProductCode>P</GlobalProductCode>
+                <LocalProductCode>P</LocalProductCode>
+                <ProductShortName>EXPRESS WORLDWIDE</ProductShortName>
+                <LocalProductName>EXPRESS WORLDWIDE NONDOC</LocalProductName>
+                <NetworkTypeCode>TD</NetworkTypeCode>
+                <POfferedCustAgreement>N</POfferedCustAgreement>
+                <TransInd>Y</TransInd>
+                <PickupDate>2019-10-11</PickupDate>
+                <PickupCutoffTime>PT15H</PickupCutoffTime>
+                <BookingTime>PT13H</BookingTime>
+                <CurrencyCode>USD</CurrencyCode>
+                <ExchangeRate>0.916338</ExchangeRate>
+                <WeightCharge>19.000</WeightCharge>
+                <WeightChargeTax>0.000</WeightChargeTax>
+                <TotalTransitDays>4</TotalTransitDays>
+                <PickupPostalLocAddDays>0</PickupPostalLocAddDays>
+                <DeliveryPostalLocAddDays>0</DeliveryPostalLocAddDays>
+                <PickupNonDHLCourierCode> </PickupNonDHLCourierCode>
+                <DeliveryNonDHLCourierCode> </DeliveryNonDHLCourierCode>
+                <DeliveryDate>
+                    <DeliveryType>QDDC</DeliveryType>
+                    <DlvyDateTime>2019-10-15 11:59:00</DlvyDateTime>
+                    <DeliveryDateTimeOffset>+00:00</DeliveryDateTimeOffset>
+                </DeliveryDate>
+                <DeliveryTime>PT23H59M</DeliveryTime>
+                <DimensionalWeight>0.346</DimensionalWeight>
+                <WeightUnit>KG</WeightUnit>
+                <PickupDayOfWeekNum>5</PickupDayOfWeekNum>
+                <DestinationDayOfWeekNum>2</DestinationDayOfWeekNum>
+                <QuotedWeight>0.500</QuotedWeight>
+                <QuotedWeightUOM>KG</QuotedWeightUOM>
+                <QtdShpExChrg>
+                    <SpecialServiceType>FF</SpecialServiceType>
+                    <LocalServiceType>FF</LocalServiceType>
+                    <GlobalServiceName>FUEL SURCHARGE</GlobalServiceName>
+                    <LocalServiceTypeName>FUEL SURCHARGE</LocalServiceTypeName>
+                    <SOfferedCustAgreement>N</SOfferedCustAgreement>
+                    <ChargeCodeType>SCH</ChargeCodeType>
+                    <CurrencyCode>USD</CurrencyCode>
+                    <ChargeValue>1.710</ChargeValue>
+                    <QtdSExtrChrgInAdCur>
+                        <ChargeValue>1.710</ChargeValue>
+                        <CurrencyCode>USD</CurrencyCode>
+                        <CurrencyRoleTypeCode>BILLC</CurrencyRoleTypeCode>
+                    </QtdSExtrChrgInAdCur>
+                    <QtdSExtrChrgInAdCur>
+                        <ChargeValue>1.710</ChargeValue>
+                        <CurrencyCode>USD</CurrencyCode>
+                        <CurrencyRoleTypeCode>PULCL</CurrencyRoleTypeCode>
+                    </QtdSExtrChrgInAdCur>
+                    <QtdSExtrChrgInAdCur>
+                        <ChargeValue>1.570</ChargeValue>
+                        <ChargeTaxRate>0.000</ChargeTaxRate>
+                        <CurrencyCode>EUR</CurrencyCode>
+                        <CurrencyRoleTypeCode>BASEC</CurrencyRoleTypeCode>
+                    </QtdSExtrChrgInAdCur>
+                </QtdShpExChrg>
+                <PricingDate>2019-10-11</PricingDate>
+                <ShippingCharge>20.710</ShippingCharge>
+                <TotalTaxAmount>0.000</TotalTaxAmount>
+                <QtdSInAdCur>
+                    <CurrencyCode>USD</CurrencyCode>
+                    <CurrencyRoleTypeCode>BILLC</CurrencyRoleTypeCode>
+                    <WeightCharge>19.000</WeightCharge>
+                    <TotalAmount>20.710</TotalAmount>
+                    <TotalTaxAmount>0.000</TotalTaxAmount>
+                    <WeightChargeTax>0.000</WeightChargeTax>
+                </QtdSInAdCur>
+                <QtdSInAdCur>
+                    <CurrencyCode>USD</CurrencyCode>
+                    <CurrencyRoleTypeCode>PULCL</CurrencyRoleTypeCode>
+                    <WeightCharge>19.000</WeightCharge>
+                    <TotalAmount>20.710</TotalAmount>
+                    <TotalTaxAmount>0.000</TotalTaxAmount>
+                    <WeightChargeTax>0.000</WeightChargeTax>
+                </QtdSInAdCur>
+                <QtdSInAdCur>
+                    <ExchangeRate>0.916338</ExchangeRate>
+                    <CurrencyCode>EUR</CurrencyCode>
+                    <CurrencyRoleTypeCode>BASEC</CurrencyRoleTypeCode>
+                    <WeightCharge>17.410</WeightCharge>
+                    <TotalAmount>18.980</TotalAmount>
+                    <TotalTaxAmount>0.000</TotalTaxAmount>
+                    <WeightChargeTax>0.000</WeightChargeTax>
+                </QtdSInAdCur>
+                <PickupWindowEarliestTime>09:00:00</PickupWindowEarliestTime>
+                <PickupWindowLatestTime>19:00:00</PickupWindowLatestTime>
+                <BookingCutoffOffset>PT2H</BookingCutoffOffset>
+            </QtdShp>
+        </BkgDetails>
+        <Srvs>
+            <Srv>
+                <GlobalProductCode>P</GlobalProductCode>
+                <MrkSrv>
+                    <LocalProductCode>P</LocalProductCode>
+                    <ProductShortName>EXPRESS WORLDWIDE</ProductShortName>
+                    <LocalProductName>EXPRESS WORLDWIDE NONDOC</LocalProductName>
+                    <ProductDesc>EXPRESS WORLDWIDE NONDOC</ProductDesc>
+                    <NetworkTypeCode>TD</NetworkTypeCode>
+                    <POfferedCustAgreement>N</POfferedCustAgreement>
+                    <TransInd>Y</TransInd>
+                    <LocalProductCtryCd>US</LocalProductCtryCd>
+                    <GlobalServiceType>P</GlobalServiceType>
+                    <LocalServiceName>EXPRESS WORLDWIDE NONDOC</LocalServiceName>
+                </MrkSrv>
+                <MrkSrv>
+                    <LocalProductCode>P</LocalProductCode>
+                    <ProductShortName>EXPRESS WORLDWIDE</ProductShortName>
+                    <LocalProductName>EXPRESS WORLDWIDE NONDOC</LocalProductName>
+                    <ProductDesc>EXPRESS WORLDWIDE NONDOC</ProductDesc>
+                    <NetworkTypeCode>TD</NetworkTypeCode>
+                    <POfferedCustAgreement>N</POfferedCustAgreement>
+                    <TransInd>Y</TransInd>
+                    <LocalProductCtryCd>UA</LocalProductCtryCd>
+                    <GlobalServiceType>P</GlobalServiceType>
+                    <LocalServiceName>EXPRESS WORLDWIDE NONDOC</LocalServiceName>
+                </MrkSrv>
+                <MrkSrv>
+                    <LocalServiceType>FF</LocalServiceType>
+                    <GlobalServiceName>FUEL SURCHARGE</GlobalServiceName>
+                    <LocalServiceTypeName>FUEL SURCHARGE</LocalServiceTypeName>
+                    <SOfferedCustAgreement>N</SOfferedCustAgreement>
+                    <ChargeCodeType>SCH</ChargeCodeType>
+                    <MrkSrvInd>N</MrkSrvInd>
+                    <GlobalServiceType>FF</GlobalServiceType>
+                    <LocalServiceName>FUEL SURCHARGE</LocalServiceName>
+                </MrkSrv>
+            </Srv>
+        </Srvs>
+        <Note>
+            <ActionStatus>Success</ActionStatus>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20191011174138_7837_c574e175-ac69-432f-82c3-bf72aed4c8a3 -->
+ | 
+<?xml version="1.0" encoding="UTF-8"?><p:DCTRequest xmlns:p="http://www.dhl.com" xmlns:p1="http://www.dhl.com/datatypes" xmlns:p2="http://www.dhl.com/DCTRequestdatatypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="2.0" xsi:schemaLocation="http://www.dhl.com DCT-req.xsd"><GetQuote ><Request><ServiceHeader><MessageTime>2019-10-11T17:41:47+02:00</MessageTime><MessageReference>SkladUSA_dhl_to_rate_shipment_#5</MessageReference><SiteID>v62_efrQQrWbM0</SiteID><Password>OvVIpOwqgZ</Password></ServiceHeader><MetaData><SoftwareName>3PV</SoftwareName><SoftwareVersion>6.2</SoftwareVersion></MetaData></Request><From><CountryCode>UA</CountryCode><Postalcode>02225</Postalcode><City>Kyiv</City></From><BkgDetails><PaymentCountryCode>US</PaymentCountryCode><Date>2019-10-11</Date><ReadyTime>PT10H21M</ReadyTime><ReadyTimeGMTOffset>+0200</ReadyTimeGMTOffset><DimensionUnit>CM</DimensionUnit><WeightUnit>KG</WeightUnit><Pieces><Piece><PieceID>12</PieceID><Height>12</Height><Depth>12</Depth><Width>12</Width><Weight>0.122</Weight></Piece></Pieces><PaymentAccountNumber>965305675</PaymentAccountNumber><IsDutiable>Y</IsDutiable><QtdShp><GlobalProductCode>P</GlobalProductCode></QtdShp></BkgDetails><To><CountryCode>US</CountryCode><Postalcode>99501</Postalcode><City>Huntsville</City></To><Dutiable><DeclaredCurrency>USD</DeclaredCurrency><DeclaredValue>12</DeclaredValue></Dutiable></GetQuote></p:DCTRequest> | 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><res:DCTResponse xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com DCT-Response.xsd'>
+    <GetQuoteResponse>
+        <Response>
+            <ServiceHeader>
+                <MessageTime>2019-10-11T17:41:42.587+02:00</MessageTime>
+                <MessageReference>SkladUSA_dhl_to_rate_shipment_#5</MessageReference>
+                <SiteID>v62_efrQQrWbM0</SiteID>
+            </ServiceHeader>
+        </Response>
+        <BkgDetails>
+            <QtdShp>
+                <OriginServiceArea>
+                    <FacilityCode>IEV</FacilityCode>
+                    <ServiceAreaCode>IEV</ServiceAreaCode>
+                </OriginServiceArea>
+                <DestinationServiceArea>
+                    <FacilityCode>ANC</FacilityCode>
+                    <ServiceAreaCode>ANC</ServiceAreaCode>
+                </DestinationServiceArea>
+                <GlobalProductCode>P</GlobalProductCode>
+                <LocalProductCode>P</LocalProductCode>
+                <ProductShortName>EXPRESS WORLDWIDE</ProductShortName>
+                <LocalProductName>EXPRESS WORLDWIDE NONDOC</LocalProductName>
+                <NetworkTypeCode>TD</NetworkTypeCode>
+                <POfferedCustAgreement>N</POfferedCustAgreement>
+                <TransInd>Y</TransInd>
+                <PickupDate>2019-10-11</PickupDate>
+                <PickupCutoffTime>PT15H</PickupCutoffTime>
+                <BookingTime>PT13H</BookingTime>
+                <CurrencyCode>USD</CurrencyCode>
+                <ExchangeRate>0.916338</ExchangeRate>
+                <WeightCharge>19.000</WeightCharge>
+                <WeightChargeTax>0.000</WeightChargeTax>
+                <TotalTransitDays>4</TotalTransitDays>
+                <PickupPostalLocAddDays>0</PickupPostalLocAddDays>
+                <DeliveryPostalLocAddDays>0</DeliveryPostalLocAddDays>
+                <PickupNonDHLCourierCode> </PickupNonDHLCourierCode>
+                <DeliveryNonDHLCourierCode> </DeliveryNonDHLCourierCode>
+                <DeliveryDate>
+                    <DeliveryType>QDDC</DeliveryType>
+                    <DlvyDateTime>2019-10-15 11:59:00</DlvyDateTime>
+                    <DeliveryDateTimeOffset>+00:00</DeliveryDateTimeOffset>
+                </DeliveryDate>
+                <DeliveryTime>PT23H59M</DeliveryTime>
+                <DimensionalWeight>0.346</DimensionalWeight>
+                <WeightUnit>KG</WeightUnit>
+                <PickupDayOfWeekNum>5</PickupDayOfWeekNum>
+                <DestinationDayOfWeekNum>2</DestinationDayOfWeekNum>
+                <QuotedWeight>0.500</QuotedWeight>
+                <QuotedWeightUOM>KG</QuotedWeightUOM>
+                <QtdShpExChrg>
+                    <SpecialServiceType>FF</SpecialServiceType>
+                    <LocalServiceType>FF</LocalServiceType>
+                    <GlobalServiceName>FUEL SURCHARGE</GlobalServiceName>
+                    <LocalServiceTypeName>FUEL SURCHARGE</LocalServiceTypeName>
+                    <SOfferedCustAgreement>N</SOfferedCustAgreement>
+                    <ChargeCodeType>SCH</ChargeCodeType>
+                    <CurrencyCode>USD</CurrencyCode>
+                    <ChargeValue>1.710</ChargeValue>
+                    <QtdSExtrChrgInAdCur>
+                        <ChargeValue>1.710</ChargeValue>
+                        <CurrencyCode>USD</CurrencyCode>
+                        <CurrencyRoleTypeCode>BILLC</CurrencyRoleTypeCode>
+                    </QtdSExtrChrgInAdCur>
+                    <QtdSExtrChrgInAdCur>
+                        <ChargeValue>1.710</ChargeValue>
+                        <CurrencyCode>USD</CurrencyCode>
+                        <CurrencyRoleTypeCode>PULCL</CurrencyRoleTypeCode>
+                    </QtdSExtrChrgInAdCur>
+                    <QtdSExtrChrgInAdCur>
+                        <ChargeValue>1.570</ChargeValue>
+                        <ChargeTaxRate>0.000</ChargeTaxRate>
+                        <CurrencyCode>EUR</CurrencyCode>
+                        <CurrencyRoleTypeCode>BASEC</CurrencyRoleTypeCode>
+                    </QtdSExtrChrgInAdCur>
+                </QtdShpExChrg>
+                <PricingDate>2019-10-11</PricingDate>
+                <ShippingCharge>20.710</ShippingCharge>
+                <TotalTaxAmount>0.000</TotalTaxAmount>
+                <QtdSInAdCur>
+                    <CurrencyCode>USD</CurrencyCode>
+                    <CurrencyRoleTypeCode>BILLC</CurrencyRoleTypeCode>
+                    <WeightCharge>19.000</WeightCharge>
+                    <TotalAmount>20.710</TotalAmount>
+                    <TotalTaxAmount>0.000</TotalTaxAmount>
+                    <WeightChargeTax>0.000</WeightChargeTax>
+                </QtdSInAdCur>
+                <QtdSInAdCur>
+                    <CurrencyCode>USD</CurrencyCode>
+                    <CurrencyRoleTypeCode>PULCL</CurrencyRoleTypeCode>
+                    <WeightCharge>19.000</WeightCharge>
+                    <TotalAmount>20.710</TotalAmount>
+                    <TotalTaxAmount>0.000</TotalTaxAmount>
+                    <WeightChargeTax>0.000</WeightChargeTax>
+                </QtdSInAdCur>
+                <QtdSInAdCur>
+                    <ExchangeRate>0.916338</ExchangeRate>
+                    <CurrencyCode>EUR</CurrencyCode>
+                    <CurrencyRoleTypeCode>BASEC</CurrencyRoleTypeCode>
+                    <WeightCharge>17.410</WeightCharge>
+                    <TotalAmount>18.980</TotalAmount>
+                    <TotalTaxAmount>0.000</TotalTaxAmount>
+                    <WeightChargeTax>0.000</WeightChargeTax>
+                </QtdSInAdCur>
+                <PickupWindowEarliestTime>09:00:00</PickupWindowEarliestTime>
+                <PickupWindowLatestTime>19:00:00</PickupWindowLatestTime>
+                <BookingCutoffOffset>PT2H</BookingCutoffOffset>
+            </QtdShp>
+        </BkgDetails>
+        <Srvs>
+            <Srv>
+                <GlobalProductCode>P</GlobalProductCode>
+                <MrkSrv>
+                    <LocalProductCode>P</LocalProductCode>
+                    <ProductShortName>EXPRESS WORLDWIDE</ProductShortName>
+                    <LocalProductName>EXPRESS WORLDWIDE NONDOC</LocalProductName>
+                    <ProductDesc>EXPRESS WORLDWIDE NONDOC</ProductDesc>
+                    <NetworkTypeCode>TD</NetworkTypeCode>
+                    <POfferedCustAgreement>N</POfferedCustAgreement>
+                    <TransInd>Y</TransInd>
+                    <LocalProductCtryCd>US</LocalProductCtryCd>
+                    <GlobalServiceType>P</GlobalServiceType>
+                    <LocalServiceName>EXPRESS WORLDWIDE NONDOC</LocalServiceName>
+                </MrkSrv>
+                <MrkSrv>
+                    <LocalProductCode>P</LocalProductCode>
+                    <ProductShortName>EXPRESS WORLDWIDE</ProductShortName>
+                    <LocalProductName>EXPRESS WORLDWIDE NONDOC</LocalProductName>
+                    <ProductDesc>EXPRESS WORLDWIDE NONDOC</ProductDesc>
+                    <NetworkTypeCode>TD</NetworkTypeCode>
+                    <POfferedCustAgreement>N</POfferedCustAgreement>
+                    <TransInd>Y</TransInd>
+                    <LocalProductCtryCd>UA</LocalProductCtryCd>
+                    <GlobalServiceType>P</GlobalServiceType>
+                    <LocalServiceName>EXPRESS WORLDWIDE NONDOC</LocalServiceName>
+                </MrkSrv>
+                <MrkSrv>
+                    <LocalServiceType>FF</LocalServiceType>
+                    <GlobalServiceName>FUEL SURCHARGE</GlobalServiceName>
+                    <LocalServiceTypeName>FUEL SURCHARGE</LocalServiceTypeName>
+                    <SOfferedCustAgreement>N</SOfferedCustAgreement>
+                    <ChargeCodeType>SCH</ChargeCodeType>
+                    <MrkSrvInd>N</MrkSrvInd>
+                    <GlobalServiceType>FF</GlobalServiceType>
+                    <LocalServiceName>FUEL SURCHARGE</LocalServiceName>
+                </MrkSrv>
+            </Srv>
+        </Srvs>
+        <Note>
+            <ActionStatus>Success</ActionStatus>
+        </Note>
+    </GetQuoteResponse></res:DCTResponse><!-- ServiceInvocationId:20191011174142_f701_dd98ccf9-963d-4d90-80de-c3d9a57d94af -->
+ | 

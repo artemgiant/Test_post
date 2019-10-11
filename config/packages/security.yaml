@@ -56,12 +56,12 @@ security:
         #main:
             #anonymous: ~      
     access_control:
-    - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/admin/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
-    - { path: ^/post/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/post/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY , requires_channel: https}
+    - { path: ^/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY , requires_channel: https}
+    - { path: ^/admin/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN], requires_channel: https }
+    - { path: ^/post/login$, role: IS_AUTHENTICATED_ANONYMOUSLY , requires_channel: https}
+    - { path: ^/post/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY , requires_channel: https}
 
-    - { path: ^/post/fogot-pasword$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/post/, role: [ROLE_POST_USER,ROLE_ADMIN] }
+    - { path: ^/post/fogot-pasword$, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+    - { path: ^/post/, role: [ROLE_POST_USER,ROLE_ADMIN], requires_channel: https }
     - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }

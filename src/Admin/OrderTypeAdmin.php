@@ -48,7 +48,8 @@ class OrderTypeAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('code')
-            ->add('name')
+            ->add('name',null,["label"=>"NameUa"])
+            ->add('nameRu',null,["label"=>"NameRu"])
         ;
     }
 

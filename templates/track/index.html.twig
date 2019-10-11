@@ -6,11 +6,18 @@
         <!-- START card-->
         <div class="card card-default">
             <div class="card-header">
-                {{ "Find for tracking number"| trans }}: {{ trNum  }}
+                <div class="row">
+                    <div class="col-md-8">
+                        {{ "Find for tracking number"| trans }}: {{ trNum  }}
+                    </div>
+                    <div class="col-md-4">
+                        <div class="track-font">  {{ "Track your package1"| trans }} {{ companyToUSA }}: <a href="{{ urltousa }}">{{ trNumtousa  }}</a></div>
+                        <div class="track-font">{{ "Track your package2"| trans }} {{ companyInUSA }}: <a href="{{ urlinusa }}">{{ trNuminusa  }}</a></div>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
-                <div>  {{ "Track your package1"| trans }}: <a href="{{ urltousa }}">{{ trNumtousa  }}</a></div>
-                <div>{{ "Track your package2"| trans }}: <a href="{{ urlinusa }}">{{ trNuminusa  }}</a></div>
+
                 <!-- START table-responsive-->
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover">
@@ -60,5 +67,8 @@
 
         </div><!-- END card-->
     </div>
+    <style>
+
+    </style>
 {% endblock %}
  {% block javascripts %}{% endblock %}

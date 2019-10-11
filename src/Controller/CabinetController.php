@@ -24,7 +24,13 @@ class CabinetController extends AbstractController
     public $user;
     public $my_address;
     public $optionToTemplate;
-
+    public $carierLink=[
+'usps'=>"https://tools.usps.com/go/TrackConfirmAction?qtc_tLabels1=#num#",
+'dhl'=>"https://www.dhl.com/en/express/tracking.html?AWB=#num#&brand=DHL",
+    //"apc"=>,
+"fedex"=>"https://www.fedex.com/apps/fedextrack/?action=track&trackingnumber=#num#&cntry_code=us&locale=en_US",
+    //  "ups"=>,
+];
     public function getTemplateData()
     {
         $this->user = $this->getUser();
@@ -70,5 +76,26 @@ class CabinetController extends AbstractController
         return $this->redirectToRoute('post_dashboard');
     }
 
+    public function getCompanyNameByTrNum($trNum){
+
+        $curier='';
+        if(preg_match("/^[0-9]{22}$/", trim($trNum)) && strlen (trim($trNum))==22) {
+            $curier="usps";
+        }
+        elseif(preg_match("/^[0-9]{10}$/", trim($trNum)) && strlen (trim($trNum))==10) {
+            $curier="dhl";
+        }
+        elseif(preg_match("/^[0-9]{13}$/", trim($trNum)) && strlen (trim($trNum))==13) {
+            $curier="apc";
+        }
+        elseif(preg_match("/^[0-9]{12}$/", trim($trNum)) && strlen (trim($trNum))==12) {
+            $curier="fedex";
+        }
+        elseif (strlen (trim($trNum))==18) {
+            $curier="ups";
+        }
+
+        return $curier;
+    }
 }
 

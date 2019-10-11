@@ -39,6 +39,14 @@ class OrderType
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="name_ru", type="string", length=255, nullable=true)
+     */
+    private $nameRu;
+
+
+    /**
      * @ORM\OneToMany(targetEntity="PriceForDeliveryType", mappedBy="ordertype", cascade={"persist", "remove"})
      */
     private $pricetype;
@@ -71,13 +79,6 @@ class OrderType
     }
 
 
-    /**
-     * @return string
-     */
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
 
     /**
      * @param string $name
@@ -86,6 +87,20 @@ class OrderType
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getNameRu(){
+        return $this->nameRu;
+    }
+    /**
+     * @param string $nameRu
+     * @return string
+     */
+    public function setNameRu(string $nameRu): self
+    {
+        $this->nameRu = $nameRu;
 
         return $this;
     }
@@ -147,4 +162,16 @@ class OrderType
         return $this->name;
     }
 
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        $locale = '';
+        if(isset($GLOBALS['request']) && $GLOBALS['request']) $locale = $GLOBALS['request']->getLocale();
+        if (!empty($locale) && $locale!='ua') return $this->{"name".ucfirst($locale)};
+        else return $this->name;
+    }
 }

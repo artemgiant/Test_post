@@ -37,6 +37,9 @@ class AuthorizeDotNetService
     private $route;
     private $twig;
 
+    private $procent=3;
+    private $addition=0.3;
+
     private $id     = '6Zu4b25V4';
     //private $key    = '6QQJ346P98feERc3';
     //private $key    = '9pa6W7p9EEW34xQy';
@@ -967,7 +970,7 @@ class AuthorizeDotNetService
 
             $title = "Expressposhta  pay from user #".$this->user->getId();
 
-
+            $datasum=$summ + ($summ * $this->procent) / 100 + $this->addition;
             $invoice = $this->makeAuthorizeDotNetInvoice($summ, $title,$orderId, null,true);
 
             $token =($invoice)?$invoice->getFormToken():null;
