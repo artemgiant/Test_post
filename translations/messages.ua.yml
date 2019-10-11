@@ -186,7 +186,7 @@ Towarehouse: Склад
 Quantity: Кількість
 Save success: Зміни успішно збережені
 post_profile_from_address: Адреса відправника
-Payment: Оплатити LiqPay
+Payment: Оплати
 Payment List: Список оплат
 Nomer scheta: Номер рахунку
 Sposob oplaty: Спосіб оплати
@@ -207,7 +207,7 @@ Not pay yet: Немає платежів
 No order: Немає відправлень
 TN: ТН
 Type and hit enter ...: Введіть і натисніть Enter ...
-Pay: Оплатити
+Pay: Оплатити LiqPay
 Paid: Оплачено
 count_short: К-сть
 Cancel: Скасування
@@ -267,3 +267,4 @@ Track your package1: Track your package
 Track your package2: Track your package
 Download Label: Завантажити лейбу
 Pay authorize: Оплатити картою
+economyGermany: Эконом Германия
