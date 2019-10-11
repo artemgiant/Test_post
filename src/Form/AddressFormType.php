@@ -70,25 +70,7 @@ class AddressFormType extends AbstractType
                 'label'=>'adress',
                 'required'=>true
             ])
-//            ->add('house',null,[
-//                'attr'=>[
-//                    'class'=>'form-control border-right-0',
-//                    'id'=>'zip',
-//                    'placeholder'=>'Enter number house',
-//                    'autocomplete'=>'off'],
-//                'label'=>'house',
-//                'required'=>true
-//            ])
-//            ->add('apartment',null,[
-//                'attr'=>[
-//                    'class'=>'form-control border-right-0',
-//                    'id'=>'zip',
-//                    'placeholder'=>'Enter number apartment',
-//                    'autocomplete'=>'off'],
-//                'label'=>'house',
-//                'required'=>false,
-//                'empty_data'=> ' ',
-//            ])
+
             ->add('userFirstName',null,[
                 'attr'=>[
                     'class'=>'form-control border-right-0',
@@ -98,15 +80,7 @@ class AddressFormType extends AbstractType
                 'label'=>'userFirstName',
                 'required'=>true
             ])
-            ->add('userLastName',null,[
-                'attr'=>[
-                    'class'=>'form-control border-right-0',
-                    'id'=>'userLastName',
-                    'placeholder'=>'Enter last name',
-                    'autocomplete'=>'off'],
-                'label'=>'userLastName',
-                'required'=>true
-            ])
+
 //            ->add('userSecondName',null,[
 //                'attr'=>[
 //                    'class'=>'form-control border-right-0',
