@@ -327,7 +327,8 @@ class DhlDeliveryService
             return false;
         }
         $markup = ($isVip)?$this->VipMarkup: $this->Markup;
-        return  round((($shipSumm + ($shipSumm * ($markup / 100)))*$this->CourseDollar),2);
+        //return  round((($shipSumm + ($shipSumm * ($markup / 100)))*$this->CourseDollar),2);
+        return  round((($shipSumm + ($shipSumm * ($markup / 100)))),2);
     }
 
 }

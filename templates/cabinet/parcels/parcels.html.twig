@@ -173,7 +173,9 @@
                                                                     <p class="badge badge-success">{{ 'Sum Paid' | trans }}: {{ item.shippingCosts - invoice.price}} &#8372;</p>
                                                                     <p class="badge badge-danger">{{ 'Need Paid' | trans}}: {{ invoice.price }} &#8372;</p>
                                                                 {% endif %}
-                                                                <input type="button" id="" class="payment-btn btn btn-outline-success liq-pay-button-change" value="{{ "Pay" | trans }}" />
+                                                               {#
+                                                               <input type="button" id="" class="payment-btn btn btn-outline-success liq-pay-button-change" value="{{ "Pay" | trans }}" />
+                                                               #}
                                                                 <input type="button" id="" class="btn btn-outline-success authorize-button-change" onclick="AuthorizeNetPopup.openPopup({{invoice.id }})" value="{{ "Pay authorize" | trans }}" />
                                                             {% endif %}
 

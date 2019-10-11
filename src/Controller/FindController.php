@@ -32,6 +32,12 @@ class FindController extends CabinetController
 
         $errors =[];
         $mess=[];
+        $urltousa="";
+        $trNumtousa="";
+        $companyToUSA=$companyInUSA="";
+        $urlinusa="";
+        $trNuminusa="";
+
         if ($trNum)
         {
             $entityManager = $this->getDoctrine()->getManager();
@@ -41,10 +47,12 @@ class FindController extends CabinetController
                 ->findOneBy(['trNum'=>$trNum]);
             if ($order){
             /* @var $order Order */
+                $companyToUSA=$this->getCompanyNameByTrNum($order->getSystemNum());
+                $companyInUSA=$this->getCompanyNameByTrNum($order->getSystemNumInUsa());
                 $tracksArray=array(
                    'nova-poshta'=>$order->getTrackingNumber(),
-                    "tousa_".$order->getCompanySendToUsa() =>$order->getSystemNum(),
-                    "inusa_".$order->getCompanySendInUsa() =>$order->getSystemNumInUsa()
+                    "tousa_".$companyToUSA =>$order->getSystemNum(),
+                    "inusa_".$companyInUSA =>$order->getSystemNumInUsa()
                 );
                 foreach($tracksArray as $carier=>$trackNum) {
                     if (empty($trackNum)) {
@@ -52,6 +60,16 @@ class FindController extends CabinetController
                         continue;
                     }
                     $carierCode=str_replace(["tousa_","inusa_"],'',$carier);
+                    if (strpos($carier,"tousa_")!==false){
+                        $urltousa=($this->carierLink[$carierCode])?str_replace('#num#',$trackNum,$crierLink[$carierCode]):'';
+                        $trNumtousa=$trackNum;
+
+                    }
+                    if (strpos($carier,"inusa_")!==false){
+                        $urlinusa=($this->carierLink[$carierCode])?str_replace('#num#',$trackNum,$crierLink[$carierCode]):'';
+                        $trNuminusa=$trackNum;
+
+                    }
                     $info=$trackingMore->getSingleTrackingResult($carierCode,$trackNum,'ru');
                     $infoData=$info['data']??false;
                     if ($infoData && $infoDatatrack=$infoData["origin_info"]??false){
@@ -74,7 +92,13 @@ class FindController extends CabinetController
             'trNum'=> $trNum,
             'items'=>$mess,
             'my_address' => $this->getMyAddress($this->user->getId()),
-            'page_id'=>'post_find'
+            'page_id'=>'post_find',
+            'urltousa'=>$urltousa,
+            'companyToUSA'=>strtoupper($companyToUSA),
+            'trNumtousa'=>$trNumtousa,
+            'urlinusa'=>$urlinusa,
+            'trNuminusa'=>$trNuminusa,
+            'companyInUSA'=>strtoupper($companyInUSA),
         ]);
     }
 
