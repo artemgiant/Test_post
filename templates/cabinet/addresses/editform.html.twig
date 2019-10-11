@@ -174,7 +174,7 @@
 {#                    </div>#}
                 </div>
                 <div class="row py-sm-4 justify-content-center">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <div class="form-group">
                             {{ form_label(addressForm.userFirstName,"Receivers first name"|trans, {
                                 "label_attr": {"class": "text-muted"}
@@ -191,26 +191,6 @@
                              </span>
                                 </div>
                                 <div class="invalid-feedback">{{ form_errors(addressForm.userFirstName) }}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ form_label(addressForm.userLastName,"Receivers last name"|trans, {
-                                "label_attr": {"class": "text-muted"}
-                            }) }}
-                            <div class="input-group with-focus">
-                                {% if addressForm.userLastName.vars.errors|length %}
-                                    {{ form_widget(addressForm.userLastName, {"attr": {"class": "is-invalid form-control border-right-0"}}) }}
-                                {% else %}
-                                    {{ form_widget(addressForm.userLastName) }}
-                                {% endif %}
-                                <div class="input-group-append">
-                             <span class="input-group-text text-muted bg-transparent border-left-0">
-                                 <em class="fa fa-user"></em>
-                             </span>
-                                </div>
-                                <div class="invalid-feedback">{{ form_errors(addressForm.userLastName) }}</div>
                             </div>
                         </div>
                     </div>

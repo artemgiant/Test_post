@@ -132,9 +132,7 @@ class Address
     /**
      * @var string
      *
-     * @Assert\NotBlank
-     *
-     * @ORM\Column(name="user_last_name", type="string")
+     * @ORM\Column(name="user_last_name", type="string", nullable=true)
      */
     private $userLastName;
 
