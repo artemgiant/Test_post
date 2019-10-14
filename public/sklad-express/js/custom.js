@@ -254,6 +254,64 @@ $(document).ready(function() {
                 event.preventDefault();
             }
         });
+    $(".coupon-group").hide();
+    $('#coupon_checkgox').on('click',function (e) {
+        console.log('coupon');
+            $(".coupon-group").fadeToggle();
+    });
+
+    $('#order_form_Coupon').on('keyup',function (e) {
+        var  lengthCode = $(this).val().length,
+        ru ="Код купона состоить из 30 символов у  вас только "+lengthCode,
+         ukr ="Код купона складається з 30 символів у вас тільки " +lengthCode,
+        code = $(this).val(),
+        el =$(this).closest('.form-group');
+
+        if(lengthCode!=30){ console.log('!!'); spanMessage(ukr,ru,el,'text-danger')};
+
+        console.log($(this).val().length);
+    if($(this).val().length== 30){
+    $.ajax({
+                url: '/post/coupone/ajax',
+                type: 'post',
+                data: {code:code},
+                dataType: 'json',
+                // beforeSend: function() {
+                //     $('#sendajax').button('loading');
+                // },
+                // complete: function() {
+                //     $('#sendajax').button('reset');
+                // },
+                success: function(res) {
+                    var data = res,
+                     ru = "У вашего купона скидка "+data.discount+" %.  Его можно использовать раз "+data.quantity,
+                     ukr ="У вашого купона знижка "+data.discount+" %. Його можна використовувати раз "+data.quantity
+                    ;
+                    spanMessage(ukr,ru,el,'text-green');
+
+                    console.log(data.quantity);
+                    console.log(data.discount);
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                }
+            });
+    }
+
+    });
+
+    function spanMessage(ukr,ru,el,cl) {
+       var message =ru;
+        if($('button[data-id=select_language]').attr('title')[0] == 'У'){
+            message =ukr;
+        }
+        if(!el.find('span.text-green')[0] && !el.find('span.text-danger')[0]){
+            el.append('<span class="'+cl+'">'+message +'</span>');
+        }else{
+            el.find('span').text(message).attr({'class':cl});
+        }
+
+    }
 
 });
 

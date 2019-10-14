@@ -42,6 +42,13 @@ class Coupon
      */
     private $ShippingType;
 
+
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $Discount;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -98,5 +105,35 @@ class Coupon
     private function genareteCode()
     {
         return str_pad(str_pad(dechex(mt_rand(0, 0xFFFFFF)), 19, dechex(mt_rand(0, 0xFFFFFF)), STR_PAD_RIGHT),30,dechex(time()),STR_PAD_RIGHT);
+    }
+
+    public function getOrderCoupon(): ?Order
+    {
+        return $this->OrderCoupon;
+    }
+
+    public function setOrderCoupon(?Order $OrderCoupon): self
+    {
+        $this->OrderCoupon = $OrderCoupon;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newCoupon = $OrderCoupon === null ? null : $this;
+        if ($newCoupon !== $OrderCoupon->getCoupon()) {
+            $OrderCoupon->setCoupon($newCoupon);
+        }
+
+        return $this;
+    }
+
+    public function getDiscount(): ?int
+    {
+        return $this->Discount;
+    }
+
+    public function setDiscount(?int $Discount): self
+    {
+        $this->Discount = $Discount;
+
+        return $this;
     }
 }

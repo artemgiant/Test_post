@@ -1345,4 +1345,23 @@ class Order
  *
  */
     public $invoicesStr='';
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Coupon;
+
+    public function getCoupon(): ?string
+    {
+        return $this->Coupon;
+    }
+
+    public function setCoupon(?string $Coupon): self
+    {
+        $this->Coupon = $Coupon;
+
+        return $this;
+    }
+
+
 }

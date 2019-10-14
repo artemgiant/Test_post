@@ -220,6 +220,32 @@
                                 </div>
                             </div>
                         </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="checkbox" id="coupon_checkgox" >{{ "Add Coupon"|trans }}</input>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group coupon-group">
+
+                                    {{ form_label(form.Coupon,"Coupon"|trans, {
+                                        "label_attr": {"class": "text-muted"}
+                                    }) }}
+                                    <div class="input-group with-focus ">
+                                        {% if form.Coupon.vars.errors|length %}
+                                            {{ form_widget(form.Coupon, {"attr": {"class": "is-invalid form-control"}}) }}
+                                        {% else %}
+                                            {{ form_widget(form.Coupon) }}
+                                        {% endif %}
+
+                                        <div class="invalid-feedback">{{ form_errors(form.comment) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">

@@ -90,6 +90,15 @@ class OrderFormType extends AbstractType
                 'label'=>'trackingNumber',
                 'required'=>true
                 ])
+            ->add('Coupon',null,[
+                'attr'=>[
+                    'class'=>'form-control border-right-0',
+                    'id'=>'CouponCode',
+//                        'placeholder'=>'trackingNumber',
+                    'autocomplete'=>'off'],
+                'label'=>'CouponCode',
+                'required'=>false
+            ])
             /*
             ->add('shippingCompany',null,[
                 'attr'=>[
