@@ -273,6 +273,7 @@ class Order
     public $quantity;
 
     public function __construct() {
+        dd('sc');
         $this->quantity = 0;
         $this->createdAt = new \DateTime();
         $this->shipDate = new \DateTime();

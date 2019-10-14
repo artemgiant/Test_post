@@ -119,3 +119,10 @@ services:
             tags:
             - { name: sonata.admin, manager_type: orm, group: Admin, label: SettingsAdmin }
             public: true
+
+    admin.coupon:
+        class: App\Admin\CouponAdmin
+        arguments: [~, App\Entity\Coupon, App\Controller\CouponAdminController]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Coupon }
+        public: true
