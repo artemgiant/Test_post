@@ -587,7 +587,6 @@ class ParcelsController extends CabinetController
 //                    ->findPriceExpress()
                     ->getRepository(PriceForDeliveryType::class)
                     ->findPriceExpress();
-                dd($weightPriceEl);
                 $weightPriceEl = $this->getDoctrine()
 //                    ->findPriceExpress()
                     ->getRepository(PriceForDeliveryType::class)

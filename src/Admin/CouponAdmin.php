@@ -32,8 +32,7 @@ final class CouponAdmin extends AbstractAdmin
 
         $listMapper
             ->add('quantity')
-            ->add('ShippingType')
-            ->add('Discount')
+//            ->add('ShippingType')
             ->add('Code')
             ->add('_action', null, [
                 'actions' => [
@@ -53,11 +52,11 @@ final class CouponAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('quantity',IntegerType::class)
-            ->add('ShippingType', ChoiceType::class, [
-                'label' =>'Shipping Type',
-                'choices' => $this->getShippingType()
-            ])
-            ->add('Discount')
+//            ->add('ShippingType', ChoiceType::class, [
+//                'label' =>'Shipping Type',
+//                'choices' => $this->getShippingType()
+//            ])
+//            ->add('Discount')
         ;
 
 
@@ -79,8 +78,8 @@ final class CouponAdmin extends AbstractAdmin
     {
         $showMapper
             ->add('quantity')
-            ->add('ShippingType')
-            ->add('Discount')
+//            ->add('ShippingType')
+//            ->add('Discount')
             ;
     }
 }
