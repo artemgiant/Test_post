@@ -41,7 +41,7 @@ class PriceForDeliveryType
     private $ordertype;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="float")
      */
     private $VipPrice;
 
@@ -89,12 +89,12 @@ class PriceForDeliveryType
     }
 
 
-    public function getVipPrice(): ?string
+    public function getVipPrice(): ?float
     {
         return $this->VipPrice;
     }
 
-    public function setVipPrice(string $VipPrice): self
+    public function setVipPrice(float $VipPrice): self
     {
         $this->VipPrice = $VipPrice;
 
