@@ -236,9 +236,7 @@ class ParcelsController extends CabinetController
 
         if($key == 'edit' && !empty($order->getCouponObject()) ){
           $CouponExist = $entityManager->getRepository(Coupon::class)->findOneBy(['id' => 3]);
-          dump($CouponExist);
         }
-        dd($order->getCouponObject()->getId());
 
         $couponObject = $entityManager->getRepository(Coupon::class)->findOneBy(['Code' => $couponCode]);
         if(empty($couponObject) || $couponObject->getQuantity()==0)return null;
