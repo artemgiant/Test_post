@@ -34,8 +34,9 @@ final class PriceForDeliveryTypeAdmin extends AbstractAdmin
         $listMapper
             ->add('max_weight')
             ->add('price')
+            ->add('VipPrice')
             ->add('ordertype')
-            ->add('vip')
+
             ->add('_action', null, [
                 'actions' => [
                     'show' => [],
@@ -53,8 +54,8 @@ final class PriceForDeliveryTypeAdmin extends AbstractAdmin
         $formMapper
             ->add('max_weight')
             ->add('price')
+            ->add('VipPrice')
             ->add('ordertype')
-            ->add('vip')
             ;
     }
 

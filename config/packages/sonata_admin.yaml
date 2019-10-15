@@ -33,10 +33,7 @@ sonata_admin:
                 #                label_catalogue: SonataMediaBundle
                 icon:            ' <i class="fa fa-handshake-o"></i> '
                 items:
-                    - admin.vip_price_weight_ekspresst
-                    - admin.price_weight_ekspresss
-                    - admin.price_weight_econom_vip
-                    - admin.price_weight_econom
+
                     - admin.pricefortype
 
     templates:

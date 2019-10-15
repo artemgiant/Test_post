@@ -42,33 +42,6 @@ services:
             - { name: sonata.admin, manager_type: orm, group: Settings, label: OrderType }
         public: true
 
-    admin.price_weight_econom:
-        class: App\Admin\PriceWeightEconomAdmin
-        arguments: [~, App\Entity\PriceWeightEconom, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Price, label: PriceWeightEconom }
-        public: true
-
-    admin.price_weight_econom_vip:
-        class: App\Admin\PriceWeightEconomVipAdmin
-        arguments: [~, App\Entity\PriceWeightEconomVip, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Price, label: PriceWeightEconomVip }
-        public: true
-
-    admin.price_weight_ekspresss:
-        class: App\Admin\PriceWeightEkspressAdmin
-        arguments: [~, App\Entity\PriceWeightEkspress, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Price, label: PriceWeightEkspress }
-        public: true
-    admin.vip_price_weight_ekspresst:
-        class: App\Admin\VipPriceWeightEkspressAdmin
-        arguments: [~, App\Entity\VipPriceWeightEkspress, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Price, label: VipPriceWeightEkspress }
-        public: true
-
     app.admin.deliveryprice:
             class: App\Admin\DeliveryPriceAdmin
             arguments: [~, App\Entity\DeliveryPrice, ~]
