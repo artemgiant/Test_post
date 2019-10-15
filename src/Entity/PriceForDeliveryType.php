@@ -25,10 +25,7 @@ class PriceForDeliveryType
      */
     private $max_weight;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $vip;
+
 
     /**
      * @ORM\Column(type="float")
@@ -42,6 +39,11 @@ class PriceForDeliveryType
      */
 
     private $ordertype;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $VipPrice;
 
     public function getId(): ?int
     {
@@ -86,16 +88,16 @@ class PriceForDeliveryType
         return $this->ordertype;
     }
 
-    public function setVip($vip)
-    {
-        $this->vip = $vip;
 
-        return $this;
+    public function getVipPrice(): ?string
+    {
+        return $this->VipPrice;
     }
 
-
-    public function isVip()
+    public function setVipPrice(string $VipPrice): self
     {
-        return $this->vip;
+        $this->VipPrice = $VipPrice;
+
+        return $this;
     }
 }
