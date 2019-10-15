@@ -262,8 +262,8 @@ $(document).ready(function() {
 
     $('#order_form_Coupon').on('keyup',function (e) {
         var  lengthCode = $(this).val().length,
-        ru ="Код купона состоить из 30 символов у  вас только "+lengthCode,
-         ukr ="Код купона складається з 30 символів у вас тільки " +lengthCode,
+        ru ="Код купона состоить из 30 символов у  вас "+lengthCode,
+         ukr ="Код купона складається з 30 символів у вас " +lengthCode,
         code = $(this).val(),
         el =$(this).closest('.form-group');
 
@@ -284,13 +284,17 @@ $(document).ready(function() {
                 // },
                 success: function(res) {
                     var data = res,
-                     ru = "У вашего купона скидка "+data.discount+" %.  Его можно использовать раз "+data.quantity,
-                     ukr ="У вашого купона знижка "+data.discount+" %. Його можна використовувати раз "+data.quantity
+                     ru = "У вашего купона скидка "+data.discount+" %.  Его можно использовать "+data.quantity+" раз ",
+                     ukr ="У вашого купона знижка "+data.discount+" %. Його можна використовувати "+data.quantity+" раз ",
+                        cl = 'text-green'
                     ;
-                    spanMessage(ukr,ru,el,'text-green');
-
-                    console.log(data.quantity);
-                    console.log(data.discount);
+                    if(data.error){
+                        ru = "Код купона не действителен";
+                        ukr ="Код купона не дійсний";
+                        cl = 'text-danger';
+                    }
+                    console.log(data);
+                    spanMessage(ukr,ru,el,cl);
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

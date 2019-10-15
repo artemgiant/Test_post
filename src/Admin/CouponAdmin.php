@@ -29,9 +29,11 @@ final class CouponAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $listMapper): void
     {
+
         $listMapper
             ->add('quantity')
             ->add('ShippingType')
+            ->add('Discount')
             ->add('Code')
             ->add('_action', null, [
                 'actions' => [
@@ -42,7 +44,11 @@ final class CouponAdmin extends AbstractAdmin
             ])
         ;
     }
-
+    protected function configureRoutes(\Sonata\AdminBundle\Route\RouteCollection $collection)
+    {
+         parent::configureRoutes($collection);
+        $collection->add('coupone_ajax','coupone_ajax');
+    }
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
@@ -51,6 +57,7 @@ final class CouponAdmin extends AbstractAdmin
                 'label' =>'Shipping Type',
                 'choices' => $this->getShippingType()
             ])
+            ->add('Discount')
         ;
 
 
@@ -73,6 +80,7 @@ final class CouponAdmin extends AbstractAdmin
         $showMapper
             ->add('quantity')
             ->add('ShippingType')
+            ->add('Discount')
             ;
     }
 }

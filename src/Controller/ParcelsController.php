@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Controller\CabinetController;
 use App\Entity\Country;
+use App\Entity\Coupon;
 use App\Entity\Order;
 use App\Entity\User;
 use App\Entity\Address;
@@ -205,6 +206,7 @@ class ParcelsController extends CabinetController
                 }
                 $order->setShippingCosts($FinalPrice);
             }
+            if($form->get('Coupon')->getNormData())$this->getDiscountCoupon($order,$form->get('Coupon')->getNormData(),'create');
 
             $invoice=new Invoices();
             $invoice->setOrderId($order)
@@ -227,6 +229,32 @@ class ParcelsController extends CabinetController
         $twigoption=array_merge($this->optionToTemplate,['form' => $form->createView(),
             'error' => $errors,]);
         return $this->render('cabinet/parcels/editform.html.twig', $twigoption);
+
+    }
+
+    private function getDiscountCoupon($order,$couponCode,$key){
+
+        $user =$this->user;
+        $entityManager = $this->getDoctrine()->getManager();
+
+        if($key == 'edit' && !empty($order->getCouponObject()) ){
+          $CouponExist = $entityManager->getRepository(Coupon::class)->findOneBy(['id' => 3]);
+          dump($CouponExist);
+        }
+        dd($order->getCouponObject()->getId());
+
+        $couponObject = $entityManager->getRepository(Coupon::class)->findOneBy(['Code' => $couponCode]);
+        if(empty($couponObject) || $couponObject->getQuantity()==0)return null;
+        if(empty($couponObject->getUserCoupon())
+                ||
+        $couponObject->getUserCoupon()->getEmail()==$user->getEmail()
+            ){
+            $couponObject->setUserCoupon($this->user);
+            $couponObject->setQuantity( $couponObject->getQuantity()-1);
+            $order->setShippingCosts($order->getShippingCosts()-($order->getShippingCosts()*($couponObject->getDiscount()*1/100)));
+            $order->setCouponObject($couponObject);
+            $entityManager->persist($couponObject);
+        }
 
     }
 
@@ -372,6 +400,8 @@ class ParcelsController extends CabinetController
                     }
                 }
             }
+
+            if($form->get('Coupon')->getNormData())$this->getDiscountCoupon($order,$form->get('Coupon')->getNormData(),'edit');
             if ($noInvoice){
                 $invoice=new Invoices();
                 $invoice->setOrderId($order)

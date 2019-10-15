@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use App\Form\AddressFormType;
 
-final class CouponAdminController extends CRUDController
+final class CouponController extends CabinetController
 {
 
 

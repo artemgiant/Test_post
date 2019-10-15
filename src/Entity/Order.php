@@ -1351,6 +1351,11 @@ class Order
      */
     private $Coupon;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Coupon", cascade={"persist", "remove"})
+     */
+    private $CouponObject;
+
     public function getCoupon(): ?string
     {
         return $this->Coupon;
@@ -1359,6 +1364,18 @@ class Order
     public function setCoupon(?string $Coupon): self
     {
         $this->Coupon = $Coupon;
+
+        return $this;
+    }
+
+    public function getCouponObject(): ?Coupon
+    {
+        return $this->CouponObject;
+    }
+
+    public function setCouponObject(?Coupon $CouponObject): self
+    {
+        $this->CouponObject = $CouponObject;
 
         return $this;
     }
