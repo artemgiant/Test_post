@@ -35,6 +35,7 @@ class TrackController extends CabinetController
         $companyToUSA=$companyInUSA="";
         $urlinusa="";
         $trNuminusa="";
+        $express=0;
         if ($trNum)
         {
             $entityManager = $this->getDoctrine()->getManager();
@@ -42,8 +43,10 @@ class TrackController extends CabinetController
             $order = $entityManager
                 ->getRepository(Order::class)
                 ->findOneBy(['trNum'=>$trNum]);
+
             if ($order){
                 /* @var $order Order */
+                $express=($order->getOrderType()->getCode()=='express')?1:0;
                 $companyToUSA=$this->getCompanyNameByTrNum($order->getSystemNum());
                 $companyInUSA=$this->getCompanyNameByTrNum($order->getSystemNumInUsa());
                 $tracksArray=array(
@@ -92,6 +95,7 @@ class TrackController extends CabinetController
 
         return $this->render('track/index.html.twig', [
             'errors'=>implode($errors,'</br>'),
+            'express'=>$express,
             'trNum'=> $trNum,
             'items'=>$mess,
             'page_id'=>'post_find',
