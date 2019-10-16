@@ -225,9 +225,9 @@ class ParcelsController extends CabinetController
         $user =$this->user;
         $entityManager = $this->getDoctrine()->getManager();
 
-        if($key == 'edit' && !empty($order->getCouponObject()) ){
-          $CouponExist = $entityManager->getRepository(Coupon::class)->findOneBy(['id' => 3]);
-        }
+//        if($key == 'edit' && !empty($order->getCouponObject()) ){
+//          $CouponExist = $entityManager->getRepository(Coupon::class)->findOneBy(['id' => 3]);
+//        }
 
         $couponObject = $entityManager->getRepository(Coupon::class)->findOneBy(['Code' => $couponCode]);
 
@@ -238,13 +238,11 @@ class ParcelsController extends CabinetController
             ){
             $couponObject->setUserCoupon($this->user);
             $couponObject->setQuantity( $couponObject->getQuantity()-1);
-//            $order->setShippingCosts($order->getShippingCosts()-($order->getShippingCosts()*($couponObject->getDiscount()*1/100)));
             $weightPrice = $this->getDoctrine()
                 ->getRepository(PriceForDeliveryType::class)
-                ->findPriceByWeight((float)$Weight);
+                ->findPriceByWeight((float)$Weight,$order->getOrderType()->getId());
                 $order->setShippingCosts($weightPrice->getVipPrice());
 
-            $order->setCouponObject($couponObject);
             $entityManager->persist($couponObject);
         }
 
@@ -378,8 +376,7 @@ class ParcelsController extends CabinetController
                     }
                 }
             }
-
-            if($form->get('Coupon')->getNormData())$this->getDiscountCoupon($order,$form->get('Coupon')->getNormData(),'edit');
+            if($form->get('Coupon')->getNormData())$this->getDiscountCoupon($order,$form->get('Coupon')->getNormData(),$orderForm['sendDetailWeight'],'edit');
             if ($noInvoice){
                 $invoice=new Invoices();
                 $invoice->setOrderId($order)

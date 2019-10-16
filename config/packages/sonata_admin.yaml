@@ -26,7 +26,6 @@ sonata_admin:
                     - app.admin.orderstatus
                     - admin.order_type
                     - app.admin.deliveryprice
-                    - admin.settings
             app.admin.group.price:
                 keep_open:       true
                 label:           Ціни
@@ -35,6 +34,8 @@ sonata_admin:
                 items:
 
                     - admin.pricefortype
+                    - admin.expressDeliveryPrice
+
 
     templates:
         layout: 'standard_layout.html.twig'

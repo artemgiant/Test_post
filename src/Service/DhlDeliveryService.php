@@ -4,7 +4,7 @@ namespace App\Service;
 
 
 use App\Entity\Order;
-use App\Entity\Settings;
+use App\Entity\ExpressDeliveryPrice;
 use Doctrine\ORM\EntityManagerInterface;
 
 define("LOG_FILE1", getcwd() . "/../dhl.log");
@@ -332,7 +332,7 @@ class DhlDeliveryService
             return false;
         }
 
-        $settingsMarkup=$this->em->getRepository(Settings::class)->getDHLMarkup();
+        $settingsMarkup=$this->em->getRepository(ExpressDeliveryPrice::class)->getDHLMarkup();
         $markupNorm=$settingsMarkup['DHLMarkup']??40;
         $vipMarkup=$settingsMarkup['DHLMarkupForVip']??20;
         $markup = ($isVip)?$vipMarkup: $markupNorm;
