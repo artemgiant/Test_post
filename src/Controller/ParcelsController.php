@@ -203,7 +203,7 @@ class ParcelsController extends CabinetController
                 }
                 $order->setShippingCosts($FinalPrice);
             }
-            if($form->get('Coupon')->getNormData())$this->getDiscountCoupon($order,$form->get('Coupon')->getNormData(),'create');
+            if($form->get('Coupon')->getNormData())$this->getDiscountCoupon($order,$form->get('Coupon')->getNormData(),$orderForm['sendDetailWeight'],'create');
 
             $invoice=new Invoices();
             $invoice->setOrderId($order)
@@ -229,7 +229,7 @@ class ParcelsController extends CabinetController
 
     }
 
-    private function getDiscountCoupon($order,$couponCode,$key){
+    private function getDiscountCoupon($order,$couponCode,$Weight,$key){
 
         $user =$this->user;
         $entityManager = $this->getDoctrine()->getManager();
@@ -239,6 +239,7 @@ class ParcelsController extends CabinetController
         }
 
         $couponObject = $entityManager->getRepository(Coupon::class)->findOneBy(['Code' => $couponCode]);
+
         if(empty($couponObject) || $couponObject->getQuantity()==0)return null;
         if(empty($couponObject->getUserCoupon())
                 ||
@@ -246,7 +247,12 @@ class ParcelsController extends CabinetController
             ){
             $couponObject->setUserCoupon($this->user);
             $couponObject->setQuantity( $couponObject->getQuantity()-1);
-            $order->setShippingCosts($order->getShippingCosts()-($order->getShippingCosts()*($couponObject->getDiscount()*1/100)));
+//            $order->setShippingCosts($order->getShippingCosts()-($order->getShippingCosts()*($couponObject->getDiscount()*1/100)));
+            $weightPrice = $this->getDoctrine()
+                ->getRepository(PriceForDeliveryType::class)
+                ->findPriceByWeight((float)$Weight);
+                $order->setShippingCosts($weightPrice->getVipPrice());
+
             $order->setCouponObject($couponObject);
             $entityManager->persist($couponObject);
         }
@@ -581,22 +587,17 @@ class ParcelsController extends CabinetController
         }
                 $weightPrice = 0;
 
-                $weightPriceEl = $this->getDoctrine()
-//                    ->findPriceExpress()
-                    ->getRepository(PriceForDeliveryType::class)
-                    ->findPriceExpress();
+
                 $weightPriceEl = $this->getDoctrine()
 //                    ->findPriceExpress()
                     ->getRepository(PriceForDeliveryType::class)
                     ->findPriceByWeight((float)$request->query->get('Weight'),true);
                 if($request->query->get('Vip')) {
-                    if ($typeId==1) {
-                        $weightPriceEl =  $weightPriceEl->getVipPrice();
-                } else {
-                    if ($typeId==1) {
-                        $weightPriceEl =  $weightPriceEl->getPrice();
-                    }
-                }}
+                    if ($typeId==1) $weightPriceEl =  $weightPriceEl->getVipPrice();
+                 }else {
+                    if ($typeId == 1) $weightPriceEl = $weightPriceEl->getPrice();
+
+                }
                 if(!$weightPriceEl)$weightPriceEl = '-';
                     $weightPrice =$weightPriceEl;
         return new JsonResponse($weightPrice);

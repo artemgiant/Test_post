@@ -265,6 +265,7 @@ $(document).ready(function() {
         ru ="Код купона состоить из 30 символов у  вас "+lengthCode,
          ukr ="Код купона складається з 30 символів у вас " +lengthCode,
         code = $(this).val(),
+        Weight = $('#order_form_sendDetailWeight').val(),
         el =$(this).closest('.form-group');
 
         if(lengthCode!=30){ console.log('!!'); spanMessage(ukr,ru,el,'text-danger')};
@@ -274,7 +275,7 @@ $(document).ready(function() {
     $.ajax({
                 url: '/post/coupone/ajax',
                 type: 'post',
-                data: {code:code},
+                data: {code:code,Weight:Weight},
                 dataType: 'json',
                 // beforeSend: function() {
                 //     $('#sendajax').button('loading');
@@ -284,8 +285,8 @@ $(document).ready(function() {
                 // },
                 success: function(res) {
                     var data = res,
-                     ru = "У вашего купона скидка "+data.discount+" %.  Его можно использовать "+data.quantity+" раз ",
-                     ukr ="У вашого купона знижка "+data.discount+" %. Його можна використовувати "+data.quantity+" раз ",
+                     ru = "Возможное количество использований: "+data.quantity+" ",
+                     ukr ="Можлива кількість використань: "+data.quantity+" ",
                         cl = 'text-green'
                     ;
                     if(data.error){

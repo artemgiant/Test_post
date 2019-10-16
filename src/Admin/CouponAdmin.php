@@ -61,6 +61,7 @@ final class CouponAdmin extends AbstractAdmin
 
 
     }
+
     protected function getShippingType(){
 
         $em =  $this->getConfigurationPool()->getContainer()->get('doctrine')->getManager();

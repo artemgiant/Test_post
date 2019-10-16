@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Coupon;
+use App\Entity\PriceForDeliveryType;
 use Sonata\AdminBundle\Controller\CRUDController;
 use App\Entity\Address;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -25,12 +26,17 @@ final class CouponController extends CabinetController
     public function getCouponeDataAjax(Request $request)
     {
         $codeCoupon =  $request->request->get('code');
+        $weightPriceEl = $this->getDoctrine()
+            ->getRepository(PriceForDeliveryType::class)
+            ->findPriceByWeight((float)$request->query->get('Weight'),true);
+        $priceCoupon = $weightPriceEl->getVipPrice();
+
         $CouponObject =  $this->getDoctrine()->getRepository(Coupon::class)->findOneBy(['Code'=>$codeCoupon]);
         $data = array();
         if(!empty($CouponObject)){
             $data = [
                 'quantity'=> $CouponObject->getQuantity(),
-                'discount'=>$CouponObject->getDiscount()
+                'priceCoupon'=>$priceCoupon
             ];
             $CouponObject->getCode();
         }
