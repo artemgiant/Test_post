@@ -98,7 +98,7 @@ class CabinetController extends AbstractController
         elseif(preg_match("/\d{16}/", trim($trNum)) && strlen (trim($trNum))==16) {
             $curier="hermes";
         }
-        elseif(preg_match('/LTN\d{8}/', trim($trNum)) && strlen (trim($trNum))==8) {
+        elseif(preg_match('/LTN\d{8}/', trim($trNum)) && strlen (trim($trNum))==11) {
             $curier="landmark-global";
         }
 
