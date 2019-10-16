@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -482,6 +484,16 @@ class User implements UserInterface, \Serializable
      */
     private $FacebookId;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Coupon", mappedBy="UserCoupon")
+     */
+    private $coupons;
+
+    public function __construct()
+    {
+        $this->coupons = new ArrayCollection();
+    }
+
 
 
     /**
@@ -538,5 +550,36 @@ class User implements UserInterface, \Serializable
     public function getFullName(): string
     {
         return trim($this->firstName.' '.$this->lastName.' '.$this->secondName);
+    }
+
+    /**
+     * @return Collection|Coupon[]
+     */
+    public function getCoupons(): Collection
+    {
+        return $this->coupons;
+    }
+
+    public function addCoupon(Coupon $coupon): self
+    {
+        if (!$this->coupons->contains($coupon)) {
+            $this->coupons[] = $coupon;
+            $coupon->setUserCoupon($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCoupon(Coupon $coupon): self
+    {
+        if ($this->coupons->contains($coupon)) {
+            $this->coupons->removeElement($coupon);
+            // set the owning side to null (unless already changed)
+            if ($coupon->getUserCoupon() === $this) {
+                $coupon->setUserCoupon(null);
+            }
+        }
+
+        return $this;
     }
 }

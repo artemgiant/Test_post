@@ -20,13 +20,13 @@ class PriceEconomRepository extends ServiceEntityRepository
     }
 
 
-    public function findPriceByWeight(float $weight,bool $vip=false)
+    public function findPriceByWeight(float $weight,int $deliveryType)
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.max_weight >= :DetailWeight')
+            ->andWhere('p.ordertype = :deliveryType')
             ->setParameter('DetailWeight', $weight)
-            ->andWhere('p.vip = :vip')
-            ->setParameter('vip', $vip)
+            ->setParameter('deliveryType', $deliveryType)
             ->setMaxResults(1)
             ->orderBy('p.max_weight','ASC')
             ->getQuery()
@@ -40,6 +40,17 @@ class PriceEconomRepository extends ServiceEntityRepository
             ->select('max(p.max_weight)')
             ->getQuery()
             ->getResult()[0][1]
+            ;
+    }
+    public function findPriceExpress()
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p')
+            ->where('p.ordertype = :type')
+            ->setParameter('type','2')
+            ->setMaxResults(1)
+            ->getQuery()  ->getOneOrNullResult()
+//            ->getOneOrNullResult()
             ;
     }
 

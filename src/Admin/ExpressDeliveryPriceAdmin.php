@@ -12,10 +12,16 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Form\Type\ModelType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class SettingsAdmin extends AbstractAdmin
+class ExpressDeliveryPriceAdmin extends AbstractAdmin
 {
     protected $baseRoutePattern = 'settings';
     protected $baseRouteName = 'settings';
+    protected $datagridValues = array(
+        '_sort_order' => 'ASC',
+        '_per_page' => '2',
+    );
+    protected $perPageOptions = ['2'];
+    protected $maxPerPage = '2';
 
     /**
      * @param \Sonata\AdminBundle\Route\RouteCollection $collection
@@ -24,7 +30,8 @@ class SettingsAdmin extends AbstractAdmin
     {
         $collection
             ->remove('batch')
-            ->remove('delete');
+            ->remove('delete')
+            ->remove('create');
     }
 
     /**
@@ -32,7 +39,7 @@ class SettingsAdmin extends AbstractAdmin
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
-        $datagridMapper->add('name');
+//        $datagridMapper->add('name');
     }
 
     /**
