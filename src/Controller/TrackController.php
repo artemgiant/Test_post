@@ -64,12 +64,12 @@ class TrackController extends CabinetController
                     }
                     $carierCode=str_replace(["tousa_","inusa_"],'',$carier);
                     if (strpos($carier,"tousa_")!==false){
-                        $urltousa=($this->carierLink[$carierCode])?str_replace('#num#',$trackNum,$crierLink[$carierCode]):'';
+                        $urltousa=($this->carierLink[$carierCode])?str_replace('#num#',$trackNum,$this->carierLink[$carierCode]):'';
                         $trNumtousa=$trackNum;
 
                     }
                     if (strpos($carier,"inusa_")!==false){
-                        $urlinusa=($this->carierLink[$carierCode])?str_replace('#num#',$trackNum,$crierLink[$carierCode]):'';
+                        $urlinusa=($this->carierLink[$carierCode])?str_replace('#num#',$trackNum,$this->carierLink[$carierCode]):'';
                         $trNuminusa=$trackNum;
 
                     }
