@@ -275,14 +275,15 @@ class ParcelsController extends CabinetController
             }
         }
         //$address = new Address();
-
+/*
         $maxWeightEconom = $this->getDoctrine()
             ->getRepository(PriceWeightEconom::class)
             ->findMaxWeight();
         $maxWeightEconomVip = $this->getDoctrine()
             ->getRepository(PriceWeightEconomVip::class)
             ->findMaxWeight();
-
+*/
+        $maxWeightEconom =$maxWeightEconomVip =1500;
         $form = $this->createForm(OrderFormType::class, $order, ['attr'=>['user' => $this->user, 'maxWeightEconom' => $maxWeightEconom, 'maxWeightEconomVip' => $maxWeightEconomVip]]);
         $form->handleRequest($request);
 
