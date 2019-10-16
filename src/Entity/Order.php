@@ -759,7 +759,7 @@ class Order
     public function getSendDetailWeight()
     {
         /* Round Weight to 0.5 */
-        return ceil($this->sendDetailWeight/0.5)*0.5;
+        return (!empty($this->sendDetailWeight))?ceil($this->sendDetailWeight/0.5)*0.5:$this->sendDetailWeight;
        // return $this->sendDetailWeight;
     }
 

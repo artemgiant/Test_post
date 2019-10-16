@@ -11,8 +11,12 @@
                         {{ "Find for tracking number"| trans }}: {{ trNum  }}
                     </div>
                     <div class="col-md-4">
-                        <div class="track-font">  {{ "Track your package1"| trans }} {{ companyToUSA }}: <a href="{{ urltousa }}">{{ trNumtousa  }}</a></div>
-                        <div class="track-font">{{ "Track your package2"| trans }} {{ companyInUSA }}: <a href="{{ urlinusa }}">{{ trNuminusa  }}</a></div>
+                        {% if trNumtousa is not empty %}
+                         <div class="track-font">  {{ "Track your package1"| trans }} {{ companyToUSA }}: <a href="{{ urltousa }}">{{ trNumtousa  }}</a></div>
+                        {% endif %}
+                        {% if urlinusa is not empty %}
+                         <div class="track-font">{{ "Track your package2"| trans }} {{ companyInUSA }}: <a href="{{ urlinusa }}">{{ trNuminusa  }}</a></div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

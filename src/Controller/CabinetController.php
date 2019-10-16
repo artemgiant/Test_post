@@ -29,7 +29,8 @@ class CabinetController extends AbstractController
 'dhl'=>"https://www.dhl.com/en/express/tracking.html?AWB=#num#&brand=DHL",
     //"apc"=>,
 "fedex"=>"https://www.fedex.com/apps/fedextrack/?action=track&trackingnumber=#num#&cntry_code=us&locale=en_US",
-    //  "ups"=>,
+"landmark-global"=>"https://track.landmarkglobal.com/?trck=#num#&Submit=Track",
+"hermes"=>"https://new.myhermes.co.uk/track.html#/parcel/#num#/details",
 ];
     public function getTemplateData()
     {
@@ -93,6 +94,12 @@ class CabinetController extends AbstractController
         }
         elseif (strlen (trim($trNum))==18) {
             $curier="ups";
+        }
+        elseif(preg_match("/\d{16}/", trim($trNum)) && strlen (trim($trNum))==16) {
+            $curier="hermes";
+        }
+        elseif(preg_match('/LTN\d{8}/', trim($trNum)) && strlen (trim($trNum))==8) {
+            $curier="landmark-global";
         }
 
         return $curier;
