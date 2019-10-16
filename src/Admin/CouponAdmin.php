@@ -17,6 +17,8 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 final class CouponAdmin extends AbstractAdmin
 {
+    protected $datagridValues = ['_page' => 1, '_sort_order' => 'DESC', '_sort_by' => 'createdAt'];
+
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
@@ -33,6 +35,7 @@ final class CouponAdmin extends AbstractAdmin
         $listMapper
             ->add('quantity')
 //            ->add('ShippingType')
+            ->add('createdAt')
             ->add('Code')
             ->add('_action', null, [
                 'actions' => [
