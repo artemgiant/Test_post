@@ -12,6 +12,7 @@ class Coupon
     public function __construct()
     {
         $this->Code=$this->genareteCode();
+        $this->createdAt = new \DateTime();
     }
     /**
      * @ORM\Id()
@@ -42,7 +43,12 @@ class Coupon
      */
     private $ShippingType;
 
-
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -135,5 +141,27 @@ class Coupon
         $this->Discount = $Discount;
 
         return $this;
+    }
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Order
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 }
