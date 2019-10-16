@@ -586,20 +586,18 @@ class ParcelsController extends CabinetController
             return new JsonResponse($FinalPrice);
         }
                 $weightPrice = 0;
+                $Vip =$request->query->get('Vip');
 
+                        $weightPriceEl = $this->getDoctrine()
+                            ->getRepository(PriceForDeliveryType::class)
+                            ->findPriceByWeight((float)$request->query->get('Weight'),$deliveryType->getId());
 
-                $weightPriceEl = $this->getDoctrine()
-//                    ->findPriceExpress()
-                    ->getRepository(PriceForDeliveryType::class)
-                    ->findPriceByWeight((float)$request->query->get('Weight'),true);
-                if($request->query->get('Vip')) {
-                    if ($typeId==1) $weightPriceEl =  $weightPriceEl->getVipPrice();
-                 }else {
-                    if ($typeId == 1) $weightPriceEl = $weightPriceEl->getPrice();
+                    if (!$weightPriceEl) {
+                        $weightPrice='-';
+                    }else{
+                        $weightPrice=($Vip)?$weightPriceEl->getVipPrice():$weightPriceEl->getPrice();
+                    }
 
-                }
-                if(!$weightPriceEl)$weightPriceEl = '-';
-                    $weightPrice =$weightPriceEl;
         return new JsonResponse($weightPrice);
     }
         return new JsonResponse('error');}

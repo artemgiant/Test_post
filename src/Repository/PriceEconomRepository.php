@@ -20,11 +20,13 @@ class PriceEconomRepository extends ServiceEntityRepository
     }
 
 
-    public function findPriceByWeight(float $weight,bool $vip=false)
+    public function findPriceByWeight(float $weight,int $deliveryType)
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.max_weight >= :DetailWeight')
+            ->andWhere('p.ordertype = :deliveryType')
             ->setParameter('DetailWeight', $weight)
+            ->setParameter('deliveryType', $deliveryType)
             ->setMaxResults(1)
             ->orderBy('p.max_weight','ASC')
             ->getQuery()
