@@ -318,6 +318,11 @@ $(document).ready(function() {
                         ukr ="Код купона не дійсний";
                         cl = 'text-danger';
                     }
+                    if(data.quantity==0){
+                        ru = "Данный промокод уже использован";
+                        ukr ="Даний промокод уже використаний";
+                        cl = 'text-danger';
+                    }
                     console.log(data);
                     spanMessage(ukr,ru,el,cl);
                 },
