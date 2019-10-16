@@ -149,8 +149,8 @@ final class OrderPraidAdmin extends AbstractAdmin
             ->add('orderType', EntityType::class, [
                 'class' => OrderType::class,
                 'placeholder' => 'Select type',
-                'choice_label' => 'code',
-                'choice_translation_domain' => 'messages',
+                'choice_label' => 'name',
+                //'choice_translation_domain' => 'messages',
                 'label' => $this->trans( "OrderType"),
                 'required'=>true,
                 'attr'=>[
