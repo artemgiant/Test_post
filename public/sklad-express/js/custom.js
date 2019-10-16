@@ -301,6 +301,7 @@ $(document).ready(function() {
                 // complete: function() {
                 //     $('#sendajax').button('reset');
                 // },
+
                 success: function(res) {
                     var data = res,
                      ru = "Цена доставки с использованиям купона составит: "+data.priceCoupon +".  Возможное количество использований: "+data.quantity+" ",
@@ -331,7 +332,7 @@ $(document).ready(function() {
         if($('button[data-id=select_language]').attr('title')[0] == 'У'){
             message =ukr;
         }
-        if(!el.find('span.text-green')[0] && !el.find('span.text-danger')[0]){
+        if(!el.find('span.text-green')[0] && !el.find('span.text-danger')[0] && !el.find('span.text-warning')[0]){
             el.append('<span class="'+cl+'">'+message +'</span>');
         }else{
             el.find('span').text(message).attr({'class':cl});
