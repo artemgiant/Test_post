@@ -303,8 +303,8 @@ $(document).ready(function() {
                 // },
                 success: function(res) {
                     var data = res,
-                     ru = "Цена доставки с использованиям купона составит "+data.priceCoupon +".  Возможное количество использований: "+data.quantity+" ",
-                     ukr ="Ціна доставки з використанням купона складе "+data.priceCoupon +".  Можлива кількість використань: "+data.quantity+" ",
+                     ru = "Цена доставки с использованиям купона составит: "+data.priceCoupon +".  Возможное количество использований: "+data.quantity+" ",
+                     ukr ="Ціна доставки з використанням купона складе: "+data.priceCoupon +".  Можлива кількість використань: "+data.quantity+" ",
                         cl = 'text-green'
                     ;
 
