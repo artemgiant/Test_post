@@ -16,6 +16,7 @@ sonata_admin:
                     - app.admin.invoices
                     - app.admin.user
                     - app.admin.addresses
+                    - admin.coupon
             app.admin.group.order:
                 keep_open:       true
                 label:           Налаштування
@@ -25,18 +26,16 @@ sonata_admin:
                     - app.admin.orderstatus
                     - admin.order_type
                     - app.admin.deliveryprice
-                    - admin.settings
             app.admin.group.price:
                 keep_open:       true
                 label:           Ціни
                 #                label_catalogue: SonataMediaBundle
                 icon:            ' <i class="fa fa-handshake-o"></i> '
                 items:
-                    - admin.vip_price_weight_ekspresst
-                    - admin.price_weight_ekspresss
-                    - admin.price_weight_econom_vip
-                    - admin.price_weight_econom
+
                     - admin.pricefortype
+                    - admin.expressDeliveryPrice
+
 
     templates:
         layout: 'standard_layout.html.twig'

@@ -254,6 +254,91 @@ $(document).ready(function() {
                 event.preventDefault();
             }
         });
+    $(".coupon-group").hide();
+    $('#coupon_checkgox').on('click',function (e) {
+        console.log('coupon');
+            $(".coupon-group").fadeToggle();
+    });
+
+    $('#order_form_orderType , #order_form_addresses').change(function () {  coupon() });
+
+    $('#order_form_Coupon').on('keyup',function () {  coupon();  });
+
+    $('form').on('keyup',"#order_form_sendDetailWeight"  ,function () { coupon(); });
+
+
+    function  coupon() {
+
+       var weight = $('#order_form_sendDetailWeight').val(),
+           code =  $('#order_form_Coupon').val(),
+           type =  $('#order_form_orderType>option:selected').val();
+
+        if(weight == '' || code=='' || type==''){console.log('empty'); return null;}
+
+        var element =  $('#order_form_Coupon'),
+            lengthCode = element.val().length,
+        ru ="Код купона состоить из 30 символов у  вас "+lengthCode,
+         ukr ="Код купона складається з 30 символів у вас " +lengthCode,
+        code = element.val(),
+        Weight = $('#order_form_sendDetailWeight').val(),
+         DeliveryType = $('#order_form_orderType>option:selected').val(),
+            DHLPrice = '';
+        el =element.closest('.form-group');
+        if(lengthCode!=30){ console.log('!!'); spanMessage(ukr,ru,el,'text-danger')};
+
+        if(type == 2)DHLPrice = $('#order_form_shippingCosts').val();
+
+
+    if(element.val().length== 30 && DeliveryType !=0){
+    $.ajax({
+                url: '/post/coupone/ajax',
+                type: 'post',
+                data: {code:code,Weight:Weight,DeliveryType:DeliveryType,DHLPrice:DHLPrice},
+                dataType: 'json',
+                // beforeSend: function() {
+                //     $('#sendajax').button('loading');
+                // },
+                // complete: function() {
+                //     $('#sendajax').button('reset');
+                // },
+
+                success: function(res) {
+                    var data = res,
+                     ru = "Цена доставки с использованиям купона составит: "+data.priceCoupon +".  Возможное количество использований: "+data.quantity+" ",
+                     ukr ="Ціна доставки з використанням купона складе: "+data.priceCoupon +".  Можлива кількість використань: "+data.quantity+" ",
+                        cl = 'text-green'
+                    ;
+
+                    if(data.priceCoupon){ $('#order_form_shippingCosts').val(data.priceCoupon);}
+
+                    if(data.error){
+                        ru = "Код купона не действителен";
+                        ukr ="Код купона не дійсний";
+                        cl = 'text-danger';
+                    }
+                    console.log(data);
+                    spanMessage(ukr,ru,el,cl);
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                }
+            });
+    }
+
+    };
+
+    function spanMessage(ukr,ru,el,cl) {
+       var message =ru;
+        if($('button[data-id=select_language]').attr('title')[0] == 'У'){
+            message =ukr;
+        }
+        if(!el.find('span.text-green')[0] && !el.find('span.text-danger')[0] && !el.find('span.text-warning')[0]){
+            el.append('<span class="'+cl+'">'+message +'</span>');
+        }else{
+            el.find('span').text(message).attr({'class':cl});
+        }
+
+    }
 
 });
 

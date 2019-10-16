@@ -11,10 +11,10 @@ use Doctrine\Common\Collections\Collection;
  * Settings
  *
  * @ORM\Table(name="settings")
- * @ORM\Entity(repositoryClass="App\Repository\SettingsRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ExpressDeliveryPriceRepository")
  * @ORM\HasLifecycleCallbacks
  */
-class Settings
+class ExpressDeliveryPrice
 {
     /**
      * @var integer
@@ -68,7 +68,7 @@ class Settings
 
     /**
      * @param string $name
-     * @return Settings
+     * @return ExpressDeliveryPrice
      */
     public function setName(string $name)
     {
@@ -86,7 +86,7 @@ class Settings
 
     /**
      * @param string $value
-     * @return Settings
+     * @return ExpressDeliveryPrice
      */
     public function setValue(string $value)
     {
@@ -105,7 +105,7 @@ class Settings
 
     /**
      * @param string $code
-     * @return Settings
+     * @return ExpressDeliveryPrice
      */
     public function setCode(string $code)
     {

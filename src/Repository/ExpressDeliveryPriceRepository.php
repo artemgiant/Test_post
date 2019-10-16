@@ -2,18 +2,18 @@
 
 namespace App\Repository;
 
-use App\Entity\Settings;
+use App\Entity\ExpressDeliveryPrice;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 
 
-class SettingsRepository extends ServiceEntityRepository
+class ExpressDeliveryPriceRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Settings::class);
+        parent::__construct($registry, ExpressDeliveryPrice::class);
     }
 
     public function getDHLMarkup()

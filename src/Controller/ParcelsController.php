@@ -4,14 +4,13 @@ namespace App\Controller;
 
 use App\Controller\CabinetController;
 use App\Entity\Country;
+use App\Entity\Coupon;
 use App\Entity\Order;
 use App\Entity\User;
 use App\Entity\Address;
 use App\Entity\Invoices;
 use App\Entity\OrderStatus;
 use App\Entity\OrderType;
-use App\Entity\PriceWeightEconom;
-use App\Entity\PriceWeightEconomVip;
 use App\Entity\PriceForDeliveryType;
 use App\Entity\DeliveryPrice;
 use App\Entity\OrderProducts;
@@ -132,10 +131,10 @@ class ParcelsController extends CabinetController
         }
 
         $maxWeightEconom = $this->getDoctrine()
-            ->getRepository(PriceWeightEconom::class)
+            ->getRepository(PriceForDeliveryType::class)
             ->findMaxWeight();
         $maxWeightEconomVip = $this->getDoctrine()
-            ->getRepository(PriceWeightEconomVip::class)
+            ->getRepository(PriceForDeliveryType::class)
             ->findMaxWeight();
 
         $form = $this->createForm(OrderFormType::class, $order, ['attr'=>['user' => $this->user, 'maxWeightEconom' => $maxWeightEconom, 'maxWeightEconomVip' => $maxWeightEconomVip]]);
@@ -164,27 +163,17 @@ class ParcelsController extends CabinetController
             $order->setVolumeWeigth($volume);
 
 //Calculate shipping costs for ECONOM type . Use price-weight data.
-            if($order->getOrderType()->getCode() == 'econom') {
-                if($this->user->isVip()) {
-                    $weightPrice = $this->getDoctrine()
-                        ->getRepository(PriceWeightEconomVip::class)
-                        ->findPriceByWeight((float)$orderForm['sendDetailWeight']);
-                    if ($weightPrice) {
-                        $order->setShippingCosts($weightPrice->getPrice());
-                    } else {
-                        $order->setShippingCosts(null);
-                    }
-                } else {
-                    $weightPrice = $this->getDoctrine()
-                        ->getRepository(PriceWeightEconom::class)
-                        ->findPriceByWeight((float)$orderForm['sendDetailWeight']);
-                    if ($weightPrice) {
-                        $order->setShippingCosts($weightPrice->getPrice());
-                    } else {
-                        $order->setShippingCosts(null);
-                    }
-                }
-            }
+
+                    $ObjectPrice = $this->getDoctrine()
+                        ->getRepository(PriceForDeliveryType::class)
+                        ->findPriceByWeight((float)$orderForm['sendDetailWeight'],$order->getOrderType()->getId());
+
+            ($this->user->isVip())?
+                $order->setShippingCosts($ObjectPrice->getVipPrice())
+                :
+                $order->setShippingCosts($ObjectPrice->getPrice());
+
+
 
 //Calculate shipping costs for EXPRESS type . Use Dhl service .
             if($order->getOrderType()->getCode() == 'express') {
@@ -205,6 +194,7 @@ class ParcelsController extends CabinetController
                 }
                 $order->setShippingCosts($FinalPrice);
             }
+            if($form->get('Coupon')->getNormData())$this->getDiscountCoupon($order,$form->get('Coupon')->getNormData(),$orderForm['sendDetailWeight'],'create');
 
             $invoice=new Invoices();
             $invoice->setOrderId($order)
@@ -227,6 +217,34 @@ class ParcelsController extends CabinetController
         $twigoption=array_merge($this->optionToTemplate,['form' => $form->createView(),
             'error' => $errors,]);
         return $this->render('cabinet/parcels/editform.html.twig', $twigoption);
+
+    }
+
+    private function getDiscountCoupon($order,$couponCode,$Weight,$key){
+
+        $user =$this->user;
+        $entityManager = $this->getDoctrine()->getManager();
+
+//        if($key == 'edit' && !empty($order->getCouponObject()) ){
+//          $CouponExist = $entityManager->getRepository(Coupon::class)->findOneBy(['id' => 3]);
+//        }
+
+        $couponObject = $entityManager->getRepository(Coupon::class)->findOneBy(['Code' => $couponCode]);
+
+        if(empty($couponObject) || $couponObject->getQuantity()==0)return null;
+        if(empty($couponObject->getUserCoupon())
+                ||
+        $couponObject->getUserCoupon()->getEmail()==$user->getEmail()
+            ){
+            $couponObject->setUserCoupon($this->user);
+            $couponObject->setQuantity( $couponObject->getQuantity()-1);
+            $weightPrice = $this->getDoctrine()
+                ->getRepository(PriceForDeliveryType::class)
+                ->findPriceByWeight((float)$Weight,$order->getOrderType()->getId());
+                $order->setShippingCosts($weightPrice->getVipPrice());
+
+            $entityManager->persist($couponObject);
+        }
 
     }
 
@@ -277,10 +295,10 @@ class ParcelsController extends CabinetController
         //$address = new Address();
 /*
         $maxWeightEconom = $this->getDoctrine()
-            ->getRepository(PriceWeightEconom::class)
+            ->getRepository(PriceForDeliveryType::class)
             ->findMaxWeight();
         $maxWeightEconomVip = $this->getDoctrine()
-            ->getRepository(PriceWeightEconomVip::class)
+            ->getRepository(PriceForDeliveryType::class)
             ->findMaxWeight();
 */
         $maxWeightEconom =$maxWeightEconomVip =1500;
@@ -311,27 +329,16 @@ class ParcelsController extends CabinetController
             $order->setVolumeWeigth($volume);
 
 //Calculate shipping costs for ECONOM type . Use price-weight data.
-            if($order->getOrderType()->getCode() == 'econom') {
-                if($this->user->isVip()) {
-                    $weightPrice = $this->getDoctrine()
-                        ->getRepository(PriceWeightEconomVip::class)
-                        ->findPriceByWeight((float)$orderForm['sendDetailWeight']);
-                    if ($weightPrice) {
-                        $order->setShippingCosts($weightPrice->getPrice());
-                    } else {
-                        $order->setShippingCosts(null);
-                    }
-                } else {
-                    $weightPrice = $this->getDoctrine()
-                        ->getRepository(PriceWeightEconom::class)
-                        ->findPriceByWeight((float)$orderForm['sendDetailWeight']);
-                    if ($weightPrice) {
-                        $order->setShippingCosts($weightPrice->getPrice());
-                    } else {
-                        $order->setShippingCosts(null);
-                    }
-                }
-            }
+            $ObjectPrice = $this->getDoctrine()
+                ->getRepository(PriceForDeliveryType::class)
+                ->findPriceByWeight((float)$orderForm['sendDetailWeight'],$order->getOrderType()->getId());
+
+            ($this->user->isVip())?
+                $order->setShippingCosts($ObjectPrice->getVipPrice())
+                :
+                $order->setShippingCosts($ObjectPrice->getPrice());
+
+
 
 //Calculate shipping costs for EXPRESS type . Use Dhl service .
             if($order->getOrderType()->getCode() == 'express') {
@@ -339,12 +346,10 @@ class ParcelsController extends CabinetController
                 $Country_r = $this->getDoctrine()->getRepository(Country::class);
                 list($From,$To) = $Country_r->getShortNameCountry($this->my_address['country'],$order->getAddresses()->getCountry()->getId());
                 $One_order = $order;
-                //$dhlSendBoxAddress =$this->my_address;
                 $dhlSendBoxAddress =[];
                 $dhlSendBoxAddress['from']=$From;
                 $dhlSendBoxAddress['to']=$To;
                 $Dlh = new DhlDeliveryService($dhlSendBoxAddress,$entityManager);
-//                dd( $Dlh->getAccountId($One_order));
                 $FinalPrice = $Dlh->getDHLPrice($One_order);
 
                 if(!$FinalPrice){
@@ -356,7 +361,6 @@ class ParcelsController extends CabinetController
 
             foreach ($originalProducts as $product) {
                 if (false === $order->getProducts()->contains($product)) {
-
                     $entityManager->remove($product);
                 }
             }
@@ -373,6 +377,7 @@ class ParcelsController extends CabinetController
                     }
                 }
             }
+            if($form->get('Coupon')->getNormData())$this->getDiscountCoupon($order,$form->get('Coupon')->getNormData(),$orderForm['sendDetailWeight'],'edit');
             if ($noInvoice){
                 $invoice=new Invoices();
                 $invoice->setOrderId($order)
@@ -556,33 +561,18 @@ class ParcelsController extends CabinetController
             return new JsonResponse($FinalPrice);
         }
                 $weightPrice = 0;
-                if($request->query->get('Vip')) {
-                    if ($typeId==1) {
-                        $weightPriceEl = $this->getDoctrine()
-                            ->getRepository(PriceWeightEconomVip::class)
-                            ->findPriceByWeight((float)$request->query->get('Weight'));
-                    }else{
+                $Vip =$request->query->get('Vip');
+
                         $weightPriceEl = $this->getDoctrine()
                             ->getRepository(PriceForDeliveryType::class)
-                            ->findPriceByWeight((float)$request->query->get('Weight'),true);
-                    }
+                            ->findPriceByWeight((float)$request->query->get('Weight'),$deliveryType->getId());
+
                     if (!$weightPriceEl) {
                         $weightPrice='-';
-                    }else $weightPrice=$weightPriceEl->getPrice();
-                } else {
-                    if ($typeId==1) {
-                        $weightPriceEl = $this->getDoctrine()
-                            ->getRepository(PriceWeightEconom::class)
-                            ->findPriceByWeight((float)$request->query->get('Weight'));
                     }else{
-                        $weightPriceEl = $this->getDoctrine()
-                            ->getRepository(PriceForDeliveryType::class)
-                            ->findPriceByWeight((float)$request->query->get('Weight'));
+                        $weightPrice=($Vip)?$weightPriceEl->getVipPrice():$weightPriceEl->getPrice();
                     }
-                    if (!$weightPriceEl) {
-                        $weightPrice='-';
-                    }else $weightPrice=$weightPriceEl->getPrice();
-                }
+
         return new JsonResponse($weightPrice);
     }
         return new JsonResponse('error');}

@@ -72,7 +72,7 @@ class OrderFormType extends AbstractType
                 'class' => OrderType::class,
                 'placeholder' => 'Select type',
                 'choice_label' => 'name',
-               // 'choice_translation_domain' => 'messages',
+                'choice_translation_domain' => 'messages',
                 'required'=>true,
                 'attr'=>[
                     'class'=>'form-control',
@@ -90,6 +90,15 @@ class OrderFormType extends AbstractType
                 'label'=>'trackingNumber',
                 'required'=>true
                 ])
+            ->add('Coupon',null,[
+                'attr'=>[
+                    'class'=>'form-control border-right-0',
+                    'id'=>'CouponCode',
+//                        'placeholder'=>'trackingNumber',
+                    'autocomplete'=>'off'],
+                'label'=>'CouponCode',
+                'required'=>false
+            ])
             /*
             ->add('shippingCompany',null,[
                 'attr'=>[
