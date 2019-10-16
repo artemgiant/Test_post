@@ -260,22 +260,40 @@ $(document).ready(function() {
             $(".coupon-group").fadeToggle();
     });
 
-    $('#order_form_Coupon').on('keyup',function (e) {
-        var  lengthCode = $(this).val().length,
+    $('#order_form_orderType , #order_form_addresses').change(function () {  coupon() });
+
+    $('#order_form_Coupon').on('keyup',function () {  coupon();  });
+
+    $('form').on('keyup',"#order_form_sendDetailWeight"  ,function () { coupon(); });
+
+
+    function  coupon() {
+
+       var weight = $('#order_form_sendDetailWeight').val(),
+           code =  $('#order_form_Coupon').val(),
+           type =  $('#order_form_orderType>option:selected').val();
+
+        if(weight == '' || code=='' || type==''){console.log('empty'); return null;}
+
+        var element =  $('#order_form_Coupon'),
+            lengthCode = element.val().length,
         ru ="Код купона состоить из 30 символов у  вас "+lengthCode,
          ukr ="Код купона складається з 30 символів у вас " +lengthCode,
-        code = $(this).val(),
+        code = element.val(),
         Weight = $('#order_form_sendDetailWeight').val(),
-        el =$(this).closest('.form-group');
-
+         DeliveryType = $('#order_form_orderType>option:selected').val(),
+            DHLPrice = '';
+        el =element.closest('.form-group');
         if(lengthCode!=30){ console.log('!!'); spanMessage(ukr,ru,el,'text-danger')};
 
-        console.log($(this).val().length);
-    if($(this).val().length== 30){
+        if(type == 2)DHLPrice = $('#order_form_shippingCosts').val();
+
+
+    if(element.val().length== 30 && DeliveryType !=0){
     $.ajax({
                 url: '/post/coupone/ajax',
                 type: 'post',
-                data: {code:code,Weight:Weight},
+                data: {code:code,Weight:Weight,DeliveryType:DeliveryType,DHLPrice:DHLPrice},
                 dataType: 'json',
                 // beforeSend: function() {
                 //     $('#sendajax').button('loading');
@@ -303,7 +321,7 @@ $(document).ready(function() {
             });
     }
 
-    });
+    };
 
     function spanMessage(ukr,ru,el,cl) {
        var message =ru;

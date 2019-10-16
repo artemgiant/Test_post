@@ -362,7 +362,6 @@ class ParcelsController extends CabinetController
 
             foreach ($originalProducts as $product) {
                 if (false === $order->getProducts()->contains($product)) {
-
                     $entityManager->remove($product);
                 }
             }

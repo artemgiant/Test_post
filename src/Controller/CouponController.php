@@ -26,19 +26,25 @@ final class CouponController extends CabinetController
     public function getCouponeDataAjax(Request $request)
     {
         $codeCoupon =  $request->request->get('code');
+        $DeliveryType = (int) $request->request->get('DeliveryType');
+        $DHLPrice = (int) $request->request->get('DHLPrice');
+        if(!empty($DHLPrice)){
+
+        }
         $weightPriceEl = $this->getDoctrine()
             ->getRepository(PriceForDeliveryType::class)
-            ->findPriceByWeight((float)$request->query->get('Weight'),true);
-        $priceCoupon = $weightPriceEl->getVipPrice();
+            ->findPriceByWeight((float)$request->query->get('Weight'),$DeliveryType);
+
+       $priceCoupon = ($weightPriceEl->getVipPrice())??"";
 
         $CouponObject =  $this->getDoctrine()->getRepository(Coupon::class)->findOneBy(['Code'=>$codeCoupon]);
+
         $data = array();
         if(!empty($CouponObject)){
             $data = [
                 'quantity'=> $CouponObject->getQuantity(),
                 'priceCoupon'=>$priceCoupon
             ];
-            $CouponObject->getCode();
         }
         if(empty($data))$data['error']='error';
         $response = new JsonResponse($data);
