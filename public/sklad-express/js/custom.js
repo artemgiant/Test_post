@@ -289,6 +289,8 @@ $(document).ready(function() {
         if(type == 2)DHLPrice = $('#order_form_shippingCosts').val();
 
 
+
+
     if(element.val().length== 12 && DeliveryType !=0){
     $.ajax({
                 url: '/post/coupone/ajax',
@@ -324,6 +326,7 @@ $(document).ready(function() {
                 }
             });
     }
+
 
     };
 

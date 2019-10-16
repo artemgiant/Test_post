@@ -9,6 +9,7 @@ use App\Entity\ExpressDeliveryPrice;
 use App\Entity\PriceForDeliveryType;
 use Sonata\AdminBundle\Controller\CRUDController;
 use App\Entity\Address;
+use App\Controller\CabinetController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,11 +38,18 @@ final class CouponController extends CabinetController
         if($weightPriceEl)$priceCoupon = $weightPriceEl->getVipPrice();
        $CouponObject =  $this->getDoctrine()->getRepository(Coupon::class)->findOneBy(['Code'=>$codeCoupon]);
 
-//        if(empty($DHLPrice)){
-//            $settingsMarkup=$this->getDoctrine()->getRepository(ExpressDeliveryPrice::class)->getDHLMarkup();
-//            $vipMarkup=$settingsMarkup['DHLMarkupForVip']??20;
-//
-//        }
+        if(empty($DHLPrice)){
+            $user =$this->getUser();
+            $entityManager = $this->getDoctrine()->getManager();
+            if($DeliveryType == '2' && !$user->getIsVip()){
+                $settingsMarkup=$entityManager-> getRepository(ExpressDeliveryPrice::class)->getDHLMarkup();
+                $markupNorm=$settingsMarkup['DHLMarkup']??40;
+                $vipMarkup=$settingsMarkup['DHLMarkupForVip']??20;
+//                $order->setShippingCosts(round($order->getShippingCosts()- (($order->getShippingCosts()/(100+$markupNorm))*$vipMarkup),2));
+                return true;
+            }
+
+        }
         $data = array();
         if(!empty($CouponObject)){
             $data = [
