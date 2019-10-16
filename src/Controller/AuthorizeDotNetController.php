@@ -15,6 +15,7 @@ use App\Form\AddressFormType;
 use App\Service\AuthorizeDotNetService;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+use Psr\Log\LoggerInterface;
 
 
 /**
@@ -28,11 +29,11 @@ class AuthorizeDotNetController extends AbstractController
      * @Route("/callback", methods={"GET","POST"})
      * @return Response
      */
-    public function callbackAction(Request $request,AuthorizeDotNetService $authDotNetService)
+    public function callbackAction(Request $request,AuthorizeDotNetService $authDotNetService,LoggerInterface $logger)
     {
         $log_file = getcwd() . "/../auhtorizeDotNet.log";
 
-        $logger = $this->container->get('logger');
+
 //        $logger->addDebug('AUTH_DOT_NET_START ' . (new \DateTime())->format('Y-m-d H:i:s'));
 //        $logger->addDebug('post start ' . (new \DateTime())->format('Y-m-d H:i:s'));
 //        $logger->addDebug(print_r($request->request->all(), 1));
