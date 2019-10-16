@@ -104,7 +104,7 @@ class Coupon
 
     private function genareteCode()
     {
-        return str_pad(str_pad(dechex(mt_rand(0, 0xFFFFFF)), 19, dechex(mt_rand(0, 0xFFFFFF)), STR_PAD_RIGHT),30,dechex(time()),STR_PAD_RIGHT);
+        return mb_strtoupper(str_pad(str_pad(dechex(mt_rand(0, 0xFFFFFF)), 5, dechex(mt_rand(0, 0xFFFFFF)), STR_PAD_RIGHT),12,dechex(time()),STR_PAD_RIGHT));
     }
 
     public function getOrderCoupon(): ?Order
