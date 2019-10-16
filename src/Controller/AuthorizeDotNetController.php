@@ -29,7 +29,7 @@ class AuthorizeDotNetController extends AbstractController
      * @Route("/callback", methods={"GET","POST"})
      * @return Response
      */
-    public function callbackAction(Request $request,AuthorizeDotNetService $authDotNetService,LoggerInterface $logger)
+    public function callbackAction(Request $request,AuthorizeDotNetService $authDotNetService)
     {
         $log_file = getcwd() . "/../auhtorizeDotNet.log";
 
@@ -55,9 +55,9 @@ class AuthorizeDotNetController extends AbstractController
         try {
             $authDotNetService->storePaymentData();
         } catch (\Exception $e) {
-            $logger->addError('Error while processing AuthorizeDotNetInvoice\'s callback: ' . $e->getMessage());
-            $logger->addError('LINE: ' . $e->getLine());
-            $logger->addError('FILE: ' . $e->getFile());
+           // $logger->addError('Error while processing AuthorizeDotNetInvoice\'s callback: ' . $e->getMessage());
+          //  $logger->addError('LINE: ' . $e->getLine());
+           // $logger->addError('FILE: ' . $e->getFile());
             $authDotNetService->pre([
                 'Error while processing AuthorizeDotNetInvoice\'s callback: ' . $e->getMessage(),
                 'LINE: ' . $e->getLine(),
