@@ -552,7 +552,7 @@
 
                                     return true;
                                 }
-                                $('#order_form_shippingCosts').val(res);
+                                $('#order_form_shippingCosts').val(res).change();
                                 el.find('span.text-danger').remove();
                                 return true;
                             },

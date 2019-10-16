@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Controller\CabinetController;
 use App\Entity\Country;
 use App\Entity\Coupon;
+use App\Entity\ExpressDeliveryPrice;
 use App\Entity\Order;
 use App\Entity\User;
 use App\Entity\Address;
@@ -164,6 +165,18 @@ class ParcelsController extends CabinetController
 
 //Calculate shipping costs for ECONOM type . Use price-weight data.
 
+            if(!$order->getOrderType()->getCode() == 'express') {
+                    $ObjectPrice = $this->getDoctrine()
+                        ->getRepository(PriceForDeliveryType::class)
+                        ->findPriceByWeight((float)$orderForm['sendDetailWeight'],$order->getOrderType()->getId());
+
+            ($this->user->isVip())?
+                $order->setShippingCosts($ObjectPrice->getVipPrice())
+                :
+                $order->setShippingCosts($ObjectPrice->getPrice());}
+
+
+
 //Calculate shipping costs for EXPRESS type . Use Dhl service .
             if($order->getOrderType()->getCode() == 'express') {
                 $order->setUser($this->user);
@@ -182,16 +195,8 @@ class ParcelsController extends CabinetController
                     return $this->redirectToRoute('post_parcels_create');
                 }
                 $order->setShippingCosts($FinalPrice);
-            }else{
-                $ObjectPrice = $this->getDoctrine()
-                    ->getRepository(PriceForDeliveryType::class)
-                    ->findPriceByWeight((float)$orderForm['sendDetailWeight'],$order->getOrderType()->getId());
-
-                ($this->user->isVip())?
-                    $order->setShippingCosts($ObjectPrice->getVipPrice())
-                    :
-                    $order->setShippingCosts($ObjectPrice->getPrice());
             }
+
             if($form->get('Coupon')->getNormData())$this->getDiscountCoupon($order,$form->get('Coupon')->getNormData(),$orderForm['sendDetailWeight'],'create');
 
             $invoice=new Invoices();
@@ -222,11 +227,13 @@ class ParcelsController extends CabinetController
 
         $user =$this->user;
         $entityManager = $this->getDoctrine()->getManager();
-
-//        if($key == 'edit' && !empty($order->getCouponObject()) ){
-//          $CouponExist = $entityManager->getRepository(Coupon::class)->findOneBy(['id' => 3]);
-//        }
-
+        if($order->getOrderType()->getCode() == 'express' && !$user->getIsVip()){
+            $settingsMarkup=$entityManager-> getRepository(ExpressDeliveryPrice::class)->getDHLMarkup();
+            $markupNorm=$settingsMarkup['DHLMarkup']??40;
+            $vipMarkup=$settingsMarkup['DHLMarkupForVip']??20;
+            $order->setShippingCosts(round($order->getShippingCosts()- (($order->getShippingCosts()/(100+$markupNorm))*$vipMarkup),2));
+            return true;
+        }
         $couponObject = $entityManager->getRepository(Coupon::class)->findOneBy(['Code' => $couponCode]);
 
         if(empty($couponObject) || $couponObject->getQuantity()==0)return null;

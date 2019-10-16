@@ -453,7 +453,7 @@ class AuthorizeDotNetService
         error_log("----------SAVE-----------", 3, AUTHORIZE_ERROR_LOG);
         error_log(print_r($data, true) . PHP_EOL, 3, AUTHORIZE_ERROR_LOG);
         /* @var TransactionLiqPay $trAutorize */
-        $trAutorize =$this->getEm()->getRepository(TransactionLiqPay::class)->findOneBy(['number'=>$data['order_id']]);
+        $trAutorize =$this->getEm()->getRepository(TransactionLiqPay::class)->findOneBy(['number'=>$data['transaction']['transId']]);
 
         if (empty($trAutorize)) {
             /** @var TransactionLiqPay $trAutorize */

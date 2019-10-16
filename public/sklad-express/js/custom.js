@@ -266,6 +266,7 @@ $(document).ready(function() {
 
     $('form').on('keyup',"#order_form_sendDetailWeight"  ,function () { coupon(); });
 
+    $(document).on('change',"#order_form_shippingCosts" ,function () {  coupon();  });
 
     function  coupon() {
 
@@ -277,19 +278,20 @@ $(document).ready(function() {
 
         var element =  $('#order_form_Coupon'),
             lengthCode = element.val().length,
-        ru ="Код купона состоить из 30 символов у  вас "+lengthCode,
-         ukr ="Код купона складається з 30 символів у вас " +lengthCode,
+        ru ="Код купона состоить из 12 символов у  вас "+lengthCode,
+         ukr ="Код купона складається з 12 символів у вас " +lengthCode,
         code = element.val(),
         Weight = $('#order_form_sendDetailWeight').val(),
          DeliveryType = $('#order_form_orderType>option:selected').val(),
             DHLPrice = '';
         el =element.closest('.form-group');
-        if(lengthCode!=30){ console.log('!!'); spanMessage(ukr,ru,el,'text-danger')};
+        if(lengthCode!=12){ console.log('!!'); spanMessage(ukr,ru,el,'text-danger')};
 
         if(type == 2)DHLPrice = $('#order_form_shippingCosts').val();
 
 
-    if(element.val().length== 30 && DeliveryType !=0){
+
+    if(element.val().length== 12 && DeliveryType !=0){
     $.ajax({
                 url: '/post/coupone/ajax',
                 type: 'post',
@@ -324,6 +326,7 @@ $(document).ready(function() {
                 }
             });
     }
+
 
     };
 
