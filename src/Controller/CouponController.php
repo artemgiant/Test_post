@@ -33,11 +33,11 @@ final class CouponController extends CabinetController
         }
         $weightPriceEl = $this->getDoctrine()
             ->getRepository(PriceForDeliveryType::class)
-            ->findPriceByWeight((float)$request->query->get('Weight'),$DeliveryType);
+            ->findPriceByWeight((float)$request->request->get('Weight'),$DeliveryType);
+        $priceCoupon = '';
+        if($weightPriceEl)$priceCoupon = $weightPriceEl->getVipPrice();
+       $CouponObject =  $this->getDoctrine()->getRepository(Coupon::class)->findOneBy(['Code'=>$codeCoupon]);
 
-       $priceCoupon = ($weightPriceEl->getVipPrice())??"";
-
-        $CouponObject =  $this->getDoctrine()->getRepository(Coupon::class)->findOneBy(['Code'=>$codeCoupon]);
 
         $data = array();
         if(!empty($CouponObject)){

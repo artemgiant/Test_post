@@ -303,10 +303,13 @@ $(document).ready(function() {
                 // },
                 success: function(res) {
                     var data = res,
-                     ru = "Возможное количество использований: "+data.quantity+" ",
-                     ukr ="Можлива кількість використань: "+data.quantity+" ",
+                     ru = "Цена доставки с использованиям купона составит "+data.priceCoupon +".  Возможное количество использований: "+data.quantity+" ",
+                     ukr ="Ціна доставки з використанням купона складе "+data.priceCoupon +".  Можлива кількість використань: "+data.quantity+" ",
                         cl = 'text-green'
                     ;
+
+                    if(data.priceCoupon){ $('#order_form_shippingCosts').val(data.priceCoupon);}
+
                     if(data.error){
                         ru = "Код купона не действителен";
                         ukr ="Код купона не дійсний";
