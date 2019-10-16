@@ -29,7 +29,7 @@ class FindController extends CabinetController
     {
         $this->user = $this->getUser();
         $trNum=$request->request->get('tracnum',false);
-
+        $express=0;
         $errors =[];
         $mess=[];
         $urltousa="";
@@ -47,6 +47,7 @@ class FindController extends CabinetController
                 ->findOneBy(['trNum'=>$trNum]);
             if ($order){
             /* @var $order Order */
+                $express=($order->getOrderType()->getCode()=='express')?1:0;
                 $companyToUSA=$this->getCompanyNameByTrNum($order->getSystemNum());
                 $companyInUSA=$this->getCompanyNameByTrNum($order->getSystemNumInUsa());
                 $tracksArray=array(
@@ -88,6 +89,7 @@ class FindController extends CabinetController
 
         return $this->render('cabinet/find/index.html.twig', [
             'user' => $this->user,
+            'express'=>$express,
             'errors'=>implode($errors,'</br>'),
             'trNum'=> $trNum,
             'items'=>$mess,
