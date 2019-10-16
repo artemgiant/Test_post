@@ -266,6 +266,7 @@ $(document).ready(function() {
 
     $('form').on('keyup',"#order_form_sendDetailWeight"  ,function () { coupon(); });
 
+    $(document).on('change',"#order_form_shippingCosts" ,function () {  coupon();  });
 
     function  coupon() {
 
@@ -287,7 +288,6 @@ $(document).ready(function() {
         if(lengthCode!=12){ console.log('!!'); spanMessage(ukr,ru,el,'text-danger')};
 
         if(type == 2)DHLPrice = $('#order_form_shippingCosts').val();
-
 
 
 
