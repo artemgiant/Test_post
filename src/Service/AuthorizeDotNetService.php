@@ -3,6 +3,8 @@
 namespace  App\Service;
 
 use App\Entity\Invoices;
+use App\Entity\Order;
+use App\Entity\OrderStatus;
 use App\Entity\TransactionLiqPay;
 use App\Entity\User;
 use Doctrine\ORM\EntityManager;
@@ -486,20 +488,23 @@ class AuthorizeDotNetService
 
                     error_log("---------- USER ID -----------", 3, AUTHORIZE_ERROR_LOG);
                     error_log($orderId . PHP_EOL, 3, AUTHORIZE_ERROR_LOG);
-                    /* @var $order Order */
+                    /* @var Order $order  */
                     $invoice = $this->getEm()->getRepository(Invoices::class)->find($orderId);
                     /* @var $invoice Invoices */
                     $order = ($invoice && $invoice->getOrderId())?$invoice->getOrderId():false;
-
+                    error_log("---------- ORDER ID -----------", 3, AUTHORIZE_ERROR_LOG);
+                    error_log($orderId . PHP_EOL, 3, AUTHORIZE_ERROR_LOG);
                     if ($order) {
                         $trAutorize->setUser($order->getUser());
                         $trAutorize->setInvoice($invoice);
                         $invoice->setIsPaid(true);
 //                        $invoice->setTrNum("EP".($trLiqPay->getId()+57354658)."UA"); // this method is not implemented for invoices yet. uncomment when ready.
+                        $this->getEm()->persist($invoice);
                         $this->getEm()->persist($trAutorize);
                         $this->getEm()->flush();
 
-                        $orderInvoices = $this->getEm()->getRepository(Invoices::class)->findBy(['orderId'=>$order->getId()]);
+                        //$orderInvoices = $this->getEm()->getRepository(Invoices::class)->findBy(['orderId'=>$order->getId()]);
+                        /** @var OrderStatus $orderStatus */
                         $orderStatus = $this->getEm()->getRepository(OrderStatus::class)->findOneBy(['status'=>'paid']);
                         // foreach ($orderInvoices as $orderInvoice) {
                         //     if (!$orderInvoice->isPaid()) {
@@ -508,7 +513,11 @@ class AuthorizeDotNetService
                         //   }
                         $order->setOrderStatus($orderStatus);
                         if (is_null($order->getTrNum())||(trim($order->getTrNum()) == '')) {
-                            $order->setTrNum("EP".($order->getId()+57354658)."UA"); // this number supposed to be attached to the paid invoice
+                            $trNum="EP".($order->getId()+57354658)."UA";
+                            $order->setTrNum($trNum); // this number supposed to be attached to the paid invoice
+                            error_log("---------- TR NUM -----------", 3, AUTHORIZE_ERROR_LOG);
+                            error_log($trNum . PHP_EOL, 3, AUTHORIZE_ERROR_LOG);
+
                         }
                         $this->getEm()->persist($order);
                     }
