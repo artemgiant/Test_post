@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Invoices;
 use App\Entity\Order;
 use App\Entity\User;
 use App\Entity\Address;
@@ -145,5 +146,26 @@ class AuthorizeDotNetController extends AbstractController
      */
     public function getIframeCommunicator() {
         return $this->render('authorize_dot_net/iframeCommunicator.html.twig');
+    }
+
+    /**
+     * @Route("/try-paid", name="try_paid")
+     *
+     * @return Response
+     */
+    public function tryPaidAction(Request $request) {
+        $entityManager = $this->getDoctrine()->getManager();
+        $id=$request->get("id",false);
+        if ($id){
+            /** @var Invoices $invoice */
+            $invoice=$entityManager->getRepository(Invoices::class)->find($id);
+            if ($invoice)
+            {
+                $invoice->setTryPaid(true);
+                $entityManager->persist($invoice);
+                $entityManager->flush();
+            }
+        }
+        return 'success';
     }
 }
