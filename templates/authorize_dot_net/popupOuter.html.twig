@@ -195,12 +195,13 @@
             document.getElementById("divAuthorizeNetPopupScreen").style.display = "none";
             document.getElementById("divAuthorizeNetPopup").style.display = "none";
             document.getElementById("iframeAuthorizeNet").src = "{{ url('auth_inner_popup') }}";
-            document.getElementById("btnOpenAuthorizeNetPopup").disabled = false;
+            /*document.getElementById("btnOpenAuthorizeNetPopup").disabled = false;*/
             if (AuthorizeNetPopup.options.onPopupClosed) AuthorizeNetPopup.options.onPopupClosed();
         };
 
 
         AuthorizeNetPopup.openPopup = function (orderId) {
+            window.orderId=orderId;
             var popup = document.getElementById("divAuthorizeNetPopup");
             var popupScreen = document.getElementById("divAuthorizeNetPopupScreen");
             var ifrm = document.getElementById("iframeAuthorizeNet");
@@ -225,10 +226,11 @@
                     AuthorizeNetPopup.closePopup();
                     $('.popup-wrap h2').text('{{ 'Successful payment' | trans }}');
                     $('.popup-wrap').toggleClass('open');
+                    setTryPaid();
                     setTimeout(function () {
                         $('.popup-wrap').removeClass('open');
                         window.location.reload()
-                    }, 2000);
+                    }, 3000);
                     break;
                 case "cancel":
                     AuthorizeNetPopup.closePopup();
@@ -239,10 +241,11 @@
                     AuthorizeNetPopup.closePopup();
                     $('.popup-wrap h2').text('{{ 'Successful payment' | trans }}');
                     $('.popup-wrap').toggleClass('open');
+                    setTryPaid();
                     setTimeout(function () {
                         $('.popup-wrap').removeClass('open');
                         window.location.reload()
-                    }, 2000);
+                    }, 3000);
                     break;
                 case "resizeWindow":
                     var w = parseInt(params["width"]);
@@ -255,7 +258,21 @@
             }
         };
 
-
+function setTryPaid() {
+    var datastr="id="+window.orderId;
+    $.ajax({
+        url: '/authorize-dot-net/try-paid',
+        type: 'POST',
+        data: datastr,
+        success: function(mess) {
+            console.log('success_'+local);
+            console.log(mess);
+        },
+        error:function(mess) {
+            console.log('error_'+local);
+        }
+    })
+}
         function centerPopup() {
             var d = document.getElementById("divAuthorizeNetPopup");
             d.style.left = "50%";

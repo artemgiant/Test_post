@@ -63,6 +63,13 @@ class Invoices
     private $isPaid = false;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="try_paid", type="boolean")
+     */
+    private $tryPaid = false;
+
+    /**
      * @var string
      * @ORM\Column(name="form_token", type="string", length=4096, nullable=true)
      */
@@ -135,6 +142,19 @@ class Invoices
     public function setIsPaid(bool $isPaid)
     {
         $this->isPaid = $isPaid;
+
+        return $this;
+    }
+
+
+ public function isTryPaid()
+    {
+        return $this->tryPaid;
+    }
+
+    public function setTryPaid(bool $tryPaid)
+    {
+        $this->tryPaid = $tryPaid;
 
         return $this;
     }

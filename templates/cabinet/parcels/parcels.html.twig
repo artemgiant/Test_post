@@ -127,7 +127,7 @@
                                                     <td>{{ item.trackingNumber }}</td>
                                                 {% endif %}
                                                 <td>
-                                                    {% if item.orderType.name is not empty and item.orderType.name is defined  %}
+                                                    {% if item.orderType is not empty and item.orderType.name is not empty and item.orderType.name is defined  %}
                                                         {{ item.orderType.name|trans }}
                                                     {% endif %}
                                                 </td>
@@ -176,7 +176,11 @@
                                                                         {#
                                                                         <input type="button" id="" class="payment-btn btn btn-outline-success liq-pay-button-change" value="{{ "Pay" | trans }}" />
                                                                         #}
-                                                                        <input type="button" id="" class="btn btn-outline-success authorize-button-change" onclick="AuthorizeNetPopup.openPopup({{invoice.id }})" value="{{ "Pay authorize" | trans }}" />
+
+                                                                        {% if invoice.tryPaid == false %}
+                                                                                <input type="button" id="" class="btn btn-outline-success authorize-button-change" onclick="AuthorizeNetPopup.openPopup({{invoice.id }})" value="{{ "Pay authorize" | trans }}" />
+                                                                        {% endif %}
+
                                                                     {% endif %}
 
                                                                 {% endfor %}

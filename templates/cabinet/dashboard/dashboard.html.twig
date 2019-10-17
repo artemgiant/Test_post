@@ -216,12 +216,10 @@
                             {% if payment %}
                                 {% for item in payment %}
                                     <tr class="text-center">
-                                    <tr class="text-center">
                                         <td>{{ item.number }}</td>
                                         <td>{{ "Card"|trans }}</td>
                                         <td>{{ item.sum }}</td>
                                         <td>{{ item.status | trans }}</td>
-                                    </tr>
                                     </tr>
                                 {% endfor %}
                             {% else %}
