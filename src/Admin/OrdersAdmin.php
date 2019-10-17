@@ -176,17 +176,21 @@ class OrdersAdmin extends AbstractAdmin
             ->add('addresses', ModelType::class, $addressesFieldOptions)
             ->add('trackingNumber',null,['label'=>'Трек новой почты'])
             ->add('trNum',null,['label'=>'Трек для пользователя','disabled'=>true,'required'=>false])
+            /*
             ->add('companySendToUsa', ChoiceType::class, [
                         'choices'  => $this::CARRIER_CODES,
                         'label'=>'Компания доставки(Посылка едет в страну назначения)'
                  ]
             )
+            */
             ->add('systemNum',null,['label'=>'Трек системный(Тот что меняет админ)','required'=>false])
+            /*
             ->add('companySendInUsa', ChoiceType::class, [
                     'choices'  => $this::CARRIER_CODES,
                     'label'=>'Компания доставки(Посылка едет к аддресу назначения)'
                 ]
             )
+            */
             ->add('systemNumInUsa',null,['label'=>'Трек системный(Посылка едет к аддресу назначения)','required'=>false])
             ->add('volumeWeigth')
             ->add('declareValue')
