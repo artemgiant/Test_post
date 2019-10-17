@@ -176,6 +176,12 @@
             switch (params["action"]) {
                 case "successfulSave":
                     AuthorizeNetPopup.closePopup();
+                    $('#payment_form_auth + div').html('');
+                    $('.popup-wrap h2').text('{{ 'Successful payment' | trans }}');
+                    $('.popup-wrap').toggleClass('open');
+                    setTimeout(function () {
+                        $('.popup-wrap').removeClass('open');
+                    }, 2000);
                     break;
                 case "cancel":
                     AuthorizeNetPopup.closePopup();
