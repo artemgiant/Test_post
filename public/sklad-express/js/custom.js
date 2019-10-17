@@ -260,16 +260,36 @@ $(document).ready(function() {
             $(".coupon-group").fadeToggle();
     });
 
-    $('#order_form_orderType , #order_form_addresses').change(function () {  coupon() });
+    $('#order_form_orderType , #order_form_addresses').change(function () {
 
-    $('#order_form_Coupon').on('keyup',function () {  coupon();  });
+        coupon()
+    });
+
+    $('#order_form_Coupon').on('keyup',function () {
+
+        if($('#order_form_orderType>option:selected').val() == 2
+            &&  $('#order_form_userVip').attr('DHLChecked') == 'checked'){
+            return null;
+        }
+        coupon();
+    });
 
     $('form').on('keyup',"#order_form_sendDetailWeight"  ,function () { coupon(); });
 
-    $(document).on('change',"#order_form_shippingCosts" ,function () {  coupon();  });
+    $(document).on('change',"#order_form_shippingCosts" ,function () {
+        // if($('#order_form_orderType>option:selected').val() == 2){
+        //     $('#order_form_userVip').attr({'DHLChecked':'checked'});
+        // }
+        coupon();  });
 
-    function  coupon() {
-
+    function  coupon(key = null) {
+        // if(
+        //     $('#order_form_orderType>option:selected').val() == 2
+        //     &&
+        //     $('#order_form_userVip').attr('DHLChecked') == 'checked'){
+        //
+        //     $('#order_form_userVip').attr({'DHLChecked':null});
+        // }
        var weight = $('#order_form_sendDetailWeight').val(),
            code =  $('#order_form_Coupon').val(),
            type =  $('#order_form_orderType>option:selected').val();
@@ -282,20 +302,22 @@ $(document).ready(function() {
          ukr ="Код купона складається з 12 символів у вас " +lengthCode,
         code = element.val(),
         Weight = $('#order_form_sendDetailWeight').val(),
-         DeliveryType = $('#order_form_orderType>option:selected').val(),
-            DHLPrice = '';
+        DeliveryType = $('#order_form_orderType>option:selected').val(),
+        DHLPrice = '';
         el =element.closest('.form-group');
         if(lengthCode!=12){ console.log('!!'); spanMessage(ukr,ru,el,'text-danger')};
 
         if(type == 2)DHLPrice = $('#order_form_shippingCosts').val();
+        // if($('#order_form_orderType>option:selected').val() == 2 && $('#order_form_userVip').attr('DHLChecked') =='checked'){
+        //    var Dhl
+        // }
 
-
-
+console.log($('#order_form_userVip').attr('DHLChecked'));
     if(element.val().length== 12 && DeliveryType !=0){
     $.ajax({
                 url: '/post/coupone/ajax',
                 type: 'post',
-                data: {code:code,Weight:Weight,DeliveryType:DeliveryType,DHLPrice:DHLPrice},
+                data: {code:code,Weight:Weight,DeliveryType:DeliveryType,DHLPrice:DHLPrice,DHLChecked:$('#order_form_userVip').attr('DHLChecked')},
                 dataType: 'json',
                 // beforeSend: function() {
                 //     $('#sendajax').button('loading');
@@ -322,6 +344,9 @@ $(document).ready(function() {
                         ru = "Данный промокод уже использован";
                         ukr ="Даний промокод уже використаний";
                         cl = 'text-danger';
+                    }
+                    if($('#order_form_orderType>option:selected').val() == 2 && data.DHLChecked == 'checked'){
+                        $('#order_form_userVip').attr({'DHLChecked':data.DHLChecked});
                     }
                     console.log(data);
                     spanMessage(ukr,ru,el,cl);

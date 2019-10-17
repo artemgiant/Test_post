@@ -30,6 +30,7 @@ final class CouponController extends CabinetController
         $codeCoupon =  $request->request->get('code');
         $DeliveryType = (int) $request->request->get('DeliveryType');
         $DHLPrice = (float) $request->request->get('DHLPrice');
+        $DHLChecked =  $request->request->get('DHLChecked');
 
         $weightPriceEl = $this->getDoctrine()
             ->getRepository(PriceForDeliveryType::class)
@@ -37,6 +38,7 @@ final class CouponController extends CabinetController
         $priceCoupon = '';
         if($weightPriceEl)$priceCoupon = $weightPriceEl->getVipPrice();
        $CouponObject =  $this->getDoctrine()->getRepository(Coupon::class)->findOneBy(['Code'=>$codeCoupon]);
+        $checkDHL=false;
 
         if(!empty($DHLPrice)){
             $user =$this->getUser();
@@ -45,8 +47,8 @@ final class CouponController extends CabinetController
                 $settingsMarkup=$entityManager-> getRepository(ExpressDeliveryPrice::class)->getDHLMarkup();
                 $markupNorm=$settingsMarkup['DHLMarkup']??40;
                 $vipMarkup=$settingsMarkup['DHLMarkupForVip']??20;
-
                 $priceCoupon= (round($DHLPrice- (($DHLPrice/(100+$markupNorm))*$vipMarkup),2));
+                $DHLChecked = 'checked';
 
             }
 
@@ -55,7 +57,9 @@ final class CouponController extends CabinetController
         if(!empty($CouponObject)){
             $data = [
                 'quantity'=> $CouponObject->getQuantity(),
-                'priceCoupon'=>$priceCoupon
+                'priceCoupon'=>$priceCoupon,
+                'DHLChecked'=>$DHLChecked
+
             ];
         }
         if(empty($data))$data['error']='error';
