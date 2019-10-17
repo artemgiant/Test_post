@@ -5027,6 +5027,10 @@ body .jvectormap-zoomout {
   cursor: pointer;
 }
 
+#coupon_checkgox{
+  position: relative;
+  top: 2px;
+}
 .button span {
   line-height: 60px;
   color: #fff;
