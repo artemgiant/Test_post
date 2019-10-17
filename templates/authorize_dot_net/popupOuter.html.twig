@@ -141,7 +141,7 @@
         background: white;
         padding: 4px 13px;
     }
-    
+
 </style>
 
 
@@ -227,6 +227,7 @@
                     $('.popup-wrap').toggleClass('open');
                     setTimeout(function () {
                         $('.popup-wrap').removeClass('open');
+                        window.location.reload()
                     }, 2000);
                     break;
                 case "cancel":
@@ -240,6 +241,7 @@
                     $('.popup-wrap').toggleClass('open');
                     setTimeout(function () {
                         $('.popup-wrap').removeClass('open');
+                        window.location.reload()
                     }, 2000);
                     break;
                 case "resizeWindow":
