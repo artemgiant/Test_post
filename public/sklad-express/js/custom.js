@@ -261,35 +261,39 @@ $(document).ready(function() {
     });
 
     $('#order_form_orderType , #order_form_addresses').change(function () {
+        if(
+            $('#order_form_orderType>option:selected').val() == 2
+            &&
+            $('#order_form_userVip').attr('DHLChecked') == 'checked'){
 
+            $('#order_form_userVip').attr({'DHLChecked':null});
+        }
         coupon()
     });
 
     $('#order_form_Coupon').on('keyup',function () {
 
-        if($('#order_form_orderType>option:selected').val() == 2
-            &&  $('#order_form_userVip').attr('DHLChecked') == 'checked'){
-            return null;
-        }
+
         coupon();
     });
 
-    $('form').on('keyup',"#order_form_sendDetailWeight"  ,function () { coupon(); });
+    $('form').on('keyup',"#order_form_sendDetailWeight"  ,function () {
+
+        coupon(); });
 
     $(document).on('change',"#order_form_shippingCosts" ,function () {
-        // if($('#order_form_orderType>option:selected').val() == 2){
-        //     $('#order_form_userVip').attr({'DHLChecked':'checked'});
-        // }
+        if(
+            $('#order_form_orderType>option:selected').val() == 2
+            &&
+            $('#order_form_userVip').attr('DHLChecked') == 'checked'){
+
+            $('#order_form_userVip').attr({'DHLChecked':null});
+        }
+
         coupon();  });
 
-    function  coupon(key = null) {
-        // if(
-        //     $('#order_form_orderType>option:selected').val() == 2
-        //     &&
-        //     $('#order_form_userVip').attr('DHLChecked') == 'checked'){
-        //
-        //     $('#order_form_userVip').attr({'DHLChecked':null});
-        // }
+    function  coupon() {
+
        var weight = $('#order_form_sendDetailWeight').val(),
            code =  $('#order_form_Coupon').val(),
            type =  $('#order_form_orderType>option:selected').val();
