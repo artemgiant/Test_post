@@ -308,7 +308,7 @@ $(document).ready(function() {
         Weight = $('#order_form_sendDetailWeight').val(),
         DeliveryType = $('#order_form_orderType>option:selected').val(),
         DHLPrice = '';
-        el =element.closest('.form-group');
+        el =element.closest('.form-group').find('.input-group');
         if(lengthCode!=12){ console.log('!!'); spanMessage(ukr,ru,el,'text-danger')};
 
         if(type == 2)DHLPrice = $('#order_form_shippingCosts').val();
@@ -369,10 +369,13 @@ console.log($('#order_form_userVip').attr('DHLChecked'));
         if($('button[data-id=select_language]').attr('title')[0] == 'У'){
             message =ukr;
         }
-        if(!el.find('span.text-green')[0] && !el.find('span.text-danger')[0] && !el.find('span.text-warning')[0]){
-            el.append('<span class="'+cl+'">'+message +'</span>');
+        var blockEl=el.closest('.form-group')
+        if(!blockEl.find('span.text-green')[0] && !blockEl.find('span.text-danger')[0] && !blockEl.find('span.text-warning')[0]){
+            //el.append('<span class="'+cl+'">'+message +'</span>');
+             el.after('<span class=" cuponmess '+cl+'">'+message +'</span>');
+            //$('<span class="'+cl+'">'+message +'</span>').appendTo(el);
         }else{
-            el.find('span').text(message).attr({'class':cl});
+            blockEl.find('span.cuponmess').text(message).attr({'class':"cuponmess "+cl});
         }
 
     }
