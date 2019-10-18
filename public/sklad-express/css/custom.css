@@ -283,3 +283,331 @@
     font-size: 17px;
 }
 
+#coupon_checkgox{
+    position: relative;
+    top: 2px;
+}
+
+
+.b-tooltip {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    position: relative
+}
+
+.b-tooltip--color {
+    color: #656565;
+    margin-left: 3px
+}
+
+.b-tooltip--color:hover {
+    color: #00b0ff
+}
+
+.b-tooltip__body {
+    -ms-transform: translateX(-50%);
+    -o-transition: all .2s ease;
+    -webkit-box-shadow: 0 8px 8px 0 rgba(0, 0, 0, .12);
+    -webkit-transform: translateX(-50%);
+    -webkit-transition: all .2s ease;
+    background: #4a4a4a;
+    border-radius: 4px;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, .12);
+    color: #fff;
+    font-size: 11px;
+    font-size: .6875rem;
+    left: 50%;
+    line-height: 1.2;
+    margin-top: 12px;
+    opacity: 0;
+    padding: 12px 16px;
+    position: absolute;
+    text-align: left;
+    top: 100%;
+    transform: translateX(-50%);
+    transition: all .2s ease;
+    visibility: hidden;
+    width: 300px;
+    z-index: 101
+}
+
+@media screen and (max-width: 767px) {
+    .b-tooltip__body {
+        width: 200px
+    }
+}
+
+@media screen and (max-width: 599px) {
+    .b-tooltip__body {
+        -ms-transform: translateX(0);
+        -webkit-transform: translateX(0);
+        left: 0 !important;
+        margin-top: 0;
+        position: fixed;
+        top: -5px !important;
+        transform: translateX(0);
+        width: 100vw
+    }
+}
+
+.b-tooltip__body:before {
+    -ms-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-bottom-color: #4a4a4a;
+    content: "";
+    display: block;
+    height: 0;
+    left: 50%;
+    position: absolute;
+    top: -10px;
+    transform: translateX(-50%);
+    width: 0
+}
+
+@media screen and (max-width: 599px) {
+    .b-tooltip__body:before {
+        display: none
+    }
+}
+
+.b-tooltip__body--top {
+    bottom: 100%;
+    margin-bottom: 12px;
+    top: auto
+}
+
+@media screen and (max-width: 719px) {
+    .b-tooltip__body--top {
+        -ms-transform: translate(-100%, -50%);
+        -webkit-transform: translate(-100%, -50%);
+        bottom: auto;
+        left: -10px;
+        margin-top: 0 !important;
+        top: 50%;
+        transform: translate(-100%, -50%)
+    }
+}
+
+@media screen and (max-width: 599px) {
+    .b-tooltip__body--top {
+        display: none
+    }
+}
+
+.b-tooltip__body--top:before {
+    -ms-transform: translateX(-50%) rotate(180deg);
+    -webkit-transform: translateX(-50%) rotate(180deg);
+    bottom: -10px;
+    top: auto;
+    transform: translateX(-50%) rotate(180deg)
+}
+
+@media screen and (max-width: 719px) {
+    .b-tooltip__body--top:before {
+        -ms-transform: translateY(-50%) rotate(0deg);
+        -webkit-transform: translateY(-50%) rotate(0deg);
+        border: 5px solid transparent;
+        border-left-color: #4a4a4a;
+        bottom: auto;
+        left: auto;
+        right: -10px;
+        top: 50%;
+        transform: translateY(-50%) rotate(0deg)
+    }
+}
+
+.b-tooltip__body--small {
+    width: 120px
+}
+
+@media screen and (max-width: 599px) {
+    .b-tooltip__body--small {
+        width: 100vw
+    }
+}
+
+.b-tooltip__body--small-220 {
+    width: 220px
+}
+
+@media screen and (max-width: 599px) {
+    .b-tooltip__body--small-220 {
+        width: 100vw
+    }
+}
+
+.b-tooltip__body--small-185 {
+    width: 185px
+}
+
+@media screen and (max-width: 599px) {
+    .b-tooltip__body--small-185 {
+        width: 100vw
+    }
+}
+
+.b-tooltip__body--parent-width {
+    width: 100%
+}
+
+@media screen and (max-width: 599px) {
+    .b-tooltip__body--parent-width {
+        width: 100vw
+    }
+}
+
+.b-tooltip__body--blue {
+    background: #00b0ff
+}
+
+.b-tooltip__body--blue:before {
+    border-bottom-color: #00b0ff
+}
+
+.b-tooltip__body--lefted {
+    left: -125px
+}
+
+@media screen and (max-width: 599px) {
+    .b-tooltip__body--lefted {
+        left: 0
+    }
+}
+
+.b-tooltip__body--lefted:before {
+    left: 282px
+}
+
+.b-tooltip__body--lefted2 {
+    margin-left: -120px
+}
+
+@media screen and (max-width: 767px) {
+    .b-tooltip__body--lefted2 {
+        left: 60px
+    }
+}
+
+@media screen and (max-width: 599px) {
+    .b-tooltip__body--lefted2 {
+        margin-left: 0
+    }
+}
+
+.b-tooltip__body--lefted2:before {
+    margin-left: 120px
+}
+
+@media screen and (max-width: 767px) {
+    .b-tooltip__body--lefted2:before {
+        left: 60px
+    }
+}
+
+.b-tooltip__body--horizontal {
+    -ms-transform: translate(-100%, -50%);
+    -webkit-transform: translate(-100%, -50%);
+    left: -10px;
+    margin-top: 0 !important;
+    top: 50%;
+    transform: translate(-100%, -50%)
+}
+
+.b-tooltip__body--horizontal:before {
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    border: 5px solid transparent;
+    border-left-color: #4a4a4a;
+    left: auto;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%)
+}
+
+.b-tooltip__body--center {
+    text-align: center
+}
+
+.b-tooltip__body--no-wrap {
+    white-space: nowrap;
+    width: auto
+}
+
+@media screen and (max-width: 599px) {
+    .b-tooltip__body--no-wrap {
+        text-align: center;
+        width: 100vw
+    }
+}
+
+.b-tooltip__body--left-mobile-custom {
+    left: -125px;
+    margin-top: 12px !important;
+    width: 300px
+}
+
+@media screen and (max-width: 599px) {
+    .b-tooltip__body--left-mobile-custom {
+        -ms-transform: translateX(-100%) !important;
+        -webkit-transform: translateX(-100%) !important;
+        left: 29px !important;
+        position: absolute !important;
+        top: 100% !important;
+        transform: translateX(-100%) !important;
+        width: 250px
+    }
+}
+
+.b-tooltip__body--left-mobile-custom:before {
+    display: block !important;
+    left: 282px
+}
+
+@media screen and (max-width: 599px) {
+    .b-tooltip__body--left-mobile-custom:before {
+        left: 229px
+    }
+}
+
+.b-tooltip:hover .b-tooltip__body {
+    margin-top: 5px;
+    opacity: 1;
+    visibility: visible
+}
+
+.b-tooltip--top-20 .b-tooltip__body {
+    margin-top: 20px
+}
+
+.b-tooltip--top-58 .b-tooltip__body {
+    margin-top: 65px
+}
+
+@media screen and (max-width: 599px) {
+    .b-tooltip--top-58 .b-tooltip__body {
+        margin-top: 12px
+    }
+}
+
+.b-tooltip--top-58:hover .b-tooltip__body {
+    margin-top: 58px
+}
+
+@media screen and (max-width: 599px) {
+    .b-tooltip--top-58:hover .b-tooltip__body {
+        margin-top: 5px
+    }
+}
+
+.b-module-info__help-s{
+    width: 24px;
+}
+
+.b-module-info__help-s .svg-icon {
+    color: #fff;
+    cursor: pointer;
+    height: 24px;
+    width: 24px;
+}
+

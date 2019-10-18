@@ -9,6 +9,12 @@
     </div>
 {% endblock %}
 
+{% block form_label %}
+    <label{% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}>
+         {{ label }} {{ formhelpsservice.getTextByCode(name)| unescape | raw  }}
+    </label>
+{% endblock  %}
+
 {% block OrderProductsFormType_widget %}
         <!-- <div class="row align-items-end">
             <div class="col-3">

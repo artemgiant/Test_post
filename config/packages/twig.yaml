@@ -4,4 +4,4 @@ twig:
     strict_variables: '%kernel.debug%'
     globals:
         liqpay: '@App\Service\LiqPayService'
-        authorizeservice: '@App\Service\AuthorizeDotNetService'
+        formhelpsservice: '@App\Service\HelpTextService'
