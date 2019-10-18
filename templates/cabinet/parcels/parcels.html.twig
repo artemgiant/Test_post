@@ -118,7 +118,6 @@
                                     <tbody>
                                     {% if items is defined and items is iterable %}
                                         {% for item in items %}
-
                                             <tr class="text-center">
                                                 <td>{{ item.getCreatedAtStr }}</td>
                                                 {% if isSend is defined and isSend == 1 %}
@@ -160,6 +159,7 @@
                                                         {% if item.orderStatus is empty or (item.orderStatus.status is  defined  and  item.orderStatus.status is not empty and (item.orderStatus.status == 'new' or item.orderStatus.status == 'getnewinvoice'))%}
                                                             {% if item.invoices is not empty %}
                                                                 {% for invoice in item.invoices if invoice.isPaid == false %}
+
                                                                     {% if invoice.price > 0 %}
                                                                         {% set liqPayForm=liqpay.LiqPayForm(invoice.price,'Pay by ExpressPoshta.com',"EXPRESSINVOICE_"~invoice.id) %}
                                                                         <div class="liq-pay-button">
@@ -185,6 +185,8 @@
 
                                                                         {% if invoice.tryPaid == false %}
                                                                                 <input type="button" id="" class="btn btn-outline-success authorize-button-change" onclick="AuthorizeNetPopup.openPopup({{invoice.id }})" value="{{ "Pay authorize" | trans }}" />
+                                                                        {% else %}
+                                                                                {{ 'text paid' | trans }}
                                                                         {% endif %}
 
                                                                     {% endif %}
