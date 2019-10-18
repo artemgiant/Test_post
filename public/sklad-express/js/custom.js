@@ -377,5 +377,26 @@ console.log($('#order_form_userVip').attr('DHLChecked'));
 
     }
 
+    $('#order_form_orderType ').change(function () {
+        MaxPriceAndWeight();
+    });
+
+    function MaxPriceAndWeight() {
+        $.ajax({
+            url: '/post/parcels/ajax/max/price',
+            type: 'get',
+            // dataType:'json',
+            data: {
+                typeDelivery:$('#order_form_orderType option:selected').val(),},
+            success: function (res) {
+                console.log(res);
+                $('form[name=order_form]').attr({'MaxPrice':res.MaxPrice});
+                $('form[name=order_form]').attr({'MaxVipPrice':res.MaxVipPrice});
+                $('form[name=order_form]').attr({'MaxWeight':res.MaxWeight});
+
+            },
+        });
+    }
+
 });
 

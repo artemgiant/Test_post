@@ -36,7 +36,6 @@ class OrderFormType extends AbstractType
         $user=$options['attr']['user'];
         $maxWeightEconom = $options['attr']['maxWeightEconom'];
         $maxWeightEconomVip = $options['attr']['maxWeightEconomVip'];
-
         if($user->isVip()) {
             $user_vip = 1;
         } else {

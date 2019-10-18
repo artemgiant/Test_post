@@ -34,12 +34,14 @@ class PriceEconomRepository extends ServiceEntityRepository
             ;
     }
 
-    public function findMaxWeight()
+    public function findMaxWeight($typeDelivery=1)
     {
         return $this->createQueryBuilder('p')
-            ->select('max(p.max_weight)')
+            ->andWhere('p.ordertype = :typeDelivery')
+            ->setParameter('typeDelivery',$typeDelivery)
+            ->select('max(p.max_weight),max(p.price),max(p.VipPrice)')
             ->getQuery()
-            ->getResult()[0][1]
+            ->getOneORNUllResult()
             ;
     }
     public function findPriceExpress()
