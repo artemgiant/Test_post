@@ -156,10 +156,10 @@ class OrderType
      */
     public function __toString()
     {
-        if (!$this->getName())
+        if (!empty($this->getName()))
             return $this->getName();
 
-        return $this->name;
+        return '';
     }
 
     /**
