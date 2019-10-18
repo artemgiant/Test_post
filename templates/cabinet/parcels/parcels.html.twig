@@ -122,7 +122,11 @@
                                             <tr class="text-center">
                                                 <td>{{ item.getCreatedAtStr }}</td>
                                                 {% if isSend is defined and isSend == 1 %}
-                                                    <td>{{ item.trNum }}</td>
+                                                    <td>
+                                                        <a href="{{ url("post_find",{"tracnum":item.trNum}) }}" target="_blank">
+                                                            {{ item.trNum }}
+                                                        </a>
+                                                    </td>
                                                 {% else %}
                                                     <td>{{ item.trackingNumber }}</td>
                                                 {% endif %}
@@ -161,10 +165,12 @@
                                                                         <div class="liq-pay-button">
                                                                             {{ liqPayForm | raw }}
                                                                         </div>
+                                                                        {#
                                                                         {% set authorizeToken=authorizeservice.getTokenToForm(invoice.price,invoice.id) %}
                                                                         <div class="authorize-button">
                                                                             <input type="text" id="inputtoken{{invoice.id }}" value="{{ authorizeToken }}"/>
                                                                         </div>
+                                                                        #}
                                                                         {% if invoice.comment is not empty %}
                                                                             <p>{{ invoice.comment }}</p>
                                                                         {% endif %}
@@ -187,7 +193,7 @@
                                                             {% endif %}
 
                                                         {% elseif page_title != 'Send Parcels List' %}
-                                                            <input type="button" id="" class="payment-btn btn btn-outline-success liq-pay-button-change disabled" value="{{ "Paid" | trans }}" />
+                                                            <input type="button" id="" class="payment-btn btn btn-outline-success liq-pay-button-change disabled  btn-edit-parcel" value="{{ "Paid" | trans }}" />
                                                             <a target="_blank" href="{{ url("generate_pdf_label",{"id":item.id}) }}" class="download-btn btn btn-outline-success " >{{ "Download Label" | trans }}</a>
                                                         {% endif %}
                                                     </td>

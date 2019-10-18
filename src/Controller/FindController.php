@@ -28,7 +28,7 @@ class FindController extends CabinetController
     public function profileAction(Request $request, TrackingMoreService $trackingMore): Response
     {
         $this->user = $this->getUser();
-        $trNum=$request->request->get('tracnum',false);
+        $trNum=$request->get('tracnum',false);
         $express=0;
         $errors =[];
         $mess=[];

@@ -98,7 +98,7 @@ class OrderType
      * @param string $nameRu
      * @return string
      */
-    public function setNameRu(string $nameRu): self
+    public function setNameRu( $nameRu)
     {
         $this->nameRu = $nameRu;
 
@@ -171,7 +171,7 @@ class OrderType
     {
         $locale = '';
         if(isset($GLOBALS['request']) && $GLOBALS['request']) $locale = $GLOBALS['request']->getLocale();
-        if (!empty($locale) && $locale!='ua') return $this->{"name".ucfirst($locale)};
+        if (!empty($locale) && $locale!='ua' && !empty($this->{"name".ucfirst($locale)})) return $this->{"name".ucfirst($locale)};
         else return $this->name;
     }
 }
