@@ -15,7 +15,8 @@
                         {% if trNumtousa is not empty %}
                             <div class="track-font">  {{ "Track your package1"| trans }} {{ companyToUSA }}: <a href="{{ urltousa }}">{{ trNumtousa  }}</a></div>
                         {% endif %}
-                        {% if express == 1 and trNuminusa is not empty %}
+
+                        {% if express == 0 and trNuminusa is not empty %}
                             <div class="track-font">{{ "Track your package2"| trans }} {{ companyInUSA }}: <a href="{{ urlinusa }}">{{ trNuminusa  }}</a></div>
                         {% endif %}
                     </div>
