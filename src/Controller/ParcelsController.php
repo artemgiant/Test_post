@@ -166,15 +166,17 @@ class ParcelsController extends CabinetController
 
 //Calculate shipping costs for ECONOM type . Use price-weight data.
 
-            if(!$order->getOrderType()->getCode() == 'express') {
+            if($order->getOrderType()->getCode() != 'express') {
+
                     $ObjectPrice = $this->getDoctrine()
                         ->getRepository(PriceForDeliveryType::class)
                         ->findPriceByWeight((float)$orderForm['sendDetailWeight'],$order->getOrderType()->getId());
-
             ($this->user->isVip())?
                 $order->setShippingCosts($ObjectPrice->getVipPrice())
                 :
-                $order->setShippingCosts($ObjectPrice->getPrice());}
+                $order->setShippingCosts($ObjectPrice->getPrice());
+            }
+
 
 
 //Calculate shipping costs for EXPRESS type . Use Dhl service .
