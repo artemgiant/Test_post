@@ -138,7 +138,8 @@ class ParcelsController extends CabinetController
             ->getRepository(PriceForDeliveryType::class)
             ->findMaxWeight();
 
-        $form = $this->createForm(OrderFormType::class, $order, ['attr'=>['user' => $this->user, 'maxWeightEconom' => $maxWeightEconom, 'maxWeightEconomVip' => $maxWeightEconomVip]]);
+
+        $form = $this->createForm(OrderFormType::class, $order, ['attr'=>['user' => $this->user,'maxWeightEconom' => $maxWeightEconom[1], 'maxWeightEconomVip' => $maxWeightEconomVip[1]]]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -160,20 +161,21 @@ class ParcelsController extends CabinetController
             unset($product);
             $order->setDeclareValue($declareValue);
             list($shipCost,$volume)=$this->CalculateShipCost($order);
-            $order->setShippingCosts($shipCost);
+//            $order->setShippingCosts($shipCost);
             $order->setVolumeWeigth($volume);
 
 //Calculate shipping costs for ECONOM type . Use price-weight data.
 
-            if(!$order->getOrderType()->getCode() == 'express') {
+            if($order->getOrderType()->getCode() != 'express') {
+
                     $ObjectPrice = $this->getDoctrine()
                         ->getRepository(PriceForDeliveryType::class)
                         ->findPriceByWeight((float)$orderForm['sendDetailWeight'],$order->getOrderType()->getId());
-
             ($this->user->isVip())?
                 $order->setShippingCosts($ObjectPrice->getVipPrice())
                 :
-                $order->setShippingCosts($ObjectPrice->getPrice());}
+                $order->setShippingCosts($ObjectPrice->getPrice());
+            }
 
 
 
@@ -581,6 +583,17 @@ return $order;
         return new JsonResponse($weightPrice);
     }
         return new JsonResponse('error');}
+
+    /**
+     * @Route("/ajax/max/price", name="max_price")
+     * @param Request $request
+     */
+    public function ajaxMaxPriceandWeight(Request $request){
+      $typeDelivery =   $request->query->get('typeDelivery');
+        $results = $this->getDoctrine()->getRepository(PriceForDeliveryType::class) ->findMaxWeight($typeDelivery);
+       $data = array('MaxVipPrice'=>(string)$results[3],'MaxPrice'=>(string)$results[2],'MaxWeight'=>(string)$results[1]);
+        return new JsonResponse($data);
+        }
 
 
 
