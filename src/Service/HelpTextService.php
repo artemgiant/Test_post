@@ -32,7 +32,7 @@ class HelpTextService
         if (!empty($code)){
             /** @var FormHelps $helpText */
             $helpText=$this->entityManager->getRepository(FormHelps::class)->findOneBy(["code"=>$code]);
-            if ($helpText){
+            if ($helpText && !empty($helpText->getText())){
                 return $this->twig->render('system/toolTip.html.twig', [
                     'helpText'      =>$helpText->getText()
                 ]);
