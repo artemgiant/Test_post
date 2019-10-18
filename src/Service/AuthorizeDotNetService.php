@@ -1014,7 +1014,7 @@ class AuthorizeDotNetService
                 throw new \Exception('Not valid data');
             }
 
-            $title = "Expressposhta  pay from user #".$this->user->getId();
+            $title = "Expressposhta  pay for invoice #".$orderId;
 
 
             $invoice = $this->makeAuthorizeDotNetInvoice($summ, $title,$orderId, null,true);

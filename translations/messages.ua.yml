@@ -258,7 +258,7 @@ Sum Paid: Сплачено
 Need Paid: Потрібно доплатити
 getnewinvoice: Не сплачено. Виставлений додатковий інвойс
 LiqPay Sucesss: Успішна оплата
-paid: Оплачен - ждет отправки
+paid: Оплачено - чекає відправки
 Insufficient data for calculation: Не вистачає даних для розрахунку
 Write latin only: Пишіть тільки латиницею
 formed: Формується
@@ -275,3 +275,4 @@ Add Coupon: Додати купон
 Coupon: Код купона
 success: Успiшно
 Successful payment: Оплата прошла успішно
+complit: Відправлений

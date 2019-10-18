@@ -206,7 +206,14 @@
             var popupScreen = document.getElementById("divAuthorizeNetPopupScreen");
             var ifrm = document.getElementById("iframeAuthorizeNet");
             var form = document.forms["formAuthorizeNetPopup"];
+            getTokenAuth(orderId);
+           /*
+            console.log(window.avtorizeToken);
+            */
+          /*
             $("#popupToken").val($("#inputtoken"+orderId).val());
+            */
+            $("#popupToken").val(window.avtorizeToken);
             form.action = "https://accept.authorize.net/payment/payment";
             ifrm.style.width = "884px";
             ifrm.style.height = "650px";
@@ -273,6 +280,25 @@ function setTryPaid() {
         }
     })
 }
+
+        function getTokenAuth(id) {
+            var datastr="invoice-id="+id;
+            $.ajax({
+                url: '/authorize-dot-net/ajax/get-token-to-form',
+                type: 'POST',
+                data: datastr,
+                async: false,
+                success: function(mess) {
+                  /*  console.log(mess);*/
+                    window.avtorizeToken=mess;
+                   return mess;
+                },
+                error:function(mess) {
+                    return null;
+                }
+            })
+        }
+
         function centerPopup() {
             var d = document.getElementById("divAuthorizeNetPopup");
             d.style.left = "50%";

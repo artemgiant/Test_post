@@ -28,7 +28,7 @@
                                             {% if items is defined and items is iterable  %}
                                                 {% for item in items %}
                                                  <tr>
-                                                    <td>{{ item.liqpayOrderId }}</td>
+                                                    <td>{{ item.number }}</td>
                                                     <td>{{ "Card"|trans }}</td>
                                                     <td>{{ item.sum }}</td>
                                                     <td>{{ item.status | trans }}</td>

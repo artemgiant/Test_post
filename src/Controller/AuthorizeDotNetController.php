@@ -6,6 +6,7 @@ use App\Entity\Invoices;
 use App\Entity\Order;
 use App\Entity\User;
 use App\Entity\Address;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -119,6 +120,51 @@ class AuthorizeDotNetController extends AbstractController
         }
 
         return new JsonResponse($data);
+    }
+
+
+    /**
+     * @Route("/ajax/get-token-to-form", name="get_authorize_token_to_form")
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getTokenToForm(
+        Request $request,
+        AuthorizeDotNetService $authDotNetService
+    ) {
+        /** @var EntityManager $entityManager */
+        $entityManager = $this->getDoctrine()->getManager();
+            $invoiceId= $request->get('invoice-id');
+
+
+        try {
+
+            if(
+                 !$invoiceId
+
+            ) {
+                throw new \Exception('Not valid data');
+            }
+
+            /** @var Invoices $invoice */
+            $invoice=$entityManager->getRepository(Invoices::class)->find($invoiceId);
+
+            if(
+            !$invoice
+            ) {
+                throw new \Exception('Not valid data');
+            }
+
+            $token = $authDotNetService->getTokenToForm($invoice->getPrice(), $invoiceId);
+
+
+
+        } catch (\Exception $e) {
+            $token='error '.$e->getMessage();
+        }
+
+        return new Response($token);;
     }
 
 //    /**

@@ -341,7 +341,7 @@ console.log($('#order_form_userVip').attr('DHLChecked'));
 
                     if(data.error){
                         ru = "Код купона не действителен";
-                        ukr ="Код купона не дійсний";
+                        ukr ="Код купона недійсний";
                         cl = 'text-danger';
                     }
                     if(data.quantity==0){

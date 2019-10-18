@@ -178,9 +178,13 @@
                             {% if ordersSend %}
                                 {% for order in ordersSend %}
                                     <tr class="text-center">
-                                        <td>{{ order.trackingNumber }}</td>
+                                        <td>
+                                            <a href="{{ url("post_find",{"tracnum":order.trNum}) }}" target="_blank">
+                                                {{ order.trNum }}
+                                            </a>
+                                        </td>
                                         <td>{{ order.addresses.fullAddress }}</td>
-                                        <td>{{ order.orderStatus.statusName| trans }}</td>
+                                        <td>{{ order.orderStatus.status | trans }}</td>
                                     </tr>
                                 {% endfor %}
                             {% else %}
