@@ -46,7 +46,7 @@ class TrackController extends CabinetController
 
             if ($order){
                 /* @var $order Order */
-                $express=($order->getOrderType()->getCode()=='express')?1:0;
+                $express=(!empty($order->getOrderType()) && $order->getOrderType()->getCode()=='express')?1:0;
                 $companyToUSA=$this->getCompanyNameByTrNum($order->getSystemNum());
                 $companyInUSA=$this->getCompanyNameByTrNum($order->getSystemNumInUsa());
                 $tracksArray=array(

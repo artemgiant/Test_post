@@ -250,7 +250,7 @@ class ParcelsController extends CabinetController
 
             $entityManager->persist($couponObject);
         }
-
+return $order;
     }
 
     /**
@@ -382,7 +382,7 @@ class ParcelsController extends CabinetController
                     }
                 }
             }
-            if($form->get('Coupon')->getNormData())$this->getDiscountCoupon($order,$form->get('Coupon')->getNormData(),$orderForm['sendDetailWeight'],'edit');
+            if($form->get('Coupon')->getNormData()) $order=$this->getDiscountCoupon($order,$form->get('Coupon')->getNormData(),$orderForm['sendDetailWeight'],'edit');
             if ($noInvoice){
                 $invoice=new Invoices();
                 $invoice->setOrderId($order)
